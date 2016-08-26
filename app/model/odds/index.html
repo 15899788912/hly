@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.exponent">
+<head>
+  <meta name="keywords" content="{{'EXPONENT_KEYWORDS' | translate}}"/>
+  <meta name="description" content="{{'EXPONENT_DESCRIPTION' | translate}}" />
+    @import '../views/head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="/styles/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/exponent@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+</head>
+
+<body ng-cloak  class="ng-cloak">
+@import '../views/nav.html'
+<div ng-view="" class="ng-scope">
+ @import '../views/foot.html';
+<!-- 外部js文件 -->
+ <script type="text/javascript" src="/common/swiper.min.js"></script>
+<!-- controllers -->
+<script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+<script type="text/javascript" src="/scripts/controllers/exponent@@MINEXT.js"></script>
+  </div>
+</body>

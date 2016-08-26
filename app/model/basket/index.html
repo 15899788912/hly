@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.basketball">
+<head>
+  <meta name="keywords" content="{{'BASKETBALL_KEYWORDS' | translate}}"/>
+  <meta name="description" content="{{'BASKETBALL_DESCRIPTION' | translate}}" />
+
+    @import '../views/head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="/styles/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/wapcss@@MINEXT.css">
+    <link rel="stylesheet" type="text/css" href="/styles/basketball@@MINEXT.css">
+</head>
+
+<body   class="ng-cloak" ng-cloak>
+@import '../views/nav.html'
+<div ng-view="" >
+ @import '../views/foot.html';
+ <!-- 外部js文件 -->
+ <script type="text/javascript" src="/common/echo@@MINEXT.js"></script>
+ <script type="text/javascript" src="/common/swiper.min.js"></script>
+ <script type="text/javascript" src="/common/stomp@@MINEXT.js"></script>
+ <script type="text/javascript" src="/common/selectCss@@MINEXT.js"></script>
+ <script type="text/javascript" src="/common/icheck@@MINEXT.js"></script>
+<!-- 自定义js文件 -->
+<script type="text/javascript" src="/common/ng-infinite-scroll@@MINEXT.js"></script>
+<!-- controllers -->
+<script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+<script type="text/javascript" src="/scripts/controllers/basketball@@MINEXT.js"></script>
+  </div>
+
+</body>
+
+

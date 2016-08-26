@@ -1,0 +1,133 @@
+<!-- 头部信息 -->
+<div class="header h_shadow" ng-show="headBox">
+	<div class="topic">
+		<a href="javascript:void(0);" class="backBox" ng-click="ec.gotoUpper($event)">
+			<i class="icon_back"></i>{{'EXPONENT_TITLE'|translate}}
+		</a>
+		<!-- <div class="operate" id="operateBox" ng-if="operateBox">
+			<div class="dateBox" ng-click="ec.dateSelect($event)">
+				<i class="icon_date"></i>
+				<span class="dateInfo">{{today}}</span>
+			</div>
+			<div class="oth_oper">
+
+			    <i class="icon_company" ng-click="ec.comWinClick($event)"></i>
+			    <i class="icon_filter" ng-click="ec.filterClick($event)"></i>
+			</div>
+		</div> -->
+		<div class="teaminfo" id="companyHead" ng-if="comInfoHeadBox">
+			<p class="info_box">
+				<span class="team_h">{{comHomeInfo}}</span> {{comResInfo}}
+				<span class="team_h">{{comGuestInfo}}</span>
+			</p>
+		</div>
+	</div>
+	<ul class="tab h_odds">
+		<li class="active">{{'ODDS_ASIAN'|translate}}</li>
+		<li>{{'ODDS_SIZE'|translate}}</li>
+		<li>{{'ODDS_EUROPE'|translate}}</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="new_operate operate" id="operateBox" ng-if="operateBox">
+	<div class="dateBox" ng-click="ec.dateSelect($event)">
+		<i class="icon_date"></i>
+		<!-- <span class="dateInfo">{{today}}</span> -->
+	</div>
+	<div class="oth_oper">
+			<!-- <i ng-class="{true:'icon_hot hoted',false:'icon_hot'}[hoted]" ng-click="ec.hotClick($event)"></i> -->
+			<i class="icon_company" ng-click="ec.comWinClick($event)"></i>
+			<i class="icon_filter" ng-click="ec.filterClick($event)"></i>
+	</div>
+</div>
+<!-- 内容部分 -->
+<div class="swiper-container exp_content" ng-show="contentBox" id="tabs-container">
+ 	<div class="swiper-wrapper">
+		<!-- 主页面 -->
+		<div class="swiper-slide">
+			<main-Con></main-Con>
+		</div>
+		<!-- 公司详情 -->
+		<div class="swiper-slide">
+			<main-Con></main-Con>
+		</div>
+		<!-- 欧赔 -->
+		<div class="swiper-slide">
+			<main-Con></main-Con>
+		</div>
+	</div>
+</div>
+<!-- loading -->
+<div class="loading" ng-show="expLoadingImg">
+	<img src="@@IMGURL/loading.gif" />
+</div>
+<!-- 筛选 -->
+<div class="filter_content" ng-show="filterBox">
+    <div class="topic">
+		<a href="javascript:void(0);" class="backBox" ng-click="ec.backContent($event)">
+		<i class="icon_back"></i>{{'FILTERING' | translate}}</a>
+    </div>
+    <!-- 筛选内容 -->
+	<div class="game_box" id="game_box">
+		<p class="g_title">{{'HOT_FILTERING' | translate}}</p>
+		<ul class="g_list">
+			<li ng-repeat="hg in hotGameList" ng-class="{true:'active',false:''}[hg.clicked]" ng-click="toggleGame($event, 'active')" data-count="{{hg.matchsInLeague}}" data-id="{{hg.leagueId}}">
+				<span class="g_name" style="color:{{hg.leagueColor}};">{{hg.leagueName}}</span>
+				<em class="num">{{hg.matchsInLeague}}</em>
+			</li>
+		</ul>
+		<div style="text-align: center;" ng-if="hotGameList == null || hotGameList.length == 0">
+            <p ng-bind="'NO_INIT_IMMEDIATE_MATCHES'|translate" style="margin: 5px 0;height: .4rem;"></p>
+        </div>
+		<!-- 其他赛事 -->
+		<p class="g_title g_other">{{'OTHER_FILTERING' | translate}}</p>
+		<ul class="g_list">
+			<li ng-repeat="og in otherGameList" ng-class="{true:'active',false:''}[og.clicked]" ng-click="toggleGame($event, 'active')" data-count="{{og.matchsInLeague}}" data-id="{{og.leagueId}}">
+				<span class="g_name" style="color:{{og.leagueColor}};">{{og.leagueName}}</span>
+				<em class="num">{{og.matchsInLeague}}</em>
+			</li>
+		</ul>
+		<div style="text-align: center;" ng-if="otherGameList == null || otherGameList.length == 0">
+            <p ng-bind="'NO_INIT_IMMEDIATE_MATCHES'|translate" style="margin: 5px 0;height: .4rem;"></p>
+        </div>
+        <div class="clear"></div>
+    	<div style="height:1.1rem;"></div>
+	</div>
+	<div class="game_cho">
+	   <p class="g_session" translate="HIDE_MATCHES" translate-values="{'hideGameCount' : '<em class=\'f_red\'>&nbsp;{{hideGameCount}}&nbsp;</em>'}"></p>
+	   <p class="g_btn_box">
+		   <span ng-click="checkFiveGame()">{{'FIVE_MATCH' | translate}}</span>
+		   <span ng-click="checkHotGame()">{{'HOT_MATCH' | translate}}</span>
+		   <span ng-click="checkAllGame()">{{'SELECT_ALL_MATCH' | translate}}</span>
+		   <span ng-click="reverseCheckGame()">{{'DESEELCT_MATCH' | translate}}</span>
+	   </p>
+	   <button class="btn_qd" ng-click="checkGameSubmit($event)">{{'BUTTON_SUBMIT' | translate}}</button>
+	</div>
+</div>
+<!-- 公司,日期选择弹出框 -->
+<div class="dialog" ng-if="dialogBox" ng-click="ec.dialogBox($event)">
+	<!-- 日期选择 -->
+	<div class="date_box" ng-if="dateDialog" ng-click="ec.comDialog($event)">
+		<p class="title">{{'EXPONENT_DATE' | translate}}</p>
+		<ul class="list dlist" id="date_box">
+			<li ng-repeat="dl in dateList" ng-class="{true:'active',false:''}[dl.checked]" data-info="{{dl.yearDay}}" ng-click="ec.dateClick($event)">{{dl.day}}</li>
+		</ul>
+	</div>
+	<!-- 公司选择 -->
+	<div class="date_box company_box" ng-if="comDialog" ng-click="ec.comDialog($event)">
+		<p class="title">{{'EXPONENT_COMPANY' | translate}}</p>
+		<ul class="list" id="com_checkbox">
+			<li ng-repeat="cm in companyListValues" ng-click="ec.comListClick($event)">
+				<span class="name">{{cm.name}}</span>
+				<div class="choice_box" ng-class="{true:'choice_box checked',false:'choice_box'}[cm.checked]">
+					<input type="checkbox" name="companyChoice" value="{{cm.value}}" data-id="{{cm.id}}" ng-checked="{true:'checked',false:''}[cm.checked]">
+					<i class="icon_cbox"></i>
+				</div>
+			 </li>
+		</ul>
+		<button class="btn_sure" ng-click="ec.submitClick($event)">{{'BUTTON_SUBMIT'|translate}}</button>
+	</div>
+	<div class="error_box" style="display:none;">
+		<p class="error">{{'COM_ERROR_TIPS'|translate}}</p>
+	</div>
+</div>

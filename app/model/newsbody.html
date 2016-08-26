@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="font-size: 67.9688px;">
+<head>
+  @import 'views/head.html';
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/styles/news@@MINEXT.css">
+
+  <script type="text/javascript">
+
+    String.prototype.getQueryString = function(name){
+      var reg = new RegExp("(^|&|\\?)"+ name +"=([^&]*)(&|$)"), r;
+      if (r=this.match(reg)) return unescape(r[2]);
+      return null;
+    };
+
+    function getLanguage(){
+      /*大陆版使用start*/
+      if(!isInternational){
+        var setLang=mobileUtil.getSearch()['lan'];
+        if(setLang){localStorage.setItem("language",setLang);}
+      }
+      /*大陆版使用end*/
+      var language = localStorage.getItem("language");
+      if (language == null) {
+        language = defaultLanguageKey;
+      }
+      return language;
+    }
+
+    window.onload = function () {
+
+      var infoUrl = location.search.getQueryString("infoUrl");
+
+      var infoType = location.search.getQueryString("infoType");
+
+      var headTitles=JSON.parse(sessionStorage.getItem("newsHeadTitles"));
+
+      var title="";
+
+      var documentTitle="";
+
+
+      if(infoType==null||infoType=="")
+      {
+        title=headTitles[0].title;
+      }
+
+
+      for(var i in headTitles) {
+
+        if(infoType==headTitles[i].infoType)
+        {
+          title=headTitles[i].title;
+        }
+
+      }
+
+      document.getElementById("title").innerHTML=title;
+
+      document.getElementById("content").src=infoUrl;
+
+      var language=getLanguage();
+
+      if(language=="zh-TW")
+      {
+        documentTitle="壹比分資訊";
+      }else if(language=="en")
+      {
+        documentTitle="One Score Information";
+      }else if(language=="th")
+      {
+        documentTitle="ข่าววันสกอร์";
+      }else if(language=="vi")
+      {
+        documentTitle="Tin tức Tỷ Số Nhất";
+      }else{
+        documentTitle="一比分资讯";
+      }
+      document.title = documentTitle;
+
+    }
+
+  </script>
+
+<body>
+	  <div id="header" class="liveh">
+        <div class="wrap">
+            <a class="goback" href="news.html"></a>
+            <span class="title" id="title"></span>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="contentBody">
+      <iframe width="100%" height="1000px" frameborder=0 scrolling=auto src="" id="content">
+      </iframe>
+  	</div>
+    @import 'views/foot.html';
+</body>
+</html>

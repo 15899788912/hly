@@ -1,0 +1,105 @@
+<div id="header" class="liveh">
+<div class="clear"></div>
+  <div class="tab-scroll">
+  <div class="newsNav">
+    <ul>
+        <li ng-repeat="headTitle in headTitles"  ng-click="liClick($event)" head-title-repeat-finish>
+          <a id="{{headTitle.infoType}}">{{headTitle.title}}</a>
+        </li>
+    </ul>
+  </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="contentBox">
+
+    <div id="banner" ng-show="adsShow">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" ng-repeat="ad in ads" ads-image-repeat-finish>
+          <a href="{{ad.jumpAddr}}#mobile=1" data-transition="slide">
+            <img ng-src="{{ad.picUrl}}" ng-if="ad.picUrl!=null"/>
+            <img src="/images/news/ads.png" ng-if="ad.picUrl==null"/>
+            <div class="gallerytitle">{{ad.title}}</div>
+          </a>
+        </div>
+      </div>
+      <div class="pagination"></div>
+    </div>
+
+    <div class="new_bd">
+      <ul class="newsList" ng-if="infoType!=5">
+
+        <li ng-repeat="info in infos" info-repeat-finish>
+          <a class="a-lk" href="{{info.infoUrl}}#mobile=1" ng-if="info.isvideonews!='1'">
+                            <span class="u-img" ng-if="info.picUrl!=null">
+                                <img ng-src="{{info.picUrl}}" alt="" />
+                            </span>
+                            <span ng-if="info.picUrl==null">
+
+                            </span>
+            <div class="detail">
+              <strong>{{info.title}}</strong>
+              <div class="info">
+               <!--  <span class="recommend" ng-if="info.subTitle!=null">{{'RECOMMEND' | translate}}</span> -->
+                <span class="resource">{{info.subTitle}}</span>
+                <span class="icon" ng-if="infoType!=1">{{info.lastModifyDate}} {{info.lastModifyTime}}</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="a-lk" ng-if="info.isvideonews=='1'" videourl="{{info.videourl}}" ng-click="videoPlayerClick($event)">
+                            <span class="u-img" ng-if="info.picUrl!=null">
+                                <img ng-src="{{info.picUrl}}" alt="" />
+                            </span>
+                            <span ng-if="info.picUrl==null">
+
+                            </span>
+            <div class="detail">
+              <strong>{{info.title}}</strong>
+              <div class="info">
+                <!-- <span class="recommend" ng-if="info.subTitle!=null">{{'RECOMMEND' | translate}}</span> -->
+                <span class="resource">{{info.subTitle}}</span>
+                <span class="icon" ng-if="infoType!=1">{{info.lastModifyDate}}  {{info.lastModifyTime}}</span>
+              </div>
+            </div>
+          </a>
+
+        </li>
+
+      </ul>
+
+      <ul class="depth" ng-if="infoType==5">
+        <li ng-repeat="info in infos" info-repeat-finish>
+          <div class="depth-con" ng-if="info.picUrl!=null">
+            <a href="{{info.infoUrl}}#mobile=1">
+              <img ng-src="{{info.picUrl}}">
+              <div class="depth-tit">{{info.title}}</div>
+            </a>
+          </div>
+          <div class="depth-con" ng-if="info.picUrl==null">
+            <a href="{{info.infoUrl}}#mobile=1">
+              <img src="@@IMGURL/news/depth.png">
+              <div class="depth-tit">{{info.title}}</div>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div id="note" ng-if="loadingShow" ng-show="infoType!=1">
+        <img src="@@IMGURL/loading.gif"/> {{'ONLOADING' | translate}}
+    </div>
+
+  </div>
+
+</div>
+<!--点击视频播放-->
+<div class="video_player">
+    <video class="video" id="video1" webkit-playsinline="true" controls=""
+           src="" preload="preload">
+    </video>
+  <div class="memo" ng-click="videoCancelClick()">
+  </div>
+</div>
+

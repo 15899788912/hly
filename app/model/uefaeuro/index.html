@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,shrink-to-fit=no" />
+  <meta name="description" content="一比分网，最快的比分直播，最全的体育数据资讯。" />
+  <meta name="keywords" content="一比分、足球比分、比分、篮球比分、体育比分" />
+  <title>2016法国欧洲杯</title>
+  <link rel="stylesheet" type="text/css" href="../styles/uefaeuro.css">
+  <script type="text/javascript" src="../common/jquery.min.js"></script>
+  <script type="text/javascript" src="../common/dealer.js"></script>
+  <script type="text/javascript">
+    /*百度统计*/
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?345812d171023c73cbadf698c633b1a6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script language="javascript" type="text/javascript">
+
+
+    //-------------------------------------倒计时开始---------------------------------------------------
+
+    /*
+     * 填充倒计时
+     * */
+    function fillDjs (remainTime) {
+
+      var obj = timer(remainTime);
+
+      return obj;
+    };
+
+    /*
+     * 倒计时 返回时间对象
+     * @param time毫秒数
+     * */
+    function timer(time) {
+      time = time < 0 ? 0 : time;
+
+      var dd = parseInt(time / 1000 / 60 / 60 / 24, 10);//计算剩余的天数
+      dd = !!dd ? dd : 0;
+      dd = dd < 0 ? 0 : dd;
+      dd = dd < 10 ? "0" + dd : "" + dd;
+
+      var hh = parseInt(time / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数
+      hh = !!hh ? hh : 0;
+      hh = hh < 0 ? 0 : hh;
+      hh = hh < 10 ? "0" + hh : "" + hh;
+
+      var mm = parseInt(time / 1000 / 60 % 60, 10);//计算剩余的分钟数
+      mm = !!mm ? mm : 0;
+      mm = mm < 0 ? 0 : mm;
+      mm = mm < 10 ? "0" + mm : "" + mm;
+
+      var ss = parseInt(time / 1000 % 60, 10);//计算剩余的秒数
+      ss = !!ss ? ss : 0;
+      ss = ss < 0 ? 0 : ss;
+      ss = ss < 10 ? "0" + ss : "" + ss;
+
+      return {"day": dd, "hour": hh, "min": mm, "sec": ss};
+    }
+
+    /*
+     * 获取日期间隔毫秒 时间参数格式yyyy-MM-dd HH:mm:ss
+     */
+    function GetDateDiff(endTimeStr, beginTime) {
+      var dateEnd = new Date(endTimeStr.replace(/-/g, "/"));
+      var dateDiff = dateEnd.getTime() - beginTime;
+      return dateDiff;
+    }
+
+    /*
+     * 获取数字的个位和十位
+     */
+    function hex(num){
+      var a = num.substr(1, 1);  //个位
+      var b = num.substr(0, 1); //十位数
+      return {"ten": b, "one": a};
+    }
+
+
+
+    //var serverTime="1463716800000";//服务器时间
+    var serverTime=new Date().getTime();//服务器没有提供时间
+    var nextTime="2016-06-10 12:00:00";//欧洲杯开塞时间
+    //算出服务器上时间差
+    var remainTime = GetDateDiff(nextTime, serverTime);
+    var endTime = remainTime + new Date().getTime();
+
+    window.setInterval(function(){
+
+      remainTime = endTime - new Date().getTime();
+      var obj=fillDjs(remainTime);
+
+      var day_ob=hex(obj.day);
+      var hour_ob=hex(obj.hour);
+
+      $("#day_ten").html(day_ob.ten);
+      $("#day_one").html(day_ob.one);
+
+      $("#hour_ten").html(hour_ob.ten);
+      $("#hour_one").html(hour_ob.one);
+
+
+    }, 1000);
+
+
+    //-------------------------------------倒计时结束---------------------------------------------------
+
+
+
+
+    //初始化数据
+    function getInitData() {
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: baseUrl + "/core/info.findH5EuroCupInfoList.do",
+       // url: "http://m.1332255.com/mlottery/core/info.findH5EuroCupInfoList.do",
+        //url:"http://192.168.10.242:8181/mlottery/core/info.findH5EuroCupInfoList.do",
+        data:{"lang":"zh"},
+        success: function(json) {
+
+
+          //-------------------------------------热门资讯开始---------------------------------------------------
+          var hot_info_data = json.infos[100];
+
+          $.each(hot_info_data, function(i, data) {
+
+            var hot_info_subTitle="";
+
+            if(data.subTitle==null)
+            {
+              hot_info_subTitle= "<span class='new_data'>"+ data.lastModifyDate +"&nbsp;&nbsp;"+ data.lastModifyTime + "</span>"
+            }else
+            {
+              hot_info_subTitle= "<span class='recommend'>推荐</span><span class='resource'>" + data.subTitle + "</span>"
+            }
+
+
+            var info_source="";
+
+            if(data.infoSource!=null)
+            {
+              info_source=data.infoSource;
+            }
+
+
+            var hot_info = ""
+
+            hot_info +=
+
+                "<li><div class='li_border'><a class='a-lk' href='information.html?infoUrl="+ data.infoUrl +"'>"+
+                "<span class='u-img'><img src='"+ data.picUrl+"'/>"+
+                "</span><div class='detail'><strong>"+data.title+
+                "</strong><div class='info'>" +
+
+                hot_info_subTitle
+
+                +"<span class='icon'>"+info_source+"</span></div></div></a></div></li>";
+
+
+            $("#hot_info").append(hot_info);
+          });
+          //-------------------------------------热门资讯结束---------------------------------------------------
+
+
+
+
+          //-------------------------------------夺冠赔率开始---------------------------------------------------
+          var odds_data = json.odds;
+
+          $.each(odds_data, function(i, data) {
+
+            var odds = ""
+
+            i=i+1;
+
+            var tr="";
+
+            if(data.isvalid==2)
+            {
+                tr="<tr class='tr_color'><td>";
+            }else{
+                tr="<tr><td>"
+            }
+
+            odds += tr+i+"</td><td>" + data.teamname+"</td><td>"+data.odds+"</td><td>" + data.lastodds+"</td></tr>";
+
+            $("#odds").append(odds);
+
+          });
+          //-------------------------------------夺冠赔率结束---------------------------------------------------
+
+
+
+          //-------------------------------------往届回顾开始---------------------------------------------------
+          var pre_info_data = json.infos[101];
+
+          $.each(pre_info_data, function(i, data) {
+
+            var sub_title="";
+            if(data.subTitle!=null)
+            {
+              sub_title=data.subTitle;
+            }
+
+            var pre_info = ""
+
+            pre_info +=
+
+              "<li><div class='li_border'><a class='a-lk' href='information.html?infoUrl="+ data.infoUrl +"'>"+
+              "<span class='u-img'><img src='"+ data.picUrl+"'/>"+
+              "</span><div class='detail'><strong>"+data.title+
+              "</strong><div class='info'>" +
+              "<span class='subtitle'>"+sub_title+"</span></div></div></a></div></li>";
+
+            $("#pre_info").append(pre_info);
+
+          });
+          //-------------------------------------往届回顾结束---------------------------------------------------
+
+        },
+        error: function(json) {
+          alert("加载失败");
+        }
+      });
+    }
+
+    //文档加载完执行
+    $(function() {
+      getInitData();
+    });
+
+
+
+  </script>
+
+<div class="header">
+
+  <div class="time">
+
+    <i id="day_ten"></i>
+    <i id="day_one"></i>
+
+    <span>天</span>
+
+    <i id="hour_ten"></i>
+    <i id="hour_one"></i>
+
+    <span>时</span>
+
+  </div>
+
+  <div class="download"><a href="../qrcode.html"><img src="../images/uefaeuro/btn.png"></a></div>
+
+</div>
+
+
+
+
+<div class="content_bg">
+
+  <div class="title">·热门资讯·</div>
+
+  <ul class="newsList" id="hot_info">
+
+
+
+
+  </ul>
+</div>
+
+
+<div class="content_bg">
+
+  <div class="title">·诸强巡礼·</div>
+
+  <div class="groups">
+
+    <div class="lbs_border">
+
+    <div  class="lbs_title"><span>A组</span></div>
+
+    <ul class="lbs-list">
+      <li>
+        <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160603/2016060313089.html">
+          <div class="icon-film"><img src="../images/uefaeuro/country/649.png"></div>
+          <p>法国</p>
+        </a>
+      </li>
+      <li>
+        <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160606/2016060613346.html">
+          <div class="icon-film"><img src="../images/uefaeuro/country/635.png"></div>
+          <p>罗马尼亚</p>
+        </a>
+      </li>
+      <li>
+        <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160606/2016060613333.html">
+          <div class="icon-film"><img src="../images/uefaeuro/country/761.png"></div>
+          <p>阿尔巴尼亚</p>
+        </a>
+      </li>
+      <li>
+        <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160602/2016060213083.html">
+          <div class="icon-film"><img src="../images/uefaeuro/country/648.png"></div>
+          <p>瑞士</p>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+
+    <div class="lbs_border">
+
+      <div  class="lbs_title"><span>B组</span></div>
+
+      <ul class="lbs-list">
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160603/2016060313087.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/744.png"></div>
+            <p>英格兰</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412606.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/746.png"></div>
+            <p>俄罗斯</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412612.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/7384.png"></div>
+            <p>威尔士</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412613.html">
+           <div class="icon-film"><img src="../images/uefaeuro/country/752.png"></div>
+            <p>斯洛伐克</p>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <div class="lbs_border">
+
+      <div  class="lbs_title"><span>C组</span></div>
+
+      <ul class="lbs-list">
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160602/2016060213084.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/650.png"></div>
+            <p>德国</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412617.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/634.png"></div>
+            <p>乌克兰</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412615.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/637.png"></div>
+            <p>波兰</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412614.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/759.png"></div>
+            <p>北爱尔兰</p>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+    <div class="lbs_border">
+
+      <div  class="lbs_title"><span>D组</span></div>
+
+      <ul class="lbs-list">
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412621.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/772.png"></div>
+            <p>西班牙</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412618.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/747.png"></div>
+            <p>捷克</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412620.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/762.png"></div>
+            <p>土耳其</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160606/2016060613347.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/768.png"></div>
+            <p>克罗地亚</p>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+    <div class="lbs_border">
+
+      <div  class="lbs_title"><span>E组</span></div>
+
+      <ul class="lbs-list">
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412623.html">
+           <div class="icon-film"><img src="../images/uefaeuro/country/645.png"></div>
+            <p>比利时</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412625.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/771.png"></div>
+            <p>意大利</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412622.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/630.png"></div>
+            <p>爱尔兰</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412624.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/644.png"></div>
+            <p>瑞典</p>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+    <div class="lbs_border">
+
+      <div  class="lbs_title"><span>F组</span></div>
+
+      <ul class="lbs-list">
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412628.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/765.png"></div>
+            <p>葡萄牙</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412627.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/756.png"></div>
+            <p>冰岛</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412626.html">
+            <div class="icon-film"><img src="../images/uefaeuro/country/647.png"></div>
+            <p>奥地利</p>
+          </a>
+        </li>
+        <li>
+          <a href="information.html?infoUrl=http://m.13322.com/oms/infomationhtml/20160524/2016052412629.html">
+           <div class="icon-film"><img src="../images/uefaeuro/country/745.png"></div>
+            <p>匈牙利</p>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+<div class="content_bg">
+  <div class="title">·夺冠赔率·</div>
+
+  <div id="content">
+
+    <div class="line_up"><img src="../images/uefaeuro/line_up.png"/></div>
+
+
+    <table cellspacing="0" id="table_header">
+      <tr>
+        <td width="18%">排名</td>
+        <td width="27%">球队</td>
+        <td width="25%">赔率</td>
+        <td>上届排名</td>
+      </tr>
+    </table>
+
+    <div class="tb_scroll">
+
+      <table cellspacing="0" id="odds">
+
+
+
+
+      </table>
+
+    </div>
+    <div class="line_down"><img src="../images/uefaeuro/line_up.png"/></div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="content_bg">
+
+  <div class="title">·往届回顾·</div>
+
+  <ul class="pre_news" id="pre_info">
+
+
+
+  </ul>
+</div>
+
+
+
+
+
+<div class="footer">
+  <div class="foot">
+  <p class="d_link">
+    <a href="../qrcode.html">客户端下载</a><span>|</span>
+    <a href="http://live.13322.com/?from=m">访问电脑版</a>
+  </p>
+  </div>
+</div>
+
+
+
+</body>
+</html>

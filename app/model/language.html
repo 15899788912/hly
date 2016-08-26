@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.home">
+<head>
+  <meta name="keywords" content="{{'HOME_KEYWORDS' | translate}}"/>
+  <meta name="description" content="{{'HOME_DESCRIPTION' | translate}}" />
+    @import './views/head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="./styles/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="./styles/wapcss@@MINEXT.css">
+
+</head>
+<body  ng-view="" ng-cloak  class="ng-cloak">
+    @import './views/foot.html';
+    <!-- 外部js文件 -->
+    <script type="text/javascript" src="./common/swiper.min.js"></script>
+    <script type="text/javascript" src="./common/icheck@@MINEXT.js"></script>
+    <script type="text/javascript" src="./common/selectCss@@MINEXT.js"></script>
+    <!-- controllers -->
+    <script type="text/javascript" src="./scripts/app@@MINEXT.js"></script>
+    <script type="text/javascript" src="./scripts/controllers/home@@MINEXT.js"></script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.news">
+<head>
+  <meta name="keywords" content="{{'NEWS_KEYWORDS' | translate}}"/>
+  <meta name="description" content="{{'NEWS_DESCRIPTION' | translate}}" />
+  @import './views/head.html';
+  <title>{{'TITLE' | translate}}</title>
+  <link rel="stylesheet" type="text/css" href="./styles/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="./styles/news@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="../styles/nav_header@@MINEXT.css">
+</head>
+
+<body  ng-cloak class="ng-cloak">
+@import './views/nav.html'
+<div ng-view=""  ng-cloak >
+@import './views/foot.html';
+
+<script type="text/javascript" src="./common/swiper.min.js"></script>
+<script type="text/javascript" src="./scripts/app@@MINEXT.js"></script>
+<script type="text/javascript" src="./scripts/controllers/news@@MINEXT.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  @import 'views/head.html';
+  <title>One Score</title>
+  <script type="application/javascript">
+    @import 'common/dealer@@MINEXT.js';
+
+    String.prototype.getQueryString = function(name){
+      var reg = new RegExp("(^|&|\\?)"+ name +"=([^&]*)(&|$)"), r;
+      if (r=this.match(reg)) return unescape(r[2]);
+      return null;
+    };
+
+    window.onload = function () {
+      var lang= location.search.getQueryString("lang");
+      var channel = location.search.getQueryString("channel");
+
+      // 根据不同的终端，跳转到不同的地址
+      var theUrl ;
+
+      if((lang==null||lang=='')&&(channel==null||channel==''))
+      {
+          theUrl= "http://m.13322.com";
+      }else{
+
+        if(lang=='en')//英语
+        {
+
+          if(channel == null || channel == '') {
+            channel=enChannel;
+          }
+
+          theUrl=downUrl+"/download_en.html?channel="+channel;
+
+        }else if(lang=='ko')//韩语
+        {
+
+          if(channel == null || channel == '') {
+            channel=koChannel;
+          }
+
+          theUrl=downUrl+"/download_ko.html?channel="+channel;
+
+        }else if(lang=='in')//印尼语
+        {
+
+          if(channel == null || channel == '') {
+            channel=inChannel;
+          }
+
+          theUrl=downUrl+"/download_in.html?channel="+channel;
+
+        }else if(lang=='th')//泰语
+        {
+
+          if(channel == null || channel == '') {
+            channel=thChannel;
+          }
+
+          theUrl=downUrl+"/download_th.html?channel="+channel;
+
+        }else if(lang=='vi')//越南语
+        {
+
+          if(channel == null || channel == '') {
+            channel=viChannel;
+          }
+
+          theUrl=downUrl+"/download_vi.html?channel="+channel;
+        }
+      }
+
+      window.location.href = theUrl;
+    }
+  </script>
+</head>
+<body >
+</body>
+</html>

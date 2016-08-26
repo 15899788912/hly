@@ -1,0 +1,342 @@
+<!-- 头部 -->
+<header>
+  <p class="icon back" id="back"><img src="@@IMGURL/live/backIcon.png" /></p>
+  <p class="title"><span>{{'MATCHES_DETAILS' | translate}}</span></p>
+  <p class="icon" ng-class="{true: 'attention', false: 'abolish'}[attented]" id="attention" isclicked="{{attented}}" ng-click="addToAttention();"></p>
+</header>
+<!-- banner -->
+<div class="banner">
+  <div class="teams teams_l">
+    <p>
+      <img ng-src="{{info.match.guestLogoUrl}}" onerror="logoLoadErr(this,'team')"/>
+    </p>
+    <p>
+      <span>{{info.match.guestTeam}}</span>
+      <span ng-if="info.match.guestRanking!=''">[{{info.match.guestRanking}}]</span>
+      <span ng-if="info.match.guestRanking==''"></span>
+    </p>
+  </div>
+  <div class="matchStatus_will" ng-if="info.match.matchStatus==0">
+    <p>{{info.match.leagueName}}</p>
+    <p class="matchScore">VS</p>
+    <p class="matchTime">{{info.match.date}}  {{info.match.time}}</p>
+  </div>
+  <div class="matchStatus_ing" ng-if="info.match.matchStatus!=0">
+    <p>{{info.match.leagueName}}</p>
+    <p class="matchScore">{{info.match.matchScore.guestScore}}:{{info.match.matchScore.homeScore}}</p>
+  </div>
+  <div class="teams teams_r">
+    <p>
+      <img ng-src="{{info.match.homeLogoUrl}}" onerror="logoLoadErr(this,'team')"/>
+    </p>
+    <p>
+      <span>{{info.match.homeTeam}}</span>
+      <span ng-if="info.match.homeRanking!=''">[{{info.match.homeRanking}}]</span>
+      <span ng-if="info.match.homeRanking==''"></span>
+    </p>
+  </div>
+</div>
+
+
+<!-- tab选项 -->
+<div class="tabnav">
+  <nav class="detailNav">
+    <ul>
+      <li class="active statistics">{{'MATCHES_STATISTICS' | translate}}</li>
+      <li class="analysis">{{'MATCHES_ANALYSIS' | translate}}</li>
+      <li class="Asian_p">{{'MATCHES_ASIAN' | translate}}</li>
+      <li class="Europe_l">{{'MATCHES_EUROPE' | translate}}</li>
+      <li class="Ball_s">{{'MATCHES_BALL' | translate}}</li>
+    </ul>
+  </nav>
+</div>
+
+
+<!-- 内容块 -->
+<div class="container">
+  <p class="gap"></p>
+  <!-- 统计 -->
+  <div class="statistics_content">
+
+    <table class="statistics_data" ng-show="statistics!=null">
+        <tr>
+          <td></td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td ng-if="ot1">OT1</td>
+          <td ng-if="ot2">OT2</td>
+          <td ng-if="ot3">OT3</td>
+        </tr>
+
+        <tr>
+          <td>{{info.match.guestTeam}}</td>
+          <td>{{statistics.guest1}}</td>
+          <td>{{statistics.guest2}}</td>
+          <td>{{statistics.guest3}}</td>
+          <td>{{statistics.guest4}}</td>
+          <td ng-if="ot1">{{statistics.guestOt1}}</td>
+          <td ng-if="ot2">{{statistics.guestOt2}}</td>
+          <td ng-if="ot3">{{statistics.guestOt3}}</td>
+        </tr>
+
+        <tr>
+          <td>{{info.match.homeTeam}}</td>
+          <td>{{statistics.home1}}</td>
+          <td>{{statistics.home2}}</td>
+          <td>{{statistics.home3}}</td>
+          <td>{{statistics.home4}}</td>
+          <td ng-if="ot1">{{statistics.homeOt1}}</td>
+          <td ng-if="ot2">{{statistics.homeOt2}}</td>
+          <td ng-if="ot3">{{statistics.homeOt3}}</td>
+        </tr>
+
+      </table>
+
+    <!-- 未开 -->
+    <ul class="noData" ng-show="!statistics_status">
+      <p class="loading_img"></p>
+    </ul>
+
+    <div ng-show="statistics_status">
+      <ul class="noData" ng-show="statistics==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+    </div>
+
+    <!-- 刷新按钮 -->
+    <div class="refresh" ng-class="{true: 'on', false: ''}[refreshOn]"  ng-click="refreshClick();">
+      <img src="@@IMGURL/live/refresh.png" alt="" />
+    </div>
+
+  </div>
+
+  <!-- 分析 -->
+  <div class="analysis_content" style="display:none;">
+
+    <div class="analysis_list">
+      <div class="analysis_info">
+        <p><img ng-src="{{info.match.guestLogoUrl}}" alt="" onerror="logoLoadErr(this,'team')"/><span>{{info.match.guestTeam}}</span></p>
+      </div>
+      <ul class="analysis_data" ng-if="guestRecents!=null">
+        <li class="analysis_title">
+          <span>{{'MATCHES_TIME'|translate}}</span>
+          <span>{{'MATCHES_DETAIL'|translate}}</span>
+          <span>{{'HOME_NAME'|translate}}</span>
+          <span>{{'MATCHES_SCORE'|translate}}</span>
+          <span>{{'AWAY_NAME'|translate}}</span>
+        </li>
+        <li ng-repeat="guestRecent in guestRecents">
+          <span>{{guestRecent.date}}</span>
+          <span>{{guestRecent.leagueName}}</span>
+          <span class="{{guestRecent.homeCss}}">{{guestRecent.homeTeam}}</span>
+          <span>{{guestRecent.score}}</span>
+          <span class="{{guestRecent.guestCss}}">{{guestRecent.guestTeam}}</span>
+        </li>
+      </ul>
+      <div ng-if="guestRecents==null">
+        <ul class="noData">
+          <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+        </ul>
+      </div>
+    </div>
+
+    <div class="analysis_list">
+      <div class="analysis_info">
+        <p><img ng-src="{{info.match.homeLogoUrl}}" alt="" onerror="logoLoadErr(this,'team')"/><span>{{info.match.homeTeam}}</span></p>
+      </div>
+      <ul class="analysis_data" ng-if="homeRecents!=null">
+        <li class="analysis_title">
+          <span>{{'MATCHES_TIME'|translate}}</span>
+          <span>{{'MATCHES_DETAIL'|translate}}</span>
+          <span>{{'HOME_NAME'|translate}}</span>
+          <span>{{'MATCHES_SCORE'|translate}}</span>
+          <span>{{'AWAY_NAME'|translate}}</span>
+        </li>
+        <li ng-repeat="homeRecent in homeRecents">
+          <span>{{homeRecent.date}}</span>
+          <span>{{homeRecent.leagueName}}</span>
+          <span class="{{homeRecent.homeCss}}">{{homeRecent.homeTeam}}</span>
+          <span>{{homeRecent.score}}</span>
+          <span class="{{homeRecent.guestCss}}">{{homeRecent.guestTeam}}</span>
+        </li>
+      </ul>
+      <div  ng-if="homeRecents==null">
+        <ul class="noData">
+          <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 亚盘 大小球 -->
+  <div class="odd_content" style="display:none;">
+    <!-- 列表 -->
+    <ul class="asian_p">
+      <li class="asian_p_title">
+        <p class="company">{{'MATCHES_COMPANIES'|translate}}</p>
+        <p class="homeTeam" ng-if="flag">{{'AWAY_TEAM'|translate}}</p>
+        <p class="homeTeam" ng-if="!flag">{{'BIG_BALL'|translate}}</p>
+        <p class="handicap">{{'MATCHES_HANDICAP'|translate}}</p>
+        <p class="visitingTeam" ng-if="flag">{{'HOME_TEAM'|translate}}</p>
+        <p class="visitingTeam" ng-if="!flag">{{'SMALL_BALL'|translate}}</p>
+      </li>
+      <li class="asian_p_data" ng-repeat="oddData in oddDatas" ng-click="oddClick($event)"  ng-show="oddDatas!=null">
+        <a style="display: none;">{{oddData.oddsId}}</a>
+        <p class="company">
+              <span>
+                <i><img src="@@IMGURL/live/triangle.png" /></i>
+                <i>{{oddData.company}}</i>
+              </span>
+              <span>
+                <i>{{'IMMEDIATELY_LIVE'|translate}}</i>
+                <i>{{'MATCHES_INITIAL'|translate}}</i>
+              </span>
+        </p>
+        <p class="homeTeam">
+          <span class="{{oddData.oddsData[0].leftClass}}">{{oddData.oddsData[0].leftOdds}}</span>
+          <span >{{oddData.oddsData[1].leftOdds}}</span>
+        </p>
+        <p class="handicap">
+          <span class="{{oddData.oddsData[0].handicapValueClass}}">{{oddData.oddsData[0].handicapValue}}</span>
+          <span>{{oddData.oddsData[1].handicapValue}}</span>
+        </p>
+        <p class="visitingTeam">
+          <span class="{{oddData.oddsData[0].rightClass}}">{{oddData.oddsData[0].rightOdds}}</span>
+          <span >{{oddData.oddsData[1].rightOdds}}</span>
+        </p>
+      </li>
+    </ul>
+
+    <!-- 未开 -->
+    <ul class="noData" ng-show="!odd_datas">
+      <p class="loading_img"></p>
+    </ul>
+
+    <div ng-show="odd_datas">
+      <ul class="noData" ng-show="oddDatas==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+    </div>
+
+
+
+    <!-- 详细 -->
+    <div class="asian_p_detail" style="display: none;">
+      <p class="asian_p_names">
+        <span ng-repeat="oddData in oddDatas" ng-click="oddNamesClick($event)" id="{{oddData.oddsId}}">{{oddData.company}}</span>
+        <a>Back</a>
+      </p>
+
+      <ul class="asian_p_info">
+        <li>
+          <span>{{'MATCHES_TIME'|translate}}</span>
+          <span ng-if="flag">{{'AWAY_TEAM'|translate}}</span>
+          <span ng-if="!flag">{{'BIG_BALL'|translate}}</span>
+          <span>{{'MATCHES_HANDICAP'|translate}}</span>
+          <span ng-if="flag">{{'HOME_TEAM'|translate}}</span>
+          <span ng-if="!flag">{{'SMALL_BALL'|translate}}</span>
+        </li>
+      </ul>
+
+      <ul class="asian_p_info">
+
+        <li ng-repeat="ci in comInfoMatches">
+          <span>{{ci.updateTime}}</span>
+          <span class="{{ci.leftClass}}" >{{ci.leftOdds}}</span>
+          <span class="{{ci.handicapValueClass}}">{{ci.handicapValue}}</span>
+          <span class="{{ci.rightClass}}">{{ci.rightOdds}}</span>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+  <!-- 欧赔 -->
+  <div class="euro_content" style="display:none;">
+    <!-- 列表 -->
+    <ul class="asian_p">
+      <li class="asian_p_title">
+        <p class="company">{{'MATCHES_COMPANIES'|translate}}</p>
+        <p class="homeTeam">{{'AWAY_TEAM'|translate}}</p>
+        <p class="visitingTeam">{{'HOME_TEAM'|translate}}</p>
+      </li>
+      <li class="asian_p_data" ng-repeat="oddData in euroOddDatas" ng-click="euroOddClick($event)"  ng-show="euroOddDatas!=null">
+        <a style="display: none;">{{oddData.oddsId}}</a>
+        <p class="company">
+              <span>
+                <i ng-if="oddData.oddsId!=null"><img src="@@IMGURL/live/triangle.png" /></i>
+                <i ng-if="oddData.oddsId==null"></i>
+                <i>{{oddData.company}}</i>
+              </span>
+              <span>
+                <i>{{'IMMEDIATELY_LIVE'|translate}}</i>
+                <i>{{'MATCHES_INITIAL'|translate}}</i>
+              </span>
+        </p>
+        <p class="homeTeam">
+          <span class="{{oddData.oddsData[0].leftClass}}">{{oddData.oddsData[0].leftOdds}}</span>
+          <span>{{oddData.oddsData[1].leftOdds}}</span>
+        </p>
+        <p class="visitingTeam">
+          <span class="{{oddData.oddsData[0].rightClass}}">{{oddData.oddsData[0].rightOdds}}</span>
+          <span>{{oddData.oddsData[1].rightOdds}}</span>
+        </p>
+      </li>
+    </ul>
+
+    <!-- 未开 -->
+    <ul class="noData" ng-show="!euro_datas">
+      <p class="loading_img"></p>
+    </ul>
+
+    <div ng-show="euro_datas">
+      <ul class="noData" ng-show="euroOddDatas==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+    </div>
+
+
+
+    <!-- 详细 -->
+    <div class="asian_p_detail" style="display: none;">
+      <p class="asian_p_names">
+        <span ng-repeat="oddData in euroOddDatas" ng-click="euroOddNamesClick($event)" id="{{oddData.oddsId}}" ng-if="oddData.oddsId!=null">{{oddData.company}}</span>
+        <a>Back</a>
+      </p>
+
+      <ul class="asian_p_info">
+        <li>
+          <span>{{'MATCHES_TIME'|translate}}</span>
+          <span>{{'AWAY_TEAM'|translate}}</span>
+          <span>{{'HOME_TEAM'|translate}}</span>
+        </li>
+      </ul>
+
+      <ul class="asian_p_info">
+
+        <li ng-repeat="ci in comInfoMatches">
+          <span>{{ci.updateTime}}</span>
+          <span class="{{ci.leftClass}}">{{ci.leftOdds}}</span>
+          <span class="{{ci.rightClass}}">{{ci.rightOdds}}</span>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+</div>
+
+<!--提示-->
+<div class="coll_most" ng-show="maxAttentionMatchesCountWarn">
+  <h2>{{'ATTENTION_SORRY' | translate}}</h2>
+  <p translate="ATTENTION_SORRY_TEXT" translate-values="{'maxAttentionMatchCount': '<em>{{maxAttentionMatchCount}}</em>'}"></p>
+  <p><button ng-click="attentionWarnCloseClick($event)">{{'BUTTON_CLOSE' | translate}}</button></p>
+</div>

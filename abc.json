@@ -1,0 +1,15 @@
+{
+  "env": "desktop",
+  "name": "live1",
+  "desc": "www.13322.com",
+	"version":"0.1",
+	"imgBase": {
+		"desktop": "/images",
+		"development": "/dist/images",
+		"production": "/images"
+	},
+	"author": {
+      "name": "Tiger",
+      "email": "liuh@13322.com"
+  }
+}

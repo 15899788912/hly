@@ -1,0 +1,16 @@
+<div class="data_index">
+  <!-- 头部 -->
+<!-- 内容块 -->
+  <div class="content">
+    <p class="content-gap"></p>
+    <ul class="content-main">
+      <li ng-repeat="dataList in mainInfo">
+        <a href="../data/integral.html?lid={{dataList.lid}}&type={{dataList.type}}">
+          <span class="main-pic"><img ng-src="http://pic.13322.com/icons/league/{{dataList.lid}}.png" /></span>
+          <p class="main-word">{{dataList.name}}</p>
+          <span class="main-in"><img src="../images/data/nextM.png" /></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

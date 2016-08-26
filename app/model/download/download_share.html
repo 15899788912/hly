@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  @import '../views/head.html';
+  <title>下载</title>
+  <link rel="stylesheet" type="text/css" href="/styles/download_share@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/swiper.min.css">
+  <script type="text/javascript" src="/common/jquery.min.js"></script>
+  <script type="text/javascript" src="/common/swiper.min.js"></script>
+
+  <script type="application/javascript">
+    @import '../common/dealer@@MINEXT.js';
+
+    // 获取终端的相关信息
+    var Terminal = {
+      // 辨别移动终端类型
+      platform : function(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {
+          // android终端或者uc浏览器
+          android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+          // 是否为iPhone或者QQHD浏览器
+          iPhone: u.indexOf('iPhone') > -1 ,
+          // 是否iPad
+          iPad: u.indexOf('iPad') > -1
+        };
+      }(),
+      // 辨别移动终端的语言：zh-cn、en-us、ko-kr、ja-jp...
+      language : (navigator.browserLanguage || navigator.language).toLowerCase()
+    };
+
+    var browser = {
+      type : function() {
+        var u = navigator.userAgent;
+        return {
+          MicroMessengerBrowser : u.indexOf("MicroMessenger") > -1,
+          MQQBrowser : u.indexOf("MQQBrowser") > -1,
+          QQInnerBrowser : u.match(/QQ\//i) == "QQ/"
+        };
+      }()
+    };
+
+    // 根据不同的终端，跳转到不同的地址
+    var theUrl = "http://m.13322.com";
+    var hmt="";
+
+    if(Terminal.platform.android){
+      theUrl = 'http://m.13322.com/upgrade/android/ybf_full_v1.0.3_GF1001.apk';
+      hmt="Android";
+    }else if(Terminal.platform.iPhone){
+      theUrl = 'https://itunes.apple.com/cn/app/yi-bi-fen/id1044544499?mt=8';
+      hmt="iPhone";
+
+    }
+
+  </script>
+</head>
+<body>
+
+<div id="mainShow">
+
+  <img  class="img_bg" src="../images/download_share/bg.png">
+
+  <div id="download"></div>
+
+  <div id="banner" class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img  class="img_ad" src="/images/download_share/ad_01.png"></div>
+      <div class="swiper-slide"><img  class="img_ad" src="/images/download_share/ad_02.png"></div>
+      <div class="swiper-slide"><img  class="img_ad" src="/images/download_share/ad_03.png"></div>
+      <div class="swiper-slide"><img  class="img_ad" src="/images/download_share/ad_04.png"></div>
+      <div class="swiper-slide"><img  class="img_ad" src="/images/download_share/ad_05.png"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="weixin" style="display: none" class="weixin">
+
+<script type="text/javascript">
+    //加载完成
+    (function($){
+      $('#download').click(function(){
+        //如果是微信浏览器
+        if(browser.type.MicroMessengerBrowser) {
+          $("#mainShow").hide();
+          $("#weixin").show();
+        } else {
+          $("#mainShow").show();
+          $("#weixin").hide();
+          window.location.href = theUrl;
+        }
+        _hmt.push(['_trackEvent', 'download_share', 'click', hmt]);
+        return false;
+      });
+      var mySwiper = new Swiper('.swiper-container',{
+          autoplay:5000,
+          visibilityFullFit : true,
+          loop:true,
+      });
+    })(jQuery);
+</script>
+</body>
+</html>

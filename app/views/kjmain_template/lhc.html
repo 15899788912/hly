@@ -1,0 +1,47 @@
+<li>
+    <div class="kj_ing" ng-if="showLHCing">
+        <div class="fl kj_name">{{'HONGKONG_LOTTERY' | translate}}<span>{{'NO'|translate}}{{lhc.nextIssue}}{{'PERIOD' | translate}}</span>
+        </div>
+        <div class="fr countdown" ng-if="!showLHCingOpen">
+            <!--{{'TIME_COUNT_DOWN'|translate}}-->
+          <b class="time"><i><p ng-bind="lhcTime.hour"></p></i>:<i><p
+                ng-bind="lhcTime.min"></p></i>:<i><p ng-bind="lhcTime.sec"></p></i></b>
+        </div>
+
+        <div class="fr countdown" ng-if="showLHCingOpen">
+            <!-- {{'TIME_COUNT_DOWN'|translate}} : -->
+            <b class="red open_ing">{{"OPENING"|translate}}</b>
+        </div>
+
+    </div>
+
+
+    <a class="cp_list" href="detail.html#/1">
+        <div class="kj_list_hd">{{'HONGKONG_LOTTERY' | translate}}<span>{{'NO'|translate}}{{lhc.issue}}{{'PERIOD' | translate}}</span>
+        </div>
+        <div class="kj_list_bd">
+            <span class="arrow"></span>
+
+            <div class="ball-wrap">
+                <i class="ball_{{lhc.lhcMap.n0.color}}">{{lhc.lhcMap.n0.code}}</i>
+                <i class="ball_{{lhc.lhcMap.n1.color}}">{{lhc.lhcMap.n1.code}}</i>
+                <i class="ball_{{lhc.lhcMap.n2.color}}">{{lhc.lhcMap.n2.code}}</i>
+                <i class="ball_{{lhc.lhcMap.n3.color}}">{{lhc.lhcMap.n3.code}}</i>
+                <i class="ball_{{lhc.lhcMap.n4.color}}">{{lhc.lhcMap.n4.code}}</i>
+                <i class="ball_{{lhc.lhcMap.n5.color}}">{{lhc.lhcMap.n5.code}}</i>
+                <i class="ball_jia">+</i>
+                <i class="ball_{{lhc.lhcMap.n6.color}}">{{lhc.lhcMap.n6.code}}</i>
+            </div>
+            <div class="ball-sx">
+                <i>{{lhc.lhcMap.n0.zodiac}}</i>
+                <i>{{lhc.lhcMap.n1.zodiac}}</i>
+                <i style="width:40px">{{lhc.lhcMap.n2.zodiac}}</i>
+                <i>{{lhc.lhcMap.n3.zodiac}}</i>
+                <i>{{lhc.lhcMap.n4.zodiac}}</i>
+                <i>{{lhc.lhcMap.n5.zodiac}}</i>
+                <i></i>
+                <i>{{lhc.lhcMap.n6.zodiac}}</i>
+            </div>
+        </div>
+    </a>
+</li>

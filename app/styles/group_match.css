@@ -1,0 +1,682 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {margin:0;padding:0}
+body{-webkit-tap-highlight-color: rgba(0,0,0,0); color:#222;}
+html {width: 100%;height: 100%;-webkit-font-smoothing: antialiased;}
+/*html.ns {overflow: hidden}*/
+body {font-family: "微软雅黑","arial";width: 100%;min-width:320px; max-width:640px; margin:auto;}
+body{font-family: "微软雅黑","arial";-webkit-tap-highlight-color: rgba(0,0,0,0)}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+a {text-decoration: none;}
+img {border: 0;width: 100%;height: 100%;display: inline-block;}
+ol, ul, li {list-style: none}
+dl, dt, dd, ul, li {margin: 0;padding: 0}
+input, textarea {outline: none}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+em,i {font-style: normal}
+.fl {float: left}
+.fr {float: right}
+.clear {clear: both; height:0; overflow:hidden;}
+
+
+/*公共部分*/
+.content_bg{background-color: #151e2d;}
+.title{margin-left: 15px;color: #dbff00;font-size: 16px;padding-top: 20px;}
+
+
+/*头部*/
+/*.header{background:url(../images/uefaeuro/logo.png) no-repeat;background-size: 100% 100%;height:154px;}*/
+.header{position: relative;}
+.header_bg{height: 154px;float: left;}
+@media screen and (max-width: 320px) {
+  .header_bg{height: 135px;float: left;}
+
+}
+
+.time {
+  position: absolute;
+  margin-left: 25%;
+  margin-top: 88px;
+}
+@media screen and (max-width: 320px) {
+  .time {
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 80px;
+  }
+
+}
+.time i {
+  background: url(../images/uefaeuro/date.png) no-repeat;
+  background-size: 100% 100%;
+  height: 34px;
+  width: 27px;
+  display: inline-block;
+  text-align:center;
+  vertical-align:bottom;
+  color: #ffffff;
+  font-size: 25px;
+}
+.time span {
+  font-size: larger;
+  font-weight: bolder;
+}
+.download{
+  position: absolute;
+  width: 15%;
+  margin-left: 79%;
+  margin-top: 100px;
+  height: 27px;
+}
+@media screen and (max-width: 320px) {
+  .download{
+    position: absolute;
+    width: 15%;
+    margin-left: 79%;
+    margin-top: 88px;
+    height: 27px;
+  }
+
+}
+
+
+
+/*资讯列表*/
+.li_border{border: 1px solid transparent; border-radius: 10px;background-color: #efefef;padding: 12px 12px 0px 14px;}
+.newsList>li{ margin:0% 4% 0%;}
+.newsList>li .u-img{position:relative;overflow:hidden;display:block;width: 100px;;height: 70px; float:left; margin-right:15px}
+.newsList>li .detail{ overflow:hidden;height: 84px;position: relative;}
+.newsList>li .detail strong{font-size: 13px;font-weight: 400;line-height: 1.2;color: #888;}
+.newsList>li .detail .info{position: absolute;left: 0;bottom: 20px;width: 100%;height: 10px;color:#eb6100; font-size:10px;}
+.newsList>li .detail .info .recommend{padding:0px 4px 0px;background-color: #eb6100;-moz-border-radius: 2px;-webkit-border-radius: 2px;display: inline-block;font-size: 10px;color: #fff;text-align: center;}
+.newsList>li .detail .info .icon {position: absolute;  right: 0; bottom: 0;  text-align: center;  line-height: 2px; color: #999999; }
+.newsList>li .detail .info .resource {
+  width: 55%;
+  color: #eb6100;
+  display: inline-block;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-left: 2%;
+  vertical-align: bottom;
+}
+.newsList>li .detail .info .new_data {
+  color: #999999;
+}
+
+
+
+/*诸强巡礼*/
+
+.lbs_title{line-height:20px; text-align:center;    margin-bottom: 10px;}
+.lbs_title span{color: #151e2d;}
+.lbs_border{
+  border-radius: 10px;background-color: #efefef;padding: 12px 12px 0px 14px;
+  margin: 2% 4% 0%;
+
+}
+
+.lbs-list{
+  margin-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+.lbs-list li {
+  width: 23%;
+  text-align: center;
+}
+.lbs-list li, .lbs-list a {
+  display: inline-block;
+}
+.lbs-list .icon-film {
+  background-color: #b493db;
+}
+.lbs-list div {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  margin: 0 auto;
+}
+.lbs-list img {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  margin: 0 auto;
+}
+.lbs-list p {
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  margin: 15px 0 8px;
+  color: #333333;
+}
+
+
+
+/*夺冠赔率*/
+.line_up{margin-left: 4%;
+  margin-right: 4%;}
+
+.line_down{margin-left: 4%;
+  margin-right: 4%;}
+
+/*.tb_scroll{height:300px; overflow-y:auto;-webkit-overflow-scrolling: touch;}*/
+
+table {
+  width:90%;
+  margin:2% auto 0;
+}
+.tr_color{color:#2F4F4F;}
+tr{color: #ffffff;}
+td{padding:5px 5px 5px; text-align:center; font-size: 12px;}
+
+
+/*#table_header td {*/
+  /*font-size: 12px;*/
+/*}*/
+/*#table_header td:first-child {*/
+  /*padding: 6px 12px 5px;*/
+  /*text-align: left;*/
+/*}*/
+/*#table_header td:last-child {*/
+  /*padding: 5px 20px 5px;*/
+  /*text-align: left;*/
+/*}*/
+
+/*@media screen and (max-width: 320px) {*/
+  /*#table_header td:first-child {*/
+    /*padding: 6px 9px 5px;*/
+    /*text-align: left;*/
+  /*}*/
+  /*#table_header td:last-child {*/
+    /*padding: 6px 16px 5px;*/
+    /*text-align: left;*/
+  /*}*/
+/*}*/
+
+/*往届回顾*/
+
+
+.pre_news>li{ margin:2% 4% 0%;}
+.pre_news>li .u-img{position:relative;overflow:hidden;display:block;width: 100px;;height: 80px; float:left; margin-right:15px}
+.pre_news>li .detail{ overflow:hidden;height: 90px;position: relative;}
+.pre_news>li .detail strong{font-size: 15px;font-weight: 400;line-height: 1.2;color: #888;}
+.pre_news>li .detail .info{position: absolute;left: 0;width: 100%;height: 10px;line-height: 1.2; font-size:10px;}
+.pre_news>li .detail .info .subtitle{font-size: 15px;font-weight: 400;line-height: 1.2;color: #888;    display: inline-block;
+  margin-top: 20px;}
+
+
+.pre_news li:last-child .li_border
+{
+  margin-bottom: -100px;
+  position:relative;
+}
+
+
+/*页脚*/
+.footer{ padding:40px 0;  text-align:center; font-size:15px;
+  background:url(../images/uefaeuro/footer.png) no-repeat;background-size: 100% 100%;height:120px;
+}
+.d_link a{ display: inline-block;margin: 25% 10% 0%;color: #fff;}
+.d_link span{color: #fff;}
+
+
+/*资讯内容*/
+.information{background: #1581cc;width: 100%;z-index: 999; position:fixed; top:0; left:0px;overflow:hidden;}
+.goback{ background: url(../images/news/newsIcon.png) no-repeat; display:inline-block; background-size:75px 75px;}
+.goback{background-position:0px 0px;width:25px; height:35px; float:left; margin-top:10px; padding:0 5px;}
+.wrap {margin: 0 10px;}
+.information .wrap .i_title {
+  line-height: 50px;
+  color: #fff;
+  position: relative;
+  height: 45px;
+  display: inline-block;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 18px;
+  padding-top: 0px;
+  left: 34%;
+}
+.contentBody{ margin-top:18px; width:100%;}
+
+
+
+
+/*---------------------------小组赛----------------------------------*/
+/*头部*/
+#header_up_tab{
+  padding-bottom: 5px;
+}
+.group_header_up{
+  background-color: #efefef;
+  margin: 0% 4% 0%;
+  border-radius: 10px;
+  height: 45px;
+  overflow: hidden;
+  position: relative;
+  clear: both;
+}
+.tab-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  /*-webkit-transform: translateZ(0);*/
+  width: 70%;
+  margin: 0 auto;
+  position: absolute;
+  left: 15%;
+  border-left: 2px solid #5c6c86;
+  border-right: 2px solid #5c6c86;
+  /*transition:all 4s;*/
+}
+.tab-scroll .list {
+  line-height: 35px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+}
+.list a{
+  padding-top: 7px;
+  font-weight: 300;
+  opacity: .85;
+  display: block;
+  color: #5c6c86;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  border-right: 2px solid #5c6c86;
+  width: 66px;
+  height: 48px;
+  font-size: 12px;
+  text-align: center;
+}
+/*点击后颜色变红*/
+.list .active{
+ color: red;
+}
+.tab_left{
+  width: 15%;
+  height: 60px;
+  position: absolute;
+  left: 0px;
+}
+.tab_left img{
+  width: 32%;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  left: 34%;
+  top: 15%;
+}
+.tab_right{
+  width: 15%;
+  height: 60px;
+  position: absolute;
+  right: 0px;
+}
+.tab_right img{
+  width: 32%;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  left: 34%;
+  top: 15%;
+}
+
+
+/*头部下面*/
+.group_header_down{
+  background-color: #efefef;
+  margin: 0% 4% 0%;
+  border-radius: 10px;
+}
+/*国家*/
+.group_header_country{
+  padding-bottom: 15px;
+}
+.group_up_country{
+  text-align: center;
+  width: 32%;
+  display: inline-block;
+}
+.group_up_country img {
+   width: 70px;
+   height: 70px;
+   line-height: 70px;
+   margin: 0px auto;
+   color: #666666;
+   font-size: 24px;
+ }
+.vs{
+  height: 50px;
+}
+.vs_m{
+  display: inline-block;
+  line-height: 50px;
+  font-size: 20px;
+}
+.vs_span_left{
+    width: 30%;
+    display: inline-block;
+    line-height: 50px;
+    font-size: 20px;
+    float: left;
+    text-align: left;
+  }
+.vs_span_right{
+  width: 30%;
+  display: inline-block;
+  line-height: 50px;
+  font-size: 20px;
+  float: right;
+  text-align:right;
+}
+.remark_span{
+  font-size: 12px;
+  display: block;
+  margin-bottom: 2px;
+}
+.time_span{
+  font-size: 12px;
+}
+.group_up_country span{
+  color: #666666;
+}
+.group_up_country p{
+  display: block;
+  font-size: 16px;
+  text-align: center;
+  color: #333333;
+}
+
+/*点赞*/
+.good{margin-top: 15px;padding-bottom: 15px;}
+.good_pic,#good_line{
+  margin: 0px auto;
+  text-align: center;
+  width: 24%;
+  display: inline-block;
+}
+.good_pic img{
+  width: 25px;
+  height: 25px;
+  margin: 0px auto;
+}
+
+@media screen and  (max-width:320px){
+  .good_pic img{
+    width: 20px;
+    height: 20px;
+    margin: 0px auto;
+  }
+}
+
+
+#good_line{
+  width: 48%;
+  position: relative;
+  vertical-align: text-top;
+}
+
+
+#good_line .line {
+  height: 3px;
+  position: absolute;
+}
+#blueline {
+  background-color: #0089fd;
+  width: 100%;
+  transition: width 1s;
+  -moz-transition: width 1s; /* Firefox 4 */
+  -webkit-transition: width 1s; /* Safari 和 Chrome */
+  -o-transition: width 1s; /* Opera */
+}
+#redline {
+  background-color: #ed2839;
+  width: 50%;
+  z-index: 1000;
+  transition: width 1s;
+  -moz-transition: width 1s; /* Firefox 4 */
+  -webkit-transition: width 1s; /* Safari 和 Chrome */
+  -o-transition: width 1s; /* Opera */
+}
+#whiteline {
+  background-color: #efefef;
+  width: 51%;
+  transition: width 1s;
+  -moz-transition: width 1s; /* Firefox 4 */
+  -webkit-transition: width 1s; /* Safari 和 Chrome */
+  -o-transition: width 1s; /* Opera */
+
+}
+.red_good_span{color:#ed2839; position: absolute;left: 0px; top: 2px; font-size: 14px;}
+.blue_good_span{color:#0089fd;position: absolute;right: 0px;top: 2px; font-size: 14px;}
+
+
+
+/*小组积分*/
+.in_radius{
+  background-color: #efefef;
+  width: 35%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 100px 100px 0 0;
+}
+.group_div{
+  margin: 4% 4% 0%;
+}
+.group_li{
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: #efefef;
+  padding: 0px;
+}
+.group_table {width: 100%;margin: 0px auto; border-collapse:collapse}
+.group_table tr:first-child td
+{
+  border-bottom: #cecece solid 1px;
+  font-size: 12px;
+}
+.group_table img{    width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  vertical-align: bottom;
+}
+.group_table tr {color: #333333;}
+.group_table td { padding: 10px 5px 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.group_li .group_table_first_td{text-align: center;}
+.group_li .group_table_td{text-align: left;font-size: 12px;}
+
+/*夺冠赔率*/
+#group_tb_scroll{padding-bottom: 20px;}
+
+/*底部*/
+.f_bg{background: url(../images/uefaeuro/f_bg.png) no-repeat;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 15px;
+  background-size: 100% 100%;
+  height: 60px;
+}
+.f_bg_link a {
+  display: inline-block;
+  margin: 6% 5% 0%;
+  color: #fff;
+}
+.f_bg_link span{color: #fff;}
+
+/*---------------------------1/8决赛----------------------------------*/
+.title_center{text-align:center;color: #dbff00;font-size: 16px;padding-top: 20px;}
+
+.country_match {
+  margin: 4% 4% 0%;
+}
+.country_left{
+  display: inline-block;
+  width:49% ;
+}
+.country_middle{
+  height: 10px;
+  bottom: 10px;
+}
+.country_right{
+  display: inline-block;
+  float: right;
+  width: 49%;
+}
+.country_left_l{
+  display: inline-block;
+  width: 80%;
+  float: left;
+}
+.country_left_r{
+  display: inline-block;
+  height: 130px;
+  width: 15%;
+  line-height: 130px;
+}
+.country_left_r img{
+  height: 60%;
+  vertical-align: middle;
+}
+
+.country_right_l{
+  display: inline-block;
+  height: 130px;
+  width: 15%;
+  line-height: 130px;
+  float: right;
+}
+.country_right_r{
+  display: inline-block;
+  width: 80%;
+  float: right;
+
+}
+.country_right_l img{
+  height: 60%;
+  vertical-align: middle;
+}
+
+.status{
+  background: url(../images/uefaeuro/shadow.png) no-repeat;
+}
+
+.country_final{
+  height: 60px;
+  background-color: #efefef;
+  border-radius: 10px;
+  line-height: 60px;
+  font-size: 14px;
+  overflow: hidden;
+}
+.country_final img{
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-left: 10%;
+}
+
+@media screen and  (max-width:320px){
+  .country_final img{
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-left: 10%;
+  }
+}
+
+.country_final span{
+  margin-left: 5%;
+  vertical-align: sub;
+}
+
+.country_final_l{
+  width: 39%;
+  display: inline-block;
+  float: left;
+}
+.country_final_m{
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+}
+.country_final_m img{
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+.country_final_r{
+  width: 39%;
+  display: inline-block;
+  float: right;
+}
+
+/*展开更多*/
+.drop{
+  margin: 6% 4% 0%;
+  background-color: #151e2d;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+}
+.drop_bg{
+  float: left;
+}
+.drop_control{
+  position: absolute;
+  margin-left: 48%;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 1%;
+}
+@media screen and  (max-width:320px){
+  .drop_control{
+    position: absolute;
+    margin-left: 47%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 1%;
+  }
+}
+.drop_words{
+  color: #efefef;
+  font-size: 12px;
+  font-weight: bolder;
+}
+.drop_pic img{
+  width: 50%;
+}
+@media screen and  (max-width:320px){
+  .drop_pic img{
+    width: 50%;
+    vertical-align: top;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

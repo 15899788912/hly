@@ -1,0 +1,621 @@
+
+<div id="header" class="liveh">
+
+ <div class="tabs" id="tabs">
+        <a href="#" class="active">{{'TABS_IMMEDIATE' | translate}}</a>
+        <a href="#">{{'TABS_RESULTS' | translate}}</a>
+        <a href="#">{{'TABS_SCHEDULE' | translate}}</a>
+        <a href="#">{{'TABS_ATTENTION' | translate}}<font class="J-shoping" ng-class="{true: 'J-shoping-op', false: ''}[attentionMatchCount==0]" ><span class="baseBg J-shoping-num">{{attentionMatchCount}}</span></font></a>
+    </div>
+    <div class="clear"></div>
+</div>
+<dl class="new_football_head" id="sort">
+    <dd ng-show="showFilterIcon"><i class="filter_icon" onclick="return false;" ng-click="filterSetWindowClick($event)"></i></dd>
+    <dd><i class="setup_icon" onclick="return false;" ng-click="filterSetWindowClick($event)"></i></dd>
+</dl>
+<div class="loading" ng-show="loadingImg"></div>
+<div class="coll_most" ng-show="maxAttentionMatchesCountWarn">
+    <h2>{{'ATTENTION_SORRY' | translate}}</h2>
+    <p translate="ATTENTION_SORRY_TEXT" translate-values="{'maxAttentionMatchCount': '<em>{{maxAttentionMatchCount}}</em>'}"></p>
+    <p><button ng-click="attentionWarnCloseClick($event)">{{'BUTTON_CLOSE' | translate}}</button></p>
+</div>
+
+<div id="tabs-container" class="swiper-container">
+    <div class="swiper-wrapper mar_t">
+
+        <!--即时比分-->
+        <div class="swiper-slide">
+            <div class="live_bd content-slide" id="live_bd1">
+                <div class="white_bg" infinite-scroll="loadMoreImmediateMatches()" infinite-scroll-distance="0.6"  >
+                    <div ng-repeat="immediateMatch in immediateMatches">
+                        <div id="{{immediateMatch.thirdId}}" class="live_box" matchItem>
+                            <i class="coll_icon" ng-class="{true: 'coll_slt', false: ''}[immediateMatch.attented]"
+                               ng-click="addToAttention($event)" thirdId="{{immediateMatch.thirdId}}"
+                               isClicked="{{immediateMatch.attented}}"></i>
+                            <a href="bifen/index.html?id={{immediateMatch.thirdId}}">
+                          <div class="live_list">
+                            <dl class="top_dl">
+                                <dd class="wid_40 align_r">
+                                    <font style="color:{{immediateMatch.raceColor}}">{{immediateMatch.racename}}</font>
+                                    <span>{{immediateMatch.time}}</span>
+                                </dd>
+                                <dd class="wid_20 align_c">
+                                    <span ng-if="(immediateMatch.statusOrigin == '1' || immediateMatch.statusOrigin == '3' || immediateMatch.statusOrigin == '0') == false">
+                                        <span class="f_red" ng-if="immediateMatch.statusOrigin == '-1' && immediateMatch.halfScore != null">({{immediateMatch.halfScore}})</span><!--完场-->
+                                        <span class="f_blue" ng-if="immediateMatch.statusOrigin == '2' || immediateMatch.statusOrigin == '4' || immediateMatch.statusOrigin == '5'">{{immediateMatch.status}}</span><!--中场-->
+                                        <span class="f_red"
+                                              ng-if="immediateMatch.statusOrigin == '-10' || immediateMatch.statusOrigin == '-11'
+                                              || immediateMatch.statusOrigin == '-12' || immediateMatch.statusOrigin == '-13' || immediateMatch.statusOrigin == '-14'">
+                                            {{immediateMatch.status}}
+                                        </span><!--腰斩、中断、待定、取消、推迟-->
+                                    </span>
+                                    <span ng-if="immediateMatch.statusOrigin == '1' || immediateMatch.statusOrigin == '3' || immediateMatch.statusOrigin == '0' ">
+                                        <span class="f_blue" ng-if="immediateMatch.keepTime != null && immediateMatch.keepTime != 0">{{immediateMatch.keepTime}}<i class="secs"></i></span>
+                                        <!--
+                                        <span class="f_red" ng-if="immediateMatch.keepTime == null && immediateMatch.halfScore != null">({{immediateMatch.halfScore}})</span>
+                                        -->
+                                    </span>
+                                </dd>
+                                <dd class="wid_40 align_l">
+                                    <span>
+                                        <span class="f_grey" ng-if="immediateMatch.matchOdds[oddsFilterCookieValue].seal == true">{{'ODDS_SEAL' | translate}}</span>
+                                        <span ng-if="immediateMatch.matchOdds[oddsFilterCookieValue].seal == null
+                                                        || immediateMatch.matchOdds[oddsFilterCookieValue].seal == false">
+                                            <span ng-if="immediateMatch.statusOrigin != '-1'" >
+                                                <i class="{{immediateMatch.leftOddsClass}}">{{immediateMatch.matchOdds[oddsFilterCookieValue].leftOdds}}</i>
+                                                <i class="{{immediateMatch.mediumOddsClass}}">{{immediateMatch.matchOdds[oddsFilterCookieValue].mediumOdds}}</i>
+                                                <i class="{{immediateMatch.rightOddsClass}}">{{immediateMatch.matchOdds[oddsFilterCookieValue].rightOdds}}</i>
+                                            </span>
+                                            <span ng-if = "immediateMatch.statusOrigin == '-1'">
+                                                 <i ng-class="{true: 'f_red2', false: 'f_black'}[immediateMatch.matchOdds[oddsFilterCookieValue].resultLeftOddsState == '3']"
+                                                    ng-if="immediateMatch.matchOdds[oddsFilterCookieValue].leftOdds != null">
+                                                     {{immediateMatch.matchOdds[oddsFilterCookieValue].leftOdds}}
+                                                 </i>
+                                                <i ng-class="{true: 'f_red2', false: 'f_black'}[immediateMatch.matchOdds[oddsFilterCookieValue].resultMediumValueState == '3']"
+                                                   ng-if="immediateMatch.matchOdds[oddsFilterCookieValue].mediumOdds != null">
+                                                    {{immediateMatch.matchOdds[oddsFilterCookieValue].mediumOdds}}
+                                                </i>
+                                                <i ng-class="{true: 'f_red2', false: 'f_black'}[immediateMatch.matchOdds[oddsFilterCookieValue].resultRightOddsState == '3']"
+                                                   ng-if="immediateMatch.matchOdds[oddsFilterCookieValue].rightOdds != null">
+                                                    {{immediateMatch.matchOdds[oddsFilterCookieValue].rightOdds}}
+                                                </i>
+                                            </span>
+                                        </span>
+                                        <em class="f_red" ng-if="(immediateMatch.statusOrigin == '2' || immediateMatch.statusOrigin == '3'
+                                                    || immediateMatch.statusOrigin == '4' || immediateMatch.statusOrigin == '5' || immediateMatch.statusOrigin == '-12' || immediateMatch.statusOrigin == '-13')
+                                                    && immediateMatch.halfScore != null">({{immediateMatch.halfScore}})</em>
+                                    </span>
+                                </dd>
+                                </dl>
+                                <br class="clear">
+                                <dl class="btm_dl">
+                                    <dd class="wid_40 align_r" hometeam>
+                                        <i ng-if="immediateMatch.home_yc!=null && immediateMatch.home_yc != '0' && immediateMatch.home_yc != ''" class="yellow_p">{{immediateMatch.home_yc}}</i><i ng-if="immediateMatch.home_rc!=null && immediateMatch.home_rc != '0' && immediateMatch.home_rc != ''" class="red_p">{{immediateMatch.home_rc}}</i>
+                                        {{immediateMatch.hometeam}}
+                                    </dd>
+                                    <dd class="wid_20 align_c">
+                                    <span ng-if="(immediateMatch.statusOrigin == '1' || immediateMatch.statusOrigin == '3' || immediateMatch.statusOrigin == '0') == false">
+                                        <b class="f_red" ng-if="immediateMatch.statusOrigin == '-1'">{{immediateMatch.fullScore}}</b>
+                                        <b class="f_blue" ng-if="immediateMatch.statusOrigin == '2'">{{immediateMatch.fullScore}}</b>
+                                        <b class="f_blue" ng-if="immediateMatch.statusOrigin == '-12' || immediateMatch.statusOrigin == '-13' || immediateMatch.statusOrigin == '4' || immediateMatch.statusOrigin == '5'">{{immediateMatch.fullScore}}</b>
+                                        <b class="f_vs" ng-if="immediateMatch.statusOrigin == '-10' || immediateMatch.statusOrigin == '-11' || immediateMatch.statusOrigin == '-14'">VS</b><!--取消、待定、推迟-->
+                                    </span>
+                                    <span ng-if="immediateMatch.statusOrigin == '1' || immediateMatch.statusOrigin == '3' || immediateMatch.statusOrigin == '0' ">
+                                        <b class="f_blue" ng-if="immediateMatch.keepTime != null && immediateMatch.keepTime != 0">{{immediateMatch.fullScore}}</b>
+                                        <b class="f_vs" ng-if="immediateMatch.keepTime == null || immediateMatch.keepTime ==0">VS</b>
+                                    </span>
+                                    </dd>
+                                    <dd class="wid_40 align_l" guestteam>
+                                        {{immediateMatch.guestteam}}
+                                        <i ng-if="immediateMatch.guest_rc!=null && immediateMatch.guest_rc != '0' && immediateMatch.guest_rc != ''" class="red_p">{{immediateMatch.guest_rc}}</i><i ng-if="immediateMatch.guest_yc!=null && immediateMatch.guest_yc != '0' && immediateMatch.guest_yc != ''" class="yellow_p">{{immediateMatch.guest_yc}}</i>
+                                    </dd>
+                                </dl>
+                                <br class="clear">
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="not_body" ng-if="noImmediateMatches">
+                        <div class="man"></div>
+                        <span ng-bind="'NO_IMMEDIATE_MATCHES' | translate"></span>
+                    </div>
+                    <div class="not_body" ng-if="noInitImmediateMatches">
+                        <div class="man"></div>
+                        <span ng-bind="'NO_INIT_IMMEDIATE_MATCHES' | translate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--即时比分end-->
+        <!--赛果end-->
+        <div class="swiper-slide">
+            <div class="live_bd content-slide" id="live_bd2">
+                <div class="white_bg" infinite-scroll="loadMoreResultMatches()" infinite-scroll-distance="0.6">
+                    <div bindonce ng-repeat="resultMatch in resultMatches">
+                        <div bo-switch = "resultMatch.dataType">
+                            <div bo-switch-when = "0" class="time_div" ng-click="timeDivClick($event)">
+                                <span class="day_cho"><span bo-text="resultMatch.day"></span><em bo-text="resultMatch.week"></em></span>
+                            </div>
+                            <div bo-switch-when = "1" bindonce class="live_box">
+                                <i class="coll_icon" ng-class="{true: 'coll_slt', false: ''}[resultMatch.attented]"
+                                   ng-click="addToAttention($event)" thirdId="{{resultMatch.thirdId}}"
+                                   isClicked="{{resultMatch.attented}}"></i>
+                              <a href="bifen/index.html?id={{resultMatch.thirdId}}">
+                                <div class="live_list">
+                                    <dl class="top_dl">
+                                        <dd class="wid_40 align_r">
+                                            <font style="color:{{resultMatch.raceColor}}" bo-text="resultMatch.racename"></font>
+                                            <span bo-text="resultMatch.time"></span>
+                                        </dd>
+                                        <dd class="wid_20 align_c">
+                                            <span class="f_red" bo-if="resultMatch.statusOrigin != '-1' && resultMatch.status != null" bo-text="resultMatch.status"></span>
+                                            <span class="f_red" bo-if="resultMatch.statusOrigin == '-1' && resultMatch.halfScore != null">(<span bo-text="resultMatch.halfScore"></span>)</span>
+                                        </dd>
+                                        <dd class="wid_40 align_l">
+                                            <span class="f_grey" bo-if="resultMatch.matchOdds[oddsFilterCookieValue].seal == true">{{'ODDS_SEAL' | translate}}</span>
+                                            <span bo-if="resultMatch.matchOdds[oddsFilterCookieValue].seal == null
+                                                        || resultMatch.matchOdds[oddsFilterCookieValue].seal == false">
+                                                <span>
+                                                    <i bo-class="{true: 'f_red2', false: 'f_black'}[resultMatch.matchOdds[oddsFilterCookieValue].resultLeftOddsState == '3']"
+                                                       bo-if="resultMatch.matchOdds[oddsFilterCookieValue].leftOdds != null">
+                                                        <span bo-text="resultMatch.matchOdds[oddsFilterCookieValue].leftOdds"></span>
+                                                    </i>
+                                                    <i bo-class="{true: 'f_red2', false: 'f_black'}[resultMatch.matchOdds[oddsFilterCookieValue].resultMediumValueState == '3']"
+                                                       bo-if="resultMatch.matchOdds[oddsFilterCookieValue].mediumOdds != null">
+                                                        <span bo-text="resultMatch.matchOdds[oddsFilterCookieValue].mediumOdds"></span>
+                                                    </i>
+                                                    <i bo-class="{true: 'f_red2', false: 'f_black'}[resultMatch.matchOdds[oddsFilterCookieValue].resultRightOddsState == '3']"
+                                                       bo-if="resultMatch.matchOdds[oddsFilterCookieValue].rightOdds != null">
+                                                        <span bo-text="resultMatch.matchOdds[oddsFilterCookieValue].rightOdds"></span>
+                                                    </i>
+                                                </span>
+                                                </span>
+                                        </dd>
+                                    </dl>
+                                    <br class="clear">
+                                    <dl class="btm_dl">
+                                        <dd class="wid_40 align_r">
+                                            <i class="yellow_p"><span bo-text="resultMatch.home_yc"></span></i><i class="red_p" bo-if="resultMatch.home_rc != ''"><span bo-text="resultMatch.home_rc"></span></i>
+                                            <span bo-text="resultMatch.hometeam"></span>
+                                        </dd>
+                                        <dd class="wid_20 align_c">
+                                            <b class="f_grey" bo-if="resultMatch.statusOrigin == '-11' && resultMatch.fullScore != null"><span bo-text="resultMatch.fullScore"></span></b>
+                                            <b class="f_red" bo-if="resultMatch.statusOrigin != '-11' && resultMatch.fullScore != null"><span bo-text="resultMatch.fullScore"></span></b>
+                                        </dd>
+                                        <dd class="wid_40 align_l">
+                                            <span bo-text="resultMatch.guestteam"></span>
+                                            <i class="red_p" bo-if="resultMatch.guest_rc != null && resultMatch.guest_rc != '' && resultMatch.guest_rc != '0'">{{resultMatch.guest_rc}}</i><i class="yellow_p"><span bo-text="resultMatch.guest_yc"></span></i>
+                                        </dd>
+                                    </dl>
+                                    <br class="clear">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="not_body" ng-if="noResultMatches">
+                        <div class="man"></div>
+                        <span ng-bind="'NO_IMMEDIATE_MATCHES' | translate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--赛果end-->
+        <!--赛程start-->
+        <div class="swiper-slide">
+            <div class="live_bd content-slide" id="live_bd3">
+                <div class="white_bg" infinite-scroll="loadMoreScheduleMatches()" infinite-scroll-distance="0.6">
+                    <div bindonce ng-repeat="scheduleMatch in scheduleMatches">
+                        <div ng-switch="scheduleMatch.dataType">
+                            <div ng-switch-when="0" class="time_div2" ng-click="timeDiv2Click($event)"><span class="day_cho">{{scheduleMatch.day}}<em><span bo-text="scheduleMatch.week"></span></em></span></div>
+                            <div class="live_box" ng-switch-default>
+                                <i class="coll_icon" ng-class="{true: 'coll_slt', false: ''}[scheduleMatch.attented]" ng-click="addToAttention($event)" thirdId="{{scheduleMatch.thirdId}}" isClicked="{{scheduleMatch.attented}}"></i>
+                                <a href="bifen/index.html?id={{scheduleMatch.thirdId}}">
+                                <div class="live_list">
+                                    <dl class="top_dl">
+                                        <dd class="wid_40 align_r">
+                                            <font style="color:{{scheduleMatch.raceColor}}" bo-text="scheduleMatch.racename"></font>
+                                            <span bo-text="scheduleMatch.time"></span>
+                                        </dd>
+                                        <dd class="wid_20 align_c"></dd>
+                                        <dd class="wid_40 align_l">
+                                    <span >
+                                        <i bo-text="scheduleMatch.matchOdds[oddsFilterCookieValue].leftOdds"></i>
+                                        <i class="f_black" bo-text="scheduleMatch.matchOdds[oddsFilterCookieValue].mediumOdds"></i>
+                                        <i bo-text="scheduleMatch.matchOdds[oddsFilterCookieValue].rightOdds"></i>
+                                    </span>
+                                        </dd>
+                                    </dl>
+                                    <br class="clear">
+                                    <dl class="btm_dl">
+                                        <dd class="wid_40 align_r" bo-text="scheduleMatch.hometeam"></dd>
+                                        <dd class="wid_20 align_c"><b class="f_vs">VS</b></dd>
+                                        <dd class="wid_40 align_l" bo-text="scheduleMatch.guestteam"></dd>
+                                    </dl>
+                                    <br class="clear">
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="not_body" ng-if="noScheduleMatches">
+                        <div class="man"></div>
+                        <span ng-bind="'NO_IMMEDIATE_MATCHES' | translate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--赛程end-->
+
+        <!--关注 start-->
+        <div class="swiper-slide">
+            <div class="live_bd content-slide" id="live_bd4">
+                <div class="white_bg">
+                    <div ng-repeat="attentionMatch in attentionMatches">
+                        <div id="{{attentionMatch.thirdId}}" class="live_box">
+                            <i class="coll_icon coll_slt" ng-class="{true: 'coll_slt', false: ''}[attentionMatch.attented]"
+                               ng-click="addToAttention($event)" thirdId="{{attentionMatch.thirdId}}"
+                               isClicked="{{attentionMatch.attented}}"></i>
+                            <a href="bifen/index.html?id={{attentionMatch.thirdId}}">
+                            <div class="live_list">
+                                <dl class="top_dl">
+                                    <dd class="wid_40 align_r">
+                                        <font style="color:{{attentionMatch.raceColor}}">{{attentionMatch.racename}}</font>
+                                        <span>{{attentionMatch.time}}</span>
+                                    </dd>
+                                    <dd class="wid_20 align_c">
+                                    <span ng-if="(attentionMatch.statusOrigin == '1' || attentionMatch.statusOrigin == '3' || attentionMatch.statusOrigin == '0') == false">
+                                        <span class="f_red" ng-if="attentionMatch.statusOrigin == '-1' && attentionMatch.halfScore != null">({{attentionMatch.halfScore}})</span>
+                                        <span class="f_blue" ng-if="attentionMatch.statusOrigin == '2' || attentionMatch.statusOrigin == '4' || attentionMatch.statusOrigin == '5'">{{attentionMatch.status}}</span>
+                                        <span class="f_red"
+                                              ng-if="attentionMatch.statusOrigin == '-10' || attentionMatch.statusOrigin == '-11'
+                                                || attentionMatch.statusOrigin == '-12' || attentionMatch.statusOrigin == '-13'
+                                                || attentionMatch.statusOrigin == '-14'">{{attentionMatch.status}}</span>
+                                    </span>
+                                    <span ng-if="attentionMatch.statusOrigin == '1' || attentionMatch.statusOrigin == '3' || attentionMatch.statusOrigin == '0'">
+                                        <span class="f_blue" ng-if="attentionMatch.keepTime != null && attentionMatch.keepTime != 0">{{attentionMatch.keepTime}}<i class="secs"></i></span>
+                                        <!--
+                                        <span class="f_red" ng-if="attentionMatch.keepTime == null && attentionMatch.halfScore != null">({{attentionMatch.halfScore}})</span>
+                                        -->
+                                    </span>
+                                    </dd>
+                                    <dd class="wid_40 align_l">
+                                    <span>
+                                        <span class="f_grey" ng-if="attentionMatch.matchOdds[oddsFilterCookieValue].seal == true">{{'ODDS_SEAL' | translate}}</span>
+                                        <span ng-if="attentionMatch.matchOdds[oddsFilterCookieValue].seal == null
+                                                    || attentionMatch.matchOdds[oddsFilterCookieValue].seal == false">
+                                            <span ng-if = "attentionMatch.statusOrigin != '-1'">
+                                                <i class="{{attentionMatch.leftOddsClass}}">{{attentionMatch.matchOdds[oddsFilterCookieValue].leftOdds}}</i>
+                                                <i class="{{attentionMatch.mediumOddsClass}}">{{attentionMatch.matchOdds[oddsFilterCookieValue].mediumOdds}}</i>
+                                                <i class="{{attentionMatch.rightOddsClass}}">{{attentionMatch.matchOdds[oddsFilterCookieValue].rightOdds}}</i>
+                                            </span>
+                                            <span ng-if = "attentionMatch.statusOrigin == '-1'">
+                                                 <i ng-class="{true: 'f_red2', false: 'f_black'}[attentionMatch.matchOdds[oddsFilterCookieValue].resultLeftOddsState == '3']"
+                                                    ng-if="attentionMatch.matchOdds[oddsFilterCookieValue].leftOdds != null">
+                                                     {{attentionMatch.matchOdds[oddsFilterCookieValue].leftOdds}}
+                                                 </i>
+                                                <i ng-class="{true: 'f_red2', false: 'f_black'}[attentionMatch.matchOdds[oddsFilterCookieValue].resultMediumValueState == '3']"
+                                                   ng-if="attentionMatch.matchOdds[oddsFilterCookieValue].mediumOdds != null">
+                                                    {{attentionMatch.matchOdds[oddsFilterCookieValue].mediumOdds}}
+                                                </i>
+                                                <i ng-class="{true: 'f_red2', false: 'f_black'}[attentionMatch.matchOdds[oddsFilterCookieValue].resultRightOddsState == '3']"
+                                                   ng-if="attentionMatch.matchOdds[oddsFilterCookieValue].rightOdds != null">
+                                                    {{attentionMatch.matchOdds[oddsFilterCookieValue].rightOdds}}
+                                                </i>
+                                            </span>
+                                        </span>
+                                        <em class="f_red" ng-if="(attentionMatch.statusOrigin == '2' || attentionMatch.statusOrigin == '3'
+                                                    || attentionMatch.statusOrigin == '4' || attentionMatch.statusOrigin == '5' || attentionMatch.statusOrigin == '-12' || attentionMatch.statusOrigin == '-13')
+                                                    && attentionMatch.halfScore != null">({{attentionMatch.halfScore}})</em>
+                                    </span>
+                                    </dd>
+                                </dl>
+                                <br class="clear">
+                                <dl class="btm_dl">
+                                    <dd class="wid_40 align_r" hometeam>
+                                        <i ng-if="attentionMatch.home_yc!=null && attentionMatch.home_yc != '0' && attentionMatch.home_yc != ''" class="yellow_p">{{attentionMatch.home_yc}}</i><i ng-if="attentionMatch.home_rc!=null && attentionMatch.home_rc != '0' && attentionMatch.home_rc != ''" class="red_p">{{attentionMatch.home_rc}}</i>
+                                        {{attentionMatch.hometeam}}
+                                    </dd>
+                                    <dd class="wid_20 align_c">
+                                    <span ng-if="(attentionMatch.statusOrigin == '1' || attentionMatch.statusOrigin == '3' || attentionMatch.statusOrigin == '0') == false">
+                                        <b class="f_red" ng-if="attentionMatch.statusOrigin == '-1'">{{attentionMatch.fullScore}}</b>
+                                        <b class="f_blue" ng-if="attentionMatch.statusOrigin == '2'">{{attentionMatch.fullScore}}</b>
+                                        <b class="f_blue" ng-if="attentionMatch.statusOrigin == '-12' || attentionMatch.statusOrigin == '-13' || attentionMatch.statusOrigin == '4' || attentionMatch.statusOrigin == '5'">{{attentionMatch.fullScore}}</b>
+                                        <b class="f_vs" ng-if="attentionMatch.statusOrigin == '-10' || attentionMatch.statusOrigin == '-11' || attentionMatch.statusOrigin == '-14'">VS</b>
+                                    </span>
+                                    <span ng-if="attentionMatch.statusOrigin == '1' || attentionMatch.statusOrigin == '3' || attentionMatch.statusOrigin == '0'">
+                                        <b class="f_blue" ng-if="attentionMatch.keepTime != null && attentionMatch.keepTime != 0">{{attentionMatch.fullScore}}</b>
+                                        <b class="f_vs" ng-if="attentionMatch.keepTime == null || attentionMatch.keepTime ==0">VS</b>
+                                    </span>
+                                    </dd>
+                                    <dd class="wid_40 align_l" guestteam>
+                                        {{attentionMatch.guestteam}}
+                                        <i ng-if="attentionMatch.guest_rc!=null && attentionMatch.guest_rc != '0' && attentionMatch.guest_rc != ''" class="red_p">{{attentionMatch.guest_rc}}</i><i ng-if="attentionMatch.guest_yc!=null && attentionMatch.guest_yc != '0' && attentionMatch.guest_yc != ''" class="yellow_p">{{attentionMatch.guest_yc}}</i>
+                                    </dd>
+                                </dl>
+                                <br class="clear">
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="not_body" ng-if="noAttentionMatches">
+                        <div class="man"></div>
+                        <span ng-bind="'NO_ATTENTION_MATCHES'|translate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--关注 end-->
+    </div>
+</div>
+
+
+<!--赛果日期选择-->
+<div id="day_div" ng-click="dayDivClick($event)"></div>
+<div id="day_time" class="day_time">
+    <h2 class="day_title">{{'DAY_SELECT' | translate}}</h2>
+    <ul>
+        <li ng-repeat="resultDayWeek in resultDayWeeks" ng-class-even="'libg'" day = "{{resultDayWeek.day}}" ng-click="dayTimeLiClick($event)">
+            <span>{{resultDayWeek.day}}</span><em>{{resultDayWeek.week}}</em>
+        </li>
+    </ul>
+</div>
+<!--赛程日期选择-->
+<div id="day_time2" class="day_time">
+    <h2 class="day_title">{{'DAY_SELECT' | translate}}</h2>
+    <ul>
+        <li ng-repeat="scheduleDayWeek in scheduleDayWeeks" ng-class-even="'libg'" day="{{scheduleDayWeek.day}}" week="{{scheduleDayWeek.week}}" ng-click="dayTime2LiClick($event)">
+            <span>{{scheduleDayWeek.day}} <em>{{scheduleDayWeek.week}}</em></span>
+        </li>
+    </ul>
+</div>
+
+
+<!--弹出筛选、设置-->
+<div id="sort_content">
+    <!--筛选开始-->
+    <div class="asort" id="asort-filter">
+        <div class="hd">
+            <div class="wrap tx_c">
+                <span class="title">{{'FILTERING' | translate}}</span>
+
+                <div class="fr cse" ng-click="filterSetWindowClose($event)"><i class="close"></i></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="scr_tab">
+            <ul>
+                <li id="li1" ng-click="filterFootball($event)" ng-class="{true: 'click', false: ''}[matchFilterLiClicked]">{{'FILTERING_MATCH'|translate}}</li>
+                <li id="li2" ng-if="showStateFilter" ng-click="filterState($event)" ng-class="{true: 'click', false: ''}[stateFilterLiClicked]">{{'FILTERING_STATE'|translate}}</li>
+            </ul>
+        </div>
+        <div class="scr_box">
+            <!--赛事筛选-->
+            <div class="scr_div" id="scr_div1" ng-show="showMatchFilterDiv">
+                <div class="game_box" id="game_box">
+                    <!--  热门赛事 -->
+                    <div class="ma_tab">
+                        {{'HOT_FILTERING'|translate}}
+                    </div>
+                    <!-- list -->
+                    <dl class="game_list">
+                        <dd ng-repeat="game in hotGameList" ng-click="toggleGame($event, 'on')"
+                            ng-class="{true : 'on', false : ''}[game.clicked]" count="{{game.count}}" name = "{{game.racename}}" raceid="{{game.raceId}}">
+                            <div ng-class="{true : 'normal hot', false : 'normal'}[game.hot]">
+                                <span>{{game.racename}}</span><i>[{{game.count}}]</i>
+                            </div>
+                        </dd>
+                        <div style="text-align: center;font-size: 14px;" ng-if="hotGameList == null || hotGameList.length == 0">
+                            <p ng-bind="'NO_INIT_IMMEDIATE_MATCHES'|translate" style="margin: 5px 0;height: .4rem;"></p>
+                        </div>
+                    </dl>
+                    <!--  其他赛事 -->
+                    <div class="ma_tab">
+                        {{'OTHER_FILTERING'|translate}}
+                    </div>
+                    <!-- list -->
+                    <dl class="game_list">
+                        <dd ng-repeat="game in otherGameList" ng-click="toggleGame($event, 'on')"
+                            ng-class="{true : 'on', false : ''}[game.clicked]" count="{{game.count}}" name = "{{game.racename}}" raceid="{{game.raceId}}">
+                            <div ng-class="{true : 'normal hot', false : 'normal'}[game.hot]">
+                                <span>{{game.racename}}</span><i>[{{game.count}}]</i>
+                            </div>
+                        </dd>
+                        <div style="text-align: center;font-size: 14px;" ng-if="otherGameList == null || otherGameList.length == 0">
+                            <p ng-bind="'NO_INIT_IMMEDIATE_MATCHES'|translate" style="margin: 5px 0;height: .4rem;"></p>
+                        </div>
+                    </dl>
+                    <div class="clear"></div>
+                    <div class="game_h"></div>
+                </div>
+                <div class="game_cho">
+                    <p class="g_session" translate="HIDE_MATCHES" translate-values="{'hideGameCount' : '<em class=\'f_red\'>&nbsp;{{hideGameCount}}&nbsp;</em>'}"></p>
+                    <p style="margin-bottom:3px;">
+                        <span ng-click="checkFiveGame()">{{'FIVE_MATCH' | translate}}</span>
+                        <span ng-click="checkHotGame()">{{'HOT_MATCH' | translate}}</span>
+                        <span ng-click="checkAllGame()">{{'SELECT_ALL_MATCH' | translate}}</span>
+                        <span ng-click="reverseCheckGame()">{{'DESEELCT_MATCH' | translate}}</span>
+                    </p>
+                    <p>
+                        <button class="btn_qd" ng-click="checkGameSubmit($event)">{{'BUTTON_SUBMIT' | translate}}</button>
+                        <!-- <button class="btn_qx" ng-click="filterCancelClick($event)">{{'BUTTON_CANCEL' | translate}}</button> -->
+                    </p>
+                </div>
+            </div>
+            <!--状态筛选-->
+            <div class="scr_div" id="scr_div2" ng-show="showStateFilterDiv">
+                <div class="scr_state" id="scr_state">
+                    <div ng-if="showTimeFilter">
+                        <h2 class="scr_h2">
+                            <i class="time_icon"></i>{{'TIME_FILTER' | translate}}
+                        </h2>
+                        <div class="radio_box">
+                            <form>
+                                <ul id="radio_box1">
+                                    <li ng-repeat="timeFilterValue in timeFilterValues">
+                                        <input type="radio" name="timeFilter" value="{{timeFilterValue.value}}" ng-checked="timeFilterValue.checked"/>
+                                        <label ng-click="timeFilterClick($event)" ng-class="{true: 'choice checked', false: 'choice'}[timeFilterValue.checked]">
+                                            <i class="radio_icon"></i>{{timeFilterValue.name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <h2 class="scr_h2">
+                        <i class="bf_icon"></i>{{'SCORE_FILTER' | translate}}
+                    </h2>
+
+                    <div class="radio_box">
+                        <form>
+                            <ul id="radio_box2">
+                                <li ng-repeat="scoreFilterValue in scoreFilterValues">
+                                    <input type="radio" name="scoreFilter" value="{{scoreFilterValue.value}}" ng-checked="{{scoreFilterValue.checked}}"/>
+                                    <label ng-click="scoreFilterClick($event)" ng-class="{true: 'choice checked', false: 'choice'}[scoreFilterValue.checked]">
+                                        <i class="radio_icon"></i>{{scoreFilterValue.name}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="clear"></div>
+                    </div>
+                    <h2 class="scr_h2">
+                        <i class="hh_icon"></i>{{'REDCARD_FILTER' | translate}}
+                    </h2>
+
+                    <div class="radio_box">
+                        <form>
+                            <ul id="radio_box3">
+                                <li ng-repeat="redCardFilter in redCardFilterValues">
+                                    <input type="radio" name="redCardFilter" value="{{redCardFilter.value}}" ng-checked="{{redCardFilter.checked}}"/>
+                                    <label ng-click="redCardFilterClick($event)"ng-class="{true: 'choice checked', false: 'choice'}[redCardFilter.checked]">
+                                        <i class="radio_icon"></i>{{redCardFilter.name}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="clear"></div>
+                    </div>
+                    <div style="height: 30px;"></div>
+                </div>
+                <div class="scr_foot">
+                    <button class="btn_qd" ng-click="checkStateSubmit($event)">{{'BUTTON_SUBMIT' | translate}}</button>
+                    <!-- <button class="btn_qx" ng-click="filterCancelClick($event)">{{'BUTTON_CANCEL' | translate}}</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--筛选结束-->
+    <!--设置开始-->
+    <div class="asort" id="asort-set">
+        <div class="hd">
+            <div class="wrap tx_c">
+                <span class="title">{{'SETTING' | translate}}</span>
+
+                <div class="fr cse" ng-click="filterSetWindowClose($event)"><i class="close"></i></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="set_box" id="set_box">
+            <div>
+                <h2 class="set_h2 first">
+                    <i class="goal_icon"></i>{{'GOALS_HINTS' | translate}}
+                </h2>
+
+                <div class="set_list">
+                    <ul>
+                        <li>
+                            <label for="goalSound">{{'GOALS_VOICE' | translate}}</label>
+                            <input tabindex="1" type="checkbox" id="goalSound" name="goalSound">
+                        </li>
+                        <li>
+                            <!--
+                            <label for="goalWindow">{{'GOALS_WINDOWS' | translate}}</label>
+                            <input tabindex="2" type="checkbox" id="goalWindow" name="goalWindow">
+                            -->
+                        </li>
+                        <li class="text_it">
+                            <audio id="sound1" src="../audio/sound1.mp3" preload="auto"></audio>
+                            <audio id="sound2" src="../audio/sound2.mp3" preload="auto"></audio>
+                            <audio id="sound3" src="../audio/sound3.mp3" preload="auto"></audio>
+                          <span class="set_text">{{'GOALS_HOMETEAM' | translate}}</span>
+                            <select name="homeTeamGoalSound" id="homeTeamGoalSound"
+                                    class="css_select" onchange="homeTeamGoalSoundChange(this)">
+                                <option value="1">{{'GOALS_VOICE1' | translate}}</option>
+                                <option value="2">{{'GOALS_VOICE2' | translate}}</option>
+                                <option value="3">{{'GOALS_VOICE3' | translate}}</option>
+                                <option value="">{{'GOALS_NO_VOICE' | translate}}</option>
+                            </select>
+                        </li>
+                        <li class="text_it">
+                          <span class="set_text">{{'GOALS_GUESTTEAM' | translate}}</span>
+                            <select name="guestTeamGoalSound" id="guestTeamGoalSound"
+                                    class="css_select" onchange="guestTeamGoalSoundChange(this)">
+                                <option value="1">{{'GOALS_VOICE1' | translate}}</option>
+                                <option value="2">{{'GOALS_VOICE2' | translate}}</option>
+                                <option value="3">{{'GOALS_VOICE3' | translate}}</option>
+                                <option value="">{{'GOALS_NO_VOICE' | translate}}</option>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <!--
+                <h2 class="set_h2">
+                    <i class="hh_icon"></i>{{'REDCARD_HINTS' | translate}}
+                </h2>
+
+                <div class="set_list">
+                    <ul>
+                        <li>
+                            <label for="redCardSound" >{{'REDCARD_VOICE' | translate}}</label>
+                            <input tabindex="3" type="checkbox" id="redCardSound" name="redCardSound">
+                        </li>
+                        <li>
+                            <label for="input-4">{{'REDCARD_WINDOWS' | translate}}</label>
+                            <input tabindex="4" type="checkbox" id="input-4" name="demo-radio">
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                -->
+                <div class="prompt">
+                    <button ng-class="{true: 'open', false: ''}[promptOnlyForAttention]" ng-click="promptButtonClick($event)">{{'NOTIFICATIONS_ONLY' | translate}}</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <h2 class="set_h2 first">
+                    <i class="adds_icon"></i>{{'ODDS_SHOW' | translate}}
+                </h2>
+
+                <div class="radio_box">
+                    <form>
+                        <ul id="radio_box4">
+                            <li ng-repeat="oddsFilterValue in oddsFilterValues">
+                                <input type="radio" name="oddsFilter" value="{{oddsFilterValue.value}}" ng-checked="oddsFilterValue.checked"/>
+                                <label ng-click="oddsFilterClick($event)" ng-class="{true: 'choice checked', false: 'choice'}[oddsFilterValue.checked]">
+                                    <i class="radio_icon"></i>{{oddsFilterValue.name}}
+                                </label>
+                            </li>
+                        </ul>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+                <div class="scr_foot">
+                    <button class="btn_qd" ng-click="setSubmit($event)">{{'BUTTON_SUBMIT' | translate}}</button>
+                    <!-- <button class="btn_qx" ng-click="setCancelClick($event)">{{'BUTTON_CANCEL' | translate}}</button> -->
+                </div>
+
+                <div class=" clear"></div>
+                <div style="height: 30px;"></div>
+            </div>
+        </div>
+    </div>
+    <!--设置结束-->
+</div>
+

@@ -1,0 +1,222 @@
+@charset "utf-8";
+/* CSS Document */
+
+@charset "utf-8";
+* {margin: 0;padding: 0}
+html {/*10 ÷ 16 × 100% = 62.5%*/width: 100%;-webkit-font-smoothing: antialiased;}
+
+h1 { font-size: .24rem;/*2.4 × 10px = 24px*/}
+html.ns {overflow: hidden}
+
+body{font: 400 .14rem/1.5 "\5FAE\8F6F\96C5\9ED1",Helvetica,"Angsana New";-webkit-tap-highlight-color: rgba(0,0,0,0);outline:0 none;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+img {border: 0}
+ol, ul, li {list-style: none}
+dl, dt, dd, ul, li {margin: 0;padding: 0}
+input, textarea {outline:0 none}
+a{text-decoration:none;}
+em,i {font-style: normal}
+body{
+	background-color:#f5f5f5;
+	/*overflow: hidden;*/
+
+}
+/*点击更换播放按钮图标样式*/
+.music{
+			display: block;
+  			width:0.5rem;
+  			height:0.5rem;
+  			background:url(/images/gjcp/stop.png)no-repeat;
+  			background-size:100% 100%;
+
+        position: absolute;
+        top: 0.1rem;
+        left: 0.40rem;
+}
+/*顶端头部样式*/
+header{
+	width:100%;
+	height:.8rem;
+	background:#3b3b3b;
+	.back{
+		display: block;
+		position: absolute;
+		width: 0.19rem;
+		height:0.35rem;
+		background: url(/images/gjcp/icon05.png)no-repeat;
+		background-size: 100% 100%;
+		top:0.22rem;
+		left:0.2rem;
+	}
+	h1{
+	display: block;
+	width: 100%;
+	height:100%;
+	text-align: center;
+	line-height:.8rem;
+	color:#d9d9d9;
+	font-weight:600;
+	font-size:0.3rem;
+	}
+}
+/*audio标签部分的样式*/
+  nav{
+  	width:100%;
+  	height:0.7rem;
+  	margin:0.2rem auto;
+    position:relative;
+    top:1.5rem;
+  	div{
+  		width:95%;
+  		height:100%;
+  		border: 1px solid #dddddd;
+  		border-radius:5px;
+  		background: #ffffff;
+  		margin:0 auto;
+  		.audio_span{
+  			display: block;
+  			width:0.5rem;
+  			height:0.5rem;
+  			background:url(/images/gjcp/open.png)no-repeat;
+  			background-size:100% 100%;
+  			position: absolute;
+  			//top:1.125rem;
+        top:0.1rem;
+  			left: 0.40rem;
+  		}
+  		.font_span{
+  			display: block;
+  			width:100%;
+  			height:100%;
+  			line-height:0.7rem;
+  			color:#333333;
+  			font-size:0.28rem;
+  			text-align: center;
+  			font-weight:600;
+
+  		}
+  	}
+
+  }
+/*点击下拉选中彩票期数部分样式*/
+.lottery_list{
+	width:100%;
+  height:0.7rem;
+  margin:0.2rem auto;
+  position:relative;
+  top:1.5rem;
+	div{
+		width:95%;
+  		height:100%;
+  		border: 1px solid #dddddd;
+  		border-radius:5px;
+  		background: #ffffff;
+  		margin:0 auto;
+		.list_font{
+			display: block;
+  			width:100%;
+  			height:100%;
+  			line-height:0.7rem;
+  			color:#333333;
+  			font-size:0.28rem;
+  			text-align: center;
+  			font-weight:600;
+		}
+		.list_img{
+			display: block;
+  			width:0.32rem;
+  			height:0.16rem;
+  			background:url(/images/gjcp/next.png)no-repeat;
+  			background-size:100% 100%;
+  			position: absolute;
+  			top:0.3rem;
+  			right: 0.4rem;
+		}
+	}
+}
+/*web-url  iframe标签部分样式*/
+.wrapper{
+	width:100%;
+	height:7.34rem;
+	overflow: scroll;
+	-webkit-overflow-scrolling:touch;
+  position: relative;
+  top:1.5rem;
+  .scroller{
+		width:95%;
+		margin: 0 auto;
+		iframe{
+			width:100%;
+			height:10rem;
+			z-index: 0;
+		}
+	}
+}
+/*定位点击刷新按钮*/
+.res{
+	width:0.6rem;
+	height:0.6rem;
+	position: absolute;
+	bottom:1rem;
+	right:0.5rem;
+	z-index:70;
+	background:url(/images/gjcp/shuaxin.png)no-repeat;
+	background-size:100% 100%;
+}
+/*点击显示浮层部分样式*/
+.hide{
+	width:100%;
+	height:100%;
+	background:rgba(102,102,102, 0.85);
+	position:fixed;
+	left: 0;
+	bottom:0;
+	z-index: 99;
+	display:none;
+	.hide_bottom{
+		width:100%;
+		height:7.26rem;
+		position: absolute;
+		background:#ffffff;
+		bottom: 0;
+		left:0;
+		ul{
+			width:100%;
+			height:6.4rem;
+			overflow:scroll;
+			li:nth-of-type(2) span{
+				color: #ff0000;
+				}
+			li{
+				display: block;
+				width: 100%;
+				height:0.899rem;
+				border-top: 1px solid #dddddd;
+					span{
+						display: block;
+						width:100%;
+						height: 100%;
+						text-align: center;
+						line-height: 0.9rem;
+						font-size:0.28rem;
+						color:#333333;
+					}
+				}
+			}
+		.last_span{
+			width:100%;
+			height: 0.85rem;
+			border-top:1px solid #dddddd;
+			bottom:0;
+			span{
+				width:100%;
+				height:100%;
+				display: block;
+				text-align: center;
+				line-height:0.86rem;
+				color:#999999;
+				font-size: 0.28rem;
+			}
+		}
+	}
+}

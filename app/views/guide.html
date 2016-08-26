@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.guide">
+<head>
+    @import 'head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="../styles/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/wapcss@@MINEXT.css">
+    <script type="text/javascript" src="../common/angular.min.js"></script>
+    <script type="text/javascript">
+        @import '../common/dealer@@MINEXT.js';
+    </script>
+    <script type="text/javascript" src="../scripts/controllers/guide@@MINEXT.js"></script>
+    <style type="text/css">
+        html {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #40a3f8;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+        }
+
+        a, body {
+            font-family: "微软雅黑";
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        .Guide .logo {
+            background: url(@@IMGURL/zh/Guide_logo.png) no-repeat;
+        }
+
+        .Guide .logo_zh-TW {
+            background: url(@@IMGURL/zh-TW/Guide_logo.png) no-repeat;
+        }
+
+        .Guide .logo, .Guide .logo_zh-TW {
+            background-size: 200px 120px;
+            width: 200px;
+            height: 120px;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        .g_bd {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            margin-top: 140px;
+            width: 300px;
+            margin-left: -150px;
+        }
+
+        .ios_box {
+            margin-bottom: 50px;
+        }
+
+        .s_left {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .qr_ios {
+            background: url(@@IMGURL/ios.png) no-repeat;
+        }
+
+        .qr_Android {
+            background: url(@@IMGURL/zh/Android.png) no-repeat;
+        }
+
+        .qr_Android_zh-TW {
+            background: url(@@IMGURL/zh-TW/Android.png) no-repeat;
+        }
+
+        .qr_ios, .qr_Android, .qr_Android_zh-TW {
+            width: 100px;
+            height: 100px;
+            background-size: 100px 100px;
+            display: block;
+        }
+
+        .s_right {
+            overflow: hidden;
+            height: 100px;
+            position: relative;
+        }
+
+        .ios_btn {
+            background: url(@@IMGURL/zh/ios_btn.png) no-repeat;
+        }
+
+        .Android_btn {
+            background: url(@@IMGURL/zh/Android_btn.png) no-repeat;
+        }
+
+        .ios_btn_zh-TW {
+            background: url(@@IMGURL/zh-TW/ios_btn.png) no-repeat;
+        }
+
+        .Android_btn_zh-TW {
+            background: url(@@IMGURL/zh-TW/Android_btn.png) no-repeat;
+        }
+
+        .ios_btn, .Android_btn, .ios_btn_zh-TW, .Android_btn_zh-TW {
+            width: 160px;
+            height: 48px;
+            background-size: 160px 48px;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -24px;
+        }
+
+        @media screen and (min-width: 300px) and (max-width: 320px) {
+            .Guide .logo {
+                background: url(@@IMGURL/zh/Guide_logo.png) no-repeat;
+            }
+
+            .Guide .logo_zh-TW {
+                background: url(@@IMGURL/zh-TW/Guide_logo.png) no-repeat;
+            }
+
+            .Guide .logo, .Guide .logo_zh-TW {
+                background-size: 160px 95px;
+                position: absolute;
+                width: 160px;
+                height: 95px;
+                top: 10%;
+                left: 50%;
+                margin-left: -80px;
+            }
+
+            .g_bd {
+                position: absolute;
+                top: 15%;
+                left: 50%;
+                margin-top: 110px;
+                width: 220px;
+                margin-left: -110px;
+            }
+
+            .ios_box {
+                margin-bottom: 30px;
+            }
+
+            .s_right {
+                overflow: hidden;
+                height: 80px;
+                position: relative;
+            }
+
+            .s_left {
+                float: left;
+                margin-right: 20px;
+                width: 80px;
+            }
+
+            .qr_ios, .qr_Android, .qr_Android_zh-TW {
+                width: 80px;
+                height: 80px;
+                background-size: 80px 80px;
+            }
+
+            .ios_btn, .Android_btn, .ios_btn_zh-TW, .Android_btn_zh-TW {
+                width: 120px;
+                height: 36px;
+                background-size: 120px 36px;
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                margin-top: -18px;
+            }
+        }
+
+        .goback {
+            width: 54px;
+            height: 27px;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: url(@@IMGURL/goback.png) no-repeat 10px 10px;
+            background-size: 50px 27px;
+            display: block;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="Guide">
+    <a class="goback" href="../index.html"></a>
+
+    <div class="{{'CLASS_LOGO' | translate}}"></div>
+    <div class="g_bd">
+        <div class="ios_box">
+            <div class="s_left">
+                <i class="qr_ios"></i>
+            </div>
+            <div class="s_right">
+                <a class="{{'CLASS_IOS_BTN'|translate}}"
+                   href="https://itunes.apple.com/cn/app/yi-bi-fen/id1044544499?mt=8"></a>
+            </div>
+        </div>
+        <div class="Android_box">
+            <div class="s_left">
+                <i class="{{'CLASS_QR_ANDROID'|translate}}"></i>
+            </div>
+            <div class="s_right">
+                <a class="{{'CLASS_ANDROID_BTN'|translate}}" href="#"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

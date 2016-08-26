@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html ng-app="live1.kjmain">
+<head>
+    @import '../views/head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="/styles/lottery@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+</head>
+<body ng-cloak  class="ng-cloak">
+@import '../views/nav.html'
+<div id="kjMainControl" ng-controller="KjMainController" ng-cloak >
+ <!--加载中-->
+    <div ng-show="showLoading">
+        <!-- <div class="header">
+            <a class="back" href="javascript:history.back()"></a>
+            <span class="title" ng-bind="'LOADING' | translate"></span>
+        </div> -->
+        <div class="wrapper" style="text-align:center; margin:150px auto; font-size:16px; color:#666;">
+            <img src="/images/loading.gif" width="25" /><span ng-bind="'ONLOADING' | translate"></span>
+        </div>
+    </div>
+    <!--内容页-->
+    <div ng-show="!showLoading">
+    <div class="bd h_kj">
+        <!-- <div class="header">
+            <a class="back" href="javascript:history.back()"></a>
+            <span class="title" ng-bind="'LOTTERY_TITLE'|translate"></span>
+            <dl class="head_r" id="sort">
+                <dd><i class="set_icon" onclick="return false;"></i></dd>
+            </dl>
+        </div> -->
+
+        <dl class="setBtn" id="sort">
+            <dd><i class="set_icon" onclick="return false;"></i></dd>
+        </dl>
+        <div class="wrapper">
+            <ul class="kj-list">
+                <!--香港彩-->
+                <div ng-if="showMain.lhcfil" lhc-directive></div>
+                <!--七星彩-->
+                <div ng-if="showMain.qxcfil" qxc-directive></div>
+                <!--北京赛车-->
+                <div ng-if="showMain.bjscfil" PK10-directive></div>
+                <!--广东快乐10-->
+                <div ng-if="showMain.kl10" dkl10-directive></div>
+                <!--湖南快乐10-->
+                <div ng-if="showMain.hn10" HNKL10-directive></div>
+                <!--幸运农场-->
+                <div ng-if="showMain.luckyfil" xync-directive></div>
+                <!--重庆时时彩-->
+                <div ng-if="showMain.cqsscfil" cqssc-directive></div>
+                <!--新疆时时彩-->
+                <div ng-if="showMain.xjssc" xjssc-directive></div>
+                <!--云南时时彩-->
+                <div ng-if="showMain.ynsscfile" ynssc-directive></div>
+                <!--天津时时彩-->
+                <div ng-if="showMain.tjssc" TJSSC-directive></div>
+                <!--江西时时彩-->
+                <div ng-if="showMain.jxssc" jxssc-directive></div>
+                <!--广东11选5-->
+                <div ng-if="showMain.gd115" d11x5-directive></div>
+                <!--江苏11选5-->
+                <div ng-if="showMain.js115" JS11X5-directive></div>
+                <!--山东11选5-->
+                <div ng-if="showMain.sd115" SD11X5-directive></div>
+                <!--安徽快3-->
+                <div ng-if="showMain.ahk3fil" ahk3-directive></div>
+                <!--江苏快3-->
+                <div ng-if="showMain.jsk3fil" jsk3-directive></div>
+                <!--广西快3-->
+                <div ng-if="showMain.gxk3" GXK3-directive></div>
+
+                <!--下面暂时隐藏-->
+                <!--<div ng-if="showMain.sslfil" SSL-directive></div>-->
+                <!--<div ng-if="showMain.hb115" hb11x5-directive></div>-->
+                <!--<div ng-if="showMain.jlk3fil" jlk3-directive></div>-->
+                <!--<div ng-if="showMain.ln115" ln11x5-directive></div>-->
+                <!--<div ng-if="showMain.jx115" jx11x5-directive></div>-->
+                <!--<div ng-if="showMain.lk8" kl8-directive></div>-->
+            </ul>
+        </div>
+    </div>
+    <!--刷新-->
+    <!--<div class="refresh">刷新</div>-->
+    <!--筛选-->
+    <div id="sort_content">
+        <!--设置开始-->
+        <div class="asort" style=" display:block">
+            <div class="hd">
+                <div class="wrap tx_c">
+                    <i class="btn_qd" onclick="onclicks()">{{'CONFIRM' | translate}}</i>
+                    <i class="btn_qx" onclick="cancel()">{{'CANCEL' | translate}}</i>
+                    <span class="title">{{'FILTITLE' | translate}}</span>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="set_box" id="set_box">
+                <div id="b_div" class="wrapper book_d">
+                    <h3 class="set_tit" ng-bind="'HAVEFILTITLE' | translate"></h3>
+
+                    <div class="setlist">
+                        <div class="no_choice" id="choice">{{'NO_CHOICE'|translate}}</div>
+                        <ul id="b_in_ul" class="edtlist-chked">
+                            <li flag="edtlist-flag1" ng-repeat="df in defaultList" id="{{df.id}}" name="{{df.name}}">
+                                <span>{{df.name | translate}}</span></li>
+
+                            <!--<li flag="edtlist-flag1"><span>香港彩</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>七星彩</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>重庆时时彩</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>云南时时彩</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>北京赛车</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>江苏快3</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>幸运农场</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>广东十一选五</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>江苏十一选五</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>广东快乐十分</span></li>-->
+                            <!--<li flag="edtlist-flag1"><span>湖南快乐十分</span></li>-->
+
+                        </ul>
+                    </div>
+                    <h3 class="set_tit" ng-bind="'CLICK_FIL' | translate"></h3>
+
+                    <div class="edtlist">
+                        <ul id="b_out_ul" class="edtlist-nochked edtlist-flag1">
+                            <li flag="edtlist-flag1" ng-repeat="undf in undefault" id="{{undf.id}}"
+                                name="{{undf.name}}">
+                                <span>{{undf.name | translate}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--设置结束-->
+    </div>
+
+</div>
+</div>
+    @import '../views/foot.html';
+    <!-- 其他js文件 -->
+    <script type="text/javascript" src="/scripts/controllers/kj/lottery@@MINEXT.js"></script>
+    <!-- controllers -->
+    <script type="text/javascript" src="/scripts/controllers/kj/richStorage@@MINEXT.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/kj/kjmainApp@@MINEXT.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/kj/kjmainController@@MINEXT.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/kj/kjmainDirective@@MINEXT.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/kj/kjmainService@@MINEXT.js"></script>
+
+<script type="text/javascript">
+// (function($){
+   function onclicks() {
+        var appElement = document.querySelector('[ng-controller=KjMainController]');
+        var $scope = angular.element(appElement).scope();
+
+        $scope.showMain = new Object();
+        $(".bd").show();
+        //选中显示
+        var def = [];
+        var undef = [];
+        //以选中
+        $("#b_in_ul > li").each(function () {
+
+            var defIte = {'id': this.id, 'name': $(this).attr('name')};
+            def.push(defIte);
+            //修改显示
+            $scope.showMain[this.id] = true;
+        });
+
+        //未选中
+        $("#b_out_ul > li").each(function () {
+            var obj = {'id': this.id, 'name': $(this).attr('name')};
+            undef.push(obj);
+        });
+
+        //保存到本地
+        localStorage.defaultList = JSON.stringify(def);
+        localStorage.undefault = JSON.stringify(undef);
+
+        //如果定没有,显示所有
+        if (def.length == 0) {
+            for (var i = 0; i < undef.length; i++) {
+                $scope.showMain[undef[i].id] = true;
+            }
+        } else {
+            for (var i = 0; i < def.length; i++) {
+                $scope.showMain[def[i].id] = true;
+            }
+        }
+        $scope.$apply();
+
+        $(".nav-menus").removeClass("nav_hidden").addClass("nav_show");
+    }
+
+    //取消
+    function cancel() {
+        var appElement = document.querySelector('[ng-controller=KjMainController]');
+
+        var $scope = angular.element(appElement).scope();
+         $(".bd").show();
+        if (localStorage.defaultList) {
+            $scope.defaultList = JSON.parse(localStorage.defaultList);
+        } else {
+          //保存到本地
+          var firstDefaultList=[];
+          localStorage.defaultList = JSON.stringify(firstDefaultList);
+          $scope.defaultList = JSON.parse(localStorage.defaultList);
+        }
+
+        //如果定没有,显示所有
+        if ($scope.defaultList.length == 0) {
+                //提示:用户没有定制彩种 显示
+                $('#choice').show();
+        } else {
+                //提示:用户没有定制彩种 隐藏
+                $('#choice').hide();
+        }
+        if (localStorage.undefault) {
+
+            $scope.undefault = JSON.parse(localStorage.undefault);
+        } else {
+            //保存到本地
+            localStorage.undefault = JSON.stringify(undefault);
+            $scope.undefault = JSON.parse(localStorage.undefault);
+        }
+        $scope.$apply();
+
+        $(".nav-menus").removeClass("nav_hidden").addClass("nav_show");
+    }
+// })(jQuery);
+</script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<div data-role="page" id="pageone">
+
+	<!--<div data-role="header" id="header">-->
+		<!--<div class="wrap">-->
+			<!--<div class="logo">-->
+				<!--<a href="#/" title="{{'LOGO_TITLE' | translate}}"><img-->
+					<!--ng-src="{{'IMG_LOGO' | translate}}" /></a>-->
+			<!--</div>-->
+			<!--<dl class="head_r" id="sort">-->
+				<!--<dd>-->
+					<!--<i class="lg_icon" onclick="return false;"-->
+						<!--ng-click="languageSetOpen($event)"></i>-->
+				<!--</dd>-->
+			<!--</dl>-->
+		<!--</div>-->
+	<!--</div>-->
+  <!-- -->
+	<!--<div data-role="content">-->
+		<!--<div id="banner">-->
+			<!--<div class="swiper-wrapper">-->
+				<!--<div class="swiper-slide"-->
+					<!--ng-repeat="advertisement in advertisements">-->
+					<!--<a href="{{advertisement.operation}}" data-transition="slide"><img-->
+						<!--ng-src="{{advertisement.picUrl}}"></a>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="pagination"></div>-->
+		<!--</div>-->
+		<!--<nav class="nav_box">-->
+			<!--<span class="tab">-->
+				<!--<a href="/live"><em class="icon_live"></em><br>-->
+					<!--<span class="title">{{'FOOTBALL_TITLE' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab">-->
+				<!--<a  href="/video"> <em class="icon_tv"></em><br>-->
+					<!--<span class="title">{{'LIVETV_TITLE' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab">-->
+				<!--<a  href="/odds"> <em class="icon_zs"></em><br>-->
+					<!--<span class="title">{{'FOOTBALL_EXPONENT' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab">-->
+				<!--<a href="/data"> <em class="icon_data"></em><br>-->
+					<!--<span class="title">{{'FOOTBALL_DATA' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab">-->
+				<!--<a  href="news.html"> <em class="icon_zx"></em><br>-->
+					<!--<span class="title">{{'SPORTS_NEWS' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab">-->
+				<!--<a href="/basket"><em class="icon_bk"></em><br>-->
+					<!--<span class="title">{{'BASKETBALL_TITLE' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab hidden">-->
+				<!--<a href="/kj/detail.html#/1"> <em class="icon_hkkj"></em><br>-->
+					<!--<span class="title">{{'HONGKONG_LOTTERY' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab hidden">-->
+				<!--<a href="/kj"> <em class="icon_cp"></em><br>-->
+					<!--<span class="title">{{'LOTTERY_TITLE' | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab hidden" id="m_euro">-->
+				<!--<a href="/uefaeuro/final_match.html?download=1"> <em class="icon_europe"></em><br>-->
+					<!--<span class="title">{{"UEFAEURO_TITLE" | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab hidden" id="m_game">-->
+				<!--<a href="http://yxjc.13322.com/h5/index?loginToken={loginToken}"> <em class="icon_game"></em><br>-->
+					<!--<span class="title">{{"GAMEGUESS_TITLE" | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+			<!--<span class="tab hidden" id="m_gjLottery">-->
+				<!--<a href="/gjcp/thai.html"> <em class="icon_thLottery"></em><br>-->
+					<!--<span class="title">{{"THLOTTERY_TITLE" | translate}}</span>-->
+				<!--</a>-->
+			<!--</span>-->
+		<!--</nav>-->
+		<!--<br class="clear">-->
+		<!--<div class="index_bd">-->
+
+			<!--<h2 class="h2_tit">-->
+				<!--&lt;!&ndash;-->
+                    <!--<a class="fr now_vs" href="../../football/template/football.html" data-transition="slide">-->
+                    <!--<span translate="MATCHES_LIVING" translate-values="{'total' : '<em class=\'f_red\'>{{total}}</em>&nbsp;'}"></span>-->
+                    <!--</a>-->
+                    <!--&ndash;&gt;-->
+				<!--<a class="fr now_vs" href="#/"></a> {{'HOT_MATCHES' | translate}}-->
+			<!--</h2>-->
+			<!--<div class="white_bg">-->
+				<!--<a href="/live" data-transition="slide"-->
+					<!--ng-repeat="focusMatch in focusMatches">-->
+					<!--<div-->
+						<!--ng-class="{true : 'index_list bor_b1', false : 'index_list'}[$index == 0]">-->
+						<!--<i class="Livegif"-->
+							<!--ng-if="focusMatch.statusOrigin == '1' || focusMatch.statusOrigin == '2'-->
+                                                    <!--|| focusMatch.statusOrigin == '3' || focusMatch.statusOrigin == '4'-->
+                                                    <!--|| focusMatch.statusOrigin == '5'"><img-->
+					 		<!--src="/images/Livegif.gif"></i>-->
+						<!--<div class="list_bd">-->
+							<!--<dl class="top_dl">-->
+								<!--<dd class="wid_35 align_r">-->
+									<!--<font style="color:{{focusMatch.raceColor}};">{{focusMatch.racename}}</font>-->
+									<!--<span>{{focusMatch.time}}</span>-->
+								<!--</dd>-->
+								<!--<dd class="wid_20 align_c">-->
+									<!--<span-->
+										<!--ng-if="(focusMatch.statusOrigin == '0' || focusMatch.statusOrigin == '1' || focusMatch.statusOrigin == '3') == false">-->
+										<!--<span class="f_red" ng-if="focusMatch.statusOrigin == '-1'">({{focusMatch.halfScore}})</span>-->
+										<!--&lt;!&ndash;完场&ndash;&gt; <span class="f_blue"-->
+										<!--ng-if="focusMatch.statusOrigin == '2' || focusMatch.statusOrigin == '4' || focusMatch.statusOrigin == '5'">{{focusMatch.status}}</span>-->
+										<!--&lt;!&ndash;中场&ndash;&gt; <span class="f_red"-->
+										<!--ng-if="focusMatch.statusOrigin == '-12' || focusMatch.statusOrigin == '-13'-->
+                                                <!--|| focusMatch.statusOrigin == '-11' || focusMatch.statusOrigin == '-10' || focusMatch.statusOrigin == '-14'">-->
+											<!--{{focusMatch.status}} </span> &lt;!&ndash;腰斩、中断、待定、取消、推迟、加时、点球&ndash;&gt;-->
+									<!--</span> <span-->
+										<!--ng-if="focusMatch.statusOrigin == '0' || focusMatch.statusOrigin == '1' || focusMatch.statusOrigin == '3'">-->
+										<!--<span class="f_blue"-->
+										<!--ng-if="focusMatch.keepTime != null && focusMatch.keepTime != 0">{{focusMatch.keepTime}}<i-->
+											<!--class="secs"></i></span>-->
+									<!--</span>-->
+								<!--</dd>-->
+								<!--<dd class="wid_45 align_l">-->
+                                    <!--<span class="f_grey" ng-if="focusMatch.matchOdds[oddsFilterCookieValue].seal == true">{{'ODDS_SEAL' | translate}}</span>-->
+                                         <!--<span ng-if="focusMatch.matchOdds[oddsFilterCookieValue].seal == null-->
+                                                    <!--|| focusMatch.matchOdds[oddsFilterCookieValue].seal == false">-->
+                                        <!--<span ng-if="focusMatch.statusOrigin != '-1'"> <i-->
+                                            <!--class="f_grey">{{focusMatch.matchOdds[oddsFilterCookieValue].leftOdds}}</i>-->
+                                            <!--<i class="f_black">{{focusMatch.matchOdds[oddsFilterCookieValue].mediumOdds}}</i>-->
+                                            <!--<i class="f_grey">{{focusMatch.matchOdds[oddsFilterCookieValue].rightOdds}}</i>-->
+                                        <!--</span> <span ng-if="focusMatch.statusOrigin == '-1'"> <i-->
+                                            <!--ng-class="{true: 'f_red2', false: 'f_black'}[focusMatch.matchOdds[oddsFilterCookieValue].leftOddsState == '3']"-->
+                                            <!--ng-if="focusMatch.matchOdds[oddsFilterCookieValue].leftOdds != null">-->
+                                                <!--{{focusMatch.matchOdds[oddsFilterCookieValue].leftOdds}} </i> <i-->
+                                            <!--ng-class="{true: 'f_red2', false: 'f_black'}[focusMatch.matchOdds[oddsFilterCookieValue].mediumValueState == '3']"-->
+                                            <!--ng-if="focusMatch.matchOdds[oddsFilterCookieValue].mediumOdds != null">-->
+                                                <!--{{focusMatch.matchOdds[oddsFilterCookieValue].mediumOdds}} </i> <i-->
+                                            <!--ng-class="{true: 'f_red2', false: 'f_black'}[focusMatch.matchOdds[oddsFilterCookieValue].rightOddsState == '3']"-->
+                                            <!--ng-if="focusMatch.matchOdds[oddsFilterCookieValue].rightOdds != null">-->
+                                                <!--{{focusMatch.matchOdds[oddsFilterCookieValue].rightOdds}} </i>-->
+                                        <!--</span>-->
+                                    <!--</span>-->
+                                             <!--<em class="f_red"-->
+										<!--ng-if="(focusMatch.statusOrigin == '2' || focusMatch.statusOrigin == '3'-->
+                                                    <!--|| focusMatch.statusOrigin == '4' || focusMatch.statusOrigin == '5')-->
+                                                    <!--&& focusMatch.halfScore != null">({{focusMatch.halfScore}})</em>-->
+								<!--</dd>-->
+							<!--</dl>-->
+							<!--<br class="clear">-->
+							<!--<dl class="btm_dl">-->
+								<!--<dd class="wid_35 align_r">-->
+									<!--<i-->
+										<!--ng-if="focusMatch.home_yc!=null && focusMatch.home_yc != '0' && focusMatch.home_yc != ''"-->
+										<!--class="yellow_p">{{focusMatch.home_yc}}</i> <i-->
+										<!--ng-if="focusMatch.home_rc!=null && focusMatch.home_rc != '0' && focusMatch.home_rc != ''"-->
+										<!--class="red_p">{{focusMatch.home_rc}}</i>-->
+									<!--{{focusMatch.hometeam}}-->
+								<!--</dd>-->
+								<!--<dd class="wid_20 align_c">-->
+									<!--<span-->
+										<!--ng-if="(focusMatch.statusOrigin == '0' || focusMatch.statusOrigin == '1' || focusMatch.statusOrigin == '3') == false">-->
+										<!--<b class="f_red" ng-if="focusMatch.statusOrigin == '-1'">{{focusMatch.fullScore}}</b>-->
+										<!--&lt;!&ndash;完场&ndash;&gt; <b class="f_blue"-->
+										<!--ng-if="focusMatch.statusOrigin == '2'">{{focusMatch.fullScore}}</b>-->
+										<!--&lt;!&ndash;中场&ndash;&gt; <b class="f_blue"-->
+										<!--ng-if="focusMatch.statusOrigin == '-12' || focusMatch.statusOrigin == '-13' || focusMatch.statusOrigin == '4' || focusMatch.statusOrigin == '5'">{{focusMatch.fullScore}}</b>-->
+										<!--&lt;!&ndash;腰斩、中断、取消&ndash;&gt; <b class="f_vs"-->
+										<!--ng-if="focusMatch.statusOrigin == '-10' || focusMatch.statusOrigin == '-11' || focusMatch.statusOrigin == '-14'">VS</b>-->
+										<!--&lt;!&ndash;待定、取消、推迟&ndash;&gt;-->
+									<!--</span> <span-->
+										<!--ng-if="focusMatch.statusOrigin == '0' || focusMatch.statusOrigin == '1' || focusMatch.statusOrigin == '3'">-->
+										<!--<b class="f_blue"-->
+										<!--ng-if="focusMatch.keepTime != null && focusMatch.keepTime != 0">{{focusMatch.fullScore}}</b>-->
+										<!--<b class="f_vs"-->
+										<!--ng-if="focusMatch.keepTime == null || focusMatch.keepTime == 0">VS</b>-->
+									<!--</span>-->
+								<!--</dd>-->
+								<!--<dd class="wid_45 align_l">-->
+									<!--{{focusMatch.guestteam}} <i-->
+										<!--ng-if="focusMatch.guest_rc!=null && focusMatch.guest_rc != '0' && focusMatch.guest_rc != ''"-->
+										<!--class="red_p">{{focusMatch.guest_rc}}</i><i-->
+										<!--ng-if="focusMatch.guest_yc!=null && focusMatch.guest_yc != '0' && focusMatch.guest_yc != ''"-->
+										<!--class="yellow_p">{{focusMatch.guest_yc}}</i>-->
+								<!--</dd>-->
+							<!--</dl>-->
+							<!--<br class="clear">-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</a>-->
+			<!--</div>-->
+			<!--<h2 class="h2_tit bor_t1" style="display:none;">{{'LOTTERY_TITLE'| translate}}</h2>-->
+			<!--<div class="white_bg" style="display:none;">-->
+				<!--<div class="kc_list"  onclick="window.location.href='/kj/detail.html#/1'">-->
+					<!--<div class="cai_icon">-->
+						<!--<img src="/images/icon_01.png" alt="{{'HONGKONG_LOTTERY' | translate}}" />-->
+					<!--</div>-->
+					<!--<div class="kc_r">-->
+						<!--<div class="itm-tit">-->
+							<!--<b>{{'HONGKONG_LOTTERY' | translate}}</b><span-->
+								<!--translate="NUMLOTTERY_ISSUE"-->
+								<!--translate-values="{'issue' : '{{numLottery.issue}}'}"></span>-->
+						<!--</div>-->
+						<!--<ul class="kc_hm">-->
+							<!--<li><i class="{{numLottery.map.n0.color}}_ball">{{numLottery.map.n0.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n0.zodiac}}</span></li>-->
+							<!--<li><i class="{{numLottery.map.n1.color}}_ball">{{numLottery.map.n1.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n1.zodiac}}</span></li>-->
+							<!--<li><i class="{{numLottery.map.n2.color}}_ball">{{numLottery.map.n2.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n2.zodiac}}</span></li>-->
+							<!--<li><i class="{{numLottery.map.n3.color}}_ball">{{numLottery.map.n3.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n3.zodiac}}</span></li>-->
+							<!--<li><i class="{{numLottery.map.n4.color}}_ball">{{numLottery.map.n4.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n4.zodiac}}</span></li>-->
+							<!--<li><i class="{{numLottery.map.n5.color}}_ball">{{numLottery.map.n5.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n5.zodiac}}</span></li>-->
+							<!--<li><b class="jia_arrow">+</b><br /></li>-->
+							<!--<li><i class="{{numLottery.map.n6.color}}_ball">{{numLottery.map.n6.code}}</i><br />-->
+								<!--<span>{{numLottery.map.n6.zodiac}}</span></li>-->
+						<!--</ul>-->
+					<!--</div>-->
+				<!--</div>-->
+
+
+				<!--<div class="white_bg">-->
+					<!--<div class="kc_list"-->
+						<!--onclick="window.location.href='/kj/detail.html#/15'">-->
+						<!--<div class="cai_icon">-->
+							<!--<img src="/images/img/logo_pk10.png"-->
+								<!--alt="{{'BEIJING_CAR_RACING' | translate}}" />-->
+						<!--</div>-->
+						<!--<div class="kc_r">-->
+							<!--<div class="itm-tit">-->
+								<!--<b>{{'BEIJING_CAR_RACING' | translate}}</b><span-->
+									<!--translate="BEIJING_CAR_RACING_ISSUE"-->
+									<!--translate-values="{'issue' : '{{pk10.issue}}'}"></span>-->
+							<!--</div>-->
+							<!--<ul class="kc_hm">-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n0|number:0}}">{{pk10.numsMap.n0|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n1|number:0}}">{{pk10.numsMap.n1|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n2|number:0}}">{{pk10.numsMap.n2|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n3|number:0}}">{{pk10.numsMap.n3|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n4|number:0}}">{{pk10.numsMap.n4|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n5|number:0}}">{{pk10.numsMap.n5|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n6|number:0}}">{{pk10.numsMap.n6|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n7|number:0}}">{{pk10.numsMap.n7|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n8|number:0}}">{{pk10.numsMap.n8|number:0}}</i>-->
+								<!--</li>-->
+								<!--<li><i class="pk10_{{pk10.numsMap.n9|number:0}}">{{pk10.numsMap.n9|number:0}}</i>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div data-role="footer">-->
+			<!--<div class="foot_m"></div>-->
+			<!--<div class="foot">-->
+				<!--<p class="d_link">-->
+					<!--<a href="http://live.13322.com/?from=m">{{'FOOTER_PC_VERSION' |-->
+						<!--translate}}</a>|<a href="qrcode.html" ng-click="clickCount($event)">{{'FOOTER_CLIENT_DOWN' | translate}}<em-->
+						<!--class="tx_ss_nm">{{'FOOTER_TEXT' | translate}}</em></a>-->
+				<!--</p>-->
+				<!--<p class="tx_icp">{{'FOOTER_COPYRIGHT' | translate}}</p>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<div id="sort_content">
+		<!--设置开始-->
+		<div class="asort" style="display:block">
+			<div class="hd">
+				<div class="wrap tx_c">
+					<span class="title">{{'LANGUAGE_SWITCHING' | translate}}</span>
+					<div class="fr cse" ng-click="languageSetClose($event)">
+						<i class="close"></i>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="set_box" id="set_box">
+				<div class="lan_box">
+					<!-- 国家选项 -->
+					<h2 class="set_h2 first" style="padding-left:15px;">
+						{{'COUNTRY_SWITCHING' | translate}}
+					</h2>
+					<div class="radio_box">
+						<form>
+							<ul id="coun_radio_box">
+								<li ng-repeat="countryItem in countryItems"><input
+									type="radio" name="country" value="{{countryItem.value}}"
+									ng-checked="countryItem.checked" /> <label
+									ng-click="countryChangeClick($event)"
+									ng-class="{true: 'choice checked', false: 'choice'}[countryItem.checked]">
+										<i class="radio_icon"></i>{{countryItem.name}}
+								</label></li>
+							</ul>
+						</form>
+						<div class="clear"></div>
+					</div>
+					<!-- 语言选项 -->
+					<h2 class="set_h2 first" style="padding-left:15px;">
+						{{'LANGUAGE_SWITCHING' | translate}}
+					</h2>
+					<div class="radio_box">
+						<form>
+							<ul id="radio_box1">
+								<li ng-repeat="languageItem in languageItems"><input
+									type="radio" name="language" value="{{languageItem.value}}"
+									ng-checked="languageItem.checked" /> <label
+									ng-click="languageChangeClick($event)"
+									ng-class="{true: 'choice checked', false: 'choice'}[languageItem.checked]">
+										<i class="radio_icon"></i>{{languageItem.name}}
+								</label></li>
+							</ul>
+						</form>
+						<div class="clear"></div>
+					</div>
+					<div class="scr_foot">
+						<button class="btn_qd" ng-click="languageSetSubmitClick($event)">{{'BUTTON_SUBMIT'
+							| translate}}</button>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!--设置结束-->
+	</div>
+</div>

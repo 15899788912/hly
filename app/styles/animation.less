@@ -1,0 +1,1534 @@
+@charset "utf-8";
+@IMGURL: "/images/live";
+/* CSS Document */
+/*动画直播*/
+.playgamebox {
+    font-family: "微软雅黑", tahoma, Arial, Helvetica, sans-serif;
+}
+.reverse {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH();
+}
+/*反向*/
+.fb-icon {
+    width: 14/100rem;
+    height: 14/100rem;
+    display: block;
+    background: url("@{IMGURL}/animation/football.png") no-repeat;
+    background-size: 14/100rem 14/100rem;
+    z-index: 2;
+}
+.goal-e,
+.penalty-e,
+.start-icon {
+    background: url("@{IMGURL}/animation/animation-icon.png") no-repeat;
+    background-size: 300/100rem 500/100rem;
+    display: block;
+}
+.goal-e {
+    width: 98/100rem;
+    height: 105/100rem;
+    background-position: 0/100rem -110/100rem;
+}
+.penalty-e {
+    width: 83/100rem;
+    height: 65/100rem;
+    background-position: -110/100rem 0/100rem;
+}
+.c-penalty-k .penalty-e,
+.c-penalty-z .penalty-e {
+    background-position: -200/100rem 0/100rem;
+}
+.l-penalty-k .penalty-e,
+.l-penalty-z .penalty-e {
+    background-position: -110/100rem -70/100rem;
+}
+.h-t .text {
+    border-right: 3/100rem solid #8e1919;
+    height: 54/100rem;
+    text-align: right;
+    float: right;
+    padding-right: 12/100rem;
+    margin: 5/100rem 20/100rem 0/100rem 0/100rem;
+}
+.h-t .text h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    margin:0;
+}
+.h-t .text p {
+    line-height: 16/100rem;
+    font-size: 16/100rem;
+    color: #fff;
+    margin-top: 8/100rem;
+}
+.v-t .text {
+    border-left: 3/100rem solid #2071c5;
+    height: 54/100rem;
+    text-align: left;
+    float: left;
+    padding-left: 12/100rem;
+    margin: 5/100rem 0/100rem 0/100rem 20/100rem;
+}
+.v-t .text h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    margin:0;
+}
+.v-t .text p {
+    line-height: 16/100rem;
+    font-size: 16/100rem;
+    color: #fff;
+    margin: 6/100rem 0 2/100rem;
+}
+/*比赛预告*/
+.trailer {
+    height: 130/100rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -65/100rem;
+    width: 640/100rem;
+    color: #fff;
+    display: none;
+    ul{
+      margin:0;
+      padding:0;
+      p{
+        margin:0;
+        padding:0;
+      }
+      .middle {
+          width: 18%;
+          text-align: center;
+          margin-top: 10/100rem;
+          float:left;
+          .head2 {
+              font-size: 16/100rem;
+          }
+          .vs {
+              font-size: 30/100rem;
+              font-weight: bold;
+              color: #f5ed0d;
+              line-height: 36/100rem;
+          }
+          .vstime {
+              line-height: 20/100rem;
+              font-size:16/100rem;
+          }
+      }
+
+
+
+    }
+}
+.trailer > ul > li {
+    height: 130/100rem;
+    float: left;
+    text-align: center;
+    line-height: 20/100rem;
+}
+.trailer > ul > li.left {
+    width: 30%;
+    margin-left: 11%;
+}
+.trailer > ul > li.right {
+    width: 30%;
+    margin-right: 11%;
+}
+.trailer > ul > li.middle {
+    width: 18%;
+    text-align: center;
+    margin-top: -10/100rem;
+}
+.trailer > ul > li.middle .head2 {
+    font-size: 16/100rem;
+
+}
+.trailer > ul > li.middle .vs {
+    font-size: 30/100rem;
+    font-weight: bold;
+    color: #f5ed0d;
+    line-height: 36/100rem;
+}
+.trailer > ul > li.middle .vstime {
+    line-height: 20/100rem;
+    font-size:16/100rem;
+}
+.trailer .picbox {
+    background: url("@{IMGURL}/animation/animation-icon.png") no-repeat;
+    background-size: 300/100rem 500/100rem;
+    background-position: -220/100rem -70/100rem;
+    width: 60/100rem;
+    height: 60/100rem;
+    padding: 8/100rem;
+    margin: 10/100rem auto;
+    overflow: hidden;
+}
+.trailer .t-name {
+    text-align: center;
+    font-size: 18/100rem;
+    color: #fff;
+}
+.trailer .picbox img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+/*比赛开始*/
+.gamestart {
+    position: absolute;
+    width: 100%;
+    height: 270/100rem;
+    z-index: 1;
+    top: 0;
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat center center;
+    background-size: 368/100rem 270/100rem;
+    display: none;
+}
+.gamestart .startbox {
+    width: 100%;
+    height: 120/100rem;
+    margin-bottom: -60/100rem;
+    bottom: 10%;
+    position: absolute;
+}
+.gamestart .start-icon {
+    background-position: -110/100rem -145/100rem;
+    width: 103/100rem;
+    height: 57/100rem;
+    margin: auto;
+}
+.gamestart .startbox h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    text-align: center;
+    margin-top: 10/100rem;
+}
+/*比赛结束*/
+.gameover {
+    position: absolute;
+    width: 100%;
+    height: 2.7rem;
+    z-index: 1;
+    top: 0;
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat center center;
+    background-size: 368/100rem 270/100rem;
+    display: none;
+}
+.gameover .overbox {
+    width: 100%;
+    height: 30/100rem;
+    margin-bottom: -15/100rem;
+    bottom: 10%;
+    position: absolute;
+}
+.gameover .overbox h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    text-align: center;
+    margin-top: 2/100rem;
+}
+/*比赛中止*/
+.gamestop {
+    position: absolute;
+    width: 100%;
+    height: 270/100rem;
+    z-index: 1;
+    top: 0;
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat center center;
+    background-size: 368/100rem 270/100rem;
+    display: none;
+}
+.gamestop .stopbox {
+    width: 100%;
+    height: 30/100rem;
+    margin-bottom: -15/100rem;
+    bottom: 10%;
+    position: absolute;
+}
+.gamestop .stopbox h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    text-align: center;
+    margin-top: 10/100rem;
+}
+/*伤停补时*/
+.game-stbs {
+    position: absolute;
+    width: 100%;
+    height: 270/100rem;
+    z-index: 1;
+    top: 0;
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat center center;
+    background-size: 368/100rem 270/100rem;
+    display: none;
+}
+.game-stbs .stbsbox {
+    width: 100%;
+    height: 30/100rem;
+    margin-bottom: -15/100rem;
+    bottom: 10%;
+    position: absolute;
+}
+.game-stbs .stbsbox h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    text-align: center;
+    margin-top: 10/100rem;
+}
+/*主队进球*/
+.goal-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 105/100rem;
+    margin-top: -52/100rem;
+    display: none;
+}
+.goal-z .goal-e {
+    float: right;
+}
+.goal-z .text {
+    margin-top: 25/100rem;
+}
+/*客队进球*/
+.goal-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 105/100rem;
+    margin-top: -52/100rem;
+    display: none;
+}
+.goal-k .goal-e {
+    float: left;
+    background-position: 0/100rem 0/100rem;
+}
+.goal-k .text {
+    margin-top: 25/100rem;
+}
+/*主队进球取消*/
+.c-goal-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 105/100rem;
+    margin-top: -52/100rem;
+    display: none;
+}
+.c-goal-z .goal-e {
+    float: right;
+    background-position: 0 -225/100rem;
+}
+.c-goal-z .text {
+    margin-top: 25/100rem;
+}
+/*客队进球取消*/
+.c-goal-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 105/100rem;
+    margin-top: -52/100rem;
+    display: none;
+}
+.c-goal-k .goal-e {
+    float: left;
+    background-position: 0 -335/100rem;
+}
+.c-goal-k .text {
+    margin-top: 25/100rem;
+}
+/*主队点球*/
+.penalty-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.penalty-z .penalty-e {
+    float: right;
+}
+/*客队点球*/
+.penalty-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.penalty-k .penalty-e {
+    float: left;
+}
+/*主队点球*/
+.a-penalty-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.a-penalty-z .penalty-e {
+    float: right;
+}
+/*客队点球*/
+.a-penalty-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.a-penalty-k .penalty-e {
+    float: left;
+}
+/*主队罚失点球*/
+.l-penalty-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.l-penalty-z .penalty-e {
+    float: right;
+}
+/*客队罚失点球*/
+.l-penalty-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.l-penalty-k .penalty-e {
+    float: left;
+}
+/*主队取消点球*/
+.c-penalty-z {
+    right: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.c-penalty-z .penalty-e {
+    float: right;
+}
+/*客队取消点球*/
+.c-penalty-k {
+    left: 100/100rem;
+    position: absolute;
+    top: 50%;
+    height: 65/100rem;
+    margin-top: -32/100rem;
+    display: none;
+}
+.c-penalty-k .penalty-e {
+    float: left;
+}
+/*主队角球、主队取消角球*/
+.c-corner-z,
+.corner-z {
+    right: 0/100rem;
+    top: 0/100rem;
+    position: absolute;
+    display: none;
+}
+.c-corner-z .fb-icon,
+.corner-z .fb-icon {
+    position: absolute;
+    right: 3/100rem;
+    top: 3/100rem;
+}
+.c-corner-z .cornerbox,
+.corner-z .cornerbox {
+    float: right;
+    width: 80/100rem;
+    height: 122/100rem;
+    position: relative;
+}
+.c-corner-z .cornerbox .corner-e,
+.corner-z .cornerbox .corner-e {
+    position: absolute;
+    top: 0/100rem;
+    left: 0/100rem;
+    width: 80/100rem;
+    height: 0/100rem;
+}
+.c-corner-z .textbox,
+.corner-z .textbox {
+    position: relative;
+    float: right;
+}
+.c-corner-z .textbox .text,
+.corner-z .textbox .text {
+    margin-top: 30/100rem;
+    position: absolute;
+    right: 150/100rem;
+    width: 200/100rem;
+}
+.corner-z .corner-e {
+    background: url("@{IMGURL}/animation/corner-z.png") no-repeat left top;
+    background-size: 80/100rem 122/100rem;
+}
+.c-corner-z .corner-e {
+    background: url("@{IMGURL}/animation/c-corner-z.png") no-repeat left top;
+    background-size: 80/100rem 122/100rem;
+}
+/*客队角球、客队取消角球*/
+.c-corner-k,
+.corner-k {
+    left: 0/100rem;
+    bottom: 0/100rem;
+    position: absolute;
+    display: none;
+}
+.c-corner-k .fb-icon,
+.corner-k .fb-icon {
+    position: absolute;
+    left: 3/100rem;
+    bottom: 3/100rem;
+}
+.c-corner-k .cornerbox,
+.corner-k .cornerbox {
+    float: left;
+    width: 80/100rem;
+    height: 122/100rem;
+    position: relative;
+}
+.c-corner-k .cornerbox .corner-e,
+.corner-k .cornerbox .corner-e {
+    position: absolute;
+    bottom: 0/100rem;
+    left: 0/100rem;
+    width: 80/100rem;
+    height: 0/100rem;
+}
+.c-corner-k .textbox,
+.corner-k .textbox {
+    float: left;
+    position: relative;
+}
+.c-corner-k .textbox .text,
+.corner-k .textbox .text {
+    margin-top: 30/100rem;
+    position: absolute;
+    left: 150/100rem;
+    width: 200/100rem;
+}
+.corner-k .corner-e {
+    background: url("@{IMGURL}/animation/corner-k.png") no-repeat left bottom;
+    background-size: 80/100rem 122/100rem;
+}
+.c-corner-k .corner-e {
+    background: url("@{IMGURL}/animation/c-corner-k.png") no-repeat left bottom;
+    background-size: 80/100rem 122/100rem;
+}
+/*主队进攻*/
+.attack-k,
+.attack-z,
+.d-attack-k,
+.d-attack-z {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.attack-z .attack-bg {
+    width: 350/100rem;
+    height: 270/100rem;
+    position: absolute;
+    top: 0/100rem;
+    left: 0/100rem;
+    background: url("@{IMGURL}/animation/attack-z.png") right top;
+    background-size: 400/100rem 270/100rem;
+}
+.attack-z .text {
+    top: 50%;
+    margin-top: -25/100rem;
+    position: absolute;
+    right: 350/100rem;
+    z-index: 10;
+}
+/*客队进攻*/
+.attack-k .attack-bg {
+    width: 350/100rem;
+    height: 270/100rem;
+    position: absolute;
+    top: 0/100rem;
+    right: 0/100rem;
+    background: url("@{IMGURL}/animation/attack-k.png") left top;
+    background-size: 400/100rem 270/100rem;
+}
+.attack-k .text {
+    top: 50%;
+    margin-top: -25/100rem;
+    position: absolute;
+    left: 350/100rem;
+    z-index: 10;
+}
+/*主队危险进攻*/
+.d-attack-z .attack-bg {
+    width: 520/100rem;
+    height: 270/100rem;
+    position: absolute;
+    top: 0/100rem;
+    left: 0/100rem;
+    background: url("@{IMGURL}/animation/d-attack-z.png") right top;
+    background-size: 580/100rem 270/100rem;
+}
+.d-attack-z .text {
+    top: 50%;
+    margin-top: -25/100rem;
+    position: absolute;
+    right: 180/100rem;
+    z-index: 10;
+}
+/*客队危险进攻*/
+.d-attack-k .attack-bg {
+    width: 520/100rem;
+    height: 270/100rem;
+    position: absolute;
+    top: 0/100rem;
+    right: 0/100rem;
+    background: url("@{IMGURL}/animation/d-attack-k.png") left top;
+    background-size: 580/100rem 270/100rem;
+}
+.d-attack-k .text {
+    top: 50%;
+    margin-top: -25/100rem;
+    position: absolute;
+    left: 180/100rem;
+    z-index: 10;
+}
+/*主队球门球*/
+.kick-pt {
+    width: 100/100rem;
+    height: 24/100rem;
+    position: absolute;
+}
+.kick-z {
+    position: absolute;
+    top: 192/100rem;
+    left: 76/100rem;
+    width: 100%;
+    display: none;
+}
+.kick-z .kick-z-bg {
+    width: 23/100rem;
+    height: 24/100rem;
+    position: absolute;
+    top: 0/100rem;
+    left: 0/100rem;
+    background: url("@{IMGURL}/animation/kick-z.png") left top;
+    background-size: 100/100rem 24/100rem;
+    z-index: 1;
+}
+.kick-z .text {
+    top: -65/100rem;
+    margin-top: -25/100rem;
+    position: absolute;
+    left: 0/100rem;
+    z-index: 10;
+}
+.kick-z .fb-icon {
+    position: absolute;
+    left: 5/100rem;
+    top: 5/100rem;
+}
+.kick-z .kick-pt {
+    left: 0/100rem;
+}
+/*客队球门球*/
+.kick-k {
+    position: absolute;
+    top: 56/100rem;
+    right: 76/100rem;
+    width: 100%;
+    display: none;
+}
+.kick-k .kick-k-bg {
+    width: 23/100rem;
+    height: 24/100rem;
+    position: absolute;
+    top: 0/100rem;
+    right: 0/100rem;
+    background: url("@{IMGURL}/animation/kick-k.png") right top;
+    background-size: 100/100rem 24/100rem;
+    z-index: 1;
+}
+.kick-k .text {
+    top: 65/100rem;
+    margin-top: -25/100rem;
+    position: absolute;
+    right: 0/100rem;
+    z-index: 10;
+}
+.kick-k .fb-icon {
+    position: absolute;
+    right: 5/100rem;
+    top: 5/100rem;
+}
+.kick-k .kick-pt {
+    right: 0/100rem;
+}
+/*主队界外球*/
+.outball-z {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.outball-pt {
+    width: 55/100rem;
+    height: 85/100rem;
+    position: absolute;
+}
+.outball-z .fb-icon {
+    position: absolute;
+    right: 5/100rem;
+    bottom: 0/100rem;
+}
+.outball-z-bg {
+    background: url("@{IMGURL}/animation/outball-z.png") no-repeat bottom right;
+    background-size: 55/100rem 85/100rem;
+    width: 55/100rem;
+    height: 23/100rem;
+    position: absolute;
+    bottom: -5/100rem;
+    right: 0/100rem;
+}
+.outball-z .text {
+    bottom: 40/100rem;
+    margin-top: -25/100rem;
+    position: absolute;
+    right: 280/100rem;
+    z-index: 10;
+}
+.outball-z .outball-pt {
+    bottom: 0/100rem;
+    right: 150/100rem;
+}
+/*客队界外球*/
+.outball-k {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.outball-k .outball-pt {
+    top: 0/100rem;
+    left: 150/100rem;
+}
+.outball-k .fb-icon {
+    position: absolute;
+    left: 5/100rem;
+    top: 0/100rem;
+}
+.outball-k-bg {
+    background: url("@{IMGURL}/animation/outball-k.png") no-repeat top left;
+    background-size: 55/100rem 85/100rem;
+    width: 55/100rem;
+    height: 23/100rem;
+    position: absolute;
+    top: -5/100rem;
+    left: 0/100rem;
+}
+.outball-k .text {
+    top: 40/100rem;
+    position: absolute;
+    left: 280/100rem;
+    z-index: 10;
+}
+/*主队任意球*/
+.fk-amt {
+    width: 265/100rem;
+    height: 270/100rem;
+    position: absolute;
+    z-index: 1;
+    top: 0/100rem;
+}
+.freekick-z {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.freekick-z .fb-icon {
+    position: absolute;
+    left: 250/100rem;
+    top: 80/100rem;
+    z-index: 10;
+}
+.freekick-z .freekick-bg {
+    background: url("@{IMGURL}/animation/freekick-z.png") no-repeat top left;
+    background-size: 122/100rem 38/100rem;
+    width: 23/100rem;
+    height: 38/100rem;
+    position: absolute;
+    top: 80/100rem;
+    left: 245/100rem;
+    margin-top: -18/100rem;
+    z-index: 2;
+}
+.freekick-z .fk-amt {
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat top right;
+    background-size: 368/100rem 270/100rem;
+    left: 0/100rem;
+}
+.freekick-z .text {
+    top: 110/100rem;
+    position: absolute;
+    right: 420/100rem;
+    z-index: 10;
+}
+/*客队任意球*/
+.freekick-k {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.freekick-k .fb-icon {
+    position: absolute;
+    right: 250/100rem;
+    top: 80/100rem;
+    z-index: 10;
+}
+.freekick-k .freekick-bg {
+    background: url("@{IMGURL}/animation/freekick-k.png") no-repeat top right;
+    background-size: 122/100rem 38/100rem;
+    width: 23/100rem;
+    height: 38/100rem;
+    position: absolute;
+    top: 80/100rem;
+    right: 245/100rem;
+    margin-top: -18/100rem;
+    z-index: 2;
+}
+.freekick-k .fk-amt {
+    background: url("@{IMGURL}/animation/ball-control.png") no-repeat top left;
+    background-size: 368/100rem 270/100rem;
+    right: 0/100rem;
+}
+.freekick-k .text {
+    top: 110/100rem;
+    position: absolute;
+    left: 420/100rem;
+    z-index: 10;
+}
+/*主队危险任意球*/
+.d-freekick-z {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.d-freekick-z .fb-icon {
+    position: absolute;
+    left: 470/100rem;
+    top: 130/100rem;
+    z-index: 10;
+}
+.d-freekick-z .freekick-bg {
+    background: url("@{IMGURL}/animation/freekick-z.png") no-repeat top left;
+    background-size: 122/100rem 38/100rem;
+    width: 23/100rem;
+    height: 38/100rem;
+    position: absolute;
+    top: 130/100rem;
+    left: 465/100rem;
+    margin-top: -18/100rem;
+    z-index: 2;
+}
+.d-freekick-z .fk-amt {
+    background: url("@{IMGURL}/animation/d-freekick.png") no-repeat top left;
+    background-size: 180/100rem 270/100rem;
+    right: 0/100rem;
+    width: 170/100rem;
+}
+.d-freekick-z .text {
+    top: 110/100rem;
+    position: absolute;
+    right: 240/100rem;
+    z-index: 10;
+}
+/*客队危险任意球*/
+.d-freekick-k {
+    position: absolute;
+    height: 270/100rem;
+    width: 100%;
+    display: none;
+}
+.d-freekick-k .fb-icon {
+    position: absolute;
+    right: 470/100rem;
+    top: 130/100rem;
+    z-index: 10;
+}
+.d-freekick-k .freekick-bg {
+    background: url("@{IMGURL}/animation/freekick-k.png") no-repeat top right;
+    background-size: 122/100rem 38/100rem;
+    width: 23/100rem;
+    height: 38/100rem;
+    position: absolute;
+    top: 130/100rem;
+    right: 465/100rem;
+    margin-top: -18/100rem;
+    z-index: 2;
+}
+.d-freekick-k .fk-amt {
+    background: url("@{IMGURL}/animation/d-freekick.png") no-repeat top right;
+    background-size: 180/100rem 270/100rem;
+    left: 0/100rem;
+    width: 170/100rem;
+}
+.d-freekick-k .text {
+    top: 110/100rem;
+    position: absolute;
+    left: 240/100rem;
+    z-index: 10;
+}
+/*规则图标*/
+.c-redcard-icon,
+.c-yellowcard-icon,
+.foul-icon,
+.redcard-icon,
+.shoot-icon,
+.shootdoor-icon,
+.shootin-icon,
+.shootout-icon,
+.sub-icon,
+.yellow-red,
+.yellowcard-icon {
+    background: url("@{IMGURL}/animation/animation-icon.png") no-repeat;
+    background-size: 300/100rem 500/100rem;
+}
+/*主队犯规*/
+.rule-h .text {
+    height: 54/100rem;
+    border-left: 3/100rem solid #8e1919;
+    text-align: left;
+    float: left;
+    padding-left: 12/100rem;
+    margin: 5/100rem 0/100rem 0/100rem 20/100rem;
+}
+.rule-h .text h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    margin:0;
+}
+.rule-h .text p {
+    line-height: 16/100rem;
+    font-size: 16/100rem;
+    color: #fff;
+    margin-top: 8/100rem;
+}
+.rule-v .text {
+    height: 54/100rem;
+    border-right: 3/100rem solid #2071c5;
+    text-align: right;
+    float: right;
+    padding-right: 12/100rem;
+    margin: 5/100rem 20/100rem 0/100rem 0/100rem;
+}
+.rule-v .text h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    margin:0;
+}
+.rule-v .text p {
+    line-height: 16/100rem;
+    font-size: 16/100rem;
+    color: #fff;
+    margin-top: 8/100rem;
+}
+.foul-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.foul-icon {
+    width: 59/100rem;
+    height: 56/100rem;
+    background-position: -110/100rem -215/100rem;
+}
+.foul-z .foul-icon {
+    float: left;
+}
+/*客队犯规*/
+.foul-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.foul-k .foul-icon {
+    float: right;
+}
+/*主队红牌*/
+.redcard-icon {
+    width: 34/100rem;
+    height: 45/100rem;
+    background-position: -220/100rem -160/100rem;
+    margin-top: 10/100rem;
+}
+.redcard-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.redcard-z .redcard-icon {
+    float: left;
+}
+/*客队红牌*/
+.redcard-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.redcard-k .redcard-icon {
+    float: right;
+}
+/*主队红牌取消*/
+.c-redcard-icon {
+    width: 42/100rem;
+    height: 45/100rem;
+    background-position: -255/100rem -160/100rem;
+    margin-top: 10/100rem;
+}
+.c-redcard-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.c-redcard-z .c-redcard-icon {
+    float: left;
+}
+/*客队红牌取消*/
+.c-redcard-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.c-redcard-k .c-redcard-icon {
+    float: right;
+}
+/*主队黄牌*/
+.yellowcard-icon {
+    width: 34/100rem;
+    height: 45/100rem;
+    background-position: -220/100rem -210/100rem;
+    margin-top: 10/100rem;
+}
+.yellowcard-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.yellowcard-z .yellowcard-icon {
+    float: left;
+}
+/*客队黄牌*/
+.yellowcard-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.yellowcard-k .yellowcard-icon {
+    float: right;
+}
+/*主队黄牌取消*/
+.c-yellowcard-icon {
+    width: 42/100rem;
+    height: 45/100rem;
+    background-position: -255/100rem -210/100rem;
+    margin-top: 10/100rem;
+}
+.c-yellowcard-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.c-yellowcard-z .c-yellowcard-icon {
+    float: left;
+}
+/*客队黄牌取消*/
+.c-yellowcard-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.c-yellowcard-k .c-yellowcard-icon {
+    float: right;
+}
+/*主队两黄变一红*/
+.yellow-red {
+    width: 38/100rem;
+    height: 48/100rem;
+    background-position: -175/100rem -210/100rem;
+    margin-top: 10/100rem;
+}
+.yellow-red-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.yellow-red-z .yellow-red {
+    float: left;
+}
+/*客队两黄变一红*/
+.yellow-red-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.yellow-red-k .yellow-red {
+    float: right;
+}
+/*主队射门*/
+.shoot-icon {
+    width: 73/100rem;
+    height: 50/100rem;
+    margin-top: 5/100rem;
+}
+.shoot-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.shoot-z .shoot-icon {
+    float: right;
+    background-position: -195/100rem -320/100rem;
+    margin-left: -10/100rem;
+}
+/*客队射门*/
+.shoot-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.shoot-k .shoot-icon {
+    float: left;
+    background-position: -190/100rem -270/100rem;
+    margin-right: -10/100rem;
+}
+/*主队射正球门*/
+.shootin-icon {
+    width: 76/100rem;
+    height: 54/100rem;
+    background-position: -110/100rem -340/100rem;
+}
+.shootin-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.shootin-z .shootin-icon {
+    float: right;
+}
+
+/*客队射偏球门*/
+.shootout-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.shootout-k .shootout-icon {
+    float: left;
+}
+/*主队射中球框*/
+.shootdoor-icon {
+    width: 81/100rem;
+    height: 61/100rem;
+    background-position: -110/100rem -400/100rem;
+    margin-top: -5/100rem;
+}
+.shootdoor-z {
+    position: absolute;
+    height: 61/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.shootdoor-z .shootdoor-icon {
+    float: right;
+    margin-left: -5/100rem;
+}
+/*客队射中球框*/
+.shootdoor-k {
+    position: absolute;
+    height: 61/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.shootdoor-k .shootdoor-icon {
+    float: left;
+    margin-right: -10/100rem;
+}
+/*主队换人*/
+.sub-icon {
+    width: 62/100rem;
+    height: 59/100rem;
+    background-position: -200/100rem -370/100rem;
+    position: relative;
+    text-align: center;
+    font-size: 12/100rem;
+    color: #fff;
+}
+.sub-icon > .sub {
+    position: absolute;
+    width: 18/100rem;
+    height: 18/100rem;
+    top: 0/100rem;
+    right: 0/100rem;
+}
+.sub-icon > .subfor {
+    position: absolute;
+    width: 18/100rem;
+    height: 18/100rem;
+    bottom: 0/100rem;
+    left: 0/100rem;
+}
+.sub-z {
+    position: absolute;
+    height: 61/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.sub-z .sub-icon {
+    float: left;
+}
+/*客队换人*/
+.sub-k {
+    position: absolute;
+    height: 61/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.sub-k .sub-icon {
+    float: right;
+}
+/*主队越位*/
+.offside-bg {
+    height: 270/100rem;
+    width: 150/100rem;
+    background: url("@{IMGURL}/animation/ball-control.png") center center;
+    background-size: 300/100rem 500/100rem;
+    position: absolute;
+}
+.offside-icon {
+    background: url("@{IMGURL}/animation/animation-icon.png") no-repeat;
+    background-size: 300/100rem 500/100rem;
+    background-position: -265/100rem -370/100rem;
+    width: 35/100rem;
+    height: 35/100rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -17/100rem;
+    z-index: 100;
+}
+.yellow-line {
+    background-color: #e8b64c;
+    width: 3/100rem;
+    height: 270/100rem;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+.offside-z {
+    position: absolute;
+    left: 0/100rem;
+    top: 0/100rem;
+    width: 640/100rem;
+    height: 270/100rem;
+    display: none;
+}
+.offside-z .offside-bg {
+    top: 0;
+    right: 0/100rem;
+}
+.offside-z .offside-icon {
+    left: -10/100rem;
+}
+.offside-z .text {
+    position: absolute;
+    top: 50%;
+    margin-top: -30/100rem;
+    right: 200/100rem;
+}
+.offside-z .yellow-line {
+    left: 0/100rem;
+}
+/*客队越位*/
+.offside-k {
+    position: absolute;
+    right: 0/100rem;
+    top: 0/100rem;
+    width: 640/100rem;
+    height: 270/100rem;
+    display: none;
+}
+.offside-k .offside-bg {
+    top: 0;
+    left: 0/100rem;
+}
+.offside-k .offside-icon {
+    right: -10/100rem;
+}
+.offside-k .text {
+    position: absolute;
+    top: 50%;
+    margin-top: -30/100rem;
+    left: 200/100rem;
+}
+.offside-k .yellow-line {
+    right: 0/100rem;
+}
+
+/*客队射正球门*/
+.shootin-k {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    left: 170/100rem;
+    display: none;
+}
+.shootin-k .shootin-icon {
+    float: left;
+}
+/*主队射偏球门*/
+.shootout-icon {
+    width: 81/100rem;
+    height: 52/100rem;
+    margin-top: 8/100rem;
+    background-position: -105/100rem -280/100rem;
+}
+.shootout-z {
+    position: absolute;
+    height: 60/100rem;
+    margin-top: -30/100rem;
+    top: 50%;
+    right: 170/100rem;
+    display: none;
+}
+.shootout-z .shootout-icon {
+    float: right;
+}
+
+/*比赛暂停、进球比分变化*/
+.game-half,
+.game-pause,
+.goal-score,
+.load_first_goal {
+    position: absolute;
+    z-index: 1;
+    height: 180/100rem;
+    width: 200/100rem;
+    top: 45/100rem;
+    left: 50%;
+    margin-left: -100/100rem;
+    display: none;
+}
+.game-half > h3,
+.game-pause > h3,
+.goal-score > h3,
+.load_first_goal > h3 {
+    height: 30/100rem;
+    line-height: 28/100rem;
+    font-weight: normal;
+    color: #76d424;
+    font-size: 28/100rem;
+    text-align: center;
+    margin:0;
+}
+.score-box {
+    background: url("@{IMGURL}/animation/score-box-bg.png") no-repeat;
+    width: 200/100rem;
+    height: 130/100rem;
+    background-size: 200/100rem 130/100rem;
+    margin-top: 10/100rem;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    font-family: "arial";
+}
+.score-box .secre-txt {
+    width: 70/100rem;
+    height: 20/100rem;
+    font-size: 14/100rem;
+    float: left;
+    margin-left: 20/100rem;
+    margin-top: 10/100rem;
+}
+.score-box .scorediv {
+    width: 70/100rem;
+    height: 77/100rem;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    margin: 5/100rem 0 0 20/100rem;
+}
+.score-box .scorediv span {
+    font-size: 48/100rem;
+    font-weight: bold;
+    line-height: 48/100rem;
+    height: 48/100rem;
+    position: absolute;
+    width: 70/100rem;
+    top: 50%;
+    margin-top: -24/100rem;
+    left: 0;
+    text-align: center;
+}
+.score-box .scorediv .score-h-n,
+.score-box .scorediv .score-v-n {
+    top: 100%;
+    margin-top: 0;
+}
+/*进行时间*/
+.palytime {
+    width: 60/100rem;
+    height: 30/100rem;
+    -ms-border-radius: 2/100rem;
+    -webkit-border-radius: 2/100rem;
+    border-radius: 2/100rem;
+    position: absolute;
+    top: 8/100rem;
+    left: 50%;
+    margin-left: -30/100rem;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.6);
+    filter:Alpha(opacity=60);
+    text-align: center;
+    z-index: 1;
+    display: none;
+    #match_curr_time {
+        line-height: 20/100rem;
+        color: #fff;
+        font-size:14/100rem;
+        position: relative;
+        width: 100%;
+        z-index: 9999;
+        top:5/100rem;
+    }
+}
+
+/* vs */
+.vsSpan{
+  width: 60/100rem;
+  height: 30/100rem;
+  -ms-border-radius: 2/100rem;
+  -webkit-border-radius: 2/100rem;
+  border-radius: 2/100rem;
+  position: absolute;
+  top: 8/100rem;
+  background-color:rgba(0,0,0,.6);
+  left: 50%;
+  margin-left: -30/100rem;
+  filter:Alpha(opacity=60);
+  text-align: center;
+  z-index: 1;
+  display: none;
+  .p{
+    color:#999;
+    height:34/100rem;
+    line-height: 34/100rem;
+    font-size:16/100rem;
+    font-weight:900;
+    position: relative;
+    width: 100%;
+    z-index: 9999;
+  }
+}

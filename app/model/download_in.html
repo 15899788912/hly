@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  @import 'views/head.html';
+  <title>Download</title>
+  <link rel="stylesheet" type="text/css" href="/styles/download_intl@@MINEXT.css">
+  <script type="application/javascript">
+    @import 'common/dealer@@MINEXT.js';
+
+    String.prototype.getQueryString = function(name){
+      var reg = new RegExp("(^|&|\\?)"+ name +"=([^&]*)(&|$)"), r;
+      if (r=this.match(reg)) return unescape(r[2]);
+      return null;
+    };
+
+    window.onload = function () {
+
+          var channel = location.search.getQueryString("channel");
+
+          if(channel == null || channel == '') {
+            channel=thChannel;
+          }
+
+          document.getElementById("androidDownloadUrl").href = apkDownloadUrlPrefix + channel;
+      }
+
+  </script>
+</head>
+<body >
+<div class="main">
+  <h2 class="title"><span>One Score</span></h2>
+
+  <div class="bd">
+    <div class="caihua"></div>
+    <div class="iconbox">
+      <div class="icon active">
+        <img src="images/download_intl/icon.png"/>
+      </div>
+      <div class="bg-wrap">
+        <div class="dw-box">
+          <div class="dw-bottom" style=" background:#006"></div>
+          <div class="dw-top" style=" background:#0F3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="adbox">
+      <div class="adl">
+            	<span>
+                	<img id="adl" src="images/download_intl/in/adl.png"/>
+              </span>
+      </div>
+    </div>
+    <div class="picbox">
+      <div class="pic"><img id="pic" src="images/download_intl/in/pic1.png"/></div>
+      <div class="pic_l1"><img id="pic_l1" src="images/download_intl/in/pic_l1.png"/></div>
+      <div class="pic_l2"><img id="pic_l2" src="images/download_intl/in/pic_l2.png"/></div>
+      <div class="pic_r1"><img id="pic_r1" src="images/download_intl/in/pic_r1.png"/></div>
+      <div class="pic_r2"><img id="pic_r2" src="images/download_intl/in/pic_r2.png"/></div>
+    </div>
+    <div class="btn_box">
+      <a class="and_btn" id="androidDownloadUrl" href=""><i></i>Android</a>
+      <a class="ios_btn" href="https://itunes.apple.com/en/app/one-score/id1069817801?l=zh&mt=8"><i></i>iPhone</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

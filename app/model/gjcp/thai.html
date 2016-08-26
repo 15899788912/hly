@@ -1,0 +1,77 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    @import '../views/head.html';
+    <title>สลากกินแบ่งรัฐบาล</title>
+    <link rel="stylesheet" type="text/css" href="/styles/thLottery@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+</head>
+<body>
+    <!-- 单页, num=1要去掉-->
+    <div class="nav-menus" >
+      <div class="title">
+        <div class="wrap">
+          <span class="title nav_title">วันสกอร์รุ่นหน้าจอสัมผัส</span>
+        </div>
+        <dl class="head_r" id="sort">
+          <dd>
+            <a class="lg_icons"  href="/language.html"></a>
+          </dd>
+        </dl>
+      </div>
+      <div class="left line nav-tab" id="nav-tab" >
+        <a href="/index.html" id="nav3" class="nav_nav" ng-cloak>ข่าวกีฬา</a>
+        <a href="/live" id="nav1" class="nav_nav active" >สกอร์ฟุตบอล</a>
+        <a href="/basket" id="nav2" class="nav_nav" >สกอร์บาสเกตบอล</a>
+        <a href="/odds" id="nav4" class="nav_nav" >ออดซฟุตบอล</a>
+        <!--<div style="clear:both" id="clear_f"></div>-->
+        <a href="/data" id="nav5"  class="nav_nav" >ข้อมูลฟุตบอล</a>
+        <a href="/video" id="nav6"  class="nav_nav">วิดีโอถ่ายทอดสด</a>
+        <a href="/kj" id="nav7"  class="nav_nav">การออกผลล็อตเตอรี่</a>
+        <a href="/gjcp/thai.html" id="nav8"  class="nav_nav">lotto thai</a>
+      </div>
+      <!--<div class="right">-->
+      <!--<i class="nav_arrow nav_up  nav_down"></i>-->
+      <!--</div>-->
+    </div>
+
+    <!-- del
+    <header>
+    <a class="back" href="/index.html"></a>
+    <h1>สลากกินแบ่งรัฐบาล</h1>
+    </header>
+    -->
+    <nav>
+    	<div class="my_audio">
+    		<span class="audio_span"><audio class="audio_music" src="http://prdonline.prd.go.th:8216/;stream.mp3 " loop="loop" preload="load"></audio></span>
+    		<span class="font_span">ฟังผลสลาก</span>
+    	</div>
+    </nav>
+    <div class="lottery_list">
+    	<div class="open_hide"> <!--点击打开浮层 -->
+    		<span class="list_font">งวด 16 ก.ค. 59</span>
+    		<span class="list_img"></span><!--下拉图标 -->
+    	</div>
+    </div>
+
+    <!-- 点击刷新按钮图标 -->
+    <div class="res"></div>
+
+    <!-- 加载页面 web-url -->
+    <div class="wrapper">
+		<div class="scroller">
+			<iframe id="myframe" src="" allowTransparency="true" frameborder="0"></iframe>
+		</div>
+	</div>
+    <!-- 点击显示的浮层 -->
+	<div class="hide">
+		<div class="hide_bottom">
+                <ul class="my_ul"></ul><!--选择彩票期数 -->
+            <div class="last_span"><span>ยกเลิก</span></div>
+        </div>
+	</div>
+    @import '../views/foot.html';
+    <script type="text/javascript" src="/scripts/controllers/gjcp/thai@@MINEXT.js"></script>
+    <script type="text/javascript" src="/common/nav_header@@MINEXT.js"></script>
+</body>
+</html>

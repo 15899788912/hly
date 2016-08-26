@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.livetv">
+<head>
+    <meta name="keywords" content="{{'LIVETV_KEYWORDS' | translate}}"/>
+    <meta name="description" content="{{'LIVETV_DESCRIPTION' | translate}}" />
+    @import '../views/head.html';
+    <title ng-bind="'HEAD_TITLE' | translate"></title>
+    <link rel="stylesheet" type="text/css" href="/styles/liveTV@@MINEXT.css">
+  <link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+</head>
+<body ng-cloak  class="ng-cloak">
+@import '../views/nav.html'
+<div ng-view="" ng-cloak>
+@import '../views/foot.html';
+<!-- controllers -->
+<script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+<script type="text/javascript" src="/scripts/controllers/livetv/livetv@@MINEXT.js"></script>
+</body>
+</html>

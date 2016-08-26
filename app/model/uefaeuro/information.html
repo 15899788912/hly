@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,shrink-to-fit=no" />
+  <meta name="description" content="一比分网，最快的比分直播，最全的体育数据资讯。" />
+  <meta name="keywords" content="一比分、足球比分、比分、篮球比分、体育比分" />
+  <title>2016法国欧洲杯资讯</title>
+  <link rel="stylesheet" type="text/css" href="../styles/uefaeuro.css">
+  <script type="text/javascript" src="../common/jquery.min.js"></script>
+  <script type="text/javascript">
+
+
+    /*获取infoUrl信息*/
+
+    function request(paras) {
+      var url = location.href;
+      var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+      var paraObj = {}
+      for (i = 0; j = paraString[i]; i++) {
+        paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+      }
+      var returnValue = paraObj[paras.toLowerCase()];
+      if (typeof (returnValue) == "undefined") {
+        return "";
+      } else {
+        return returnValue;
+      }
+    }
+
+    /*文档加载完执行*/
+    window.onload = function () {
+
+      var infoUrl = request("infoUrl");
+
+      $("#content").attr("src",infoUrl);
+
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+<div id="header" class="information">
+  <div class="wrap">
+    <a class="goback" onclick="window.history.back(-1);"></a>
+    <span class="i_title">资讯</span>
+
+  </div>
+</div>
+
+<div class="contentBody">
+  <iframe width="100%" height="1000px" frameborder=0 scrolling=auto src="" id="content">
+  </iframe>
+</div>
+
+
+
+</body>
+
+
+</html>

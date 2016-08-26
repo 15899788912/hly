@@ -1,0 +1,35 @@
+<li>
+    <div class="kj_ing" ng-if="showQXCing">
+        <div class="fl kj_name">{{'SEVEN_COLOR'|translate}}<span>{{'NO'|translate}}{{qxc.nextIssue}}{{'PERIOD'|translate}}</span></div>
+        <div class="fr countdown" ng-if="!showQXCingOpen">
+            <!--{{'TIME_COUNT_DOWN' | translate}}-->
+          <b class="time"><i><p ng-bind="qxcTime.hour"></p></i>:<i><p
+                ng-bind="qxcTime.min"></p></i>:<i><p
+                ng-bind="qxcTime.sec"></p></i></b>
+        </div>
+
+        <div class="fr countdown" ng-if="showQXCingOpen">
+            <!-- {{'TIME_COUNT_DOWN'|translate}} : -->
+            <b class="red open_ing">{{"OPENING"|translate}}</b>
+        </div>
+
+    </div>
+
+    <a class="cp_list" href="detail.html#/6">
+        <div class="kj_list_hd">{{'SEVEN_COLOR'|translate}}<span>{{'NO'|translate}}{{qxc.issue}}{{'PERIOD'|translate}}</span></div>
+        <div class="kj_list_bd">
+            <span class="arrow"></span>
+
+            <div class="ball-wrap">
+                <i class="ball_red">{{qxc.numsMap.n0}}</i>
+                <i class="ball_red">{{qxc.numsMap.n1}}</i>
+                <i class="ball_red">{{qxc.numsMap.n2}}</i>
+                <i class="ball_red">{{qxc.numsMap.n3}}</i>
+                <i class="ball_blue_l">{{qxc.numsMap.n4}}</i>
+                <i class="ball_blue_l">{{qxc.numsMap.n5}}</i>
+                <i class="ball_blue_l">{{qxc.numsMap.n6}}</i>
+            </div>
+            <div class="mark">{{'SEVEN_COLOR_MARK'|translate}}</div>
+        </div>
+    </a>
+</li>

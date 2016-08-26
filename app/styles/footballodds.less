@@ -1,0 +1,1169 @@
+@IMGURL: "/images/live";
+
+
+/* CSS Document 滚球数据、图文直播*/
+.footballodds {
+  margin:0;
+}
+.fb-main {
+    width: 640/100rem;
+    margin: auto;
+}
+table {
+    text-align: center;
+    vertical-align: middle;
+    table-layout: fixed;
+}
+/*头部比赛直播信息及场地天气等*/
+.section-1 {
+    height: 40/100rem;
+    color: #fff;
+    font-family: "宋体";
+}
+.t-left {
+    float: left;
+    line-height: 40/100rem;
+}
+.t-left > span {
+    float: left;
+    margin-right: 20/100rem;
+}
+.t-left > span > a {
+    color: #fff;
+    display: inline-block;
+    margin-right: 5/100rem;
+}
+.t-left > span > a:hover {
+    text-decoration: underline;
+    color: #fb0915;
+}
+.t-right {
+    float: right;
+    line-height: 40/100rem;
+}
+.t-right > span {
+    display: inline-block;
+    margin: 0 5/100rem;
+}
+/*天气图标*/
+.cloudy,
+.cold,
+.fog,
+.good_weather,
+.heavy_rain,
+.heavy_sonw,
+.high_wind,
+.light_rain,
+.light_sonw,
+.light_wind,
+.mild,
+.rainy,
+.sleet_hail,
+.snowy,
+.stormy,
+.sun,
+.thunderstorm,
+.very_hot,
+.windy {
+    background: url("@{IMGURL}/icon_weather.png") no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+.heavy_rain {
+    width: 24/100rem;
+    height: 24/100rem;
+    background-position: -2/100rem 0/100rem;
+}
+.light_rain {
+    width: 24/100rem;
+    height: 24/100rem;
+    background-position: -62/100rem 0/100rem;
+}
+.very_hot {
+    width: 24/100rem;
+    height: 24/100rem;
+    background-position: -3/100rem -41/100rem;
+}
+.cloudy {
+    width: 26/100rem;
+    height: 19/100rem;
+    background-position: -61/100rem -44/100rem;
+}
+.snowy {
+    width: 22/100rem;
+    height: 24/100rem;
+    background-position: -2/100rem -84/100rem;
+}
+.heavy_sonw {
+    width: 26/100rem;
+    height: 26/100rem;
+    background-position: -61/100rem -82/100rem;
+}
+.rainy {
+    width: 27/100rem;
+    height: 26/100rem;
+    background-position: -2/100rem -124/100rem;
+}
+.light_sonw {
+    width: 26/100rem;
+    height: 24/100rem;
+    background-position: -61/100rem -125/100rem;
+}
+.windy {
+    width: 28/100rem;
+    height: 23/100rem;
+    background-position: -1/100rem -168/100rem;
+}
+.sleet_hail {
+    width: 26/100rem;
+    height: 26/100rem;
+    background-position: -62/100rem -165/100rem;
+}
+.sun {
+    width: 24/100rem;
+    height: 24/100rem;
+    background-position: -3/100rem -209/100rem;
+}
+.high_wind {
+    width: 30/100rem;
+    height: 17/100rem;
+    background-position: -60/100rem -211/100rem;
+}
+.stormy {
+    width: 30/100rem;
+    height: 30/100rem;
+    background-position: -0/100rem -248/100rem;
+}
+.light_wind {
+    width: 22/100rem;
+    height: 13/100rem;
+    background-position: -64/100rem -255/100rem;
+}
+.mild {
+    width: 30/100rem;
+    height: 24/100rem;
+    background-position: -1/100rem -292/100rem;
+}
+.cold {
+    width: 24/100rem;
+    height: 26/100rem;
+    background-position: -63/100rem -290/100rem;
+}
+.fog {
+    width: 28/100rem;
+    height: 22/100rem;
+    background-position: -3/100rem -335/100rem;
+}
+.thunderstorm {
+    width: 24/100rem;
+    height: 23/100rem;
+    background-position: -63/100rem -333/100rem;
+}
+.good_weather {
+    width: 25/100rem;
+    height: 25/100rem;
+    background-position: -2/100rem -364/100rem;
+}
+/*比赛对阵*/
+.vs-bg {
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.4);
+    filter: Alpha(opacity=40);
+    border: 1/100rem solid #000;
+    color: #fff;
+    font-family: "宋体";
+}
+.vs-bor {
+    border: 1/100rem solid #31435d;
+    height: 80/100rem;
+    position: relative;
+    z-index: 1;
+}
+.vs-table > tbody > tr > td {
+    height: 80/100rem;
+    vertical-align: middle;
+}
+.zan {
+    display: inline-block;
+    width: 40/100rem;
+    height: 40/100rem;
+    /* -webkit-border-radius:50%;border-radius:50%; background-color:#fff; */
+    position: relative;
+    overflow: hidden;
+}
+.zan-l {
+    background: url("@{IMGURL}/zan-l.png") no-repeat center center;
+}
+.zan-r {
+    background: url("@{IMGURL}/zan-r.png") no-repeat center center;
+}
+.heart {
+    height: 40/100rem;
+    width: 40/100rem;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -20/100rem;
+    margin-top: -20/100rem;
+}
+.heartAnimation {
+    display: inline-block;
+    -webkit-animation-name: heartBlast;
+    animation-name: heartBlast;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+/*.zan-l.heartAnimation{ background-image:url(@{IMGURL}/zan-l-active.png);}
+.zan-r.heartAnimation{ background-image:url(@{IMGURL}/zan-r-active.png);}*/
+@-webkit-keyframes heartBlast {
+    0% {
+        background-size: 40/100rem;
+    }
+    50% {
+        background-size: 45/100rem;
+    }
+    99% {
+        background-size: 40/100rem;
+    }
+    100% {
+        background-size: 40/100rem;
+    }
+}
+@keyframes heartBlast {
+    0% {
+        background-size: 40/100rem;
+    }
+    50% {
+        background-size: 45/100rem;
+    }
+    99% {
+        background-size: 40/100rem;
+    }
+    100% {
+        background-size: 40/100rem;
+    }
+}
+.teamname-l {
+    text-align: right;
+    font-family: "微软雅黑";
+    font-size: 20/100rem;
+}
+.teamname-r {
+    text-align: left;
+    font-family: "微软雅黑";
+    font-size: 20/100rem;
+}
+.imgbox {
+    width: 50/100rem;
+    height: 50/100rem;
+    margin: 0 5/100rem;
+    display: inline-block;
+    line-height: 50/100rem;
+    -webkit-border-radius: 33/100rem;
+    border-radius: 33/100rem;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 8/100rem;
+    *top: -5/100rem;
+}
+.imgbox > img {
+    max-width: 50/100rem;
+    height: 50/100rem;
+    position: relative;
+    top: 6/100rem;
+}
+.imgbox > i {
+    display: inline-block;
+    width: 0/100rem;
+    height: 50/100rem;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.score {
+    font-family: "Arial";
+    font-weight: bold;
+    font-size: 40/100rem;
+    line-height: 40/100rem;
+}
+#container {
+    height: 3/100rem;
+    position: relative;
+    width: 1000/100rem;
+    margin-top: -3/100rem;
+    z-index: 11;
+}
+#container .line {
+    height: 3/100rem;
+    position: absolute;
+}
+#blueline,
+#whiteline {
+    width: 100%;
+}
+#blueline {
+    background-color: #2071c5;
+    height: 3/100rem;
+}
+#redline {
+    background-color: #8e1919;
+    height: 3/100rem;
+    width: 50%;
+}
+#whiteline {
+    height: 0/100rem;
+}
+#vsicon {
+    width: 27/100rem;
+    height: 22/100rem;
+    background: url("@{IMGURL}/zanvs.png") no-repeat;
+    line-height: 22/100rem;
+    text-align: center;
+    position: absolute;
+    left: 486/100rem;
+    top: 50%;
+    margin-top: -12/100rem;
+    z-index: 12;
+}
+#likeCount1 {
+    height: 14/100rem;
+    display: inline-block;
+}
+#likeCount2 {
+    height: 14/100rem;
+    display: inline-block;
+}
+/*图文直播及滚球指数section-3*/
+.section-3 {
+  background-color:rgba(3,84,3,1);
+
+}
+/*@media \0screen\,screen\9 {
+.section-3{ background-color:#222222;filter:Alpha(opacity=80); }
+ }*/
+ .section-3 > .leftbox{
+    width: 640/100rem;
+    float: left;
+    margin-right: 18/100rem;
+    position: relative;
+    z-index: 50;
+}
+.section-3 > .rightbox {
+    width: 342/100rem;
+    height: 315/100rem;
+    float: left;
+    font-family: "宋体";
+    position: relative;
+    z-index: 50;
+}
+.progressbox {
+    height: 24/100rem;
+}
+.progress {
+    width: 588/100rem;
+    height: 24/100rem;
+    background: url("@{IMGURL}/footballodds-icon.png") repeat-x;
+    border-radius: 6/100rem;
+    overflow: hidden;
+    background-position: 0 -30/100rem;
+    padding-right: 12/100rem;
+}
+.progress > .progress-bg {
+    height: 24/100rem;
+    position: relative;
+    background: url("@{IMGURL}/footballodds-icon.png") repeat-x;
+}
+.eventicon {
+    position: absolute;
+    width: 588/100rem;
+    height: 24/100rem;
+    left: 0/100rem;
+    top: 0/100rem;
+    z-index: 11;
+}
+.pos-rt {
+    position: relative;
+}
+/* 主队比分 */
+.team-z{
+  position:absolute;
+  right:369/100rem;
+  top:-8/100rem;
+  color:#fff;
+  z-index:2;
+  .team-text{
+      height: 0.5rem;
+      line-height: 0.01rem;
+      #z-name{
+        font-size:14/100rem;
+      }
+      #z-socre{
+        font-size:20/100rem;
+        font-weight:600;
+      }
+  }
+}
+/* 客队比分 */
+.team-v{
+  position:absolute;
+  left:369/100rem;
+  top:-8/100rem;
+  color:#fff;
+  z-index:2;
+  .team-text{
+      height: 0.5rem;
+    line-height: 0.01rem;
+    #v-name{
+      font-size:14/100rem;
+    }
+    #v-socre{
+      font-size:20/100rem;
+      font-weight:600;
+    }
+  }
+
+}
+
+/*赛事图标*/
+.half-icon {
+    background: url("@{IMGURL}/footballodds-icon.png") no-repeat;
+    background-position: -70/100rem -67/100rem;
+    width: 22/100rem;
+    height: 24/100rem;
+    position: absolute;
+    top: -24/100rem;
+    left: 50%;
+    margin-left: -12/100rem;
+    z-index: 10;
+}
+.corner-icon,
+.goal-icon,
+.penalty-icon,
+.red-card,
+.sub-icon,
+.yellow-card {
+    background: url("@{IMGURL}/footballodds-icon.png") no-repeat;
+    width: 14/100rem;
+    height: 14/100rem;
+    display: inline-block;
+}
+.goal-icon {
+    background-position: 0 -185/100rem;
+    z-index: 100;
+}
+.penalty-icon {
+    background-position: -50/100rem -185/100rem;
+    z-index: 100;
+}
+.red-card {
+    background-position: -70/100rem -160/100rem;
+    z-index: 100;
+}
+.yellow-card {
+    background-position: -50/100rem -160/100rem;
+    z-index: 100;
+}
+.corner-icon {
+    background-position: -25/100rem -185/100rem;
+    z-index: 100;
+}
+.sub-icon {
+    background-position: 0 -160/100rem;
+    z-index: 100;
+}
+.iconbox > i {
+    position: absolute;
+}
+.icon-t {
+    height: 12/100rem;
+}
+.icon-b {
+    height: 12/100rem;
+}
+.icon-t > i {
+    position: absolute;
+    top: -6/100rem;
+    margin-left: -6/100rem;
+    cursor: pointer;
+}
+.icon-b > i {
+    position: absolute;
+    bottom: -6/100rem;
+    margin-left: -6/100rem;
+    cursor: pointer;
+}
+.icon-b > .corner-icon {
+    background-position: -70/100rem -100/100rem;
+}
+.icon-t .yellow-card-two {
+    background-position: -25/100rem -205/100rem;
+    width: 16/100rem;
+    height: 16/100rem;
+    top: -8/100rem;
+}
+.icon-t .yellow-card-three {
+    background-position: 0/100rem -205/100rem;
+    width: 18/100rem;
+    height: 18/100rem;
+    top: -9/100rem;
+}
+.icon-t .red-card-two {
+    background-position: -75/100rem -205/100rem;
+    width: 18/100rem;
+    height: 18/100rem;
+    top: -9/100rem;
+}
+.icon-t .red-card.three {
+    background-position: -50/100rem -205/100rem;
+    width: 18/100rem;
+    height: 18/100rem;
+    top: -9/100rem;
+}
+.icon-b .yellow-card-two {
+    background-position: -25/100rem -230/100rem;
+    width: 16/100rem;
+    height: 16/100rem;
+    bottom: -8/100rem;
+}
+.icon-b .yellow-card-three {
+    background-position: 0/100rem -230/100rem;
+    width: 18/100rem;
+    height: 18/100rem;
+    bottom: -9/100rem;
+}
+.icon-b .red-card-two {
+    background-position: -75/100rem -230/100rem;
+    width: 16/100rem;
+    height: 16/100rem;
+    bottom: -8/100rem;
+}
+.icon-b .red-card-three {
+    background-position: -50/100rem -230/100rem;
+    width: 18/100rem;
+    height: 18/100rem;
+    bottom: -9/100rem;
+}
+.icon-t .ot1 {
+    margin-top: 0/100rem;
+}
+.icon-t .ot2 {
+    margin-top: -4/100rem;
+}
+.icon-t .ot3 {
+    margin-top: -8/100rem;
+}
+.icon-t .ot4 {
+    margin-top: -12/100rem;
+}
+.icon-t .ot5 {
+    margin-top: -16/100rem;
+}
+.icon-t .ot6 {
+    margin-top: -20/100rem;
+}
+.icon-t .ot7 {
+    margin-top: -24/100rem;
+}
+.icon-b .ot1 {
+    margin-bottom: 0/100rem;
+}
+.icon-b .ot2 {
+    margin-bottom: -4/100rem;
+}
+.icon-b .ot3 {
+    margin-bottom: -8/100rem;
+}
+.icon-b .ot4 {
+    margin-bottom: -12/100rem;
+}
+.icon-b .ot5 {
+    margin-bottom: -16/100rem;
+}
+.icon-b .ot6 {
+    margin-bottom: -20/100rem;
+}
+.icon-b .ot7 {
+    margin-bottom: -24/100rem;
+}
+.icon-hover-k,
+.icon-hover-z {
+    display: none;
+    position: absolute;
+    height: 28/100rem;
+    line-height: 28/100rem;
+    width: auto;
+    border: 1/100rem solid #3d3535;
+    color: #fff;
+    background-color: #000;
+    z-index: 999;
+    padding: 0 5/100rem;
+    margin-left: -10/100rem;
+}
+.icon-hover-k > span,
+.icon-hover-z > span {
+    margin: 0 5/100rem;
+    display: inline-block;
+}
+.icon-hover-z > .arrow-b {
+    background: url("@{IMGURL}/footballodds-icon.png") no-repeat;
+    width: 13/100rem;
+    height: 6/100rem;
+    background-position: -67/100rem -185/100rem;
+    position: absolute;
+    top: 28/100rem;
+    display: block;
+    left: 10/100rem;
+}
+.icon-hover-k > .arrow-t {
+    background: url("@{IMGURL}/footballodds-icon.png") no-repeat;
+    width: 13/100rem;
+    height: 6/100rem;
+    background-position: -82/100rem -185/100rem;
+    position: absolute;
+    top: -6/100rem;
+    display: block;
+    left: 10/100rem;
+}
+/*图文直播*/
+.playgamebox {
+    width: 640/100rem;
+    height: 270/100rem;
+    background: url("@{IMGURL}/court-bg.gif") no-repeat top;
+    background-size: 640/100rem 270/100rem;
+    position: relative;
+    top:0;
+    left:0;
+}
+/*滚动数据*/
+.r-div1 {
+    height: 48/100rem;
+    font-size: 14/100rem;
+    vertical-align: middle;
+    background-color: #282828;
+}
+.li-01 {
+    width: 42%;
+    color: #8e1919;
+    text-align: right;
+    height: 50/100rem;
+}
+.li-02 {
+    width: 16%;
+    color: #fff;
+    text-align: center;
+}
+.li-03 {
+    width: 42%;
+    color: #2071c5;
+    text-align: left;
+}
+.r-div2 {
+    margin-top: 5/100rem;
+    border: 1/100rem solid #191e27;
+    border-bottom: none;
+    background-color: #333;
+    text-align: center;
+}
+.mgt10 {
+    margin-top: 10/100rem;
+}
+.r-div2 td {
+    height: 29/100rem;
+    color: #c1c1c1;
+}
+.r-div2 > table > tbody > tr > td {
+    border-top: 1/100rem solid #393939;
+    border-bottom: 1/100rem solid #1d1d1d;
+}
+.r-div2 > table > tbody > tr > td:first-child {
+    border-left: none;
+    color: #fff;
+}
+.r-div2 > table > tbody > tr:first-child > td {
+    background-color: #282828;
+    color: #999999;
+}
+.bor-r-bl {
+    border-right: 1/100rem solid #1d1d1d;
+}
+.r-div2 .td-01 {
+    width: 48%;
+}
+.r-div2 .td-02 {
+    width: 44%;
+}
+.r-div2 .td-03 {
+    width: 8%;
+}
+.r-div2 .p30 {
+    height: 30/100rem;
+    line-height: 30/100rem;
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+.r-div2 .p40 {
+    height: 30/100rem;
+    line-height: 30/100rem;
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.r-div2 .rise {
+    color: #fb0915;
+}
+.r-div2 .fall {
+    color: #79cb31;
+}
+/*section-4*/
+.section-4 {
+    margin: 10/100rem auto 50/100rem;
+}
+.section-l {
+    width: 628/100rem;
+    float: left;
+    margin-right: 10/100rem;
+}
+.section-r {
+    width: 362/100rem;
+    float: left;
+}
+.tabdiv {
+    height: 41/100rem;
+    border: 1/100rem solid #454545;
+    border-bottom: none;
+}
+.tabdiv > ul {
+    float: left;
+}
+.tabdiv > ul > li {
+    float: left;
+    height: 40/100rem;
+    line-height: 40/100rem;
+    padding: 0 25/100rem;
+    color: #c1c1c1;
+    border-bottom: 1/100rem solid #454545;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: Alpha(opacity=80);
+    cursor: pointer;
+}
+.tabdiv > ul > li.active {
+    border-top: 4/100rem solid #61aa21;
+    border-right: 1/100rem solid #454545;
+    border-bottom: none;
+    height: 38/100rem;
+    line-height: 34/100rem;
+    margin-top: -1/100rem;
+    color: #fff;
+    font-weight: bold;
+    background-color: #222222;
+    background-color: rgba(34, 34, 34, 0.7);
+    filter: Alpha(opacity=70);
+    z-index: 1000;
+}
+.tabdiv > ul > li > span {
+    position: relative;
+    z-index: 20;
+}
+.tab-r-box {
+    height: 41/100rem;
+    overflow: hidden;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: Alpha(opacity=80);
+}
+.tab-r-bor {
+    border-bottom: 1/100rem solid #454545;
+    z-index: 20;
+    position: relative;
+    height: 40/100rem;
+}
+.tabbox {
+    background-color: #222222;
+    background-color: rgba(34, 34, 34, 0.7);
+    filter: Alpha(opacity=70);
+    width: 628/100rem;
+}
+.contentbox {
+    position: relative;
+    z-index: 3000;
+    border: 1/100rem solid #454545;
+    border-top: none;
+    padding: 19/100rem;
+    color: #c1c1c1;
+}
+.contentbox > .title {
+    text-align: center;
+    border-bottom: 1/100rem solid #454545;
+}
+.contentbox > .title > .tit-a {
+    border-bottom: 1/100rem solid #1d1d1d;
+    height: 30/100rem;
+    line-height: 24/100rem;
+}
+.contentbox > .title > .tit-a > a {
+    display: inline-block;
+    margin: 0 10/100rem;
+    color: #c1c1c1;
+}
+.contentbox > .title > .tit-a > a.sel {
+    color: #68b028;
+}
+/*实时赛况*/
+.matches {
+    margin-top: 40/100rem;
+    font-size: 14/100rem;
+}
+.matches > table > tbody > tr > td {
+    height: 30/100rem;
+}
+.matches > table > thead > tr > td {
+    height: 40/100rem;
+    font-size: 14/100rem;
+}
+.ml-td1 {
+    width: 9%;
+    text-align: left;
+}
+.ml-td2 {
+    width: 21%;
+    text-align: right;
+}
+.ml-td3 {
+    width: 12%;
+    text-align: left;
+    padding-left: 20/100rem;
+}
+.ml-td4 {
+    width: 16%;
+}
+.ml-td5 {
+    width: 12%;
+    text-align: right;
+    padding-right: 20/100rem;
+}
+.ml-td6 {
+    width: 21%;
+    text-align: left;
+}
+.ml-td7 {
+    width: 9%;
+    text-align: right;
+}
+.matches .red {
+    color: #8e1919;
+}
+.matches .blue {
+    color: #2071c5;
+}
+.matches .goal-icon {
+    background-position: 0 -135/100rem;
+    width: 16/100rem;
+    height: 16/100rem;
+    margin: 0 2/100rem;
+}
+.matches .penalty-icon {
+    background-position: -25/100rem -135/100rem;
+    width: 16/100rem;
+    height: 18/100rem;
+    margin: 0 2/100rem;
+}
+.matches .yellow-card {
+    background-position: -50/100rem -135/100rem;
+    width: 14/100rem;
+    height: 18/100rem;
+    margin: 0 2/100rem;
+}
+.matches .red-card {
+    background-position: -75/100rem -135/100rem;
+    width: 16/100rem;
+    height: 18/100rem;
+    margin: 0 2/100rem;
+}
+.matches .corner-icon {
+    background-position: -25/100rem -160/100rem;
+    width: 15/100rem;
+    height: 15/100rem;
+    margin: 0 2/100rem;
+}
+.matches .sub-icon {
+    background-position: 0 -160/100rem;
+    width: 14/100rem;
+    height: 14/100rem;
+    margin: 0 2/100rem;
+}
+/*数据对比*/
+.statdiv {
+    margin-bottom: 10/100rem;
+}
+.statdiv > table {
+    -moz-border-radius: 2/100rem;
+    -webkit-border-radius: 2/100rem;
+    border-radius: 2/100rem;
+    border: 1/100rem solid #1d1d1d;
+    border-bottom: none;
+    color: #c1c1c1;
+}
+.statdiv > table > tbody > tr > td {
+    width: 6%;
+    height: 30/100rem;
+    border-top: 1/100rem solid #393939;
+    border-bottom: 1/100rem solid #1d1d1d;
+    font-weight: bold;
+}
+.statdiv > table > tbody > tr > td.stat-td1 {
+    width: 70%;
+}
+.statdiv > table > tbody > tr {
+    background-color: #333;
+}
+.statdiv > table > tbody > tr.first {
+    background-color: #282828;
+}
+.statdiv > table > tbody > tr > td:first-child {
+    text-align: left;
+    text-indent: 10/100rem;
+    font-weight: normal;
+}
+.first .stat-td1 {
+    color: #c1c1c1;
+}
+.second .stat-td1 {
+    color: #8e1919;
+}
+.third .stat-td1 {
+    color: #2071c5;
+}
+.stat-sheet {
+    position: relative;
+    padding-bottom: 40/100rem;
+    margin: 20/100rem 0 10/100rem;
+}
+.show-hide {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0/100rem;
+    left: 0;
+}
+.show-hide > .hide-arrow,
+.show-hide > .show-arrow {
+    background: url("@{IMGURL}/footballodds-icon.png") no-repeat;
+    width: 62/100rem;
+    height: 26/100rem;
+    display: block;
+    margin: auto;
+}
+.show-hide > .show-arrow {
+    background-position: 0 -100/100rem;
+}
+.show-hide > .hide-arrow {
+    background-position: 0 -65/100rem;
+}
+.show-hide > .btm-line {
+    line-height: 0;
+    height: 0/100rem;
+    border-top: 1/100rem solid #111;
+    border-bottom: 1/100rem solid #393939;
+}
+.sheetbox > ul > li {
+    width: 196/100rem;
+    height: 120/100rem;
+    position: relative;
+    float: left;
+}
+.sheetbox > ul > li > h3 {
+    text-align: center;
+    font-size: 12/100rem;
+    font-weight: normal;
+}
+#attack1,
+#danger1,
+#possession1 {
+    width: 40/100rem;
+    position: absolute;
+    top: 50%;
+    height: 30/100rem;
+    line-height: 30/100rem;
+    left: 30/100rem;
+    text-align: left;
+    margin-top: -10/100rem;
+}
+#attack2,
+#danger2,
+#possession2 {
+    width: 40/100rem;
+    position: absolute;
+    top: 50%;
+    height: 30/100rem;
+    line-height: 30/100rem;
+    right: 30/100rem;
+    text-align: right;
+    margin-top: -10/100rem;
+}
+#attack-pie,
+#danger,
+#possession {
+    color: #fff;
+    margin: 0 auto;
+    font-size: 12/100rem !important;
+}
+.bar-box {
+    height: 60/100rem;
+    overflow: hidden;
+}
+.h-auto {
+    height: auto!important;
+}
+.bar-list {
+    text-align: center;
+}
+.bar-list > li {
+    width: 274/100rem;
+    margin: 10/100rem 10/100rem 0;
+    float: left;
+}
+.bar-list > li > table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+}
+.bar-list > li > table td {
+    height: 20/100rem;
+}
+.group-blue {
+    background-color: #8e1919;
+    height: 5/100rem;
+    float: left;
+    -moz-border-radius: 2/100rem 0/100rem 0/100rem 2/100rem;
+    -webkit-border-radius: 2/100rem 0/100rem 0/100rem 2/100rem;
+    border-radius: 2/100rem 0/100rem 0/100rem 2/100rem;
+}
+.group-red {
+    background-color: #2071c5;
+    height: 5/100rem;
+    float: left;
+    -moz-border-radius: 2/100rem 0/100rem 0/100rem 2/100rem;
+    -webkit-border-radius: 0/100rem 2/100rem 2/100rem 0/100rem;
+    border-radius: 0/100rem 2/100rem 2/100rem 0/100rem;
+}
+.show-op {
+    height: 0/100rem;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+/*竞猜*/
+.guessing-box {
+    border: 1/100rem solid #454545;
+}
+.guessing-tit {
+    height: 40/100rem;
+    border-bottom: 1/100rem solid #454545;
+}
+.guessing-tit .title-op {
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: Alpha(opacity=80);
+    height: 40/100rem;
+    line-height: 40/100rem;
+    padding-left: 19/100rem;
+}
+.guessing-tit .title-op > span {
+    position: relative;
+    z-index: 100;
+    font-size: 14/100rem;
+    color: #fff;
+    font-weight: bold;
+}
+.guessing-bd {
+    background-color: #222222;
+    background-color: rgba(34, 34, 34, 0.7);
+    filter: Alpha(opacity=70);
+    padding: 19/100rem;
+    line-height: 24/100rem;
+    color: #c1c1c1;
+    width: 322/100rem;
+}
+.guessing-pos {
+    position: relative;
+    z-index: 100;
+}
+.guessing-pos > dl > dd {
+    display: block;
+    margin-bottom: 30/100rem;
+    width: 320/100rem;
+}
+.guessing-pos > dl > dd p {
+    line-height: 24/100rem;
+    padding-bottom: 6/100rem;
+}
+.guessing-list > li {
+    display: block;
+    margin-bottom: 10/100rem;
+    height: 35/100rem;
+    line-height: 35/100rem;
+    position: relative;
+    background-color: #454545;
+    cursor: pointer;
+    overflow: hidden;
+    -moz-border-radius: 2/100rem;
+    -webkit-border-radius: 2/100rem;
+    border-radius: 2/100rem;
+}
+.guessing-list > li:hover {
+    border: 1/100rem solid #e0b00a;
+    height: 33/100rem;
+}
+.guessing-list > li.active .support {
+    background-color: #787b76;
+}
+.support {
+    height: 35/100rem;
+    background-color: #2b5804;
+}
+.sp-vl {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35/100rem;
+    line-height: 35/100rem;
+    margin-right: 10/100rem;
+}
+.sp-cl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35/100rem;
+    line-height: 35/100rem;
+    margin-left: 20/100rem;
+}
+.sp-cl > em {
+    display: inline-block;
+    margin-right: 5/100rem;
+}
+.guessing-list > li:hover .sp-cl,
+.guessing-list > li:hover .sp-vl {
+    line-height: 33/100rem;
+}
+.guessing-list > li.active:hover {
+    border: none;
+    height: 35/100rem;
+    line-height: 35/100rem;
+}
+.guessing-list > li.active:hover .sp-cl,
+.guessing-list > li.active:hover .sp-vl {
+    line-height: 35/100rem;
+}
+.clear {
+    clear: both;
+    line-height: 0;
+    height: 0/100rem;
+    overflow: hidden;
+    zoom: 1;
+}

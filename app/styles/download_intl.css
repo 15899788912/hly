@@ -1,0 +1,180 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {margin:0;padding:0}
+body{-webkit-tap-highlight-color: rgba(0,0,0,0); color:#222;}
+html {width: 100%;height: 100%;-webkit-font-smoothing: antialiased;}
+html.ns {overflow: hidden}
+body {font-family: "微软雅黑","arial";width: 100%;height: 100%;min-width:320px; max-width:640px; margin:auto;overflow: hidden}
+body{font-family: "微软雅黑","arial";-webkit-tap-highlight-color: rgba(0,0,0,0)}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+a {text-decoration: none;}
+img {border: 0;vertical-align:middle;width:100%}
+ol, ul, li {list-style: none}
+dl, dt, dd, ul, li {margin: 0;padding: 0}
+input, textarea {outline: none}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+em,i {font-style: normal}
+.fl {float: left}
+.fr {float: right}
+.clear {clear: both; height:0; overflow:hidden;}
+
+.main{background:url(/images/download_intl/bg.jpg) no-repeat top center /cover; height:100%;width:100%; margin:auto; position:relative; overflow: hidden;}
+.title{ height:50px;line-height:50px; background:#1e88d2; color:#fff; text-align:center;font-size:18px; font-weight:normal;}
+.caihua{ background:url(/images/download_intl/caihua.png) no-repeat center top /cover; position:absolute; top:0; width:90%; height:80%; z-index:50001; left:50%; margin-left:-45%;}
+.icon{ width:20%; margin:8% auto 0;}
+.icon img{ width:100%}
+.adbox{ position:relative;}
+.adl{ width:33%; margin:10px auto 0;}
+/*.line{ width:33%; margin:-20px auto 0;}*/
+.picbox{ width:83%; margin:10px auto 0; position:relative;}
+
+.picbox .pic{ position:absolute; left:50%; margin-left:-20%; width:40%; top:0; z-index:1005; transition:all 0.7s ease-out 0s ;}
+.picbox .pic_l1{ position:absolute; left:30%; width:32%; margin-left:-16%; top:0; z-index:1004; margin-top:35px;transition:all 0.7s ease-out 0s ;}
+.picbox .pic_l2{ position:absolute; left:0%; width:24%; top:0; z-index:1002; margin-top:60px;transition:all 0.7s ease-out 0s ;}
+.picbox .pic_r1{ position:absolute; right:30%;width:32%; margin-right:-16%; top:0; z-index:1003; margin-top:35px;transition:all 0.7s ease-out 0s ;}
+.picbox .pic_r2{ position:absolute; right:0; width:24%; top:0; z-index:1001; margin-top:60px;transition:all 0.7s ease-out 0s ;}
+.btn_box{ height:50px; position:absolute; bottom:8%; width:80%; text-align:center; left:50%; margin-left:-40%; z-index:5000}
+.and_btn{ background:#1e88d2; color:#fff; width:46%; height:45px; line-height:45px; margin:0 2%; text-align:center; display:inline-block; float:left;-webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; text-indent:-5px;font-size:14px; font-weight:bold;}
+.ios_btn{ background:#1e88d2; color:#fff; width:46%; height:45px; line-height:45px;  margin:0 2%; text-align:center; display:inline-block;float:left;-webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; text-indent:-5px; font-size:14px; font-weight:bold;}
+.and_btn i{ display:inline-block; width:20px; height:25px; background:url(/images/download_intl/and.png) no-repeat center center /cover; margin:10px 8% 0 0; vertical-align:top;}
+.ios_btn i{ display:inline-block; width:21px; height:25px; background:url(/images/download_intl/ios.png) no-repeat center center /cover; margin:10px 8% 0 0; vertical-align:top;}
+
+@keyframes show{
+  0%{overflow: hidden; width:0;}
+  100%{height:auto; overflow:auto; width:20%;}
+}
+/* 添加兼容性前缀 */
+@-webkit-keyframes show {
+  0%{overflow: hidden; width:0;}
+  100%{overflow:auto; width:20%;}
+}
+@-moz-keyframes show {
+  0%{ overflow: hidden; width:0;}
+  100%{overflow:auto; width:20%;}
+}
+@-ms-keyframes show {
+  0%{overflow: hidden; width:0;}
+  100%{overflow:auto; width:20%;}
+}
+@-o-keyframes show {
+  0%{overflow: hidden; width:0;}
+  100%{overflow:auto; width:20%;}
+}
+.icon.active{
+  animation: show 0.7s linear infinite;
+  /* 其它浏览器兼容性前缀 */
+  -webkit-animation: show 0.7s linear infinite;
+  -moz-animation: show 0.7s linear infinite;
+  -ms-animation: show 0.7s linear infinite;
+  -o-animation: show 0.7s linear infinite;
+  animation-iteration-count:1;
+  -webkit-animation-iteration-count:1;
+  -moz-animation-iteration-count:1;
+  -ms-animation-iteration-count:1;
+  -o-animation-iteration-count:1;
+}
+
+@keyframes adl{
+  0%{overflow: hidden; width:0;}
+  100%{height:auto; overflow:auto; width:20%;}
+}
+/* 添加兼容性前缀 */
+@-webkit-keyframes adl {
+  0%{overflow: hidden; width:0;}
+  100%{overflow:auto; width:33%;}
+}
+@-moz-keyframes adl {
+  0%{ overflow: hidden; width:0;}
+  100%{overflow:auto; width:33%;}
+}
+@-ms-keyframes adl {
+  0%{overflow: hidden;width:0px;}
+  100%{overflow:auto; width:33%;}
+}
+@-o-keyframes adl {
+  0%{overflow: hidden; width:0; }
+  100%{overflow:auto; width:33%;}
+}
+.adl
+{animation: adl 1s linear infinite;
+  /* 其它浏览器兼容性前缀 */
+  -webkit-animation: adl 0.7s linear infinite;
+  -moz-animation: adl 0.7s linear infinite;
+  -ms-animation: adl 0.7s linear infinite;
+  -o-animation: adl 0.7s linear infinite;
+  -webkit-animation-iteration-count:1;
+  -moz-animation-iteration-count:1;
+  -ms-animation-iteration-count:1;
+  -o-animation-iteration-count:1;
+}
+
+@keyframes picbox{
+  0%{width:83%;}
+  25%{width:75%;}
+  50%{width:83%;}
+  75%{width:75%;}
+  100%{width:83%;}
+}
+/* 添加兼容性前缀 */
+@-webkit-keyframes picbox {
+  0%{width:83%;}
+  25%{width:75%;}
+  50%{width:83%;}
+  75%{width:75%;}
+  100%{width:83%;}
+}
+@-moz-keyframes picbox {
+  0%{width:83%;}
+  25%{width:75%;}
+  50%{width:83%;}
+  75%{width:75%;}
+  100%{width:83%;}
+}
+@-ms-keyframes picbox {
+  0%{width:83%;}
+  25%{width:75%;}
+  50%{width:83%;}
+  75%{width:75%;}
+  100%{width:83%;}
+}
+@-o-keyframes picbox {
+  0%{width:83%;}
+  25%{width:75%;}
+  50%{width:83%;}
+  75%{width:75%;}
+  100%{width:83%;}
+}
+.picbox
+{animation: picbox 0.7s linear infinite;
+  /* 其它浏览器兼容性前缀 */
+  -webkit-animation: picbox 0.7s linear infinite;
+  -moz-animation: picbox 0.7s linear infinite;
+  -ms-animation: picbox 0.7s linear infinite;
+  -o-animation: picbox 0.7s linear infinite;
+
+  animation-delay:2s;
+  -webkit-animation-delay:2s;
+  -moz-animation-delay:2s;
+  -ms-animation-delay:2s;
+  -o-animation-delay:2s;
+
+  -webkit-animation-iteration-count:1;
+  -moz-animation-iteration-count:1;
+  -ms-animation-iteration-count:1;
+  -o-animation-iteration-count:1;
+
+}
+
+@media screen and (max-width: 350px) {
+  .picbox{ margin:5px auto 0;}
+  .line{ width:33%; margin:-15px auto 0;}
+  .picbox .pic_l1{ position:absolute; left:30%; width:32%; margin-left:-16%; top:0; z-index:1004; margin-top:25px;transition:all 0.7s ease-out 0s ;}
+  .picbox .pic_l2{ position:absolute; left:0%; width:24%; top:0; z-index:1002; margin-top:45px;transition:all 0.7s ease-out 0s ;}
+  .picbox .pic_r1{ position:absolute; right:30%;width:32%; margin-right:-16%; top:0; z-index:1003; margin-top:25px;transition:all 0.7s ease-out 0s ;}
+  .picbox .pic_r2{ position:absolute; right:0; width:24%; top:0; z-index:1001; margin-top:45px;transition:all 0.7s ease-out 0s ;}
+}
+@media screen and (max-width: 320px) {
+  .btn_box{ height:50px; position:absolute; bottom:5%; width:80%; text-align:center; left:50%; margin-left:-40%; z-index:5000}
+}
+
+

@@ -1,0 +1,73 @@
+<div class="mainBox">
+<div class="exp_main" ng-show="mainBox">
+	<ul class="mainList" ng-show="!noMainMatches">
+		<li ng-repeat="ml in mainMatches">
+			<div class="list_head">
+				<samp class="ou" style="color:{{ml.color}}">{{ml.leagueName}}</samp><samp class="time gray">{{ml.time}}</samp>
+				<!-- <samp class="sec">{{ml.status}}</samp>25' -->
+				<samp class="team">
+					<span class="team_h">{{ml.home}}</span>
+					<span class="score {{ml.matchColor}}">{{ml.result}}</span><span class="team_h">{{ml.guest}}</span>
+				</samp>
+				<i class="icon_arrows"></i>
+			</div>
+			<table class="list_con">
+				<tr>
+				 	<th>&nbsp;</th>
+				 	<th>{{'COMPANY_HOMEWIN'| translate}}</th>
+				 	<th ng-if="tabActiveIndex==2">{{'COMPANY_DRAWN' | translate}}</th>
+				 	<th ng-if="tabActiveIndex!=2">{{'COMPANY_HANDICAP' | translate}}</th>
+				 	<th>{{'COMPANY_GUESTWIN' | translate}}</th>
+				</tr>
+				<tr ng-repeat="cl in ml.comList" ng-click="ec.companyInfo($event)" data-comId="{{cl.comId}}" data-matchId="{{ml.matchId}}" data-home="{{ml.home}}" data-guest="{{ml.guest}}" data-res="{{ml.result}}">
+				 	<td>{{cl.comName}}</td>
+				 	<td><p class="{{cl.currLevel.leftClass}}">{{cl.currLevel.left}}</p>
+				 	<p class="{{cl.preLevel.leftClass}}">{{cl.preLevel.left}}</p></td>
+				 	<td><p class="{{cl.currLevel.middleClass}}">{{cl.currLevel.middleVal}}</p>
+				 	<p class="{{cl.preLevel.middleClass}}">{{cl.preLevel.middleVal}}</p></td>
+				 	<td><p class="{{cl.currLevel.rightClass}}">{{cl.currLevel.right}}</p>
+				 	<p class="{{cl.preLevel.rightClass}}">{{cl.preLevel.right}}</p></td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+	<div class="not_body" ng-if="noMainMatches">
+        <div class="man"></div>
+        <span ng-bind="'NO_IMMEDIATE_MATCHES' | translate"></span>
+    </div>
+</div>
+<div class="exp_company" ng-show="companyInfoBox">
+	<div class="com_left">
+		<ul class="comInfoList">
+			<li ng-repeat="cm in comInfoListValues" ng-class="{true:'active',false:''}[cm.checked]" ng-click="ec.comInfoClick($event)" data-id="{{cm.id}}">
+				{{cm.name}}
+			</li>
+		</ul>
+	</div>
+	<div class="com_right">
+		<table class="com_tab_info">
+			<tbody>
+				<tr class="thHead">
+					<th class="update">{{'COMPANY_UPDATE'| translate}}</th>
+					<th class="home">{{'COMPANY_HOMEWIN'| translate}}</th>
+					<th class="hand" ng-if="tabActiveIndex==2">{{'COMPANY_DRAWN' | translate}}</th>
+					<th class="hand" ng-if="tabActiveIndex!=2">{{'COMPANY_HANDICAP'| translate}}</th>
+					<th class="guest">{{'COMPANY_GUESTWIN'| translate}}</th>
+				</tr>
+				<tr ng-repeat="ci in comInfoMatches">
+					<td width="34%">
+						<span class="com_date" ng-if="$index==(comInfoMatches.length-1)">{{'COMPANY_CP'|translate}}</span> 
+						<span class="com_date" ng-if="$index!=(comInfoMatches.length-1)">{{ci.day}} {{ci.time}}</span> 
+					</td>
+					<td width="22%"><span class="{{ci.leftUpClass}}">{{ci.homeOdd}}</span></td>
+					<td width="22%"><span class="{{ci.middleClass}}">{{ci.handVal}}</span></td>
+					<td width="22%"><span class="{{ci.rightUpClass}}">{{ci.guestOdd}}</span></td>
+				</tr>
+				<tr ng-if="noComInfoMatches" class="noOddData">
+					<td rowspan="4">{{'NO_COMPANY_ODDDATA'|translate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>

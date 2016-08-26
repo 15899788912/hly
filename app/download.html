@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		@import 'views/head.html';
+		<title>下载</title>
+		<style type="text/css">
+			@import 'styles/download@@MINEXT.css';
+		</style>
+	</head>
+
+	<body>
+		<h2 class="title"><span>一比分</span></h2>
+		<div id="mainShow" class="mainBox">
+			<img src="@@IMGURL/download/bg.jpg">
+			<div id="handShow" class="hand"><img src="@@IMGURL/download/d_hand.png"></div>
+			<div id="d_mask" class="d_mask">
+				<p class="i_downInfo">暂不支持iphone下载！</p>
+			</div>
+			<div id="d_wx_share" class="d_wx_share">
+				<img src="@@IMGURL/download/browser.png" />
+			</div>
+		</div>
+		<script type="text/javascript" src="/common/zepto.min.js"></script>
+		<script type="application/javascript">
+			var apkDownloadUrlPrefix = "http://m.13322.com/fileServer/apk/download/"; //android downloadUrl
+			var iosDownloadUrlPrefix = "https://lnk0.com/YVxlog?os={OS}&idfa={IDFA}&clicktime={TS}&LBS={LBS}"; //ios downloadUrl
+      		var channel_url = "http://m.13322.com/fileServer/queryDownLoad";
+      		// 获取终端的相关信息
+			var Terminal = {
+				// 辨别移动终端类型
+				platform: function() {
+					var u = navigator.userAgent,
+						app = navigator.appVersion;
+					return {
+						// android终端或者uc浏览器
+						android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+						// 是否为iPhone或者QQHD浏览器
+						iPhone: u.indexOf('iPhone') > -1,
+						// 是否iPad
+						iPad: u.indexOf('iPad') > -1,
+						//是否为webview
+						webview: u.indexOf('yibifen') > -1,
+						//是否在微信端
+						weixin: u.toLowerCase().match(/MicroMessenger/i) == 'micromessenger'
+					};
+				}(),
+				// 辨别移动终端的语言：zh-cn、en-us、ko-kr、ja-jp...
+				language: (navigator.browserLanguage || navigator.language).toLowerCase()
+			};
+			//获取地址信息
+			String.prototype.getQueryString = function(name) {
+				var reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)"),
+					r;
+				if (r = this.match(reg)) return unescape(r[2]);
+				return null;
+			};
+			(function($) {
+
+				function handShow() {
+					$("#handShow").show();
+				}
+
+				function handHide() {
+					$("#handShow").hide();
+				}
+
+				function timer() {
+					setTimeout(handShow, 2000);
+				}
+				var channel = location.search.getQueryString("channel");
+		        var requestObj = {};
+		        //获取后台下载地址
+		        function ajaxFun(){
+		        	$.ajax({
+			          type:"get",
+			          url:channel_url+"?channel="+channel,
+			          success:function(data){
+			            var obj = JSON.parse(data);
+			            requestObj  = obj;
+			          },
+			          fail :function(err){
+			            console.log(err);
+			          }
+			        });
+		        }
+		        ajaxFun();
+				function timeDown() {
+					if (channel == null || channel == '') {
+						window.location.href = '#';
+					} else {
+						if (Terminal.platform.android) {
+							window.location.href = requestObj["Android"] || apkDownloadUrlPrefix + channel;
+							_hmt.push(['_trackEvent', 'download_tg', 'click_tg', 'Android']);
+						} else if (Terminal.platform.iPhone) {
+							window.location.href = requestObj["IOS"] || iosDownloadUrlPrefix  ;
+
+              _hmt.push(['_trackEvent', 'download_hd', 'click_hd', 'IOS']);
+							_hmt.push(['_trackEvent', 'download_tg', 'click_tg', 'IOS']);
+						}else{
+							window.location.href = apkDownloadUrlPrefix + channel;
+						}
+						handHide();timer();
+						ajaxF("clickCnt");
+					}
+				}
+
+				//判断是否在微信端
+				if (Terminal.platform.weixin) {
+					$("#d_wx_share").show();
+					return;
+				}
+
+				timer();
+				setTimeout(timeDown, 800); //0.8s自动下载
+
+				$("#mainShow").on('click', function() {
+					timeDown();
+				});
+
+				function ajaxF(appType) {
+					var img = new Image(1, 1);
+					var url = {
+						"242": 'http://183.61.172.88:8089',
+						"prod": 'http://union.13322.com/traffic'
+					};
+					var phonetype = Terminal.platform.iPhone ? "2" : "1";
+					img.src = url['prod'] + "/api/appRetention?appType=" + appType + "&channel=" + channel + "&type=" + phonetype;
+				}
+				ajaxF("intoCpc"); //默认
+			})(Zepto);
+		</script>
+	</body>
+</html>

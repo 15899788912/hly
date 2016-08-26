@@ -1,0 +1,70 @@
+
+<div class="refresh" ng-class="{true: 'on', false: ''}[refreshOn]"   ng-click="refreshClick()">
+  <img src="@@IMGURL/live/refresh.png" alt="" />
+</div>
+<div class="content-jg"></div>
+<div class="content" id="divPageBody">
+    <div class="section" ng-repeat="liveMatchData in liveMatchDataes">
+        <div class="daybox" id="day-bg{{$index+1}}">
+            <div class="day_ct" id="{{::liveMatchData.date}}">
+                <span>{{::liveMatchData.day}}</span>
+                <span>{{::liveMatchData.week}}</span>
+            </div>
+        </div>
+        <ul class="vs_tv">
+            <li ng-repeat="liveMatch in liveMatchData.liveMatches" matchId="{{::liveMatch.matchId}}" ng-click="liveTVClick($event)">
+                <p class="subtitle">
+                    <span>{{::liveMatch.racename}}</span>
+                    <span>{{::liveMatch.round}}</span>
+                </p>
+                <div class="vsbox">
+                    <dl>
+                        <dd>
+                            <i class="team_pic"><img ng-src="{{::liveMatch.hometeamLogo}}" onerror="logoLoadErr(this)"></i>{{::liveMatch.hometeam}}
+                        </dd>
+                        <dd>
+                            <i class="team_pic"><img ng-src="{{::liveMatch.guestteamLogo}}" onerror="logoLoadErr(this)"></i>{{::liveMatch.guestteam}}
+                        </dd>
+                    </dl>
+                    <div class="tvbox" ng-class="{true: 'live', false: ''}[liveMatch.living == true]">
+                        <i class="tv_icon"></i>
+                        <span ng-if="liveMatch.living">{{'TV_LIVING' | translate}}</span>
+                        <span ng-if="liveMatch.living == null || liveMatch.living == false">
+                            <p><i class="timeicon"></i>{{::liveMatch.matchTime}}</p>
+                            <p>{{'TV_LIVE' | translate}}</p>
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--下拉加载更多效果-->
+<div>
+    <div id="note1" class="follow" ng-if="showNoData">
+        <div style=" text-align:center; margin:25px auto; font-size:16px; color:#666;">
+            {{'NO_DATA' | translate}}
+        </div>
+    </div>
+    <div id="note2" class="viewport" ng-if="showLoadingImg">
+        <div style=" text-align:center; margin:25px auto; font-size:16px; color:#666;">
+            <img src="/images/loading.gif" width="25"/>{{'ONLOADING' | translate}}
+        </div>
+    </div>
+    <div style="height: 5px;"></div>
+</div>
+
+<div id="sort_mask">
+    <div id="sort_mask2" ng-click="liveCancelClick()"></div>
+    <div class="tv_list">
+        <p ng-bind="'PLEASE_CHOOSE_LIVE_CHANNEL' | translate" ng-if="liveChannels.length > 0"></p>
+        <div>
+            <a ng-repeat="liveChannel in liveChannels" ng-click="openTVLive($event)" url = "{{::liveChannel.url}}">{{::liveChannel.name}}</a>
+            <p ng-if="liveChannels.length == 0">{{'NO_LIVE_CHANNEL' | translate}}</p>
+        </div>
+        <div class="cancel" ng-click="liveCancelClick()">{{'BUTTON_CANCEL' | translate}}</div>
+    </div>
+</div>

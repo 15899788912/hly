@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	@import '../views/head.html';
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/styles/footballodds@@MINEXT.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/animation@@MINEXT.css" />
+	<title>图文直播</title>
+
+</head>
+
+<body class="footballodds">
+	<div class="fb-main">
+
+		<!--图文直播及滚球指数-->
+		<div class="section-3">
+			<div class="leftbox">
+				<!--比赛图文直播-->
+				<div class="playgamebox">
+					<!--比赛预告-->
+					<div id="trailer" class="trailer">
+						<ul>
+							<li class="left">
+								<div class="picbox">
+									<img src="/images/live/vs_logo1.png" alt="" />
+								</div>
+								<div class="t-name">女王公园巡游者</div>
+							</li>
+							<div class="middle">
+								<p class="head2">欧冠</p>
+								<p class="vs">VS</p>
+								<p class="vstime">2016-05-20 22:30</p>
+							</div>
+							<li class="right">
+								<div class="picbox">
+									<img src="/images/live/vs_logo2.png" alt="" />
+								</div>
+								<div class="t-name">阿森纳</div>
+							</li>
+						</ul>
+					</div>
+					<!-- 比赛进行时间 -->
+					<div class="palytime">
+						<div id="match_curr_time">8'</div>
+					</div>
+					<!-- vs -->
+					<div id="vsSpan" class="vsSpan">
+							<div class='p'>完</div>
+					</div>
+					<!-- 主队比分 -->
+					<div id="team-z" class="h-t team-z">
+						<div class="team-text">
+							<span id='z-name'></span>
+							<span id='z-socre'></span>
+						</div>
+					</div>
+					<!-- 客队比分 -->
+					<div id="team-v" class="v-t team-v">
+						<div class="team-text">
+							<span id='v-socre'></span>
+							<span id='v-name'></span>
+						</div>
+					</div>
+
+					<!--比赛开始-->
+					<div id="gamestart" class="gamestart">
+						<div class="startbox">
+							<div class="start-icon"></div>
+							<h3>比赛开始</h3>
+						</div>
+					</div>
+					<!-- 比赛结束 -->
+					<div id="gameover" class="gameover">
+						<div class="overbox">
+							<h3>全场结束</h3>
+						</div>
+					</div>
+					<!-- 比赛中止 -->
+					<div id="gamestop" class="gamestop">
+						<div class="stopbox">
+							<h3>比赛中止</h3>
+						</div>
+					</div>
+					<!-- 伤停补时 -->
+					<div id="game-stbs" class="game-stbs">
+						<div class="stbsbox">
+							<h3>伤停补时<span id="stbs_time"></span></h3>
+						</div>
+					</div>
+					<!--主队进球-->
+					<div id="goal-z" class="h-t goal-z">
+						<div class="goal-e"></div>
+						<div class="text">
+							<h3>进球</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队进球-->
+					<div id="goal-k" class="v-t goal-k">
+						<div class="goal-e"></div>
+						<div class="text">
+							<h3>进球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队进球取消-->
+					<div id="c-goal-z" class="h-t c-goal-z">
+						<div class="goal-e"></div>
+						<div class="text">
+							<h3>进球取消</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队进球取消-->
+					<div id="c-goal-k" class="v-t c-goal-k">
+						<div class="goal-e"></div>
+						<div class="text">
+							<h3>进球取消</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队点球-->
+					<div id="penalty-z" class="h-t penalty-z">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>点球</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队点球-->
+					<div id="penalty-k" class="v-t penalty-k">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>点球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队重罚点球-->
+					<div id="a-penalty-z" class="h-t a-penalty-z">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>重罚点球</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队点球-->
+					<div id="a-penalty-k" class="v-t a-penalty-k">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>重罚点球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队罚失点球-->
+					<div id="l-penalty-z" class="h-t l-penalty-z">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>罚失点球</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队罚失点球-->
+					<div id="l-penalty-k" class="v-t l-penalty-k">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>罚失点球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队取消点球-->
+					<div id="c-penalty-z" class="h-t c-penalty-z">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>取消点球</h3>
+							<p>女王巡游者公园</p>
+						</div>
+					</div>
+					<!--客队取消点球-->
+					<div id="c-penalty-k" class="v-t c-penalty-k">
+						<div class="penalty-e"></div>
+						<div class="text">
+							<h3>取消点球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+
+					<!--主队角球-->
+					<div id="corner-z" class="h-t corner-z">
+						<div class="cornerbox rot180">
+							<i class="fb-icon"></i>
+							<div class="corner-e"></div>
+						</div>
+						<div class="textbox">
+							<div class="text">
+								<h3>角球</h3>
+								<p>女王公园巡游者</p>
+							</div>
+						</div>
+					</div>
+					<!--客队角球-->
+					<div id="corner-k" class="v-t corner-k">
+						<div class="cornerbox">
+							<i class="fb-icon"></i>
+							<div class="corner-e"></div>
+						</div>
+						<div class="textbox">
+							<div class="text">
+								<h3>角球</h3>
+								<p>阿森纳</p>
+							</div>
+						</div>
+					</div>
+					<!--主队取消角球-->
+					<div id="c-corner-z" class="h-t c-corner-z">
+						<div class="cornerbox rot180">
+							<div class="corner-e"></div>
+						</div>
+						<div class="textbox">
+							<div class="text">
+								<h3>取消角球</h3>
+								<p>女王公园巡游者</p>
+							</div>
+						</div>
+					</div>
+					<!--客队取消角球-->
+					<div id="c-corner-k" class="v-t c-corner-k">
+						<div class="cornerbox">
+							<div class="corner-e"></div>
+						</div>
+						<div class="textbox">
+							<div class="text">
+								<h3>取消角球</h3>
+								<p>阿森纳</p>
+							</div>
+						</div>
+					</div>
+					<!--主队进攻-->
+					<div id="attack-z" class="h-t attack-z">
+						<div class="attack-bg"></div>
+						<div class="text">
+							<h3>进攻</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队进攻-->
+					<div id="attack-k" class="v-t attack-k">
+						<div class="attack-bg"></div>
+						<div class="text">
+							<h3>进攻</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--主队危险进攻-->
+					<div id="d-attack-z" class="h-t d-attack-z">
+						<div class="attack-bg"></div>
+						<div class="text">
+							<h3>危险进攻</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队危险进攻-->
+					<div id="d-attack-k" class="v-t d-attack-k">
+						<div class="attack-bg"></div>
+						<div class="text">
+							<h3>危险进攻</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队球门球-->
+					<div id="kick-z" class="h-t kick-z">
+						<div class="kick-pt">
+							<i class="fb-icon"></i>
+							<div class="kick-z-bg"></div>
+						</div>
+						<div class="text">
+							<h3>球门球</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队球门球-->
+					<div id="kick-k" class="v-t kick-k">
+						<div class="kick-pt">
+							<i class="fb-icon"></i>
+							<div class="kick-k-bg"></div>
+						</div>
+						<div class="text">
+							<h3>球门球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队界外球-->
+					<div id="outball-z" class="h-t outball-z">
+						<div class="outball-pt">
+							<i class="fb-icon"></i>
+							<div class="outball-z-bg"></div>
+						</div>
+						<div class="text">
+							<h3>掷界外球</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队界外球-->
+					<div id="outball-k" class="v-t outball-k">
+						<div class="outball-pt">
+							<i class="fb-icon"></i>
+							<div class="outball-k-bg"></div>
+						</div>
+						<div class="text">
+							<h3>掷界外球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队任意球-->
+					<div id="freekick-z" class="h-t freekick-z">
+						<div>
+							<i class="fb-icon"></i>
+							<div class="fk-amt"></div>
+							<div class="freekick-bg"></div>
+						</div>
+						<div class="text">
+							<h3>任意球</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队任意球-->
+					<div id="freekick-k" class="v-t freekick-k">
+						<div>
+							<i class="fb-icon"></i>
+							<div class="fk-amt"></div>
+							<div class="freekick-bg"></div>
+						</div>
+						<div class="text">
+							<h3>任意球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队危险任意球-->
+					<div id="d-freekick-z" class="h-t d-freekick-z">
+						<div>
+							<i class="fb-icon"></i>
+							<div class="fk-amt"></div>
+							<div class="freekick-bg"></div>
+						</div>
+						<div class="text">
+							<h3>危险任意球</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队危险任意球-->
+					<div id="d-freekick-k" class="v-t d-freekick-k">
+						<div>
+							<i class="fb-icon"></i>
+							<div class="fk-amt"></div>
+							<div class="freekick-bg"></div>
+						</div>
+						<div class="text">
+							<h3>危险任意球</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队犯规-->
+					<div id="foul-z" class="rule-h foul-z">
+						<div class="foul-icon"></div>
+						<div class="text">
+							<h3>犯规</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队犯规-->
+					<div id="foul-k" class="rule-v foul-k">
+						<div class="foul-icon"></div>
+						<div class="text">
+							<h3>犯规</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队红牌-->
+					<div id="redcard-z" class="rule-h redcard-z">
+						<div class="redcard-icon"></div>
+						<div class="text">
+							<h3>红牌</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队红牌-->
+					<div id="redcard-k" class="rule-v redcard-k">
+						<div class="redcard-icon"></div>
+						<div class="text">
+							<h3>红牌</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队红牌取消-->
+					<div id="c-redcard-z" class="rule-h c-redcard-z">
+						<div class="c-redcard-icon"></div>
+						<div class="text">
+							<h3>红牌取消</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队红牌取消-->
+					<div id="c-redcard-k" class="rule-v c-redcard-k">
+						<div class="c-redcard-icon"></div>
+						<div class="text">
+							<h3>红牌取消</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队黄牌-->
+					<div id="yellowcard-z" class="rule-h yellowcard-z">
+						<div class="yellowcard-icon"></div>
+						<div class="text">
+							<h3>黄牌</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队黄牌-->
+					<div id="yellowcard-k" class="rule-v yellowcard-k">
+						<div class="yellowcard-icon"></div>
+						<div class="text">
+							<h3>黄牌</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队黄牌取消-->
+					<div id="c-yellowcard-z" class="rule-h c-yellowcard-z">
+						<div class="c-yellowcard-icon"></div>
+						<div class="text">
+							<h3>黄牌取消</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队黄牌取消-->
+					<div id="c-yellowcard-k" class="rule-v c-yellowcard-k">
+						<div class="c-yellowcard-icon"></div>
+						<div class="text">
+							<h3>黄牌取消</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队两黄变一红-->
+					<div id="yellow-red-z" class="rule-h yellow-red-z">
+						<div class="yellow-red"></div>
+						<div class="text">
+							<h3>两黄变一红</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队两黄变一红-->
+					<div id="yellow-red-k" class="rule-v yellow-red-k">
+						<div class="yellow-red"></div>
+						<div class="text">
+							<h3>两黄变一红</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队射门-->
+					<div id="shoot-z" class="h-t shoot-z">
+						<div class="shoot-icon"></div>
+						<div class="text">
+							<h3>射门</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队射门-->
+					<div id="shoot-k" class="v-t shoot-k">
+						<div class="shoot-icon"></div>
+						<div class="text">
+							<h3>射门</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队射正球门-->
+					<div id="shootin-z" class="h-t shootin-z">
+						<div class="shootin-icon"></div>
+						<div class="text">
+							<h3>射正球门</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队射正球门-->
+					<div id="shootin-k" class="v-t shootin-k">
+						<div class="shootin-icon"></div>
+						<div class="text">
+							<h3>射正球门</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队射偏球门-->
+					<div id="shootout-z" class="h-t shootout-z">
+						<div class="shootout-icon"></div>
+						<div class="text">
+							<h3>射偏球门</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队射正球门-->
+					<div id="shootout-k" class="v-t shootout-k">
+						<div class="shootout-icon"></div>
+						<div class="text">
+							<h3>射偏球门</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队射中门框-->
+					<div id="shootdoor-z" class="h-t shootdoor-z">
+						<div class="shootdoor-icon"></div>
+						<div class="text">
+							<h3>射中门框</h3>
+							<p>女王公园巡游者女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队射中门框-->
+					<div id="shootdoor-k" class="v-t shootdoor-k">
+						<div class="shootdoor-icon"></div>
+						<div class="text">
+							<h3>射中门框</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队换人-->
+					<div id="sub-z" class="rule-h sub-z">
+						<div class="sub-icon">
+							<i class="sub" id="home_sub">8</i>
+							<i class="subfor" id="home_sub_for">10</i>
+						</div>
+						<div class="text">
+							<h3>换人</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队换人-->
+					<div id="sub-k" class="rule-v sub-k">
+						<div class="sub-icon">
+							<i class="sub" id="guest_sub">6</i>
+							<i class="subfor" id="guest_sub_for">11</i>
+						</div>
+						<div class="text">
+							<h3>换人</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--主队越位-->
+					<div id="offside-z" class="h-t offside-z">
+						<div class="offside-bg">
+							<i class="offside-icon"></i>
+							<div class="yellow-line"></div>
+						</div>
+						<div class="text">
+							<h3>越位</h3>
+							<p>女王公园巡游者</p>
+						</div>
+					</div>
+					<!--客队越位-->
+					<div id="offside-k" class="v-t offside-k">
+						<div class="offside-bg">
+							<i class="offside-icon"></i>
+							<div class="yellow-line"></div>
+						</div>
+						<div class="text">
+							<h3>越位</h3>
+							<p>阿森纳</p>
+						</div>
+					</div>
+					<!--比赛暂停-->
+					<div id="game-pause" class="game-pause">
+						<h3>比赛暂停</h3>
+						<div class="score-box">
+							<div class="secre-txt">主队</div>
+							<div class="secre-txt">客队</div>
+							<div class="scorediv">
+								<span id="home_score_pause_panel">0</span>
+							</div>
+							<div class="scorediv">
+								<span id="guest_score_pause_panel">0</span>
+							</div>
+						</div>
+					</div>
+					<!-- 中场休息 -->
+					<div id="game-half" class="game-half">
+						<h3>中场休息</h3>
+
+						<div class="score-box">
+							<div class="secre-txt">主队</div>
+							<div class="secre-txt">客队</div>
+							<div class="scorediv" id="mid_home">
+								<span id="home_score_half_panel">0</span>
+							</div>
+							<div class="scorediv" id="mid_guest">
+								<span id="guest_score_half_panel">0</span>
+							</div>
+						</div>
+					</div>
+					<!--比赛进球比分变化-->
+					<div id="goal-score" class="goal-score">
+						<h3>12:35</h3>
+						<div class="score-box">
+							<div class="secre-txt">主队</div>
+							<div class="secre-txt">客队</div>
+							<div class="scorediv">
+								<span class="score-h" id="old_home_score">0</span>
+								<span class="score-h-n" id="new_home_score">0</span>
+							</div>
+							<div class="scorediv">
+								<span class="score-v" id="old_guest_score">0</span>
+								<span class="score-v-n" id="new_guest_score">0</span>
+							</div>
+						</div>
+					</div>
+					<!--首次加载比分显示动画-->
+					<div id="load_first_goal" class="load_first_goal">
+						<h3>0</h3>
+
+						<div class="score-box">
+							<div class="secre-txt">主队</div>
+							<div class="secre-txt">客队</div>
+							<div class="scorediv">
+								<span id="home_score_first_panel">0</span>
+							</div>
+							<div class="scorediv">
+								<span id="guest_score_first_panel">0</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="clear"></div>
+			<!--主队图标解释-->
+			<div class="icon-hover-z">
+				<i class="arrow-b"></i>
+				<span>20'</span>
+				<span>女王公园巡游者进球</span>
+			</div>
+			<!--客队图标解释-->
+			<div class="icon-hover-k">
+				<i class="arrow-t"></i>
+				<span>20'</span>
+				<span>阿森纳进球</span>
+			</div>
+		</div>
+		<input type="hidden" id="zcxx_status" value="0"/>
+	  <!-- <input type="hidden" id="bszz_status" value="0" /> -->
+
+	</div>
+	@import '../views/foot.html';
+	<script src="/common/jquery.min.js"></script>
+	<script src="/scripts/controllers/live/animations@@MINEXT.js"></script>
+	<script type="text/javascript" src='/common/stomp.js'></script>
+	<script type="text/javascript" src='/scripts/controllers/live/graphic@@MINEXT.js'></script>
+
+</body>
+
+</html>
