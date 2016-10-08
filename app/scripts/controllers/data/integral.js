@@ -1,7 +1,3 @@
-/**
- * Created by john on 2016/6/2.
- */
-
 var integral = angular.module("live1.integral");
 
 integral.config(["$translateProvider", function ($translateProvider) {
@@ -22,7 +18,8 @@ integral.config(["$translateProvider", function ($translateProvider) {
     "DATA_CHOICEROUND":"Select Round ",
     "DATA_ROUNDS":"Round ",
     "DATA_ROUNDS_NO":"",
-    "DATA_NODATA":"No Data"
+    "DATA_NODATA":"No Data",
+    "RANK_TEAM":"Ranking/Team"
   }
   var translationsZH = {
     "DATA_TITLE":"【足球资料库】足球联赛_赛程_球队_球员数据库-一比分",
@@ -42,7 +39,8 @@ integral.config(["$translateProvider", function ($translateProvider) {
     "DATA_CHOICEROUND":"选择轮次",
     "DATA_ROUNDS":"第",
     "DATA_ROUNDS_NO":"轮",
-    "DATA_NODATA":"暂无数据"
+    "DATA_NODATA":"暂无数据",
+    "RANK_TEAM":"排名/球队"
 
   };
   var translationsZH_HANS = {
@@ -63,7 +61,8 @@ integral.config(["$translateProvider", function ($translateProvider) {
     "DATA_CHOICEROUND":"選擇輪次",
     "DATA_ROUNDS":"第",
     "DATA_ROUNDS_NO":"輪",
-    "DATA_NODATA":"暫無數據"
+    "DATA_NODATA":"暫無數據",
+    "RANK_TEAM":"排名/球隊"
 
   };
   var translationsTH = {
@@ -76,13 +75,14 @@ integral.config(["$translateProvider", function ($translateProvider) {
     "DATA_DEFEATCOUNT":"แพ",
     "DATA_GAINANDLOSS":"ได้/พลาด",
     "DATA_ENDWIN":"สุทธ",
-    "DATA_SCORE":"สกอร",
+    "DATA_SCORE":"แต้ม",
     "DATA_LEAGUEROUNDS":"เกมรอบที่",
     "DATA_LEAGUEROUNDS_NO":"ในลีก",
     "DATA_CHOICEROUND":"เลือกรอบ",
     "DATA_ROUNDS":"รอบที",
     "DATA_ROUNDS_NO":"",
-    "DATA_NODATA":"ไม่มีข้อมูล"
+    "DATA_NODATA":"ไม่มีข้อมูล",
+    "RANK_TEAM":"อันดับ/ทีม"
   }
   var translationsVI = {
     "DATA_TITLE":"Trung Tâm Dữ Liệu Bóng Đá",
@@ -100,7 +100,8 @@ integral.config(["$translateProvider", function ($translateProvider) {
     "DATA_CHOICEROUND":"Mời Chọn Vòng Đấu",
     "DATA_ROUNDS":"Vòng Thứ ",
     "DATA_ROUNDS_NO":"",
-    "DATA_NODATA":"không có dữ liệu"
+    "DATA_NODATA":"không có dữ liệu",
+    "RANK_TEAM":"Xếp hạng/Đội bóng"
   }
 
   $translateProvider.translations('zh', translationsZH);
@@ -143,24 +144,31 @@ integral.controller("integralController", [
     var leagueId,type,integralTime;
 
     $scope.$on("$viewContentLoaded", function ($window) {
+
+      // loading图片
+      $scope.loadingShow=true;
+
       leagueId =mobileUtil.getSearch()['lid'];
       type =mobileUtil.getSearch()['type'];
+      $scope.leagueId=leagueId;
       $scope.type=type;
+      $scope.navId=$scope.getObjectFromSessionStorage('navId');
+      if($scope.navId==null){
+        $scope.navId='00';
+      }
+
       // 积分榜控制
+      $scope.langueScores=null;
       langueScoreServiceFactory.langueScoreData($scope,leagueId,type);
-      // loading图片
-      $scope.schedulesShow=true;
-      $scope.langueScoresShow=true;
 
       // 计算高度
       $scope.setHeight();
 
-      // 选择赛季
-      $(".integral-time").on("click",function(){
-            $(".integral-time >span:last").css('background','url(../images/data/select2.png) no-repeat right bottom');
-            $(".choiceTips").slideDown("fast");
-            $(".timeMask").css('display','block');
-      })
+      $scope.time_click=function(){
+        $(".integral-time >span:last").css('background','url(../images/data/select2.png) no-repeat right bottom');
+        $(".choiceTips").slideDown("fast");
+        $(".timeMask").css('display','block');
+      }
       $(".timeMask").on("click",function(){
         $(".choiceTips").slideUp("fast");
         $(".integral-time >span:last").css('background','url(../images/data/select.png) no-repeat right bottom');
@@ -196,7 +204,6 @@ integral.controller("integralController", [
           $('.selectBtn').fadeIn().css('display','flex');
         }
       }
-
       // 点击按钮显示弹出层
       $scope.alertRound=function(){
         $('.mask').show();
@@ -204,7 +211,25 @@ integral.controller("integralController", [
         $('body').addClass('body');
         $(".choiceRound ul").scrollTop($(".choiceRound ul li").height()*$scope.defaultRoundIndex);
       }
-
+      $scope.handleTime=function(_time) {
+        var rDate,myDate;
+        for (var i = 0; i < _time.length; i++)
+        {
+          var info_list=_time[i].list;
+          for(var j = 0;j<info_list.length;j++){
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+              info_list[j].endTime = info_list[j].rDate;
+            }
+            else
+            {
+               rDate=info_list[j].rDate.split(" ");
+               myDate=new Date(rDate[0]);
+              info_list[j].endTime = rDate[1]+" "+myDate.Format('dd/MM/yyyy');
+            }
+          }
+        }
+        return info_list;
+      }
       // 点击遮罩层隐藏弹出层
       $('.mask').on("click",function(){
         $('.choiceRound').hide();
@@ -212,14 +237,12 @@ integral.controller("integralController", [
         $('body').removeClass('body');
       })
     })
-
-
     // 赛程控制
     $scope.defaultSchedule=function(){
-        var defaultTime=$scope.getObjectFromSessionStorage("dataDefaultTime");
-        scheduleServiceFactory.scheduleData($scope,leagueId,defaultTime,type);
-  }
-
+      var defaultTime=$scope.getObjectFromSessionStorage("dataDefaultTime");
+      $scope.schedules=null;
+      scheduleServiceFactory.scheduleData($scope,leagueId,defaultTime,type);
+    }
     //sessionStorage中获取对象
     $scope.getObjectFromSessionStorage = function (key) {
       return sessionStorage.getItem(key)
@@ -258,7 +281,14 @@ integral.controller("integralController", [
         }
         return language;
     }
-
+    // 取国家方法
+    $scope.getCountry = function () {
+        var country = $scope.getObjectFromLocalStorage("country");
+        if (country == null) {
+            country = defaultCountry;
+        }
+        return country;
+    };
     //高度计算
     $scope.setHeight=function (){
       var heightVal=document.documentElement.clientHeight - $("header").height();
@@ -270,6 +300,9 @@ integral.controller("integralController", [
 
     // 选择赛季时间
     $scope.choiceTime=function($event){
+
+      $scope.loadingShow=true;
+
       var index=$(".choiceTips span").index($event.currentTarget);
       $('.choiceTips_time').eq(index).addClass('on').siblings().removeClass('on');
       integralTime= $(".choiceTips_time").eq(index).html();
@@ -277,7 +310,8 @@ integral.controller("integralController", [
       $(".defaultTime").html(integralTime);
       $(".integral-time>span:last").css('background','url(../images/data/select.png) no-repeat right bottom');
       $(".choiceTips").slideUp("fast");
-      $scope.langueScoresShow=true;
+      $scope.langueScores=null;
+      $scope.schedules=null;
       choiceLeagueTimeServiceFactory.choiceLeagueTimeData($scope,leagueId,integralTime,type);
       $scope.putObjectToSessionStorage("dataDefaultTime",integralTime);
       scheduleServiceFactory.scheduleData($scope,leagueId,integralTime,type);
@@ -295,14 +329,16 @@ integral.controller("integralController", [
       integralTime= $(".defaultTime").html();
       $('.nextBtn img').css('opacity',1);
       $('.preBtn img').css('opacity',1);
-      if(index==$scope.minIndexRound){$('.preBtn img').css('opacity',0.5);}
-      if(index==$scope.maxIndexRound){$('.nextBtn img').css('opacity',0.5);}
+      if(index==$scope.minIndexRound){$('.preBtn img').css('opacity',0.4);}
+      if(index==$scope.maxIndexRound){$('.nextBtn img').css('opacity',0.4);}
 
+      $scope.loadingShow=true;
       choiceScheduleServiceFactory.choiceScheduleData($scope,leagueId,integralTime,roundNum,type);
     }
     // 左-减轮次
 
     $scope.subtractRound = function(){
+
       var nowRandNum=$('.randNum').find('i').html();
       integralTime= $(".defaultTime").html();
       var indexRound;
@@ -317,6 +353,7 @@ integral.controller("integralController", [
       }
       if(indexRound>$scope.minIndexRound)
       {
+        $scope.loadingShow=true;
         indexRound--;
         nowRandNum=$scope.roundDatas[indexRound].round;
         choiceScheduleServiceFactory.choiceScheduleData($scope,leagueId,integralTime,nowRandNum,type);
@@ -324,13 +361,13 @@ integral.controller("integralController", [
         $scope.defaultRound=nowRandNum;
         if(indexRound==$scope.minIndexRound)
         {
-          $('.preBtn img').css('opacity',0.5);
+          $('.preBtn img').css('opacity',0.4);
         }
       }
     }
-
     // 右-加轮次
     $scope.addRound = function(){
+
       var nowRandNum=$('.randNum').find('i').html();
       integralTime= $(".defaultTime").html();
       var indexRound;
@@ -343,8 +380,8 @@ integral.controller("integralController", [
           indexRound=i;
         }
       }
-
       if(indexRound<$scope.maxIndexRound){
+        $scope.loadingShow=true;
         indexRound++;
         nowRandNum=$scope.roundDatas[indexRound].round;
         choiceScheduleServiceFactory.choiceScheduleData($scope,leagueId,integralTime,nowRandNum,type);
@@ -358,6 +395,31 @@ integral.controller("integralController", [
     }
   }
 ]);
+// 时间格式化
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, // 月份
+        "d+": this.getDate(), // 日
+        "h+": this.getHours(), // 小时
+        "m+": this.getMinutes(), // 分
+        "s+": this.getSeconds(), // 秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+        "S": this.getMilliseconds()
+        // 毫秒
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "")
+            .substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
+                : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+};
+
 //*****************资料库服务**************
 // 默认赛季-积分榜服务
 integral.factory("langueScoreService", [
@@ -384,29 +446,29 @@ integral.factory("langueScoreServiceFactory", [
         {
           $scope.leagueTimess=data.leagueTimes;// 联赛时间
 
-          $scope.defaultTime=data.leagueTimes.leagueDate[0].date;
-
-          var defaultTime=data.leagueTimes.leagueDate[0].date;
-
+          if(data.leagueTimes.leagueDate!=null){
+            $scope.defaultTime=data.leagueTimes.leagueDate[0].date;
+            var defaultTime=data.leagueTimes.leagueDate[0].date;
+          }
           $scope.putObjectToSessionStorage("dataDefaultTime",defaultTime);
 
-          if(data.langueScore.length>0)
-          {
+          if(data.langueScore.length!=0){
+            if(data.langueScore.length>0){
               $scope.langueScores=data.langueScore;// 默认积分榜
+            }
+            else{
+              $scope.langueScores=null;
+            }
           }
           // 赛程控制
           $scope.defaultSchedule();
-
-          $scope.langueScoresShow=false;
-
+          $scope.loadingShow=false;
         }
-
       });
     };
     return obj;
   }
 ]);
-
 //选择赛季时间服务
 integral.factory("choiceLeagueTimeService", [
   "$resource",
@@ -434,10 +496,8 @@ integral.factory("choiceLeagueTimeServiceFactory", [
             {
                 $scope.langueScores=data.leaTeamList;// 联赛时间
             }
-            $scope.langueScoresShow=false;
-
+            //$scope.loadingShow=false;
           }
-
       });
     };
     return obj;
@@ -467,31 +527,52 @@ integral.factory("scheduleServiceFactory", [
         scheduleService.get({lang:$scope.getLanguage(),leagueId:leagueId,leagueDate:leagueDate,type:type}, function (data) {
           if(data.code==200)
           {
-            $scope.schedules=data.race;
-            $scope.roundDatas=data.data;
-            if($scope.roundDatas!=null)
-            {
-              for(var i=0;i<$scope.roundDatas.length;i++)
+            if(data.race!=null){
+                $scope.schedules=data.race;
+                $scope.handleTime(data.race);
+            }
+            if(data.data.length!=0){
+              $scope.roundDatas=data.data;
+              if($scope.roundDatas!=null)
               {
-                if($scope.roundDatas[i].current==true)
+                var tempRoundDatas=[];
+                for(var i=0;i<$scope.roundDatas.length;i++)
                 {
-                  $scope.defaultRoundIndex=i;
-                  $scope.defaultRound=$scope.roundDatas[i].round;
+                  if($scope.roundDatas[i].current==true)
+                  {
+                    $scope.defaultRoundIndex=i;
+                    $scope.defaultRound=$scope.roundDatas[i].round;
+                  }
+                  if($scope.roundDatas[i].round!=null){
+                    tempRoundDatas.push($scope.roundDatas[i]);
+                  }
+                }
+                $scope.roundDatas = tempRoundDatas;
+                $scope.minIndexRound=0;
+                $scope.maxIndexRound=$scope.roundDatas.length-1;
+                if($scope.defaultRound==$scope.roundDatas[$scope.minIndexRound].round)
+
+                {
+                  $('.preBtn img').css('opacity',0.4);
+                }
+                if($scope.defaultRound==$scope.roundDatas[$scope.maxIndexRound].round)
+                {
+                  $('.nextBtn img').css('opacity',0.4);
                 }
               }
-              $scope.minIndexRound=0;
-              $scope.maxIndexRound=$scope.roundDatas.length-1;
-              if($scope.defaultRound==$scope.roundDatas[$scope.minIndexRound].round)
+            }
+
+            if(data.race==null)
+            {
+              $scope.schedules=null;
+            }else {
+              if(data.race[0].list.length==0)
               {
-                $('.preBtn img').css('opacity',0.5);
-              }
-              if($scope.defaultRound==$scope.roundDatas[$scope.maxIndexRound].round)
-              {
-                $('.nextBtn img').css('opacity',0.5);
+                $scope.schedules=null;
               }
             }
           }
-          $scope.schedulesShow=false;
+          $scope.loadingShow=false;
         });
       };
     return obj;
@@ -521,6 +602,7 @@ integral.factory("choiceScheduleServiceFactory", [
           if(data.code==200){
             if(data.race.length>0){
               $scope.schedules=data.race;
+              $scope.handleTime(data.race);
               if(data.race.length==1)
               {
                 if(data.race[0].list.length==0)
@@ -529,12 +611,28 @@ integral.factory("choiceScheduleServiceFactory", [
                 }
               }
             }
-              $scope.langueScoresShow=false;
+
           }else {
               $scope.schedules=null;
           }
+
+              $scope.loadingShow=false;
       });
     };
     return obj;
   }
 ]);
+/**
+ * 球队logo加载失败时，使用默认logo
+ * @param obj
+ */
+var logoLoadErr = function (obj,team) {
+  var logoUrl = "@@IMGURL/live/404.png";
+  if(team=='team'){
+    obj.src = logoUrl;
+  }else{
+    obj.src = logoUrl;
+  }
+  obj.src = logoUrl;
+  obj.onerror = null;
+};

@@ -9,7 +9,8 @@ news.config(["$translateProvider", function ($translateProvider) {
     "TITLE":	"One Score Information",
     "SPORTS_NEWS":	"Sports Information",
     "RECOMMEND":	"Recommend",
-    "ONLOADING":	"Loading hard..."
+    "ONLOADING":	"Loading hard...",
+    "DATA_NODATA":"No Data",
   }
   var translationsZH = {
     "TITLE": "一比分-足球比分直播平台，快5秒的足球比分网",
@@ -18,6 +19,7 @@ news.config(["$translateProvider", function ($translateProvider) {
     "SPORTS_NEWS": "体育资讯",
     "RECOMMEND": "推荐",
     "ONLOADING": "拼命加载中...",
+    "DATA_NODATA":"暂无数据",
 
   };
   var translationsZH_HANS = {
@@ -27,19 +29,22 @@ news.config(["$translateProvider", function ($translateProvider) {
     "SPORTS_NEWS": "體育資訊",
     "RECOMMEND": "推薦",
     "ONLOADING": "拼命加載中...",
+    "DATA_NODATA":"暫無數據",
 
   };
   var translationsTH = {
     "TITLE":	"ข่าววันสกอร์",
     "SPORTS_NEWS":	"ข่าวกีฬา",
     "RECOMMEND":	"แนะนำ",
-    "ONLOADING":	"กำลังโหลด..."
+    "ONLOADING":	"กำลังโหลด...",
+    "DATA_NODATA":"ไม่มีข้อมูล",
 }
   var translationsVI = {
     "TITLE":	 "Tin tức Tỷ Số Nhất",
     "SPORTS_NEWS":	"tin tức thể thao",
     "RECOMMEND":"Đề nghị",
-    "ONLOADING":	"Đang cố cập nhật nhanh..."
+    "ONLOADING":	"Đang cố cập nhật nhanh...",
+    "DATA_NODATA":"không có dữ liệu",
 }
 
   $translateProvider.translations('zh', translationsZH);
@@ -92,7 +97,11 @@ news.factory("indexServiceFactory", [
       var timezone = window.localStorage.getItem("timezone") || $scope.timezone;
         indexService.get({lang: $scope.getLanguage(),timeZone:timezone}, function (data) {
 
+          echo.init();  //初始化懒加载方法
+          $scope.viewNum =6;  //当前可视区域为6个
           $scope.handleLoadIndexData(data,boolean);//处理首页数据
+
+          $scope.infoShow=false;
       });
     };
     return obj;
@@ -123,7 +132,12 @@ news.factory("listServiceFactory", [
         var timezone = window.localStorage.getItem("timezone") || $scope.timezone;
         listService.get({lang: $scope.getLanguage(),currentPage:pageIndex,infoType:infoType,timeZone:timezone}, function (data) {
 
-        $scope.handleLoadListData(data);//处理列表数据
+          echo.init();  //初始化懒加载方法
+          $scope.viewNum =6;  //当前可视区域为6个
+
+          $scope.handleLoadListData(data);//处理列表数据
+
+          $scope.infoShow=false;
 
       });
 
@@ -214,6 +228,8 @@ news.controller("newsController", [
     //加载完执行该方法
     $scope.$on("$viewContentLoaded", function ($window) {
 
+      $scope.infoShow=true;
+
       var infoType=$scope.getObjectFromSessionStorage("newsInfoType");
 
       $scope.infoType=infoType;
@@ -233,6 +249,19 @@ news.controller("newsController", [
       }else{
         ifIndex=true;
       }
+
+
+      if(infoType==5)
+      {
+        $scope.infoTypeStutas=false;
+      }else if(infoType==13)
+      {
+        $scope.infoTypeStutas=false;
+      }else
+      {
+        $scope.infoTypeStutas=true;
+      }
+
 
       $scope.initData(timestamp,infoType,ifIndex);
 
@@ -270,21 +299,25 @@ news.controller("newsController", [
 
       $(".newsNav ul li").eq(index).addClass("active").siblings().removeClass("active");
 
-      //var length=$scope.headTitles.length;
+      var offsets=0;
 
-      //var width=Math.round(100/length * 100) / 100.00 + "%";
+      for(var i=0;i<index;i++){
+        offsets += $(".newsNav ul li").eq(i).innerWidth();
+      }
 
-      //$(".newsNav ul li").css( {width: width} );
-
-      var offsets=(parseInt(index)/($(".newsNav").width()/$(".newsNav ul li").width()))*$(".newsNav").width()-$(".newsNav ul li").width();
-
+      offsets=offsets-$(".newsNav ul li").width();
       $(".newsNav").scrollLeft(offsets);
+
 
     });
 
 
     //导航栏点击事件
     $scope.liClick = function ($event) {
+
+      $scope.infoShow=true;
+
+      $scope.infos=null;
 
       var index = $(".newsNav ul li").index($event.currentTarget);
 
@@ -315,6 +348,18 @@ news.controller("newsController", [
       }
 
       $scope.putObjectToSessionStorage("newsIfIndex",ifIndex);
+
+
+      if(infoType==5)
+      {
+        $scope.infoTypeStutas=false;
+      }else if(infoType==13)
+      {
+        $scope.infoTypeStutas=false;
+      }else
+      {
+        $scope.infoTypeStutas=true;
+      }
 
       $scope.initData(timestamp,infoType,ifIndex);
 
@@ -443,19 +488,96 @@ news.controller("newsController", [
       var headTitles=JSON.parse($scope.getObjectFromSessionStorage("newsHeadTitles"));
       $scope.headTitles =headTitles;
       $scope.infos =  $scope.handleInfos(data.infos);    //列表数据
+
+      if( $scope.infos.length==0)
+      {
+        $scope.infos=null;
+      }
+
       $scope.adsShow=false;//图片轮播是否显示
     }
 
-    //处理资讯图片为空时高度问题
-    $scope.handleInfos=function(infos) {
+    // 时间格式化
+    Date.prototype.Format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, // 月份
+            "d+": this.getDate(), // 日
+            "h+": this.getHours(), // 小时
+            "m+": this.getMinutes(), // 分
+            "s+": this.getSeconds(), // 秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+            "S": this.getMilliseconds()
+            // 毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "")
+                .substr(4 - RegExp.$1.length));
+        }
 
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
+                    : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return fmt;
+    };
+
+    //处理资讯返回时间
+    $scope.handleInfos=function(infos) {
       for (var i = 0; i < infos.length; i++)
       {
-
-        infos[i].lastModifyDate=infos[i].lastModifyDate.substring(5,infos[i].lastModifyDate.length);
-
+        // infos[i].lastModifyDate=infos[i].lastModifyDate.substring(5,infos[i].lastModifyDate.length);
+        var myDate = new Date(infos[i].lastModifyDate);
+        if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+            infos[i].lastModifyDateTime=myDate.Format('MM-dd')+"  "+infos[i].lastModifyTime;
+        }else{
+          infos[i].lastModifyDateTime=infos[i].lastModifyTime+"  "+myDate.Format('dd/MM');
+        }
       }
+
       return infos;
+    }
+
+    //资讯点击事件
+    $scope.infoClick= function ($event) {
+
+      var index = $(".new_bd ul li").index($event.currentTarget);
+      var infoId=$(".new_bd ul li").eq(index).find("a").attr("id");
+
+      var infoType=$scope.infoType;
+      var headTitles=JSON.parse(sessionStorage.getItem("newsHeadTitles"));
+
+      if(infoType==null)
+      {
+        infoType=headTitles[0].infoType;
+      }
+
+      $scope.putObjectToSessionStorage("newsInfoId",infoId);
+
+      var newsHistoryIds=$scope.getObjectFromSessionStorage("newsHistoryIds"+infoType);
+
+      var newsHistoryIdsArr = [];
+      if (newsHistoryIds == null) {
+        newsHistoryIdsArr.push(infoId);
+        $scope.putObjectToSessionStorage("newsHistoryIds"+infoType, infoId + ",");
+
+      } else {
+        newsHistoryIdsArr = newsHistoryIds.split(",");
+        if (newsHistoryIdsArr.indexOf(infoId) == -1) {
+
+          if (newsHistoryIdsArr.length < 30) {
+
+            $scope.putObjectToSessionStorage("newsHistoryIds"+infoType, newsHistoryIds + infoId + ",");
+
+          } else {
+
+            newsHistoryIds=newsHistoryIds.replace(newsHistoryIdsArr[0]+",","");
+            $scope.putObjectToSessionStorage("newsHistoryIds"+infoType, newsHistoryIds + infoId + ",");
+
+          }
+        }
+      }
 
     }
 
@@ -496,6 +618,7 @@ news.controller("newsController", [
     $scope.removeObjectFromLocalStorage = function (key) {
       localStorage.removeItem(key);
     }
+
     //取语言版本方法
     $scope.getLanguage = function () {
       var language = $scope.getObjectFromLocalStorage("language");
@@ -510,6 +633,14 @@ news.controller("newsController", [
       }
       return language;
     }
+    // 取国家方法
+    $scope.getCountry = function () {
+        var country = $scope.getObjectFromLocalStorage("country");
+        if (country == null) {
+            country = defaultCountry;
+        }
+        return country;
+    };
 
   }
 ]);

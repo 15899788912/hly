@@ -19,18 +19,20 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
       "nav_news" : "体育资讯",
       "nav_odds" : "足球指数",
       "nav_data" : "足球数据",
+      "nav_basketdata": "篮球数据",
       "nav_video": "视频直播",
       "nav_kj":"彩票开奖",
       "nav_thcp": "泰国彩票"
     },
     en : {
-      "nav_title":	"One Score",
-      "IMG_LOGO":	"/images/en/logo.png",
+      "nav_title":  "One Score",
+      "IMG_LOGO": "/images/en/logo.png",
       "nav_basketball":"Basketball Score",
       "nav_football":"Football Score",
       "nav_news" : "Sports Information",
       "nav_odds" : "Football Odds",
       "nav_data" : "Football Data",
+      "nav_basketdata": "Basketball Data",
       "nav_video": "Live Video",
       "nav_kj":"Lottery Draw",
       "nav_thcp":"lotto thai"
@@ -43,6 +45,7 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
       "nav_news" : "體育資訊",
       "nav_odds" : "指數",
       "nav_data" : "足球數據",
+      "nav_basketdata": "籃球數據",
       "nav_video": "視頻直播",
       "nav_kj":"彩票開獎",
       "nav_thcp":"泰國彩票"
@@ -50,24 +53,26 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
     th: {
       "nav_title":"วันสกอร์ ",
       "IMG_LOGO":"/images/th/logo.png",
-      "nav_basketball":"สกอร์บาสเกตบอล",
+      "nav_basketball":"สกอร์บาส",
       "nav_football":"สกอร์ฟุตบอล",
-      "nav_news" : "ข่าวกีฬา",
-      "nav_odds" : "ออดซฟุตบอล",
+      "nav_news" : "หน้าแรก",
+      "nav_odds" : "เปรียบเทียบอัตราต่อรอง",
       "nav_data" : "ข้อมูลฟุตบอล",
+      "nav_basketdata": "ฐานข้อมูลบาส",
       "nav_video": "วิดีโอถ่ายทอดสด",
       "nav_kj":"การออกผลล็อตเตอรี่",
-      "nav_thcp":"lotto thai"
+      "nav_thcp":"ผลสลากกินแบ่งรัฐบาล"
     },
     vi : {
       "nav_title":"Tỷ Số Nhất",
       "IMG_LOGO":"/images/vi/logo.png",
-      "nav_basketball":"Tỷ số bống rổ",
-      "nav_football":"Tỷ số bống đá",
-      "nav_news" : "tin tức thể thao",
+      "nav_basketball":"Tỷ số bóng rổ",
+      "nav_football":"Tỷ số bóng đá",
+      "nav_news" : "Tin tức thể thao",
       "nav_odds" : "Chỉ số bóng đá",
-      "nav_data" : "Dữ Liệu Bóng Đá",
-      "nav_video": "trực tuyến",
+      "nav_data" : "Dữ liệu bóng đá",
+      "nav_basketdata": "Dữ liệu bóng rổ",
+      "nav_video": "Trực tiếp bóng đá",
       "nav_kj":"Xổ số",
       "nav_thcp":"lotto thai"
     }

@@ -1,11 +1,11 @@
 
 <div id="header" class="liveh">
-
- <div class="tabs" id="tabs">
-        <a href="#" class="active">{{'TABS_IMMEDIATE' | translate}}</a>
-        <a href="#">{{'TABS_RESULTS' | translate}}</a>
-        <a href="#">{{'TABS_SCHEDULE' | translate}}</a>
-        <a href="#">{{'TABS_ATTENTION' | translate}}<font class="J-shoping" ng-class="{true: 'J-shoping-op', false: ''}[attentionMatchCount==0]" ><span class="baseBg J-shoping-num">{{attentionMatchCount}}</span></font></a>
+    <div class="tabs" id="tabs">
+        <a href="#" class="active" ng-bind="'TABS_IMMEDIATE' | translate"></a>
+        <a href="#" ng-bind="'TABS_RESULTS' | translate"></a>
+        <a href="#" ng-bind="'TABS_SCHEDULE' | translate"></a>
+        <a href="#" ng-bind="'TABS_ATTENTION' | translate"></a>
+        <font class="J-shoping" ng-class="{true: 'J-shoping-op', false: ''}[attentionMatchCount==0]" ><span class="baseBg J-shoping-num">{{attentionMatchCount}}</span></font>
     </div>
     <div class="clear"></div>
 </div>
@@ -14,7 +14,7 @@
     <dd><i class="setup_icon" onclick="return false;" ng-click="filterSetWindowClick($event)"></i></dd>
 </dl>
 <div class="loading" ng-show="loadingImg"></div>
-<div class="coll_most" ng-show="maxAttentionMatchesCountWarn">
+<div class="coll_most" ng-if="maxAttentionMatchesCountWarn">
     <h2>{{'ATTENTION_SORRY' | translate}}</h2>
     <p translate="ATTENTION_SORRY_TEXT" translate-values="{'maxAttentionMatchCount': '<em>{{maxAttentionMatchCount}}</em>'}"></p>
     <p><button ng-click="attentionWarnCloseClick($event)">{{'BUTTON_CLOSE' | translate}}</button></p>
@@ -32,7 +32,7 @@
                             <i class="coll_icon" ng-class="{true: 'coll_slt', false: ''}[immediateMatch.attented]"
                                ng-click="addToAttention($event)" thirdId="{{immediateMatch.thirdId}}"
                                isClicked="{{immediateMatch.attented}}"></i>
-                            <a href="bifen/index.html?id={{immediateMatch.thirdId}}">
+                            <a href="bifen/index.html?id={{immediateMatch.thirdId}}&time={{immediateMatch.keepTime}}">
                           <div class="live_list">
                             <dl class="top_dl">
                                 <dd class="wid_40 align_r">
@@ -256,7 +256,7 @@
                             <i class="coll_icon coll_slt" ng-class="{true: 'coll_slt', false: ''}[attentionMatch.attented]"
                                ng-click="addToAttention($event)" thirdId="{{attentionMatch.thirdId}}"
                                isClicked="{{attentionMatch.attented}}"></i>
-                            <a href="bifen/index.html?id={{attentionMatch.thirdId}}">
+                            <a href="bifen/index.html?id={{attentionMatch.thirdId}}&time={{attentionMatch.keepTime}}">
                             <div class="live_list">
                                 <dl class="top_dl">
                                     <dd class="wid_40 align_r">
@@ -356,7 +356,7 @@
     <h2 class="day_title">{{'DAY_SELECT' | translate}}</h2>
     <ul>
         <li ng-repeat="resultDayWeek in resultDayWeeks" ng-class-even="'libg'" day = "{{resultDayWeek.day}}" ng-click="dayTimeLiClick($event)">
-            <span>{{resultDayWeek.day}}</span><em>{{resultDayWeek.week}}</em>
+            <span>{{resultDayWeek._day}}</span><em>{{resultDayWeek.week}}</em>
         </li>
     </ul>
 </div>
@@ -365,7 +365,7 @@
     <h2 class="day_title">{{'DAY_SELECT' | translate}}</h2>
     <ul>
         <li ng-repeat="scheduleDayWeek in scheduleDayWeeks" ng-class-even="'libg'" day="{{scheduleDayWeek.day}}" week="{{scheduleDayWeek.week}}" ng-click="dayTime2LiClick($event)">
-            <span>{{scheduleDayWeek.day}} <em>{{scheduleDayWeek.week}}</em></span>
+            <span>{{scheduleDayWeek._day}} <em>{{scheduleDayWeek.week}}</em></span>
         </li>
     </ul>
 </div>
@@ -618,4 +618,3 @@
     </div>
     <!--设置结束-->
 </div>
-

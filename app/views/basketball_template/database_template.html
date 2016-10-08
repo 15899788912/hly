@@ -1,0 +1,66 @@
+<header>
+  <!-- <div class="header-top">
+    <span class="back"><img ng-src='/images/live/backIcon.png' /></span>
+    <span class="header-tit">篮球资料库</span>
+  </div> -->
+  <div class="header-nav">
+    <div class="nav" id="nav">
+      <ul>
+        <li class="active hot" ng-data="hot"><span>{{'HEAD_NAV_HOT' | translate}}</span></li>
+        <li class="europe" ng-data="europe"><span>{{'HEAD_NAV_EUROPE' | translate}}</span></li>
+        <li class="america" ng-data="america"><span>{{'HEAD_NAV_AMERICA' | translate}}</span></li>
+        <li class="asia" ng-data="asia"><span>{{'HEAD_NAV_ASIA' | translate}}</span></li>
+        <li class="africa" ng-data="africa"><span>{{'HEAD_NAV_AFRICA' | translate}}</span></li>
+        <li class="intl" ng-data="intl"><span>{{'HEAD_NAV_INTL' | translate}}</span></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+</header>
+
+<div class="container">
+    <div ng-show="nationalLength != 0" class="tab-nav">
+        <ul>
+          <li class="active" ng-click="clickSpecific($event)"><span>{{'SPECIFICLEAGUE' | translate}}</span></li><li ng-click="clickNational($event)"><span>{{'NATIONALLEAGUE' | translate}}</span></li>
+        </ul>
+    </div>
+
+    <!-- 洲际赛事 -->
+    <div class="inter-block">
+        <ul>
+          <li ng-repeat="specificLeague in specificLeagues" ng-click="details(specificLeague.leagueId,specificLeague.matchType)">
+            <img ng-src='{{specificLeague.leagueLogoUrl}}' onerror="logoLoadErr(this,'team')" ng-if="$index<=viewNum" />
+
+            <img src="@@IMGURL/ba_teamLogo.png" data-echo="{{specificLeague.leagueLogoUrl}}" onerror="logoLoadErr(this,'team')" ng-if="$index>viewNum">
+            <span>{{specificLeague.leagueName}}</span></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <!-- 国家赛事 -->
+    <div class="country-block" ng-show="nationalLength != 0">
+      <ul ng-repeat="nationalLeagues in nationalLeaguess" ng-click="clickShowNation($index)">
+        <li ng-repeat="nationalLeague in nationalLeagues" ng-click="clickNationalLogo(nationalLeague.leagueData,$index)" ><img ng-src='{{nationalLeague.nationLogoUrl}}' onerror="logoLoadErr(this,'team')"  ng-if="$index<=viewNum"/>
+
+            <img src="@@IMGURL/ba_teamLogo.png" data-echo="{{nationalLeague.nationLogoUrl}}" onerror="logoLoadErr(this,'team')" ng-if="$index>viewNum">
+          <span>{{nationalLeague.nationName}}</span></li>
+        <div class="clear"></div>
+        <!-- 国家 -->
+        <div class="choose-show" id="country_show{{$index}}">
+          <ul>
+            <li ng-repeat="leagueData in leagueDatas" ng-click="details(leagueData.leagueId,leagueData.matchType)"><img ng-src="{{leagueData.leagueLogoUrl}}" onerror="logoLoadErr(this,'team')" /><span>{{leagueData.leagueName}}</span></li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+      </ul>
+
+
+
+      <div class="empty" ng-show="nationalLeague.length == 0">
+        <img ng-src="@@IMGURL/man.png" src="@@IMGURL/man.png"/>
+        <span>{{'NO_DATA' | translate}}<span>
+      </div>
+    </div>
+
+    <div class="loading" ng-show="loadingImg"></div>
+</div>

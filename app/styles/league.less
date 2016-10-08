@@ -1,0 +1,1100 @@
+@charset "utf-8";
+* {margin: 0;padding: 0}
+a {text-decoration: none;font-size: 14px;font-family:"微软雅黑", "arial","Angsana New";}
+html {width: 100%;height: 100%;-webkit-font-smoothing: antialiased;}
+html.ns {overflow: hidden}
+body {color: #666666;font-size: 14px !important;font-family: "微软雅黑","arial","Angsana New";width: 100%; background-color:#fff;height: 100%; position: relative; font-weight:normal; min-width:320px; position:relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+a, body{font-family: "微软雅黑","arial","Angsana New";-webkit-tap-highlight-color: rgba(0,0,0,0)}
+
+img {border: 0}
+ol, ul, li {list-style: none}
+dl, dt, dd, ul, li {margin: 0;padding: 0}
+input, textarea {outline: none}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+em,i {font-style: normal}
+
+
+.no-scroll {
+  //height: 100%!important;
+  overflow:hidden !important;
+}
+.inner-no-scroll {
+  overflow:hidden !important;
+}
+.no-scrollY {
+  overflow-y:hidden !important;
+}
+#league_header {
+  z-index:9999;
+  height:3.60rem;
+  width:100%;
+  position:fixed;
+  top:0;
+  //background-size:7.20rem 4.51rem;
+  background-color: #0090ff;
+  box-shadow: 0px 4px 4px 0px rgba(153,153,153,0.9);
+  .header_img {
+    height:98%;
+    width:100%;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+  }
+  .league_top {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height: .38rem;
+    //line-height:.70rem;
+    padding:.16rem;
+    z-index:200;
+    .left {
+      float:left;
+      height: .38rem;
+      width:.38rem;
+    }
+    .right {
+      float: right;
+      height: .38rem;
+      padding-right: .2rem;
+      line-height: .38rem;
+      .league_name {
+        float:left;
+        margin-right:15px;
+        color:#f5f5f5;
+        font-size: 15px;
+      }
+      .arrow {
+        float:left;
+        width:0;
+        margin-top: .12rem;
+        border-left:.12rem solid transparent;
+        border-right:.12rem solid transparent;
+        border-top:.12rem solid #f5f5f5;
+      }
+    }
+
+  }
+  .league_logo {
+    padding: .35rem 0;
+    z-index: 200;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: .7rem;
+    height: 1.60rem;
+    .center {
+      img {
+        width:1.10rem;
+        height:1.10rem;
+        margin:0 auto;
+        border-radius: 5px;
+      }
+      .title {
+        padding-top:.20rem;
+        font-size:.28rem;
+        height:.30rem;
+        width:100%;
+        color:#ffffff;
+        text-align:center;
+      }
+    }
+  }
+
+  @media screen and (max-width :320px) {
+    .league_tabs{
+      //max-width:1080px;
+      .wraper_scroll {
+        //width: 800px;
+        //max-width:1080px;
+        //height: .55rem;
+      }
+      a{
+        //padding:0 .1rem ;
+      }
+    }
+  }
+  .league_tabs {
+    overflow-x:scroll;
+    max-width:1080px;
+    position:relative;
+    top:3rem;
+    left:0;
+    right:0;
+    width:100%;
+    bottom: 0;
+    z-index:200;
+    height:.60rem;
+    line-height:.60rem;
+    //line-height: .56rem;
+    background-color:#0090ff;
+    color:white;
+    font-size: 15px;
+    //padding:0 .20rem;
+    text-align:center;
+    white-space: nowrap;
+    .wraper_scroll{
+      //width: 100%;
+      //max-width:1080px;
+      height: .65rem;
+      white-space: nowrap;
+      display: inline-block;
+      overflow-x: scroll;
+    }
+    a {
+      height: .55rem;
+      position: relative;
+      //line-height: .55rem;
+      display: inline-block;
+      padding: 0 .3rem;
+      font-size: 15px;
+      /* float: left; */
+      /* text-overflow: ellipsis; */
+      /* white-space: nowrap; */
+      /* overflow: hidden; */
+      outline: 0;
+    }
+    .active {
+      border-bottom:.05rem solid #ffffff;
+    }
+  }
+}
+
+#league_content {
+  //position:relative;
+  //z-index:1000;
+  //.league_content_slide {
+  //  margin-top:3.7rem;
+  //}
+  top:3.7rem;
+  .randNum{
+    height:100%;
+  }
+  #stage-tab1 {
+    height:100%;
+    .stage_name {
+      position: relative;
+      top: 10px;
+      vertical-align: middle;
+    }
+    .stage_names{
+      margin: 0 auto;
+      width: 3rem;
+      height: .5rem;
+      /* top: .01rem; */
+      position: relative;
+      vertical-align: middle;
+      background-color: #0090ff;
+      border-radius: .8rem;
+      text-align: center;
+      line-height: .5rem;
+      color: white;
+      font-size: 14px;
+    }
+    .selectBtn{
+      height: 1rem;
+      width: 100%;
+      background: #fff;
+
+      p{
+        display: inline-block;
+        height: 100%;
+        float: left;
+        width: 15%;
+        position: relative;
+        img{
+          width: 20%;
+          height: auto;
+          position: absolute;
+          top: 0;bottom: 0;
+          left: 0;right: 0;
+          margin: auto;
+        }
+        &.randNum{
+          width: 70%;
+          vertical-align: top;
+          span{
+            display: block;
+            margin: 0.2rem auto;
+            width: 2.5rem;
+            height: 0.6rem;
+            background: #0090ff;
+            color: #fff;
+            font-size: 0.26rem;
+            border-radius: 0.4rem;
+            text-align: center;
+            line-height: 0.6rem;
+          }
+        }
+      }
+    }
+    .randNum {
+      height:100%;
+
+    }
+  }
+}
+.schedule_content{
+  //background: #f5f5f5;
+  //padding: 20px 0;
+  position: relative;
+  height: 100%;
+  overflow-y:auto;
+  #stage-tab {
+    height: 1rem;
+    width: 2.5rem;
+    line-height: 1rem;
+    text-align: center;
+    .stage_name {
+      display: block;
+      margin: 0.2rem auto;
+      width: 2.5rem;
+      height: 0.6rem;
+      background: #0090ff;
+      color: #fff;
+      font-size: 0.26rem;
+      border-radius: 0.4rem;
+      text-align: center;
+      line-height: 0.6rem;
+    }
+  }
+  // 赛程选择按钮
+  .selectBtn{
+    height: 1rem;
+    width: 100%;
+    background: #fff;
+    p{
+      display: inline-block;
+      height: 100%;
+      float: left;
+      width: 15%;
+      position: relative;
+      img{
+        width: 20%;
+        height: auto;
+        position: absolute;
+        top: 0;bottom: 0;
+        left: 0;right: 0;
+        margin: auto;
+      }
+      &.randNum{
+        width: 70%;
+        vertical-align: top;
+        span{
+          display: block;
+          margin: 0.2rem auto;
+          width: 2.5rem;
+          height: 0.6rem;
+          background: #0090ff;
+          color: #fff;
+          font-size: 0.26rem;
+          border-radius: 0.4rem;
+          text-align: center;
+          line-height: 0.6rem;
+        }
+      }
+    }
+  }
+  .no-data {
+    font-weight: bold;
+    text-align: center;
+    height: 200px;
+  }
+  // 赛程列表
+  .sch_list{
+    background: #fff;
+    font-size: 0.24rem;
+    color: #333;
+    padding: 0rem 0.2rem;
+
+    li{
+      padding: 0.15rem 0;
+      line-height: 0.5rem;
+      &.sch_time{
+        text-align: center;
+        background: #f5f5f5;
+        color: #666;
+      }
+      &.sch_info{
+        border-bottom: 1px solid #ddd;
+        overflow: hidden;
+        &:nth-last-child(1){
+          border: none;
+        }
+        span{
+          display: inline-block;
+          float: left;
+          &:nth-of-type(1){
+            width: 9%;
+            margin-left: 1%;
+            height: 0.5rem;
+          }
+          &:nth-of-type(2){
+            width: 30%;
+            text-align: right;
+          }
+          &:nth-of-type(3){
+            width: 20%;
+            text-align: center;
+          }
+          &:nth-of-type(4){
+            width: 30%;
+            text-align: left;
+          }
+          &:nth-of-type(5){
+            width: 0.5rem;
+            margin-right: 1%;
+            height: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ranking_content{
+  //background: #f5f5f5;
+  height: 100%;
+  overflow-y:auto;
+  //padding: 20px 0;
+  #rank-tab {
+    height:1rem;
+    .stage_name {
+      position: relative;
+      top: 10px;
+      vertical-align: middle;
+    }
+    .stage_names{
+      margin: 0 auto;
+      width: 2rem;
+      height: .5rem;
+      /* top: .01rem; */
+      position: relative;
+      vertical-align: middle;
+      background-color: #0090ff;
+      border-radius: .8rem;
+      text-align: center;
+      line-height: .5rem;
+      color: white;
+      font-size: 14px;
+    }
+    .selectBtn{
+      height: 1rem;
+      width: 100%;
+      background: #fff;
+
+      p{
+        display: inline-block;
+        height: 100%;
+        float: left;
+        width: 15%;
+        position: relative;
+        img{
+          width: 20%;
+          height: auto;
+          position: absolute;
+          top: 0;bottom: 0;
+          left: 0;right: 0;
+          margin: auto;
+        }
+        &.randNum{
+          width: 70%;
+          vertical-align: top;
+          span{
+            display: block;
+            margin: 0.2rem auto;
+            width: 2.5rem;
+            height: 0.6rem;
+            background: #0090ff;
+            color: #fff;
+            font-size: 0.26rem;
+            border-radius: 0.4rem;
+            text-align: center;
+            line-height: 0.6rem;
+          }
+        }
+      }
+    }
+    .randNum {
+      height:100%;
+
+    }
+  }
+  // 排行选择按钮
+  .selectBtn{
+    height: 1rem;
+    width: 100%;
+    background: #fff;
+    p{
+      display: inline-block;
+      height: 100%;
+      float: left;
+      width: 15%;
+      position: relative;
+      img{
+        width: 20%;
+        height: auto;
+        position: absolute;
+        top: 0;bottom: 0;
+        left: 0;right: 0;
+        margin: auto;
+      }
+      &.randNum{
+        width: 70%;
+        vertical-align: top;
+        span{
+          display: block;
+          margin: 0.2rem auto;
+          width: 2.5rem;
+          height: 0.6rem;
+          background: #0090ff;
+          color: #fff;
+          font-size: 0.26rem;
+          border-radius: 0.4rem;
+          text-align: center;
+          line-height: 0.6rem;
+        }
+      }
+    }
+  }
+  // 排行内容
+  .rank_list{
+    background: #fff;
+    margin-top: 10px;
+    li{
+
+      margin: 0 0.2rem;
+    }
+    .rank_info{
+      padding: 0.2rem 0;
+      overflow: hidden;
+
+
+      p{
+        float: left;
+      }
+      // 球队名称
+      .teamInfo{
+        width: 40%;
+        span{
+          display: block;
+          float: left;
+          color: #333;
+        }
+        // 名次
+        .teamNo{
+          width: 15%;
+          font-size: 0.22rem;
+          text-align: center;
+          margin-right: 2%;
+        }
+        // 名称
+        .teamName{
+          font-size: 0.24rem;
+          width: 81%;
+          line-height: normal;
+        }
+      }
+      // 赛况
+      .matchInfo{
+        font-size: 0.2rem;
+        color: #666;
+        width: 60%;
+        span{
+          display:inline-block;
+          text-align: center;
+          float: left;
+          word-break: break-word;
+          &.matchCount{
+            width: 15%;
+            margin-left: -3%;
+          }
+          &.win_lose{
+            width: 30%;
+          }
+          &.win_percent{
+            width: 24%;
+          }
+          &.win_short{
+            width: 16%;
+          }
+          &.statusOf{
+            width: 18%;
+            color: #333;
+            &.red{
+              color: #f90000;
+            }
+            &.green{
+              color: #62e352;
+            }
+          }
+        }
+      }
+      &.rank_title{
+        color: #666;
+        border-bottom: 1px solid #E6E6E6;
+        .matchGroup{
+          padding: 0.1rem 0;
+          text-align: center;
+          font-size: 0.3rem;
+          background-color: #f5f5f5;
+          margin-bottom: .3rem;
+        }
+        .teamInfo{
+          .teamNo{
+            width: 100%;
+            text-align: left;
+          }
+        }
+      }
+
+
+    }
+    // 前面3名颜色高亮
+    li:nth-of-type(2)>.teamInfo>.teamNo,
+    li:nth-of-type(3)>.teamInfo>.teamNo,
+    li:nth-of-type(4)>.teamInfo>.teamNo
+    {
+      background: #0090ff;
+      color: #fff!important;
+      border-radius: 50%;
+    }
+  }
+  // 东部西部排行榜添加此类名
+  &.area_type{
+    .selectBtn{
+      display: none;
+    }
+    h2{
+      text-align: left!important;
+      background: #f5f5f5;
+      font-size: 0.24rem!important;
+    }
+  }
+}
+/** 让分盘 **/
+.handicap_content{
+  //background: #f5f5f5;
+  padding: .2rem 0;
+  width:100%;
+  height: 100%;
+  overflow-y:auto;
+  //tab部分
+  .let_tab {
+    text-align:center;
+    .let_bar {
+      //margin: 0 30px;
+      display:inline-block;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #0090ff;
+      li {
+        float: left;
+        padding: 0 .3rem;
+        font-size: 14px;
+      }
+      li:nth-of-type(2) {
+        border-left:1px solid #0090ff;
+        border-right:1px solid #0090ff;
+      }
+      li.active {
+        background-color:#0090ff;
+        color: white;
+      }
+    }
+  }
+  // 让分盘部分
+  .rank_list{
+    background: #fff;
+    margin-top: 20px;
+    li{
+      margin: 0 0.2rem;
+    }
+    .rank_info{
+      padding: 0.2rem 0;
+      overflow: hidden;
+      p{
+        float: left;
+      }
+      // 球队名称
+      .teamInfo{
+        width: 40%;
+        span{
+          display: block;
+          float: left;
+          color: #333;
+        }
+        // 名次
+        .teamNo{
+          width: 15%;
+          font-size: 0.22rem;
+          text-align: center;
+          margin-right: 2%;
+        }
+        // 名称
+        .teamName{
+          font-size: 0.24rem;
+          width: 81%;
+          line-height: normal;
+        }
+      }
+      // 赛况
+      .matchInfo{
+        font-size: 0.2rem;
+        color: #666;
+        width: 60%;
+        span{
+          display:inline-block;
+          text-align: center;
+          float: left;
+          word-break: break-word;
+          &.matchCount{
+            width: 20%;
+            margin-left: -3%;
+          }
+          &.plate_one{
+            width: 24%;
+          }
+          &.plate_two{
+            width: 24%;
+          }
+          &.match_score{
+            width: 32%;
+          }
+        }
+      }
+      &.rank_title{
+        color: #666;
+        border-bottom: 1px solid #E6E6E6;
+        font-size:13px;
+        .teamInfo{
+          .teamNo{
+            width: 100%;
+            text-align: left;
+          }
+        }
+      }
+    }
+    // 前面3名颜色高亮
+    li:nth-of-type(2)>.teamInfo>.teamNo,
+    li:nth-of-type(3)>.teamInfo>.teamNo,
+    li:nth-of-type(4)>.teamInfo>.teamNo
+    {
+      background: #0090ff;
+      color: #fff!important;
+      border-radius: 50%;
+    }
+  }
+}
+
+/** 统计 **/
+.stas_content {
+  //background: #f5f5f5;
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  overflow-y:auto;
+  .stas_list{
+    .rank_info {
+      text-align:center;
+      .col2 {
+        dd{
+          float:left;
+        }
+        dd:first-child{
+          width:60%;
+          float:left
+        }
+        dd:last-child {
+          width:40%;
+          float:left;
+        }
+      }
+    }
+    .league_op {
+      @media screen and (max-width:320px) and (max-width:375px){
+        .col2 dd{
+          width:100% !important;
+        }
+      }
+    }
+    .stas_info{
+      .sta_fen {
+        width:100%;
+        .fen_opt{
+          font-size: 20px;
+          font-weight: bold;
+          padding: 0 .1rem;
+        }
+        //.fen_col {
+        //  width:30%;
+        //}
+        .fen_num {
+          font-size: .40rem;
+          color: #E15555;
+        }
+        dl{
+          height: .4rem;
+          line-height: .4rem;
+          dd {
+            margin:0;
+            float:left;
+            text-align:center;
+            span {
+              float:left;
+            }
+          }
+          .col25 {
+            width:25%;
+          }
+          .col20{
+            width:20%;
+          }
+          .col5 {
+            padding:0 5%;
+          }
+
+        }
+      }
+    }
+  }
+  .stas_tab {
+    text-align:center;
+    .sta_bar {
+      display:inline-block;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #0090ff;
+      li {
+        float: left;
+        padding:0 .3rem;
+        font-size: 14px;
+      }
+      li:nth-of-type(2) {
+        border-left:1px solid #0090ff;
+      }
+      li.active {
+        background-color:#0090ff;
+        color: white;
+      }
+    }
+  }
+  .rank_list{
+    background: #fff;
+    margin-top: 20px;
+    li{
+      margin: 0 0.2rem;
+      .sta_list {
+        height:1.1rem;
+      }
+      .sta_list:first-child{
+        margin-top: .3rem;
+      }
+    }
+    .rank_info{
+      padding: 0.2rem 0;
+      overflow: hidden;
+      font-size:12px;
+      p{
+        float: left;
+      }
+      // 球队名称
+      .teamInfo{
+        width: 40%;
+        span{
+          display: block;
+          float: left;
+          color: #333;
+        }
+        // 名次
+        .teamNo{
+          width: 15%;
+          font-size: 0.22rem;
+          text-align: center;
+          margin-right: 2%;
+        }
+        // 名称
+        .teamName{
+          font-size: 0.24rem;
+          width: 81%;
+          line-height: normal;
+        }
+      }
+      // 赛况
+      .matchInfo{
+        font-size: 0.2rem;
+        color: #666;
+        width: 60%;
+        span{
+          display:inline-block;
+          text-align: center;
+          float: left;
+          word-break: break-word;
+          &.matchCount{
+            width: 20%;
+            margin-left: -3%;
+          }
+          &.plate_one{
+            width: 24%;
+          }
+          &.plate_two{
+            width: 24%;
+          }
+          &.match_score{
+            width: 32%;
+          }
+        }
+      }
+      &.rank_title{
+        color: #666;
+        border-bottom: 1px solid #E6E6E6;
+        font-size:13px;
+        .teamInfo{
+          .teamNo{
+            width: 100%;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+/** 弹窗**/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.mask {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  height:100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow:hidden;
+  .stage_form {
+    width:90%;
+    min-height: 6.5rem;
+    height: 6.5rem;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index:20000;
+    background-color: #fff;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    border-radius: 6px;
+    color: #333;
+    .stage_bar {
+      width:90%;
+      margin: 0 auto;
+      padding: .5rem 0;
+      height: .5rem;
+      li {
+        width:33.3%;
+        float:left;
+        min-height: .5rem;
+        line-height: .5rem;
+        word-wrap: break-word;
+      }
+      li.active{
+        background-color: #00AFFF;
+        color: white;
+      }
+      .lisubmit>div{
+        width:50%;
+        float:left;
+      }
+    }
+    .stage_bar::after{
+      clear:both;
+    }
+    .stage_second {
+      height:3.2rem;
+      padding:.2rem;
+      li {
+        width: 25%;
+        float: left;
+        min-height: .4rem;
+        line-height: .4rem;
+        font-size: 12px;
+        word-wrap: break-word;
+        padding:0.2rem;
+      }
+      li.active{
+        background-color: #00AFFF;
+        color: white;
+      }
+    }
+    .stage_second::after{
+      clear:both;
+    }
+    .title{
+      background-color:#00AFFF;
+      height:.7rem;
+      color: white;
+      font-size: 16px;
+      line-height:.5rem;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    .opt{
+      height:.7rem;
+      line-height: .7rem;
+      bottom: 0;
+      position: relative;
+      div {
+        width:50%;
+        float:left;
+      }
+      .stage_confirm{
+        background-color:#00AFFF;
+        height:100%;
+        color: white;
+        font-size: 16px;
+        line-height: .7rem;
+        border-bottom-left-radius:5px;
+      }
+    }
+  }
+  .league_form {
+    width: 4rem;
+    //min-height: 4rem;
+    height: 6rem;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index:20000;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    //border-radius: .06rem;
+    color: #333;
+    overflow:hidden;
+    .title,.lisubmit{
+      background-color:#00AFFF;
+      height:.5rem;
+      color: white;
+      font-size: 16px;
+      line-height: .5rem;
+    }
+    .title {
+      border-top-left-radius: 10px;
+      border-top-right-radius:10px;
+    }
+    .lisubmit {
+      border-bottom-left-radius:10px;
+      border-bottom-right-radius:10px;
+    }
+    .top{
+      height:5rem;
+      //height:190px;
+      overflow-y:scroll;
+      background-color:#fff;
+      li {
+        height:.7rem;
+        line-height:.7rem;
+        font-size:14px;
+      }
+      li.active{
+        background-color: #E6E6E6;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.mask.show {
+  display:block;
+}
+.mask.hide {
+  display:none;
+}
+
+.titleGroup {text-align: center;background-color: #f5f5f5;padding: .1rem;font-size: 12px;}
+.no-data {
+  position:relative;
+  font-weight: bold;
+  text-align: center;
+  height: 200px;
+  background-color: #fff;
+}
+//.loading{ background:url(/images/loading.gif) no-repeat center center;height:40px; width:40px;top:55%; left:50%; margin:-20px 0 0 -20px; position: fixed; z-index:1000002;}
+.not_body{ height:110px; width:100px; top:50%; left:50%; margin:-55px 0 0 -45px; position: absolute; text-align:center; z-index:1000001;}
+.not_body .man{
+  background: url(/images/man.png) no-repeat center center;
+  height: 70px;
+  width: 100px;
+  background-size: 70px 70px;
+}
+.not_body span{ font-size:16px; color:#999;}
+.swiper-button-next,.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: .5rem;
+  height:.5rem;
+  margin-top:-.3rem;
+  z-index: 10;
+  cursor: pointer;
+  -moz-background-size:.5rem .5rem;
+  -webkit-background-size: .5rem .5rem;
+  background-size: .5rem .5rem;
+  background-position: center;
+  background-repeat: no-repeat
+}
+
+.swiper-button-next.swiper-button-disabled,.swiper-button-prev.swiper-button-disabled {
+  opacity: .35;
+  cursor: auto;
+  pointer-events: none
+}
+
+.swiper-button-prev,.swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  left: .5rem;
+  right: auto
+}
+
+.swiper-button-prev.swiper-button-black,.swiper-container-rtl .swiper-button-next.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E")
+}
+
+.swiper-button-prev.swiper-button-white,.swiper-container-rtl .swiper-button-next.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
+}
+
+.swiper-button-next,.swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  right: .5rem;
+  left: auto
+}
+
+.swiper-button-next.swiper-button-black,.swiper-container-rtl .swiper-button-prev.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E")
+}
+
+.swiper-button-next.swiper-button-white,.swiper-container-rtl .swiper-button-prev.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
+}
+
+#myChart ,#myChart3,#myChart4{
+    display:none !important;
+}

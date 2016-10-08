@@ -783,12 +783,15 @@ home.controller("HomeController", [
               href = window.location.origin + "/data";
               break;
             case "nav6" :
-              href = window.location.origin + "/video";
+              href = window.location.origin + "/basket/database.html";
               break;
             case "nav7" :
-              href = window.location.origin + "/kj";
+              href = window.location.origin + "/video";
               break;
             case "nav8" :
+              href = window.location.origin + "/kj";
+              break;
+            case "nav9" :
               href = window.location.origin + "/gjcp/thai.html";
               break;
             default :

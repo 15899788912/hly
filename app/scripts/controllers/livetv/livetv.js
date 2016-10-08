@@ -190,10 +190,48 @@ livetv.config(['$translateProvider', function ($translateProvider) {
     $translateProvider.preferredLanguage(language);
 }]);
 
+// livetv.factory("LiveService", [
+//     "$resource",
+//     function ($resource) {
+//         return $resource(baseUrl + "/core/matchVideo.findAndroidVideoinfo.do", {}, {
+//             query: {
+//                 method: "get",
+//                 params: {},
+//                 isArray: false
+//             }
+//         });
+//     }
+// ]);
+// livetv.factory("LiveServiceFactory", [
+//     "LiveService",
+//     function (LiveService) {
+//         var obj = {};
+//         obj.loadLiveMatchData = function ($scope) {
+//
+//             var timezone = window.localStorage.getItem("timezone") || $scope.timezone;
+//             LiveService.get({lang: $scope.getLanguage(),timeZone:timezone}, function (data) {
+//                 $scope.isLoading = true;
+//                 $scope.showLoadingImg = true;
+//                 $scope.liveChannelMap = {};//所以赛事的直播频道map
+//                 $scope.matchVideo = data.matchVideo;
+//                 $scope.loadLiveMatchData(0);
+//
+//                 if ($scope.liveMatchDataes != null) {
+//                     for (var i = 1; i <= $scope.liveMatchDataes.length; i++) {
+//                         $scope.dateScroll('day-bg' + i);
+//                     }
+//                 }
+//             }, function (error) {
+//                 //错误，访问异常
+//             });
+//         };
+//         return obj;
+//     }
+// ]);
 livetv.factory("LiveService", [
     "$resource",
     function ($resource) {
-        return $resource(baseUrl + "/core/matchVideo.findVideoInfo.do", {}, {
+        return $resource(baseUrl + "/core/matchVideo.findAndroidVideoInfo.do", {}, {
             query: {
                 method: "get",
                 params: {},
@@ -210,7 +248,7 @@ livetv.factory("LiveServiceFactory", [
         obj.loadLiveMatchData = function ($scope) {
 
             var timezone = window.localStorage.getItem("timezone") || $scope.timezone;
-            LiveService.get({lang: $scope.getLanguage(),timeZone:timezone}, function (data) {
+            LiveService.get({lang: $scope.getLanguage(),timeZone:timezone,liveType:0}, function (data) {
                 $scope.isLoading = true;
                 $scope.showLoadingImg = true;
                 $scope.liveChannelMap = {};//所以赛事的直播频道map
@@ -256,6 +294,7 @@ livetv.controller("LiveTVController", [
     function ($scope, $translate, $timeout, $interval, $window, LiveServiceFactory, TranslateFactory) {
 
         $scope.$on("$viewContentLoaded", function () {
+            $scope.showLoadingImg=true;
             LiveServiceFactory.loadLiveMatchData($scope, $timeout);
             $interval(function () {
                 $scope.reloadLiveMatchData();
@@ -290,25 +329,41 @@ livetv.controller("LiveTVController", [
             var liveMatchData = null;
             var myDate = null;
             var endLoop = false;
+            var dateFm='MM月dd日';
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                dateFm='MM月dd日';
+            }else{
+                dateFm='dd/MM';
+            }
             for (var date in $scope.matchVideo) {
                 if (!endLoop) {
                     liveMatchData = {};
-                    myDate = new Date(date);
-                    liveMatchData.day = myDate.Format("MM月dd日");
+                    myDate = new Date($scope.matchVideo[date].date);
+                    liveMatchData.day = myDate.Format(dateFm);
                     liveMatchData.week = $scope.getWeek(myDate);
                     liveMatchData.liveMatches = [];
                     var liveMatch = null;
                     var timeStr = null;
-                    for (var j in $scope.matchVideo[date]) {
-                        liveMatch = $scope.matchVideo[date][j];
-                        liveMatch.hometeamLogo = teamLogoUrl.replace("{teamId}", liveMatch.hmId);//主队logo图片地址
-                        liveMatch.guestteamLogo = teamLogoUrl.replace("{teamId}", liveMatch.awId);//客队logo图片地址
+                    for (var j in $scope.matchVideo[date].sptVideoMoreInfoDtoList) {
+                        liveMatch = $scope.matchVideo[date].sptVideoMoreInfoDtoList[j];
+                      //对阵型比赛为0 综合型为1
+                      if(liveMatch.displayType==0){
+                        liveMatch.hometeamLogo = liveMatch.homePic;
+                        liveMatch.guestteamLogo = liveMatch.guestPic;
+                      }
+                      if(liveMatch.displayType==1){
+                        liveMatch.hmName=liveMatch.zongheName;
+                        liveMatch.hometeamLogo = liveMatch.zonghePic;
+                      }
+
+
                         timeStr = liveMatch.matchDate + " " + liveMatch.matchTime;
                         liveMatch.living = (liveMatch.statusOrigin == 1 || liveMatch.statusOrigin == 2 || liveMatch.statusOrigin == 3);//是否直播
                         liveMatch.defaultTeamLogo = defaultTeamLogoUrl;
                         $scope.liveChannelMap[liveMatch.matchId] = liveMatch.channel;
                         liveMatchData.liveMatches.push(liveMatch);
                         $scope.actualCount++;
+
                         if ($scope.actualCount >= liveMatchPageSize * (scrollCount + 1)) { //已达到当前最大展现场次时，退出循环
                             endLoop = true;//设置退出循环标志
                             break;
@@ -316,7 +371,7 @@ livetv.controller("LiveTVController", [
                     }
                     $scope.liveMatchDataes.push(liveMatchData);
                 }
-                total += $scope.matchVideo[date].length;
+                total += $scope.matchVideo[date].sptVideoMoreInfoDtoList.length;
             }
             $scope.total = total;
             if (scrollCount == 0) {
@@ -388,7 +443,7 @@ livetv.controller("LiveTVController", [
             angular.element($("#sort_mask")).addClass("show");
             angular.element($("#sort_mask2")).addClass("show");
             angular.element($("body")).addClass("of-h");
-            angular.element($("html")).addClass("of-h");
+            // angular.element($("html")).addClass("of-h");
             //$scope.disableTouchMove();
         };
 
@@ -500,7 +555,13 @@ livetv.controller("LiveTVController", [
         $scope.removeObjectFromLocalStorage = function (key) {
             localStorage.removeItem(key);
         };
-
+        $scope.getCountry = function () {
+            var country = $scope.getObjectFromLocalStorage("country");
+            if (country == null) {
+                country = defaultCountry;
+            }
+            return country;
+        };
         $scope.getLanguage = function () {
             var language = $scope.getObjectFromLocalStorage("language");
             if (language == null) {
@@ -542,6 +603,7 @@ Date.prototype.Format = function (fmt) {
  * @param obj
  */
 var logoLoadErr = function (obj) {
-    obj.src = defaultTeamLogoUrl;
+    // obj.src = defaultTeamLogoUrl;
+    obj.src = '@@IMGURL/live/404.png';
     obj.onerror = null;
 };

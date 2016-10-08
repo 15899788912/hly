@@ -6,7 +6,10 @@ window.mobileUtil = (function(win, doc) {
         HASH=loca.hash,
 		isAndroid = /android|adr/gi.test(UA),
 		isIos = /iphone|ipod|ipad/gi.test(UA) && !isAndroid, // 据说某些国产机的UA会同时包含 android iphone 字符
-		isMobile = isAndroid || isIos,  // 粗略的判断
+		isWp=/Windows Phone|SymbianOS|MeeGo/gi.test(UA),   //windows phone
+        isbb=/PlayBook|BB10/gi.test(UA),   //blackberry 
+        isMobile = isAndroid || isIos || isWp ||isbb,  // 粗略的判断
+        defaultCountry='c-zh',  //默认为中文 c-zh: 中国大陆，c-zh-tw: 中国香港,c-th:泰国,c-vi:越南
         REMV = 100,hasInitRem = false,needREM = true;    //rem 属性
 
 	return {
@@ -22,7 +25,7 @@ window.mobileUtil = (function(win, doc) {
 		isWeibo: /Weibo/gi.test(UA),
 		isTXWeibo: /T(?:X|encent)MicroBlog/gi.test(UA),
         isWebView:/yibifen/gi.test(UA),
-        isWindow:/Windows|windows/gi.test(UA),
+        // isWindow:/Windows|windows/gi.test(UA),
         is66:/13366.vn/gi.test(HOST),
 
 		tapEvent: isMobile ? 'tap' : 'click',
@@ -54,7 +57,7 @@ window.mobileUtil = (function(win, doc) {
                 }
             }
             //window跳转
-            if(this.isWindow){
+            if(!this.isMobile){
                 this.urlAnalysis();
             }
         },

@@ -1,0 +1,737 @@
+<!-- 头部信息开始-->
+<div id="league_header" ng-cloak>
+  <img class="header_img" src="@@IMGURL/live/basketballbg.jpg"  />
+  <div class="league_top">
+    <!--<a class="left" ng-click="back()">-->
+    <a class="left" href="/basket/database.html">
+      <img class="header-icon" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt="">
+    </a>
+    <a class="right" ng-click="showSeason()">
+      <span class="league_name">{{season}}</span>
+      <!--{{'league_season' | translate }}-->
+      <span class="arrow"></span>
+    </a>
+  </div>
+  <div class="league_logo">
+    <div class="center">
+      <!--<err-src info="{{header.leagueName}}" />-->
+      <!--<info-src info="{{header.leagueLogoUrl}}" />-->
+      <!--<img src="@@IMGURL/ba_teamLogo.png"   err-src="{{header.leagueLogoUrl}}"  />-->
+      <img src="@@IMGURL/ba_teamLogo.png" ng-src="{{header.leagueLogoUrl}}"  onerror="logoLoadErr(this,'logo')"/>
+      <div class="title">{{header.leagueName}}</div>
+    </div>
+  </div>
+  <div class="league_tabs">
+    <!--<div class="wraper_scroll" style="">-->
+      <a  class="active">{{'league_schedule' | translate }}</a>
+      <a >{{'league_rank' | translate }}</a>
+      <a >{{'league_lets' | translate }}</a>
+      <a >{{'league_sizes' | translate }}</a>
+      <a >{{'league_stass' | translate }}</a>
+    <!--</div>-->
+  </div>
+</div>
+<!-- 头部信息完毕-->
+
+
+<!-- 主要内容 -->
+<div id="league_content" class="swiper-container">
+  <div class="swiper-wrapper league_content_slide">
+    <!-- 1.赛程部分 -->
+    <div class="swiper-slide league_topslide">
+      <section class=" schedule_content">
+        <div class="data_content_list">
+
+          <div class="selectBtn" ng-show="stages.length > 0">
+            <div class="randNum">
+              <!--赛程的阶段stage_tab-->
+              <div class="swiper-container" id="stage-tab1">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide stage_name" ng-repeat="st in stages track by $index" >
+                    <div class="stage_names" ng-click="openStage(st.firstID,st.stageId)">{{st.stageName}}</div>
+                    <!--<div class="stage_names" ng-click="openStage(st.firstID,st.stageId)">{{st.stageName}}</div>-->
+                    <!--<div class="stage_names" ng-click="openStage(st.stageId)">{{st.stageName}}</div>-->
+                  </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="sch_list content_list" ng-repeat="match in matchDatas track by $index" ng-show="matchDatas.length > 0">
+            <li class="sch_time">{{match.dayStr}}</li>
+
+            <li class="sch_info" ng-repeat="data in match.list">
+              <span class="teamPic_a"><img src="@@IMGURL/ba_teamLogo.png"  err-src="{{data.homeTeamIconUrl}}" /></span>
+              <span class="teamName_a">{{::data.homeTeamName}}</span>
+              <span class="sch_situation">{{::data.homeScore}}-{{::data.guestScore}}</span>
+              <span class="teamName_b">{{::data.guestTeamName}}</span>
+              <span class="teamPic_b"><img src="@@IMGURL/ba_teamLogo.png"   err-src="{{data.guestTeamIconUrl}}"  /></span>
+            </li>
+          </ul>
+          <div class="sch_list no-data" ng-if="!loadingImg && (matchDatas == null || matchDatas.length == 0) && matchFinished == true">
+            <div class="not_body" >
+              <div class="man"></div>
+              <span ng-bind="'DATA_NODATA' | translate"></span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+    <!-- 赛程结束-->
+
+    <!-- 2.排行部分 -->
+    <div class="swiper-slide league_topslide">
+      <section class="ranking_content">
+        <!--3杯赛排名 是否显示阶段 -->
+        <div class="swiper-container" id="rank-tab" ng-show="rank.rankingType === 3 && (rank.searchCondition!= null && rank.searchCondition.length >0)">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide stage_name" ng-repeat="rankst in rank.searchCondition track by $index" >
+              <div class="stage_names">{{rankst.stageName}}</div>
+              <!--<div class="stage_names" ng-click="openStage(rankst.firstID,rankst.stageId)">todos{{rankst.stageName}}</div>-->
+              <!--<div class="stage_names" ng-click="openStage(st.stageId)">{{st.stageName}}</div>-->
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <div class="sch_list no-data" ng-if="!loadingImg && (rank.rankingObj == null || rank.rankingObj.length == 0 )">
+          <div class="not_body" >
+            <div class="man"></div>
+            <span ng-bind="'DATA_NODATA' | translate"></span>
+          </div>
+        </div>
+        <div class="data_content_list" ng-show="rank.rankingObj != null || rank.rankingObj.length != 0 ">
+          <!-- 1单联赛排名-->
+          <ul class="rank_list content_list" ng-if="rank.rankingType === 1" ng-repeat="ranks in rank.rankingObj">
+            <li class="rank_info rank_title">
+              <p class="teamInfo">
+                <span class="teamNo">{{'league_rankIndex'| translate }}/{{'league_rankName'| translate }}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+                <span class="win_lose">{{'leagues_rankWin' | translate }}/{{'leagues_rankLose'| translate }}</span>
+                <span class="win_percent">{{'league_rankWinrate'| translate }}</span>
+                <span class="win_short">{{'league_rankWincha'| translate }}</span>
+                <span class="statusOf">{{'league_last' | translate }} </span>
+              </p>
+            </li>
+            <li class="rank_info" ng-repeat="item in ranks.datas">
+              <p class="teamInfo">
+                <span class="teamNo">{{item.ranking}}</span>
+                <span class="teamName">{{item.teamName}}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{item.finishedMatch}}</span>
+                <span class="win_lose">{{item.winMatch}}/{{item.loseMatch}}</span>
+                <span class="win_percent">{{item.winRate | number:2}}</span>
+                <span class="win_short">{{item.gameBehind}}</span>
+                <span class="statusOf">{{item.recent}}</span>
+              </p>
+            </li>
+          </ul>
+
+          <!-- 2分赛区排名 -->
+
+          <ul class="rank_list content_list" ng-if="rank.rankingType === 2" ng-repeat="ranks in rank.rankingObj">
+            <div class="titleGroup" >
+              <h2 class="matchGroup">{{ranks.groupName}}</h2>
+            </div>
+            <li class="rank_info rank_title">
+              <!--<h2 class="matchGroup" ng-show="rank.searchCondition!= null && rank.searchCondition.length >0">{{ranks.groupName}}</h2>-->
+              <!--<h2 class="matchGroup">{{ranks.groupName}}</h2>-->
+              <p class="teamInfo">
+                <span class="teamNo">{{'league_rankIndex'| translate }}/{{'league_rankName'| translate }}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+                <span class="win_lose">{{'leagues_rankWin' | translate }}/{{'leagues_rankLose'| translate }}</span>
+                <span class="win_percent">{{'league_rankWinrate'| translate }}</span>
+                <span class="win_short">{{'league_rankWincha'| translate }}</span>
+                <span class="statusOf">{{'league_last' | translate }}</span>
+              </p>
+            </li>
+            <li class="rank_info" ng-repeat="item in ranks.datas">
+              <p class="teamInfo">
+                <span class="teamNo">{{item.ranking}}</span>
+                <span class="teamName">{{item.teamName}}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{item.finishedMatch}}</span>
+                <span class="win_lose">{{item.winMatch}}/{{item.loseMatch}}</span>
+                <span class="win_percent">{{item.winRate | number:2}}</span>
+                <span class="win_short">{{item.gameBehind}}</span>
+                <span class="statusOf">{{item.recent}}</span>
+              </p>
+            </li>
+          </ul>
+
+          <!-- 3杯赛排名-->
+          <ul class="rank_list content_list" ng-if="rank.rankingType === 3" ng-repeat="ranks in rank.rankingObj">
+
+            <div class="titleGroup"  ng-show="rank.searchCondition!= null && rank.searchCondition.length >0">
+              <h2 class="matchGroup">{{ranks.groupName}}</h2>
+            </div>
+            <li class="rank_info rank_title">
+              <!--<h2 class="matchGroup">{{ranks.groupName}}</h2>-->
+              <p class="teamInfo">
+                <span class="teamNo">{{'league_rankIndex'| translate }}/{{'league_rankName'| translate }}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+                <span class="win_lose">{{'leagues_rankWin' | translate }}/{{'leagues_rankLose'| translate }}</span>
+                <span class="win_percent">{{'league_rankWinrate'| translate }}</span>
+                <span class="win_short">{{'league_rankWincha'| translate }}</span>
+                <span class="statusOf">{{'league_last' | translate }}</span>
+              </p>
+            </li>
+            <li class="rank_info" ng-repeat="item in ranks.datas">
+              <p class="teamInfo">
+                <span class="teamNo">{{item.ranking}}</span>
+                <span class="teamName">{{item.teamName}}</span>
+              </p>
+              <p class="matchInfo">
+                <span class="matchCount">{{item.finishedMatch}}</span>
+                <span class="win_lose">{{item.winMatch}}/{{item.loseMatch}}</span>
+                <span class="win_percent">{{item.winRate | number:2}}</span>
+                <span class="win_short">{{item.gameBehind}}</span>
+                <span class="statusOf">{{item.recent}}</span>
+              </p>
+            </li>
+          </ul>
+
+        </div>
+
+      </section>
+
+    </div>
+    <!-- 排行结束-->
+
+    <!-- 3.让分盘-->
+    <div class="swiper-slide league_topslide">
+      <section class="handicap_content let_content">
+        <div class="data_content_list">
+        <div class="let_tab">
+          <ul class="let_bar">
+            <li ng-click="showLet(0)" ng-class="{active:let_tab===0}">{{'league_all' | translate }}</li>
+            <li ng-click="showLet(1)"  ng-class="{active:let_tab===1}">{{'league_home' | translate }}</li>
+            <li ng-click="showLet(2)"  ng-class="{active:let_tab===2}">{{'league_guest' | translate }}</li>
+          </ul>
+        </div>
+
+        <div class="sch_list no-data" ng-if="!loadingImg && (lets == null || lets.all.length == 0)">
+          <div class="not_body" >
+            <div class="man"></div>
+            <span ng-bind="'DATA_NODATA' | translate"></span>
+          </div>
+        </div>
+
+        <ul class="rank_list  content_list" ng-show="let_tab === 0 && lets.all.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+              <span class="plate_one">{{'league_up' | translate }}</span>
+              <span class="plate_two">{{'league_down' | translate }}</span>
+              <span class="match_score">{{'league_lose' | translate }}/{{'league_walk' | translate }}/{{'league_win' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="let in lets.all track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{let.ranking}}</span>
+              <span class="teamName">{{let.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{let.finished}}</span>
+              <span class="plate_one">{{let.over}}</span>
+              <span class="plate_two">{{let.under}}</span>
+              <span class="match_score">{{let.win}}/{{let.draw}}/{{let.lose}}</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="rank_list  content_list" ng-show="let_tab === 1 && lets.home.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+
+              <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+              <span class="plate_one">{{'league_up' | translate }}</span>
+              <span class="plate_two">{{'league_down' | translate }}</span>
+              <span class="match_score">{{'league_lose' | translate }}/{{'league_walk' | translate }}/{{'league_win' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="let in lets.home track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{let.ranking}}</span>
+              <span class="teamName">{{let.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{let.finished}}</span>
+              <span class="plate_one">{{let.over}}</span>
+              <span class="plate_two">{{let.under}}</span>
+              <span class="match_score">{{let.win}}/{{let.draw}}/{{let.lose}}</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="rank_list  content_list" ng-show="let_tab === 2 && lets.guest.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{'league_rankMatch' | translate }}</span>
+              <span class="plate_one">{{'league_up' | translate }}</span>
+              <span class="plate_two">{{'league_down' | translate }}</span>
+              <span class="match_score">{{'league_lose' | translate }}/{{'league_walk' | translate }}/{{'league_win' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="let in lets.guest track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{let.ranking}}</span>
+              <span class="teamName">{{let.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{let.finished}}</span>
+              <span class="plate_one">{{let.over}}</span>
+              <span class="plate_two">{{let.under}}</span>
+              <span class="match_score">{{let.win}}/{{let.draw}}/{{let.lose}}</span>
+            </p>
+          </li>
+        </ul>
+        </div>
+      </section>
+    </div>
+    <!-- 让分盘结束-->
+
+    <!-- 4.大小盘 -->
+    <div class="swiper-slide league_topslide">
+      <section class="handicap_content size_content">
+
+        <div class="data_content_list">
+        <div class="let_tab">
+          <ul class="let_bar">
+            <li ng-click="showSize(0)" ng-class="{active:size_tab===0}">{{'league_all' | translate }}</li>
+            <li ng-click="showSize(1)"  ng-class="{active:size_tab===1}">{{'league_home' | translate }}</li>
+            <li ng-click="showSize(2)"  ng-class="{active:size_tab===2}">{{'league_guest' | translate }}</li>
+          </ul>
+        </div>
+
+
+        <div class="sch_list no-data" ng-if="!loadingImg && (sizes == null || sizes == 'null' || sizes.all.length == 0)">
+          <div class="not_body" >
+            <div class="man"></div>
+            <span ng-bind="'DATA_NODATA' | translate"></span>
+          </div>
+        </div>
+
+        <ul class="rank_list  content_list" ng-show="size_tab === 0 && sizes.all.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{'league_finish' | translate }}</span>
+              <span class="plate_one">{{'league_big' | translate }}</span>
+              <span class="plate_two">{{'league_walk' | translate }}</span>
+              <span class="match_score">{{'league_big' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="size in sizes.all track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{size.ranking}}</span>
+              <span class="teamName">{{size.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{size.finished}}</span>
+              <span class="plate_one">{{size.high}}</span>
+              <span class="plate_two">{{size.draw}}</span>
+              <span class="match_score">{{size.low}}</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="rank_list  content_list" ng-show="size_tab === 1 && sizes.home.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{'league_finish' | translate }}</span>
+              <span class="plate_one">{{'league_big' | translate }}</span>
+              <span class="plate_two">{{'league_walk' | translate }}</span>
+              <span class="match_score">{{'league_big' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="size in sizes.home track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{size.ranking}}</span>
+              <span class="teamName">{{size.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{size.finished}}</span>
+              <span class="plate_one">{{size.high}}</span>
+              <span class="plate_two">{{size.draw}}</span>
+              <span class="match_score">{{size.low}}</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="rank_list  content_list" ng-show="size_tab === 2 && sizes.guest.length > 0">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_rankIndex' | translate }}/{{'league_rankName' | translate }}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{'league_finish' | translate }}</span>
+              <span class="plate_one">{{'league_big' | translate }}</span>
+              <span class="plate_two">{{'league_walk' | translate }}</span>
+              <span class="match_score">{{'league_big' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info" ng-repeat="size in sizes.guest track by $index" >
+            <p class="teamInfo">
+              <span class="teamNo">{{size.ranking}}</span>
+              <span class="teamName">{{size.teamName}}</span>
+            </p>
+            <p class="matchInfo">
+              <span class="matchCount">{{size.finished}}</span>
+              <span class="plate_one">{{size.high}}</span>
+              <span class="plate_two">{{size.draw}}</span>
+              <span class="match_score">{{size.low}}</span>
+            </p>
+          </li>
+        </ul>
+          </div>
+      </section>
+    </div>
+    <!-- 大小盘结束-->
+
+    <!-- 5.统计 -->
+    <div class="swiper-slide">
+      <section class="stas_content">
+
+        <div class="data_content_list">
+        <div class="stas_tab">
+
+          <ul class="sta_bar">
+            <li ng-click="showStas(0)" ng-class="{active:stas_tab===0}">{{'league_stas' | translate }}</li>
+            <li ng-click="showStas(1)"  ng-class="{active:stas_tab===1}">{{'league_most' | translate }}</li>
+          </ul>
+
+        </div>
+        <div class="sch_list no-data" ng-if="!loadingImg && (stas == null || stas.leagueStatistics == null || stas.leagueMost == null)">
+          <div class="not_body" >
+            <div class="man"></div>
+            <span ng-bind="'DATA_NODATA' | translate"></span>
+          </div>
+        </div>
+
+        <ul class="rank_list stas_list  content_list" ng-show="stas_tab === 0 && stas.leagueStatistics != null">
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_winlose' | translate }}</span>
+            </p>
+          </li>
+          <!--<div style="height:3rem">-->
+          <div>
+            <div style="width:3rem;height:3rem;float:left;display:none">
+              <canvas id="myChart" width="120" height="120"></canvas>
+            </div>
+            <li class="rank_info">
+              </dl>
+              <dl class="col2">
+                <dd>{{'league_homewin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.homeWinRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_guestwin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.guestWinRate}}%</dd>
+              </dl>
+            </li>
+          </div>
+
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="">{{'league_op' | translate }}</span>
+            </p>
+          </li>
+          <div style="height:3rem">
+            <div style="width:3rem;height:3rem;float:left;">
+              <canvas id="myChart2" width="120" height="120"></canvas>
+            </div>
+            <li class="rank_info league_op">
+              <dl class="col2">
+                <dd>{{'league_eqop' | translate }} <br> {{'league_eqop2' | translate}}</dd>
+                <dd>{{stas.leagueStatistics.equalEuroOddRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_uneqop' | translate }} <br>{{'league_uneqop2' | translate}}</dd>
+                <dd>{{stas.leagueStatistics.unequalEuroOddRate}}%</dd>
+              </dl>
+            </li>
+          </div>
+
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="">{{'league_letstas' | translate }}</span>
+            </p>
+          </li>
+          <div style="">
+            <div style="width:3rem;height:3rem;float:left;display:none">
+              <canvas id="myChart3" width="120" height="120"></canvas>
+            </div>
+            <li class="rank_info">
+              <dl class="col2">
+                <dd>{{'league_homewin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.letHomeWinRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_guestwin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.letGuestWinRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_zous' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.letDrawRate}}%</dd>
+              </dl>
+            </li>
+          </div>
+
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_sizestas' | translate }}</span>
+            </p>
+          </li>
+          <div style="">
+            <div style="width:3rem;height:3rem;float:left;display:none">
+              <canvas id="myChart4" width="120" height="120"></canvas>
+            </div>
+            <li class="rank_info">
+              <dl class="col2">
+                <dd>{{'league_homewin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.asiaSizeOverRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_guestwin' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.asiaSizeUnderRate}}%</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_zous' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.asiaSizeDrawRate}}%</dd>
+              </dl>
+            </li>
+          </div>
+
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_scorestas' | translate }}</span>
+            </p>
+          </li>
+          <li class="rank_info stas_info">
+            <table class="sta_fen">
+              <tr>
+                <td class="fen_num">{{stas.leagueStatistics.totalScore}}</td>
+                <td class="fen_opt">÷</td>
+                <td class="fen_num">{{stas.leagueStatistics.totalMatch}}</td>
+                <td class="fen_opt">=</td>
+                <td class="fen_num">{{stas.leagueStatistics.avgScore}}</td>
+              </tr>
+              <tr>
+                <td>{{'league_scoreall' | translate }}</td>
+                <td class="fen_opt">÷</td>
+                <td>{{'league_scorefinish' | translate }}</td>
+                <td class="fen_opt">=</td>
+                <td>{{'league_scoreavg' | translate }}</td>
+              </tr>
+            </table>
+            <!--<div class="sta_fen">-->
+              <!--<dl>-->
+                <!--<dd  class="fen_col fen_num col25">{{stas.leagueStatistics.totalScore}}</dd>-->
+                <!--<dd  class="fen_opt col5">÷</dd>-->
+                <!--<dd  class="fen_col col20 fen_num">{{stas.leagueStatistics.totalMatch}}</dd>-->
+                <!--<dd  class="fen_opt col5">=</dd>-->
+                <!--<dd  class="fen_col col25 fen_num">{{stas.leagueStatistics.avgScore}}</dd>-->
+              <!--</dl>-->
+              <!--<dl>-->
+                <!--<dd  class="fen_col  col25">{{'league_scoreall' | translate }}</dd>-->
+                <!--<dd  class="fen_opt col5">÷</dd>-->
+                <!--<dd  class="fen_col col20">{{'league_scorefinish' | translate }}</dd>-->
+                <!--<dd  class="fen_opt col5">=</dd>-->
+                <!--<dd  class="fen_col col25">{{'league_scoreavg' | translate }}</dd>-->
+              <!--</dl>-->
+            <!--</div>-->
+          </li>
+
+          <li class="rank_info rank_title">
+            <p class="teamInfo">
+              <span class="teamNo">{{'league_matchnum' | translate }}</span>
+            </p>
+          </li>
+          <div style="height:3rem">
+            <div style="width:3rem;height:3rem;float:left;">
+              <canvas id="myChart5" width="120" height="120"></canvas>
+            </div>
+            <li class="rank_info">
+              <dl class="col2">
+                <dd>{{'league_finish' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.finishedMatch}}</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_unfinish' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.unfinishedMatch}}</dd>
+              </dl>
+              <dl  class="col2">
+                <dd>{{'league_allmatchs' | translate }}</dd>
+                <dd>{{stas.leagueStatistics.totalMatch}}</dd>
+              </dl>
+            </li>
+          </div>
+
+        </ul>
+        <ul class="rank_list  content_list" ng-show="stas_tab === 1 && stas.leagueMost != null">
+          <li class="rank_info rank_title">
+            <span class="matchCount">{{'league_attackmost' | translate }}</span>
+            </li>
+          <li class="rank_info">
+            <ul class="sta_list" ng-repeat= "sa in stas.leagueMost.strongestAttack">
+              <li style="width:10%;float:left" ng-if="sa.recordType == 1">{{'league_all' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="sa.recordType == 2">{{'league_home' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="sa.recordType == 3">{{'league_guest' | translate }}</li>
+              <li  style="width:20%;float:left">{{sa.teamName}}</li>
+              <li  style="width:16%;float:left">{{sa.totalScore}}</li>
+              <li   style="width:24%;float:left">{{sa.avgScore}}{{'league_score' | translate}} / {{'league_scorechang' | translate}}</li>
+            </ul>
+          </li>
+
+          <li class="rank_info rank_title">
+            <span class="matchCount">{{'league_attackleast' | translate }}</span>
+          </li>
+          <li class="rank_info">
+            <ul class="sta_list" ng-repeat= "wa in stas.leagueMost.weakestAttack">
+              <li style="width:10%;float:left" ng-if="wa.recordType == 1">{{'league_all' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="wa.recordType == 2">{{'league_home' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="wa.recordType == 3">{{'league_guest' | translate }}</li>
+              <li  style="width:20%;float:left">{{wa.teamName}}</li>
+              <li  style="width:16%;float:left">{{wa.totalScore}}</li>
+              <li   style="width:24%;float:left">{{wa.avgScore}}{{'league_score' | translate}} / {{'league_scorechang' | translate}}</li>
+            </ul>
+          </li>
+
+
+          <li class="rank_info rank_title">
+            <span class="matchCount">{{'league_defencemost' | translate }}</span>
+          </li>
+          <li class="rank_info">
+            <ul class="sta_list" ng-repeat= "sd in stas.leagueMost.strongestDefense">
+              <li style="width:10%;float:left" ng-if="sd.recordType == 1">{{'league_all' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="sd.recordType == 2">{{'league_home' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="sd.recordType == 3">{{'league_guest' | translate }}</li>
+              <li  style="width:20%;float:left">{{sd.teamName}}</li>
+              <li  style="width:16%;float:left">{{sd.totalScore}}</li>
+              <li   style="width:24%;float:left">{{sd.avgScore}}{{'league_score' | translate}} / {{'league_scorechang' | translate}}</li>
+            </ul>
+          </li>
+
+          <li class="rank_info rank_title">
+            <span class="matchCount">{{'league_defenceleast' | translate }}</span>
+          </li>
+          <li class="rank_info">
+            <ul class="sta_list" ng-repeat= "wd in stas.leagueMost.weakestDefense">
+              <li style="width:10%;float:left" ng-if="wd.recordType == 1">{{'league_all' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="wd.recordType == 2">{{'league_home' | translate }}</li>
+              <li style="width:10%;float:left" ng-if="wd.recordType == 3">{{'league_guest' | translate }}</li>
+              <li  style="width:20%;float:left">{{wd.teamName}}</li>
+              <li  style="width:16%;float:left">{{wd.totalScore}}</li>
+              <li   style="width:24%;float:left">{{wd.avgScore}}{{'league_score' | translate}} / {{'league_scorechang' | translate}}</li>
+            </ul>
+          </li>
+        </ul>
+          </div>
+      </section>
+    </div>
+    <!-- 统计结束 -->
+
+  </div>
+</div>
+<!-- 主要内容结束 -->
+
+
+
+<!-- 加载块 -->
+  <div class="loading" ng-show="loadingImg == true "></div>
+
+<!-- 赛季弹窗 -->
+<div class="mask" ng-class="{show:seasonShow===true,hide:seasonShow === false}" ng-click="hideMask($event,1)">
+  <div class="league_form ">
+    <div class="title">{{'league_season' | translate }}</div>
+    <ul class="top">
+      <li ng-repeat="s in header.season" ng-class="{active:selectedSeason===s }" ng-click="selectSeason(s)">
+        {{s}}
+      </li>
+    </ul>
+    <div class="lisubmit" ng-click="season_confirm()">{{'league_confirm' | translate }}</div>
+  </div>
+</div>
+<!-- 赛季弹窗结束 -->
+
+<!-- 阶段==1弹窗 -->
+<div class="mask" ng-class="{show:(stageShow),hide:stageShow === false}"  ng-click="hideMask($event,2)">
+  <div class="stage_form " ng-if="matchType ===1">
+    <div class="bg_wrap">
+    <div class="modal_title">
+
+      <div class="title">{{'league_stage' | translate }}</div>
+    </div>
+    <div class="modal_body">
+      <ul class="stage_bar">
+        <!--<li ng-click="showSecondStage(firstStage.stageId)" ng-class="{active:stage_tab===firstStage.stageId}" ng-repeat="firstStage in schedule.searchCondition track by $index">{{firstStage.stageName}}</li>-->
+        <li ng-click="showSecondStage(firstStage.stageId)" ng-class="{active:stage_tab == firstStage.stageId}" ng-repeat="firstStage in schedule.searchCondition track by $index">{{firstStage.stageName}}</li>
+      </ul>
+      <ul class="stage_second">
+        <li ng-repeat="se in secondStages" ng-class="{active:selectedSecondStage == se.stageId}" ng-touch="selectSecondStage(se)" ng-click="selectSecondStage(se)">
+          {{se.stageName}}
+        </li>
+      </ul>
+    </div>
+    <div class="modal_foot">
+      <div class="opt" >
+        <div class="stage_confirm" ng-click="confirm_stage(1,stage_tab)">{{'league_confirm' | translate }}</div>
+        <div class="" ng-click="cancel_stage()">{{'league_cancel' | translate }}</div>
+      </div>
+    </div>
+
+    <!--<div class="title">{{'league_stage' | translate }}</div>-->
+    <!--<ul class="stage_bar">-->
+      <!--&lt;!&ndash;<li ng-click="showSecondStage(firstStage.stageId)" ng-class="{active:stage_tab===firstStage.stageId}" ng-repeat="firstStage in schedule.searchCondition track by $index">{{firstStage.stageName}}</li>&ndash;&gt;-->
+      <!--<li ng-click="showSecondStage(firstStage.stageId)" ng-class="{active:stage_tab == firstStage.stageId}" ng-repeat="firstStage in schedule.searchCondition track by $index">{{firstStage.stageName}}</li>-->
+    <!--</ul>-->
+    <!--<ul class="stage_second">-->
+      <!--<li ng-repeat="se in secondStages" ng-class="{active:selectedSecondStage == se.stageId}" ng-touch="selectSecondStage(se)" ng-click="selectSecondStage(se)">-->
+        <!--{{se.stageName}}-->
+      <!--</li>-->
+    <!--</ul>-->
+    <!--<div class="opt" >-->
+      <!--<div class="stage_confirm" ng-click="confirm_stage(1)">{{'league_confirm' | translate }}</div>-->
+      <!--<div class="" ng-click="cancel_stage()">{{'league_cancel' | translate }}</div>-->
+    <!--</div>-->
+
+    </div>
+  </div>
+  <div class="league_form "  ng-if="matchType ===2">
+    <div class="title">{{'league_stage' | translate }}</div>
+    <ul class="top">
+      <li ng-repeat="st in stages track by $index" ng-class="{active:selectedStage==st.stageId }" ng-click="confirm_stage(2,st.stageId)">
+        {{st.stageName}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- 阶段==2 的弹窗
+<div class="mask" ng-class="{show:(matchType === 2 && stageShow),hide:seasonShow === false}">
+
+</div>
+ -->

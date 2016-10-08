@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="basketball.league">
+  <meta name="keywords" content="{{'DATABASE_KEYWORDS' | translate}}"/>
+  <meta name="description" content="{{'DATABASE_DESCRIPTION' | translate}}" />
+
+  @import '../views/head.html';
+  <title ng-bind="'HEAD_TITLE' | translate"></title>
+  <link rel="stylesheet" href="/styles/common@@MINEXT.css"/>
+  <link rel="stylesheet" type="text/css" href="/styles/swiper.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/styles/league@@MINEXT.css"/>
+  <link rel="stylesheet" type="text/css" href="/styles/common@@MINEXT.css"/>
+</head>
+
+<body   class="ng-cloak" ng-cloak>
+
+  <div ng-view="" class="ng-cloak"  ng-cloak>
+    @import '../views/foot.html';
+    <!-- 外部js文件 -->
+    <script type="text/javascript" src="/common/echo@@MINEXT.js"></script>
+    <script type="text/javascript" src="/common/swiper.min.js"></script>
+    <script type="text/javascript" src="/common/stomp@@MINEXT.js"></script>
+    <script type="text/javascript" src="/common/selectCss@@MINEXT.js"></script>
+    <script type="text/javascript" src="/common/icheck@@MINEXT.js"></script>
+    <!-- 自定义js文件 -->
+    <script type="text/javascript" src="/common/ng-infinite-scroll@@MINEXT.js"></script>
+    <!-- controllers -->
+    <script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/basketball/league@@MINEXT.js"></script>
+    <script src="/common/Chart.min.js" async="true" defer></script>
+  </div>
+</body>
+</html>

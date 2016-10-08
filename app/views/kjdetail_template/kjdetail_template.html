@@ -6,9 +6,10 @@
             <a class="back"  href="javascript:history.back()"></a>
             <span class="title">{{'LOADING' | translate}}</span>
         </div>
-        <div class="wrapper" style="text-align:center; margin:150px auto; font-size:16px; color:#666;">
+		<div class="loading"></div>
+        <!-- <div class="wrapper" style="text-align:center; margin:150px auto; font-size:16px; color:#666;">
             <img src="/images/loading.gif" width="25"/> {{'ONLOADING' | translate}}
-        </div>
+        </div> -->
     </div>
     <!--加载完-->
     <div ng-show="!showLoading">
@@ -563,8 +564,8 @@
                             <div class="ball-sx">
                                 <i>{{chooseLotteryResult.lhcMap.n0.zodiac}}</i>
                                 <i>{{chooseLotteryResult.lhcMap.n1.zodiac}}</i>
-                                <i  style="width:40px">{{chooseLotteryResult.lhcMap.n2.zodiac}}</i>
-                                <i  style="width:40px">{{chooseLotteryResult.lhcMap.n3.zodiac}}</i>
+                                <i>{{chooseLotteryResult.lhcMap.n2.zodiac}}</i>
+                                <i>{{chooseLotteryResult.lhcMap.n3.zodiac}}</i>
                                 <i>{{chooseLotteryResult.lhcMap.n4.zodiac}}</i>
                                 <i>{{chooseLotteryResult.lhcMap.n5.zodiac}}</i>
                                 <i></i>
@@ -642,8 +643,8 @@
                                 <div class="ball-sx">
                                     <i>{{::lhc.lhcMap.n0.zodiac}}</i>
                                     <i>{{::lhc.lhcMap.n1.zodiac}}</i>
-                                    <i style="width:40px">{{::lhc.lhcMap.n2.zodiac}}</i>
-                                    <i style="width:40px">{{::lhc.lhcMap.n3.zodiac}}</i>
+                                    <i>{{::lhc.lhcMap.n2.zodiac}}</i>
+                                    <i>{{::lhc.lhcMap.n3.zodiac}}</i>
                                     <i>{{::lhc.lhcMap.n4.zodiac}}</i>
                                     <i>{{::lhc.lhcMap.n5.zodiac}}</i>
                                     <i></i>
@@ -744,9 +745,10 @@
         </div>
     </div>
     <div id="note2" class="viewport" ng-if="!isShow">
-        <div style=" text-align:center; margin:30px auto; font-size:16px; color:#666;">
+		<div class="loading"></div>
+        <!-- <div style=" text-align:center; margin:30px auto; font-size:16px; color:#666;">
             <img src="/images/loading.gif" width="25"/>{{'ONLOADING' | translate}}
-        </div>
+        </div> -->
     </div>
     </div>
 </div>

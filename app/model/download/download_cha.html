@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	@import '../views/head.html';
+	<title>一比分下载</title>
+	<style type="text/css" media="screen">
+	body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}body{color:#222;font-family:"微软雅黑",arial;-webkit-tap-highlight-color:transparent;overflow:hidden}html{width:100%;height:100%;-webkit-font-smoothing:antialiased}.d_wx_share{position:absolute;width:100%;height:100%;background-color:rgba(0, 0, 0, .8);color:#fff;top:0;left:0;z-index:10000;text-align:right;display:none}.btn_dowd{position:absolute;bottom:21%;width:65%;left:50%;height:11%;transform:translate(-51%,-5%)}.d_wx_share img{width:70%;margin-right:7%}.mainBox{position:relative}.mainBox>img{width:100%;height:100%;border:0}
+	</style>
+</head>
+<body>
+	<div id="mainShow" class="mainBox">
+		<img src="@@IMGURL/download/down_chann_bg.jpg">
+		<div class="btn_dowd"></div>
+		<div id="d_wx_share" class="d_wx_share">
+			<img src="@@IMGURL/download/browser.png" />
+		</div>
+	</div>
+	<script type="text/javascript" src="/common/zepto.min.js"></script>
+	<script type="text/javascript" src="/common/statistics@@MINEXT.js"></script>
+	<script type="text/javascript">
+		var _py = _py || [];
+		_py.push(['a', 'fSs..oqMZJ1lfZnoZ__LdoxT04_']);
+		_py.push(['domain','stats.ipinyou.com']);
+		_py.push(['e','']);
+		-function(d) {
+			var s = d.createElement('script'),
+			e = d.body.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e),
+			f = 'https:' == location.protocol;
+			s.src = (f ? 'https' : 'http') + '://'+(f?'fm.ipinyou.com':'fm.p0y.cn')+'/j/adv.js';
+		}(document);
+	</script>
+	<noscript>
+	<img src="//stats.ipinyou.com/adv.gif?a=fSs..oqMZJ1lfZnoZ__LdoxT04_&e=" style="display:none;"/></noscript>
+	<script type="application/javascript">
+	(function($){
+		// 获取终端的相关信息
+		var Terminal = {
+			// 辨别移动终端类型
+			platform: function() {
+				var u = navigator.userAgent,
+					app = navigator.appVersion;
+				return {
+					// android终端或者uc浏览器
+					android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+					// 是否为iPhone或者QQHD浏览器
+					iPhone: u.indexOf('iPhone') > -1,
+					// 是否iPad
+					iPad: u.indexOf('iPad') > -1,
+					//是否为webview
+					webview: u.indexOf('yibifen') > -1,
+					//是否在微信端
+					weixin: u.toLowerCase().match(/MicroMessenger/i) == 'micromessenger'
+				};
+			}(),
+			// 辨别移动终端的语言：zh-cn、en-us、ko-kr、ja-jp...
+			language: (navigator.browserLanguage || navigator.language).toLowerCase()
+		};
+		var host=window.location.hostname,isdebug=true; //开发:true,线上改为:false
+		if(!/m.13322.com/gi.test(host)&&!isdebug){window.location.href='http://m.13322.com'}
+		if(self!=top){top.location.href=self.location.href;} //防盗链
+		var apkDownloadUrlPrefix = "http://download.13322.com/apk/ybf/cn/Q01101/ybf_full_v1.1.6_Q01101.apk"; //android downloadUrl
+		var iosDownloadUrlPrefix = "https://lnk0.com/lIJVlg"; //ios downloadUrl
+		var channel='3ff5e206bfcdf8988939b595cc0921ec';
+		function timeDown() {
+			if (Terminal.platform.android) {
+				window.location.href = apkDownloadUrlPrefix;
+				_hmt.push(['_trackEvent', 'download_tg', 'click_tg', 'Android']);
+			} else if (Terminal.platform.iPhone) {
+				window.location.href = iosDownloadUrlPrefix;
+				_hmt.push(['_trackEvent', 'download_tg', 'click_tg', 'IOS']);
+			} else {
+				window.location.href = apkDownloadUrlPrefix;
+			}
+			// handHide();
+			// timer();
+			ajaxF("clickCnt");
+			pyRegisterCvt();
+		}
+		//判断是否在微信端
+		if (Terminal.platform.weixin) {
+			$("#d_wx_share").show();
+			return;
+		}
+
+		// if(!isNoAuto){setTimeout(timeDown, 800);}//0.8s自动下载
+		// 点击下载按钮事件
+		$(".btn_dowd").on('click',function(){
+			timeDown();
+		})
+
+
+		function pyRegisterCvt(){
+			var w=window,d=document,e=encodeURIComponent;
+			var b=location.href,c=d.referrer,f,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);
+			if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('fSs.ysh.gZaFpLhUWEFEtc8TAX_W8_')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&e=';
+			(new Image()).src=u;
+		}
+
+		function ajaxF(appType) {
+			var img = new Image(1, 1);
+			var url = {
+				"242": 'http://183.61.172.88:8089',
+				"prod": 'http://union.13322.com/traffic'
+			};
+			var phonetype = Terminal.platform.iPhone ? "2" : "1";
+			img.src = url['prod'] + "/api/appRetention?appType=" + appType + "&channel=" + channel + "&type=" + phonetype;
+		}
+		ajaxF("intoCpc"); //默认
+	})(Zepto);
+	</script>
+</body>
+</html>

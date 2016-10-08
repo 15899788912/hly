@@ -77,7 +77,7 @@ basketball.config(['$translateProvider', function ($translateProvider) {
     var translationTH = {
       HEAD_TITLE:	"วันสกอร์รุ่นหน้าจอสัมผัส ",
       Basketball_TITLE:	"สกอร์บาสเกตบอล",
-      TABS_IMMEDIATE:	"เรียลไทม์",
+      TABS_IMMEDIATE:	"เกมยอดนิยม",
       TABS_RESULTS:	"ผลบอล",
       TABS_SCHEDULE:	"โปรแกรมบอล",
       TABS_ATTENTION:	"เกมของฉัน ",
@@ -414,7 +414,13 @@ basketball.factory("FindLiveServiceFactory", [
                 //比分
                 for (var i = 0; i < dataObj.length; i++) {
                     o = {};
-                    o.day = dataObj[i].date;
+
+                    var myDate = new Date(dataObj[i].date);
+                    if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                      o.day = myDate.Format("yyyy-MM-dd");
+                    }else{
+                      o.day = myDate.Format("dd/MM/yyyy");
+                    }
                     o.today=false;    //今日
                     o.tomorrow=false;   //明日
                     o.yesterday=false;  //昨日
@@ -521,6 +527,7 @@ basketball.factory("FindLiveServiceFactory", [
         return obj;
     }
 ]);
+
 //赛果
 basketball.factory("ResultService", [
     "$resource",
@@ -558,6 +565,13 @@ basketball.factory("ResultServiceFactory", [
                 var resultMatch = null,attNumArr=[],resNum=0;
                 for (var i in dataObj) {
                     o = {};
+
+                    var myDate = new Date(dataObj[i].date);
+                    if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                      o._day = myDate.Format("yyyy-MM-dd");
+                    }else{
+                      o._day = myDate.Format("dd/MM/yyyy");
+                    }
                     o.day = dataObj[i].date;
                     o.today=false;
                     o.tomorrow=false;   //明日
@@ -680,6 +694,12 @@ basketball.factory("ScheduleServiceFactory", [
                 var scheduleMatch = null,attNumArr=[],schNum=0;
                 for (var i in dataObj) {
                     o = {};
+                    var myDate = new Date(dataObj[i].date);
+                    if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                      o._day = myDate.Format("yyyy-MM-dd");
+                    }else{
+                      o._day = myDate.Format("dd/MM/yyyy");
+                    }
                     o.day = dataObj[i].date;
                     o.today=false;
                     o.tomorrow=false;   //明日
@@ -789,6 +809,12 @@ basketball.factory("AttentionServiceFactory", [
                 var o = null,matchList='',dataObj=data.matchData,dateShow=false;
                 for (var i in dataObj) {
                     o = {};
+                    var myDate = new Date(dataObj[i].date);
+                    if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                      o._day = myDate.Format("yyyy-MM-dd");
+                    }else{
+                      o._day = myDate.Format("dd/MM/yyyy");
+                    }
                     o.day = dataObj[i].date;
                     o.today=false;
                     o.tomorrow=false;   //明日
@@ -954,6 +980,14 @@ basketball.controller("BasketballController", [
                $scope.initSwiper(initialSlide, false);
             }
         });
+        // 取国家方法
+        $scope.getCountry = function () {
+            var country = $scope.getObjectFromLocalStorage("country");
+            if (country == null) {
+                country = defaultCountry;
+            }
+            return country;
+        };
         /*****************************基本功能层*******************************/
         //swiper滑动
         $scope.initSwiper = function(initialSlide, loadFindLive) {
@@ -1207,7 +1241,7 @@ basketball.controller("BasketballController", [
             //加载赔率显示设置信息
             var oddsFilterCookieValue = $scope.getOddsFilterCookieValue();
             if (oddsFilterCookieValue == null) {
-                $scope.oddsFilterCookieValue = 0;//默认不显示
+                $scope.oddsFilterCookieValue = asiaLetOdds;//默认亚盘
             } else {
                 $scope.oddsFilterCookieValue = oddsFilterCookieValue;
             }
@@ -1312,7 +1346,6 @@ basketball.controller("BasketballController", [
             if(day){
                 var tabN=$scope.getClickedTabsSwiper();
                 $scope.showLoadingImg();
-                // console.log(day);
                 if(tabN==1){
                     if($scope.resultFirObjBak[day].length==0){
                         $scope.resultFirObjBak[day]=$scope.resultObjBak[day];
@@ -2254,7 +2287,7 @@ basketball.controller("BasketballController", [
             //赔率提示初始化
             var baOddsFilterValue = $scope.getOddsFilterCookieValue();//赔率显示参数
             if (baOddsFilterValue == null) {
-                baOddsFilterValue = 0;//默认为无
+                baOddsFilterValue = asiaLetOdds;//默认亚盘
             }
             $scope.baOddsFilterValue = baOddsFilterValue;
             $scope.baOddsFilterValues = angular.copy($scope.sampleOddsFilterValues);
@@ -2363,9 +2396,10 @@ basketball.controller("BasketballController", [
                     if(dcurGame.leagueId==$scope.defHotGame[j]){
                          $scope.hotGameList.push(dcurGame);
                          dcurGame.isDefHot=true;
+                         continue;
                     }
                 };
-                $scope.otherGameList.push(dcurGame);
+                if(!dcurGame.hot){ $scope.otherGameList.push(dcurGame);}
             };
             var raceIdArr = $scope.getCheckedRaceIdArrFromCookie();
             if (raceIdArr != null && raceIdArr.length > 0) {
@@ -2379,11 +2413,11 @@ basketball.controller("BasketballController", [
                     }
                 }
             } else {
-                if($scope.tabActiveIndex == 0 ) { //即时，默认选中热门赛事
-                    $scope.checkHotGame();
-                } else { //其他，默认全不选
-                    $scope.uncheckAllGame();
-                }
+                // if($scope.tabActiveIndex == 0 ) { //即时，默认选中热门赛事
+                //     $scope.checkHotGame();
+                // } else { //其他，默认全选
+                    $scope.checkAllGame();
+                // }
 
             }
         }

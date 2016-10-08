@@ -94,10 +94,10 @@ data.controller("dataController", [
     }
 
     /*高度计算*/
-    // $scope.setHeight=function (){
-    //     var heightVal=document.documentElement.clientHeight - $("header").height();
-    //      $('.content').height(heightVal);
-    // }
+    $scope.setHeight=function (){
+        var heightVal=document.documentElement.clientHeight - $("header").height();
+        //  $('.content').height(heightVal);
+    }
   }
 ]);
 

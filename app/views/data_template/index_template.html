@@ -1,0 +1,78 @@
+<header>
+  <div class="header-nav">
+    <div class="nav" id="nav">
+      <ul>
+        <li class="active hot" ng-data="00">{{'HEAD_NAV_HOT' | translate}}</li>
+        <li class="europe" ng-data="53">{{'HEAD_NAV_EUROPE' | translate}}</li>
+        <li class="america" ng-data="54">{{'HEAD_NAV_AMERICA' | translate}}</li>
+        <li class="asia" ng-data="56">{{'HEAD_NAV_ASIA' | translate}}</li>
+        <li class="africa" ng-data="55">{{'HEAD_NAV_AFRICA' | translate}}</li>
+        <li class="oceania" ng-data="97">{{'HEAD_NAV_OCEANIA' | translate}}</li>
+        <li class="intl" ng-data="52">{{'HEAD_NAV_INTL' | translate}}</li>
+        <li class="beach" ng-data="110">{{'HEAD_NAV_BEACH' | translate}}</li>
+      </ul>
+    </div>
+  </div>
+</header>
+<div class="container">
+    <!-- 热门赛事 -->
+    <div class="con_main hot-block">
+      <ul>
+        <li ng-repeat="dataList in mainInfo" main-repeat-finish>
+          <a href="../data/integral.html?lid={{dataList.lid}}&type={{dataList.type}}">
+            <img  ng-src="http://pic.13322.com/icons/league/{{dataList.lid}}.png"  onerror="logoLoadErr(this,'team')" ng-if="$index<=viewNum"/>
+            <img  src="@@IMGURL/live/404.png" data-echo="http://pic.13322.com/icons/league/{{dataList.lid}}.png" onerror="logoLoadErr(this,'team')" ng-if="$index>viewNum"/>
+            <span>{{dataList.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 五大洲赛事 -->
+    <div class="con_main country-block">
+      <ul  ng-repeat="countryLists in countryListss" ng-click="clickShowNation($index)" ng-init="ulList = $index">
+        <li ng-repeat="countryList in countryLists" ng-click="clickNationalLogo(countryList.conId,$index)">
+          <img ng-src="{{countryList.pic}}" onerror="logoLoadErr(this,'team')"  ng-if="ulList<=viewNum" />
+          <img src="@@IMGURL/live/404.png" data-echo="{{countryList.pic}}" onerror="logoLoadErr(this,'team')" ng-if="ulList>viewNum" />
+          <span>{{countryList.conName}}</span>
+        </li>
+
+        <div class="clear"></div>
+
+        <div class="choose-show" id="country_show{{$index}}">
+          <ul>
+            <li ng-repeat="leagueList in leagueLists">
+              <a href="../data/integral.html?lid={{leagueList.lgId}}&type={{leagueList.kind}}">
+                <img ng-src="http://pic.13322.com/icons/teams/100/{{leagueList.lgId}}.png" onerror="logoLoadErr(this,'team')" ng-if="$index<=viewNum" />
+                <img src="@@IMGURL/live/404.png" data-echo="http://pic.13322.com/icons/teams/100/{{leagueList.lgId}}.png" onerror="logoLoadErr(this,'team')" ng-if="$index>viewNum" />
+                <span>{{leagueList.lgName}}</span>
+              </a>
+            </li>
+            <div class="clear"></div>
+
+            <div class="loading" ng-show="nextloadingShow"></div>
+          </ul>
+        </div>
+
+      </ul>
+
+      <div class="empty" ng-show="nationalLeague.length == 0">{{'NO_DATA' | translate}}</div>
+
+    </div>
+
+    <!-- 沙滩赛事 -->
+    <div class="con_main beach-block">
+        <ul>
+          <li ng-repeat="beachList in beachLists">
+            <a href="../data/integral.html?lid={{beachList.lgId}}&type={{beachList.kind}}">
+              <img ng-src="http://pic.13322.com/icons/teams/100/{{beachList.lgId}}.png" onerror="logoLoadErr(this,'team')" />
+              <span>{{beachList.lgName}}</span>
+            </a>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      <div class="empty" ng-show="nationalLeague.length == 0">{{'NO_DATA' | translate}}</div>
+    </div>
+
+    <div class="loading" ng-show="loadingShow"></div>
+</div>

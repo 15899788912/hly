@@ -1,0 +1,73 @@
+<!-- 登录-->
+<section class="loginInfo" >
+  <div class="login-header">
+    <div class="left-wrapper">
+        <a   ng-click="accountBack()" class="icons-left">
+          <!--href="/index.html#/"<img src="@@IMGURL/account/left.png" class="返回 back"/>-->
+        </a>
+    </div>
+    <div class="title-wrapper">
+        {{'login.login_login' | translate}}
+    </div>
+    <div class="right-wrapper">
+      <a href="#/reg">{{'login.login_reg' | translate}}</a>
+    </div>
+  </div>
+
+  <!-- 国内 -->
+  <div class="login-body">
+    <div>
+      <p class="login-error">
+        <!--{{errorInfo}}-->
+      </p>
+    </div>
+    <div class="body-item">
+      <i class="user"></i>
+      <input type="text"  ng-model ="account" ng-maxlength="13" maxlength="13" placeholder="{{'login.login_account' | translate}}"/>
+      <i class="del" ng-show="account.length>0" ng-click="account=''"></i>
+    </div>
+
+    <div class="body-item">
+      <i class="lock"></i>
+      <input type="password" ng-model ="password" ng-maxlength="16" maxlength="16" size="20" placeholder="{{'login.login_password' | translate}}" ng-init="password=''"/>
+    </div>
+
+    <div class="login-btn">
+      <button ng-class="{dis:disableLogin ||(account=='' || password=='')}" class="btn blue-btn btn-login" ng-click="login('web')" ng-disabled=" (account=='' || password=='') || disableLogin">
+        {{'login.login_login' | translate}}
+      </button>
+    </div>
+
+    <div class="find"  ng-show="country == 'c-zh'">
+      <a href="#/find">{{'login.login_find' | translate}}?</a>
+    </div>
+
+    <div class="other-login" style="display:none;">
+      <span>{{'login.login_third' | translate}}</span>
+      <div class="third">
+        <div ng-click="login('qq')" class="icon">
+          <a id="btnId"  class=" icons-qq"></a>
+        </div>
+        <div class="icon">
+          <a id="sianLogin" class="icons-weibo"  ng-click="login('weibo')" >
+            <div class="WB_loginButton WB_widgets"><a class="login_b WB_loginButton WB_widgets" href="javascript:void(0);" ></a></div>
+          </a>
+        </div>
+
+        <div ng-click="login('weixin')" class="icon">
+          <a  ng-click ="login('weixin')" class="icons-weixin"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<div class="loading" ng-show="loading" ></div>
+
+<div class="mask tips fade-in" ng-show="maskShow"  ng-click="hideMask($event)">
+  <ul>
+    <li  ng-repeat="info in infos">{{info}}</li>
+  </ul>
+</div>

@@ -1,24 +1,18 @@
 (function($) {
-    var guUrlObj = {
-        "desktop": "http://192.168.10.242:8181",
-        "development": "http://m.1332255.com",
-        "production": "http://m.13322.com"
-    };
-    var lang =   mobileUtil.getQueryString('lang') || 'zh' ,//默认中国
-        url = guUrlObj.production,
+    var lang =  mobileUtil.getQueryString('lang') || 'zh' ,//默认中国
+        url = baseUrl,
         thirdId = mobileUtil.getQueryString('thirdId'),
         homeScore = mobileUtil.getQueryString('homeScore'),
         guestScore = mobileUtil.getQueryString('guestScore');
-
         // console.log('thirdId:'+thirdId);
         // console.log('lang:'+lang);
     var config = {
-        socket_url: "ws://m.13322.com/ws",
+        socket_url: websocketUrl,
         socket_port: 8080,
-        username: "happywin",
-        password: "happywin",
+        username: websocketLogin,
+        password: websocketPasscode,
         distination: {
-            basketball: '/topic/USER.topic.liveEvent.'+thirdId+'.'+lang
+            basketball: websocketDestinationLive+'.'+thirdId+'.'+lang
         }
     }
 
@@ -27,7 +21,7 @@
 
     //获取赛事直播信息（包括直播前、直播中、直播结束）
     function queryMatchInfos() {
-        var urlInfo = url + '/mlottery/core/footBallMatch.queryMatchInfos.do';
+        var urlInfo = url + '/core/footBallMatch.queryMatchInfos.do';
         $.ajax({
             type: 'POST',
             url: urlInfo,
@@ -40,7 +34,7 @@
             }, //loading
             timeout: 5000,
             success: function(data) {
-                console.log(JSON.stringify(data));
+                // console.log(JSON.stringify(data));
                 if (data.result === '200') {
                     queryMatchInfo.writeMatchInfos(data);
                 }
@@ -223,8 +217,8 @@
                         if (status == 1) { //上半场
                             var lackUp = parseInt(min) - 45;
                             if (lackUp > 0) {
-                                $('#match_min').html("45'+" + lackUp + "'");
-                                $('#match_curr_time').html("45'+" + lackUp + "'");
+                                $('#match_min').html("45+" + lackUp + "'");
+                                $('#match_curr_time').html("45+" + lackUp + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -232,8 +226,8 @@
                         } else if (status == 3) { //下半场
                             var lackDown = parseInt(min) - 90;
                             if (lackDown > 0) {
-                                $('#match_min').html("90'+" + lackDown + "'");
-                                $('#match_curr_time').html("90'+" + lackDown + "'");
+                                $('#match_min').html("90+" + lackDown + "'");
+                                $('#match_curr_time').html("90+" + lackDown + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -243,8 +237,8 @@
                             $("#vsSpan").hide();
                             var lackMid = parseInt(min) - 45;
                             if (lackMid > 0) {
-                                $('#match_min').html("45'+" + lackMid + "'");
-                                $('#match_curr_time').html("45'+" + lackMid + "'");
+                                $('#match_min').html("45+" + lackMid + "'");
+                                $('#match_curr_time').html("45+" + lackMid + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -756,8 +750,8 @@
                         if (status == 1) { //上半场
                             var lackUp = parseInt(min) - 45;
                             if (lackUp > 0) {
-                                $('#match_min').html("45'+" + lackUp + "'");
-                                $('#match_curr_time').html("45'+" + lackUp + "'");
+                                $('#match_min').html("45+" + lackUp + "'");
+                                $('#match_curr_time').html("45+" + lackUp + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -765,8 +759,8 @@
                         } else if (status == 3) { //下半场
                             var lackDown = parseInt(min) - 90;
                             if (lackDown > 0) {
-                                $('#match_min').html("90'+" + lackDown + "'");
-                                $('#match_curr_time').html("90'+" + lackDown + "'");
+                                $('#match_min').html("90+" + lackDown + "'");
+                                $('#match_curr_time').html("90+" + lackDown + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -777,8 +771,8 @@
                             $("#vsSpan").hide();
                             var lackMid = parseInt(min) - 45;
                             if (lackMid > 0) {
-                                $('#match_min').html("45'+" + lackMid + "'");
-                                $('#match_curr_time').html("45'+" + lackMid + "'");
+                                $('#match_min').html("45+" + lackMid + "'");
+                                $('#match_curr_time').html("45+" + lackMid + "'");
                             } else {
                                 $('#match_min').html(min + "'");
                                 $('#match_curr_time').html(min + "'");
@@ -823,8 +817,8 @@
                                 if (status == 1) { //上半场
                                     var lackUp = parseInt(min) - 45;
                                     if (lackUp > 0) {
-                                        $('#match_min').html("45'+" + lackUp + "'");
-                                        $('#match_curr_time').html("45'+" + lackUp + "'");
+                                        $('#match_min').html("45+" + lackUp + "'");
+                                        $('#match_curr_time').html("45+" + lackUp + "'");
                                     } else {
                                         $('#match_min').html(min + "'");
                                         $('#match_curr_time').html(min + "'");
@@ -832,8 +826,8 @@
                                 } else if (status == 3) { //下半场
                                     var lackDown = parseInt(min) - 90;
                                     if (lackDown > 0) {
-                                        $('#match_min').html("90'+" + lackDown + "'");
-                                        $('#match_curr_time').html("90'+" + lackDown + "'");
+                                        $('#match_min').html("90+" + lackDown + "'");
+                                        $('#match_curr_time').html("90+" + lackDown + "'");
                                     } else {
                                         $('#match_min').html(min + "'");
                                         $('#match_curr_time').html(min + "'");
@@ -843,8 +837,8 @@
                                     $("#vsSpan").hide();
                                     var lackMid = parseInt(min) - 45;
                                     if (lackMid > 0) {
-                                        $('#match_min').html("45'+" + lackMid + "'");
-                                        $('#match_curr_time').html("45'+" + lackMid + "'");
+                                        $('#match_min').html("45+" + lackMid + "'");
+                                        $('#match_curr_time').html("45+" + lackMid + "'");
                                     } else {
                                         $('#match_min').html(min + "'");
                                         $('#match_curr_time').html(min + "'");
@@ -957,8 +951,8 @@
                     if (status == 1) { //上半场
                         var lackUp = parseInt(min) - 45;
                         if (lackUp > 0) {
-                            $('#match_min').html("45'+" + lackUp + "'");
-                            $('#match_curr_time').html("45'+" + lackUp + "'");
+                            $('#match_min').html("45+" + lackUp + "'");
+                            $('#match_curr_time').html("45+" + lackUp + "'");
                         } else {
                             $('#match_min').html(min + "'");
                             $('#match_curr_time').html(min + "'");
@@ -966,8 +960,8 @@
                     } else if (status == 3) { //下半场
                         var lackDown = parseInt(min) - 90;
                         if (lackDown > 0) {
-                            $('#match_min').html("90'+" + lackDown + "'");
-                            $('#match_curr_time').html("90'+" + lackDown + "'");
+                            $('#match_min').html("90+" + lackDown + "'");
+                            $('#match_curr_time').html("90+" + lackDown + "'");
                         } else {
                             $('#match_min').html(min + "'");
                             $('#match_curr_time').html(min + "'");
@@ -977,8 +971,8 @@
                         $("#vsSpan").hide();
                         var lackMid = parseInt(min) - 45;
                         if (lackMid > 0) {
-                            $('#match_min').html("45'+" + lackMid + "'");
-                            $('#match_curr_time').html("45'+" + lackMid + "'");
+                            $('#match_min').html("45+" + lackMid + "'");
+                            $('#match_curr_time').html("45+" + lackMid + "'");
                         } else {
                             $('#match_min').html(min + "'");
                             $('#match_curr_time').html(min + "'");
@@ -1334,21 +1328,21 @@
             if (status == 1) { //上半场
                 var lackUp = parseInt(time) - 45;
                 if (lackUp > 0) {
-                    result = "45'+" + lackUp + "'";
+                    result = "45+" + lackUp + "'";
                 } else {
                     result = time + "'";
                 }
             } else if (status == 3) { //下半场
                 var lackDown = parseInt(time) - 90;
                 if (lackDown > 0) {
-                    result = "90'+" + lackDown + "'";
+                    result = "90+" + lackDown + "'";
                 } else {
                     result = time + "'";
                 }
             } else if (status == 2) { //中场
                 var lackMid = parseInt(time) - 45;
                 if (lackMid > 0) {
-                    result = "45'+" + lackMid + "'";
+                    result = "45+" + lackMid + "'";
                 } else {
                     result = time + "'";
                 }

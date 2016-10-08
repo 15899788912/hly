@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta charset="utf-8">
-    <title>Page Not Found :(</title>
+    <title>Page Not Found</title>
     <style>
       ::-moz-selection {
         background: #b3d4fc;
@@ -15,11 +16,11 @@
       }
 
       html {
-        padding: 30px 10px;
+
         font-size: 20px;
         line-height: 1.4;
-        color: #737373;
-        background: #f0f0f0;
+
+
         -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
       }
@@ -30,12 +31,8 @@
       }
 
       body {
-        max-width: 500px;
-        padding: 30px 20px 50px;
-        border: 1px solid #b3b3b3;
-        border-radius: 4px;
         margin: 0 auto;
-        box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+        width:100%;
         background: #fcfcfc;
       }
 
@@ -43,6 +40,7 @@
         margin: 0 10px;
         font-size: 50px;
         text-align: center;
+      }
       }
 
       h1 span {
@@ -61,12 +59,38 @@
         padding: 0 0 0 40px;
         margin: 1em 0;
       }
+      a:link{text-decoration:none;}
+      a:visited{text-decoration:none;}
+      a:active{text-decoration:none;}
 
       .container {
-        max-width: 380px;
         margin: 0 auto;
+        padding:10% 0;
+      }
+      .container .c-block{
+          text-align:center;
+      }
+      .container .c-block a{
+          display:block;
+          border-radius:5px;
+          background-color:#e3593b;
+          color:#fff;
+          width:15%;
+          margin:10px auto;
+          padding:10px;
+
+      }
+      .container .c-block p{
+          color:#999;
+      }
+      .container .c-block img{
+        width:100%;
+        height:auto;
       }
 
+      .container .show-msg{
+        text-align:center;
+      }
       /* google search */
 
       #goog-fixurl ul {
@@ -132,21 +156,60 @@
         padding: 0;
         border: 0;
       }
+
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Not found <span>:(</span></h1>
-      <p>Sorry, but the page you were trying to view does not exist.</p>
-      <p>It looks like this was the result of either:</p>
-      <ul>
-        <li>a mistyped address</li>
-        <li>an out-of-date link</li>
-      </ul>
+      <div class="c-block">
+          <a href='/'>Go!</a>
+          <p>error...</p>
+          <img src='/images/404.png'/>
+      </div>
+      <div class="show-msg">
+          <p>还有&nbsp;<span id="min">2</span>&nbsp;秒将回到首页...</p>
+      </div>
       <script>
         var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
       </script>
-      <script src="//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
+      <script>
+          var PATHNAME = window.location.pathname;
+
+          window.onload = function(){
+            var i = 2, min = document.getElementById('min');
+              var inter = setInterval(function(){
+                --i;
+                if(i === 0){
+                  i = 0;
+                  clearInterval(inter);
+                  window.location.href = '/';
+                }
+
+                min.innerHTML = i;
+              },1000);
+              Util.compatibleOld();
+          }
+
+          var Util = {
+              /**
+               *兼容性处理
+               */
+             compatibleOld:function(){
+                 if(/kjmain.html/gi.test(PATHNAME)){  //彩票开奖
+                     window.location.href='/kj';
+                 }else if(/football.html/gi.test(PATHNAME)){  //足球比分
+                     window.location.href='/live';
+                 }else if(/basketball.html/gi.test(PATHNAME)){  //篮球比分
+                     window.location.href='/basket';
+                 }else if(/exponent.html/gi.test(PATHNAME)){  //足球指数
+                     window.location.href='/odds';
+                 }
+             }
+          }
+
+
+      </script>
+
     </div>
   </body>
 </html>

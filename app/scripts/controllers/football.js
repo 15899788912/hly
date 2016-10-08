@@ -129,7 +129,7 @@ football.config(['$translateProvider', function ($translateProvider) {
     var translationTH = {
       "HEAD_TITLE":	"วันสกอร์รุ่นหน้าจอสัมผัส ",
       "FOOTBALL_TITLE":	"สกอร์ฟุตบอล",
-      "TABS_IMMEDIATE":	"เรียลไทม์",
+      "TABS_IMMEDIATE":	"เกมยอดนิยม",
       "TABS_RESULTS":	"ผลบอล",
       "TABS_SCHEDULE":	"โปรแกรมบอล",
       "TABS_ATTENTION":	"เกมของฉัน ",
@@ -714,7 +714,12 @@ football.factory("ResultServiceFactory", [
             for (var i = 1; i < 8; i++) {
                 mydate.setDate(mydate.getDate() - 1);
                 o = {};
-                o.day = mydate.Format("yyyy-MM-dd");
+                if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                  o._day = mydate.Format("yyyy-MM-dd");
+                }else{
+                  o._day = mydate.Format("dd/MM/yyyy");
+                }
+                o.day=mydate.Format("yyyy-MM-dd");
                 o.week = $scope.getWeek(mydate);
                 dayWeeks.push(o);
             }
@@ -817,6 +822,19 @@ football.factory("ResultServiceFactory", [
                     $scope.resultMatches = $scope.resultMatchesBak;
                 }
                 $scope.resultMatches = $scope.resultMatches.slice(0, pageSize);
+
+                for(var i=0;i<$scope.resultMatches.length;i++)
+                {
+                  if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw')
+                  {
+                    $scope.resultMatches[i].day =new Date($scope.resultMatches[i].day).Format("yyyy-MM-dd");
+                  }
+                  else
+                  {
+                    $scope.resultMatches[i].day =new Date($scope.resultMatches[i].day).Format("dd/MM/yyyy");
+                  }
+                }
+
                 $scope.toggleNoResultMatches();
                 $scope.hideLoadingImg();
             });
@@ -853,7 +871,15 @@ football.factory("ScheduleServiceFactory", [
             for (var i = 1; i < 8; i++) {
                 mydate.setDate(mydate.getDate() + 1);
                 o = {};
-                o.day = mydate.Format("yyyy-MM-dd");
+
+                if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                  o._day = mydate.Format("yyyy-MM-dd");
+                }else{
+                  o._day = mydate.Format("dd/MM/yyyy");
+                }
+                o.day=mydate.Format("yyyy-MM-dd");
+
+
                 o.week = $scope.getWeek(mydate);
                 dayWeeks.push(o);
             }
@@ -929,6 +955,17 @@ football.factory("ScheduleServiceFactory", [
                     $scope.scheduleMatches = $scope.scheduleMatchesBak;
                 }
                 $scope.scheduleMatches = $scope.scheduleMatches.slice(0, pageSize);
+                for(var i=0;i<$scope.scheduleMatches.length;i++)
+                {
+                  if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw')
+                  {
+                    $scope.scheduleMatches[i].day =new Date($scope.scheduleMatches[i].day).Format("yyyy-MM-dd");
+                  }
+                  else
+                  {
+                    $scope.scheduleMatches[i].day =new Date($scope.scheduleMatches[i].day).Format("dd/MM/yyyy");
+                  }
+                }
                 $scope.toggleNoScheduleMatches();
                 $scope.hideLoadingImg();
             });
@@ -1783,7 +1820,7 @@ football.controller("FootballController", [
                 }
 
             }
-            $scope.hotImmediateMatchThirdArr = $scope.getHotThirdIdArr();
+            // $scope.hotImmediateMatchThirdArr = $scope.getHotThirdIdArr();
             $scope.toggleNoImmediateMatches();
             $scope.filterImmediateMatches = $scope.immediateMatches;
             if ($scope.immediateMatches != null && $scope.immediateMatches.length > 0) {
@@ -1799,31 +1836,31 @@ football.controller("FootballController", [
 
         //加载即时热门比赛数据，如果热门比赛为空，则加载全部场次的比赛
         $scope.loadImmediateHotMatchData = function () {
-            var checkedThirdIdList = $scope.getHotThirdIdArr();
-            if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
-                $scope.immediateMatches = $scope.getImmediateMatchesFilterByRaceId(checkedThirdIdList);
-            } else {
+            // var checkedThirdIdList = $scope.getHotThirdIdArr();
+            // if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
+            //     $scope.immediateMatches = $scope.getImmediateMatchesFilterByRaceId(checkedThirdIdList);
+            // } else {
                 $scope.immediateMatches = $scope.immediateMatchesBak;
-            }
+            // }
         }
 
         //加载赛果热门比赛数据，如果热门比赛为空，则加载全部场次的比赛
         $scope.loadResultHotMatchData = function () {
-            var checkedThirdIdList = $scope.getHotThirdIdArr();
-            if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
-                $scope.resultMatches = $scope.getResultMatchesFilterByRaceId(checkedThirdIdList);
-            } else {
+            // var checkedThirdIdList = $scope.getHotThirdIdArr();
+            // if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
+            //     $scope.resultMatches = $scope.getResultMatchesFilterByRaceId(checkedThirdIdList);
+            // } else {
                 $scope.resultMatches = $scope.resultMatchesBak;
-            }
+            // }
         }
 
         $scope.loadScheduleHotMatchData = function () {
-            var checkedThirdIdList = $scope.getHotThirdIdArr();
-            if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
-                $scope.scheduleMatches = $scope.getScheduleMatchesFilterByRaceId(checkedThirdIdList);
-            } else {
+            // var checkedThirdIdList = $scope.getHotThirdIdArr();
+            // if (checkedThirdIdList != null && checkedThirdIdList.length > 0) {
+            //     $scope.scheduleMatches = $scope.getScheduleMatchesFilterByRaceId(checkedThirdIdList);
+            // } else {
                 $scope.scheduleMatches = $scope.scheduleMatchesBak;
-            }
+            // }
         }
 
         /**
@@ -1842,10 +1879,10 @@ football.controller("FootballController", [
                     if (index > -1) {
                         $scope.immediateMatchesBak.splice(index, 1);
                     }
-                    index = $scope.getIndexFromHotImmediateThirdArr(thirdId);
-                    if(index > -1) {
-                        $scope.hotImmediateMatchThirdArr.splice(index, 1);
-                    }
+                    // index = $scope.getIndexFromHotImmediateThirdArr(thirdId);
+                    // if(index > -1) {
+                    //     $scope.hotImmediateMatchThirdArr.splice(index, 1);
+                    // }
                     $scope.toggleNoImmediateMatchesFlag();
                 }
             }, 60000);
@@ -1855,7 +1892,8 @@ football.controller("FootballController", [
             var raceIdArr = $scope.getCheckedRaceIdArrFromCookie();
             if(raceIdArr == null ||  raceIdArr.length == 0) {//如果没有选择筛选条件
                 //如果还有热门赛事
-                var hotThirdIdArr = $scope.hotImmediateMatchThirdArr;
+                // var hotThirdIdArr = $scope.hotImmediateMatchThirdArr;
+                var hotThirdIdArr =null;
                 if(hotThirdIdArr != null && hotThirdIdArr.length > 0) {
                     $scope.noImmediateMatches = false;
                     $scope.noInitImmediateMatches = false;
@@ -3140,21 +3178,31 @@ football.controller("FootballController", [
                     }
                 }
             } else {
-                if($scope.tabActiveIndex == 0 ) { //即时，默认选中热门赛事
+                /*if($scope.tabActiveIndex == 0 ) { //即时，默认选中热门赛事
                     $scope.checkHotGame();
-                } else { //其他，默认全不选
-                    $scope.uncheckAllGame();
-                }
+                } else {*/ //其他，默认全选
+                    $scope.checkAllGame();
+                // }
 
             }
         }
 
         //赛事筛选--全选
         $scope.checkAllGame = function () {
+            $scope.hotGameList=[];
+            $scope.otherGameList=[];
+            $scope.hideGameCount = 0;
+            var curGame = null;
             for (var i in $scope.raceList) {
                 $scope.raceList[i].clicked = true;
+                curGame = $scope.raceList[i];
+                //热门、非热门
+                if(curGame.hot){
+                    $scope.hotGameList.push(curGame);
+                }else{
+                    $scope.otherGameList.push(curGame);
+                }
             }
-            $scope.hideGameCount = 0;
         }
 
         //赛事筛选--全不选
@@ -3637,6 +3685,7 @@ football.controller("FootballController", [
             angular.element($("#day_div")).removeClass("show");
             //获取赛果列表
             var date = $event.currentTarget.getAttribute("day");
+
             $scope.resultMatches = [];
             $scope.resultMatchesBak = [];
             ResultServiceFactory.loadResultMatchData($scope, $cookieStore, date, false);
@@ -3758,7 +3807,7 @@ football.controller("FootballController", [
             var thirdId = $target.attr("thirdId");
             var x = $target.offset().left - 25,
                 y = $target.offset().top + 20,
-                X = $shop.offset().left + $shop.width() / 2 - $target.width() / 2 + 10,
+                X = $shop.offset().left + $shop.width() / 2 - $target.width() / 2 + 5,
                 Y = $shop.offset().top;
             var attentionThirdIds = $scope.getObjectFromLocalStorage("attentionThirdIds");
             var attentionMatchCount = $scope.getObjectFromLocalStorage("attentionMatchCount");
@@ -3851,6 +3900,14 @@ football.controller("FootballController", [
         $scope.attentionWarnCloseClick = function ($event) {
             $scope.maxAttentionMatchesCountWarn = false;
         }
+        // 取国家方法
+        $scope.getCountry = function () {
+            var country = $scope.getObjectFromLocalStorage("country");
+            if (country == null) {
+                country = defaultCountry;
+            }
+            return country;
+        };
 
 //时间筛选
         $scope.timeFilterClick = function ($event) {
@@ -3987,6 +4044,7 @@ football.controller("FootballController", [
                 }
             );
         };
+
     }
 ])
 
@@ -4016,6 +4074,7 @@ Date.prototype.Format = function (fmt) {
                 : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };
+
 
 String.prototype.startWith = function (str) {
     var reg = new RegExp("^" + str);

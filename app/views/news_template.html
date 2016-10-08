@@ -27,13 +27,14 @@
       <div class="pagination"></div>
     </div>
 
-    <div class="new_bd">
-      <ul class="newsList" ng-if="infoType!=5">
+    <div class="new_bd" ng-if="infos!=null">
+      <ul class="newsList" ng-if="infoTypeStutas">
 
-        <li ng-repeat="info in infos" info-repeat-finish>
-          <a class="a-lk" href="{{info.infoUrl}}#mobile=1" ng-if="info.isvideonews!='1'">
+        <li ng-repeat="info in infos" info-repeat-finish ng-click="infoClick($event)">
+          <a class="a-lk" href="{{info.infoUrl}}#mobile=1" ng-if="info.isvideonews!='1'" id="{{info.infoId}}">
                             <span class="u-img" ng-if="info.picUrl!=null">
-                                <img ng-src="{{info.picUrl}}" alt="" />
+                                <img ng-src="{{info.picUrl}}" alt=""  ng-if="$index<=viewNum"/>
+                                <img src="@@IMGURL/news/default.png" data-echo="{{info.picUrl}}" ng-if="$index>viewNum" />
                             </span>
                             <span ng-if="info.picUrl==null">
 
@@ -43,14 +44,15 @@
               <div class="info">
                <!--  <span class="recommend" ng-if="info.subTitle!=null">{{'RECOMMEND' | translate}}</span> -->
                 <span class="resource">{{info.subTitle}}</span>
-                <span class="icon" ng-if="infoType!=1">{{info.lastModifyDate}} {{info.lastModifyTime}}</span>
+                <span class="icon" ng-if="infoType!=1">{{info.lastModifyDateTime}}</span>
               </div>
             </div>
           </a>
 
-          <a class="a-lk" ng-if="info.isvideonews=='1'" videourl="{{info.videourl}}" ng-click="videoPlayerClick($event)">
+          <a class="a-lk" ng-if="info.isvideonews=='1'" videourl="{{info.videourl}}" ng-click="videoPlayerClick($event)" id="{{info.infoId}}">
                             <span class="u-img" ng-if="info.picUrl!=null">
-                                <img ng-src="{{info.picUrl}}" alt="" />
+                                <img ng-src="{{info.picUrl}}" alt="" ng-if="$index<=viewNum"/>
+                                <img src="@@IMGURL/news/default.png" data-echo="{{info.picUrl}}" ng-if="$index>viewNum" />
                             </span>
                             <span ng-if="info.picUrl==null">
 
@@ -69,16 +71,27 @@
 
       </ul>
 
-      <ul class="depth" ng-if="infoType==5">
-        <li ng-repeat="info in infos" info-repeat-finish>
+      <ul class="depth" ng-if="!infoTypeStutas">
+        <li ng-repeat="info in infos" info-repeat-finish ng-click="infoClick($event)">
           <div class="depth-con" ng-if="info.picUrl!=null">
-            <a href="{{info.infoUrl}}#mobile=1">
+            <a href="{{info.infoUrl}}#mobile=1" id="{{info.infoId}}" ng-if="info.isvideonews!='1'">
               <img ng-src="{{info.picUrl}}">
               <div class="depth-tit">{{info.title}}</div>
             </a>
+
+            <a ng-if="info.isvideonews=='1'" videourl="{{info.videourl}}" ng-click="videoPlayerClick($event)" id="{{info.infoId}}">
+              <img ng-src="{{info.picUrl}}">
+              <div class="depth-tit">{{info.title}}</div>
+            </a>
+
+
           </div>
           <div class="depth-con" ng-if="info.picUrl==null">
-            <a href="{{info.infoUrl}}#mobile=1">
+            <a href="{{info.infoUrl}}#mobile=1" id="{{info.infoId}}" ng-if="info.isvideonews!='1'">
+              <img src="@@IMGURL/news/depth.png">
+              <div class="depth-tit">{{info.title}}</div>
+            </a>
+            <a ng-if="info.isvideonews=='1'" videourl="{{info.videourl}}" ng-click="videoPlayerClick($event)" id="{{info.infoId}}">
               <img src="@@IMGURL/news/depth.png">
               <div class="depth-tit">{{info.title}}</div>
             </a>
@@ -87,9 +100,18 @@
       </ul>
     </div>
 
+    <div class="new_bd" ng-if="infos==null">
+        <ul class="noData" ng-show="!infoShow">
+          <p class="noData_img"></p>
+          <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+        </ul>
+    </div>
+
     <div id="note" ng-if="loadingShow" ng-show="infoType!=1">
         <img src="@@IMGURL/loading.gif"/> {{'ONLOADING' | translate}}
     </div>
+
+    <div class="loading" ng-show="infoShow"></div>
 
   </div>
 
@@ -102,4 +124,3 @@
   <div class="memo" ng-click="videoCancelClick()">
   </div>
 </div>
-

@@ -83,12 +83,12 @@ em, i {
 .mainBox {
   position: relative
 }
-.mainBox img{
+.mainBox>img{
   margin-top: 50px;
 }
 .mainBox .dlUp {
   position: absolute;
-  top: 6rem;
+  top: 6.3rem;
   width: 6.4rem;
 }
 .mainBox .dlDown {
@@ -98,8 +98,12 @@ em, i {
 }
 .mainBox .dlBlock {
   width: 3rem;
-  height: 1rem;
-  margin: auto;
+  height: auto;
+  margin: 0 auto;
+}
+.mainBox .dlBlock img{
+  display: block;
+  width: 100%;
 }
 .mainBox .hand {
   display: none;

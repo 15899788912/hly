@@ -23,9 +23,10 @@
 	height: .8rem;
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAASFBMVEUAAADu7u7u7u7////e3t7U1NTc3NzLy8vs7Ozh4eHy8vLCwsLY2NjS0tLOzs7p6enQ0NDk5OTV1dXGxsb8/Pz19fXIyMj4+PhOMB4jAAAAAnRSTlMAf7YpoZUAAAGKSURBVFjDrdPbboQgGEXhdoEiKh5H5/3ftE21IQMzF5C97gzJlz/Z8Uvct9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQe9R5+cpaseo+BfiCr3rONMWNLWrWH64058hOrPRvMb1t2YoUXD3x3Yq1nF/PXlg5d6TFxgb1LwQqvW+24mLsw2rUjVuitY3D7Po3++Aefflz23YVxBYAyb1v83D9M1qOffdgAKPIYIpZ3DV7ksdnPnr8uLPLoGvvRa+YczL1cbN979vYo8qKYex1XhR6QiIlHgfdZbKNHuQdhfvW6hViFx0TEsv+5wmN/Jv/JQKzC63aT5Ob4Wu6xLinY+Pha7tFmK9sxvpZ7NOs9rnP33HOIr4VeHJlp8WuYunTmco/98UuEyQP4aelfZy73OI9jG1rurGuOZwKWebTn2b58uzMZJXqC1B5qD7WH2kPtofZQe6g91B5qD7XHD9USIP7Mk3UPAAAAAElFTkSuQmCC');
 	background-size: 100%;
-    position: absolute;
-    bottom:0px;
-    right: 0px;
+  position: absolute;
+  bottom:0px;
+  right: 0px;
+  z-index:9999;
 }
 .icon_slt{
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAZlBMVEUAAAAAheEAheH////J5vnD4vij0/Rpt+47oejv+P3W6/pBpekChuH4/P7P6Pm93/eExfF+wvB4vu92ve9csexQrOtLqeojlubd7/ut2PVIp+kxnecUj+Po9Py02/aWzfNxu+4TjuMEAJuXAAAAAnRSTlMAf7YpoZUAAAFbSURBVFjDrdXZbsIwEEbh9kwIISl7SCjQ7f1fspGI5GCTSp7+59bSJ0vj5UXcq9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeag+1h9pD7aH2UHuoPdQeao//eNvFG0l+j86sJcnvUZjV6Rb93sWGTsS5PRY2tCHO7TVmT7fo9VjcwYIor1fZ2IXHPN5P1e5qGzvv2upGKNOr9mWxsqRVUe4bAMjzWNt8AJDncZz3dgCQ58FhzttzL9OD7+fegbFcD5Z/euR48+IxrGZ48+KSkMOD8tF7Z5LHYxuw5D57PD6ie8Ikj3ezqJ6Qw6OJwY6QwwtTXqenBofH1zjcvh/HXRLK9MJjvb0CXD/jn8XhsTIrGsaqgV9PflOHR12fmNRtzjGYev7UHmoPtYfaQ+2h9lB7qD3UHmoPtYfa4xd/Gx7EwY51YwAAAABJRU5ErkJggg==');
@@ -135,11 +136,12 @@
     text-overflow: ellipsis;/* IE/Safari */
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;/* Opera */
-    height: 14px;
+    // height: 14px;
     display: inline-block;
-    overflow: hidden;
-    line-height: 1;
+    // overflow: hidden;
+    // line-height: 1;
     white-space: pre;
+    vertical-align: middle;
   }
 
   .wid_40{width: 34%;}
@@ -152,7 +154,8 @@
     margin:0;
     font-size: .22rem;
     &.m_top{
-      margin: .1rem 0 0 .2rem;
+      margin: 5px 0 0 .2rem;
+      // height: 15px;
       .t_name{
         color:@n-red;
       }
@@ -331,6 +334,7 @@
             line-height:normal;
             vertical-align: middle;
             margin: 0;
+            width: 100%;
           }
         }
         .t_name{

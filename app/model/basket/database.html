@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="basketball.database">
+<head>
+  <meta name="keywords" content="{{'DATABASE_KEYWORDS' | translate}}"/>
+  	<meta name="description" content="{{'DATABASE_DESCRIPTION' | translate}}" />
+  @import '../views/head.html';
+  <title ng-bind="'HEAD_TITLE' | translate"></title>
+  <link rel="stylesheet" type="text/css" href="../styles/nav_header@@MINEXT.css">
+  <link rel="stylesheet" href="/styles/database@@MINEXT.css">
+</head>
+
+<body class="ng-cloak" ng-cloak>
+  @import '../views/nav.html'
+  <div ng-view="" class="database"  ng-cloak>
+  @import '../views/foot.html';
+
+  <script type="text/javascript" src="/common/echo@@MINEXT.js"></script>
+  <script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+  <script type="text/javascript" src="/scripts/controllers/basketball/database@@MINEXT.js"></script>
+</div>
+</body>
+</html>

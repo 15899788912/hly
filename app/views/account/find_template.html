@@ -1,0 +1,49 @@
+<!-- 找回密码-->
+<section class="regInfo">
+  <div class="reg-header">
+    <div class="left-wrapper">
+      <a href="#/login"  class="icons-left"></a>
+    </div>
+    <div class="title-wrapper">
+      {{'find.find_find' | translate}}
+    </div>
+    <div class="right-wrapper">
+
+    </div>
+  </div>
+
+
+  <div class="reg-body">
+    <ul>
+      <li>
+        <label class="icon-item">
+          <input type="text"  maxlength="20"   ng-model="account"  placeholder="{{'find.find_account' | translate}}"/>
+          <i class="icon icon-del" ng-click="account = ''"  ng-show="account !='' "></i>
+        </label>
+      </li>
+      <li class="sms">
+        <input type="text"  maxlength="8"   ng-model="smsCode" placeholder="{{'find.find_code' | translate}}" class="input"/>
+        <button class="btn yellow-btn"  ng-class="{dis:disableSMS || account ==''}"  ng-click="sendFindSMS()" ng-disabled = "disableSMS || account == '' " >
+          <span class="ltime" ng-show="disableSMS" >{{ltime}}</span>
+          {{'find.find_fcode' | translate}}
+        </button>
+      </li>
+      <li>
+        <label class="icon-item">
+          <input type="password"  maxlength = "16"   ng-model="password"  placeholder="{{'find.find_password' | translate}}"  class=""/>
+        </label>
+      </li>
+      <li>
+        <button class="btn blue-btn btn-login" ng-click="findPassword()"   ng-class="{dis : password == '' || account =='' || smsCode == ''}">{{'find.find_submit' | translate}}</button>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+<div class="loading" ng-show="loading" ng-init="loading=false"></div>
+<div class="mask tips fade-in " ng-show="maskShow" ng-init="maskShow=false" ng-click="hideMask($event)">
+  <ul>
+    <li  ng-repeat="info in infos">{{info}}</li>
+  </ul>
+</div>

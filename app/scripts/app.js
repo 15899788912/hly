@@ -23,6 +23,7 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
       "nav_news" : "体育资讯",
       "nav_odds" : "足球指数",
       "nav_data" : "足球数据",
+      "nav_basketdata": "篮球数据",
       "nav_video": "视频直播",
       "nav_kj":"彩票开奖",
       "nav_thcp": "泰国彩票"
@@ -35,6 +36,7 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
       "nav_news" : "Sports Information",
       "nav_odds" : "Football Odds",
       "nav_data" : "Football Data",
+      "nav_basketdata": "Basketball Data",
       "nav_video": "Live Video",
       "nav_kj":"Lottery Draw",
       "nav_thcp":"lotto thai"
@@ -47,6 +49,7 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
       "nav_news" : "體育資訊",
       "nav_odds" : "指數",
       "nav_data" : "足球數據",
+      "nav_basketdata": "籃球數據",
       "nav_video": "視頻直播",
       "nav_kj":"彩票開獎",
       "nav_thcp":"泰國彩票"
@@ -54,24 +57,26 @@ var commonHeaderNav = ["$translateProvider", function ($translateProvider) {
     th: {
       "nav_title":"วันสกอร์ ",
       "IMG_LOGO":"/images/th/logo.png",
-      "nav_basketball":"สกอร์บาสเกตบอล",
+      "nav_basketball":"สกอร์บาส",
       "nav_football":"สกอร์ฟุตบอล",
-      "nav_news" : "ข่าวกีฬา",
-      "nav_odds" : "ออดซฟุตบอล",
+      "nav_news" : "หน้าแรก",
+      "nav_odds" : "เปรียบเทียบอัตราต่อรอง",
       "nav_data" : "ข้อมูลฟุตบอล",
+      "nav_basketdata": "ฐานข้อมูลบาส",
       "nav_video": "วิดีโอถ่ายทอดสด",
       "nav_kj":"การออกผลล็อตเตอรี่",
-      "nav_thcp":"lotto thai"
+      "nav_thcp":"ผลสลากกินแบ่งรัฐบาล"
     },
     vi : {
       "nav_title":"Tỷ Số Nhất",
       "IMG_LOGO":"/images/vi/logo.png",
-      "nav_basketball":"Tỷ số bống rổ",
-      "nav_football":"Tỷ số bống đá",
-      "nav_news" : "tin tức thể thao",
+      "nav_basketball":"Tỷ số bóng rổ",
+      "nav_football":"Tỷ số bóng đá",
+      "nav_news" : "Tin tức thể thao",
       "nav_odds" : "Chỉ số bóng đá",
-      "nav_data" : "Dữ Liệu Bóng Đá",
-      "nav_video": "trực tuyến",
+      "nav_data" : "Dữ liệu bóng đá",
+      "nav_basketdata": "Dữ liệu bóng rổ",
+      "nav_video": "Trực tiếp bóng đá",
       "nav_kj":"Xổ số",
       "nav_thcp":"lotto thai"
     }
@@ -138,57 +143,8 @@ angular.module("live1.football", [
                 redirectTo: "/"
             });
     }
-]).config(commonHeaderNav).directive("liveNav",function(){
-  return {
-    restrict: 'E',
-    templateUrl: "/views/nav.html",
-    replace: true,
-    controller : function() {
-
-    },
-    link : function(scope, element, attrs) {
-      console.log("scope:",scope);
-      var dom_el = $(element);
-      var right = dom_el.find(".right");
-      var left = dom_el.find(".left");
-      var status = false;
-      right.on("click",function(){
-        if (!status){
-          left.removeClass("line").addClass("box");
-          left.attr("style","height:100px");
-          dom_el.attr("style","height:100px;overflow:hidden;")
-          status = true;
-        } else {
-          left.removeClass("box").addClass("line");
-          left.attr("style","height:50px");
-          dom_el.attr("style","height:50px;overflow:hidden;");
-          status = false;
-        }
-      })
-
-    }
-  };
-});
-/*分数*/
-angular.module("live1.score", [
-    "ngRoute",
-    "ngResource",
-    "ngCookies",
-    "infinite-scroll",
-    "pasvaz.bindonce",
-    "pascalprecht.translate"
-]).config(['$routeProvider',
-    function ($routeProvider) {
-        $routeProvider
-            .when("/", {
-                templateUrl: "/views/score_template.html",
-                controller: "ScoreController"
-            })
-            .otherwise({
-                redirectTo: "/"
-            });
-    }
 ]).config(commonHeaderNav);
+
 /*篮球比分*/
 angular.module("live1.basketball", [
     "ngRoute",
@@ -208,37 +164,8 @@ angular.module("live1.basketball", [
                 redirectTo: "/"
             });
     }
-]).config(commonHeaderNav).directive("liveNav",function(){
-  return {
-    restrict: 'E',
-    templateUrl: "/views/nav.html",
-    replace: true,
-    controller : function() {
+]).config(commonHeaderNav);
 
-    },
-    link : function(scope, element, attrs) {
-      console.log("scope:",scope);
-      var dom_el = $(element);
-      var right = dom_el.find(".right");
-      var left = dom_el.find(".left");
-      var status = false;
-      right.on("click",function(){
-        if (!status){
-          left.removeClass("line").addClass("box");
-          left.attr("style","height:100px");
-          dom_el.attr("style","height:100px;overflow:hidden;")
-          status = true;
-        } else {
-          left.removeClass("box").addClass("line");
-          left.attr("style","height:50px");
-          dom_el.attr("style","height:50px;overflow:hidden;");
-          status = false;
-        }
-      })
-
-    }
-  };
-})
 /*视频直播*/
 angular.module("live1.livetv", [
     "ngRoute",
@@ -256,6 +183,7 @@ angular.module("live1.livetv", [
             });
     }
 ]).config(commonHeaderNav);
+
 /*资讯*/
 angular.module("live1.news", [
   "ngRoute",
@@ -328,42 +256,76 @@ angular.module("live1.final", [
 ]).config(commonHeaderNav);
 
 
-/*资料库*/
-angular.module("live1.data", [
-  "ngRoute",
-  "ngResource",
-  "pascalprecht.translate"
-]).config(['$routeProvider',
-  function ($routeProvider) {
-    $routeProvider
-      .when("/", {
-        templateUrl: "/views/data_template/data_template.html",
-        controller: "dataController"
-      })
-      .otherwise({
-        redirectTo: "/"
-      });
-  }
-]).config(commonHeaderNav);
+/*篮球资料库*/
+angular.module("basketball.database", [
+   "ngRoute",
+   "ngResource",
+   "pascalprecht.translate"
+ ]).config(['$routeProvider',
+   function ($routeProvider) {
+     $routeProvider
+       .when("/", {
+         templateUrl: "../../views/basketball_template/database_template.html",
+         controller: "databaseController"
+       })
+       .otherwise({
+         redirectTo: "/"
+       });
+   }
+ ]).config(commonHeaderNav);
+
+ /*足球资料库*/
+ angular.module("live1.data", [
+    "ngRoute",
+    "ngResource",
+    "pascalprecht.translate"
+  ]).config(['$routeProvider',
+    function ($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "/views/data_template/index_template.html",
+          controller: "databaseController"
+        })
+        .otherwise({
+          redirectTo: "/"
+        });
+    }
+  ]).config(commonHeaderNav);
 
 
-/*资料库内容*/
-angular.module("live1.integral", [
-  "ngRoute",
-  "ngResource",
-  "pascalprecht.translate"
-]).config(['$routeProvider',
-  function ($routeProvider) {
-    $routeProvider
-      .when("/", {
-        templateUrl: "/views/data_template/integral_template.html",
-        controller: "integralController"
-      })
-      .otherwise({
-        redirectTo: "/"
-      });
-  }
-]).config(commonHeaderNav);
-
-
-
+  // /*资料库*/
+  // angular.module("live1.data", [
+  //   "ngRoute",
+  //   "ngResource",
+  //   "pascalprecht.translate"
+  // ]).config(['$routeProvider',
+  //   function ($routeProvider) {
+  //     $routeProvider
+  //       .when("/", {
+  //         templateUrl: "/views/data_template/data_template.html",
+  //         controller: "dataController"
+  //       })
+  //       .otherwise({
+  //         redirectTo: "/"
+  //       });
+  //   }
+  // ]).config(commonHeaderNav);
+  //
+  //
+  /*资料库内容*/
+  angular.module("live1.integral", [
+    "ngRoute",
+    "ngResource",
+    "pascalprecht.translate"
+  ]).config(['$routeProvider',
+    function ($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "/views/data_template/integral_template.html",
+          controller: "integralController"
+        })
+        .otherwise({
+          redirectTo: "/"
+        });
+    }
+  ]).config(commonHeaderNav);

@@ -1,0 +1,96 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-account {
+  background-image: url(account.png);
+  background-position: 0px -317px;
+  width: 113px;
+  height: 113px;
+}
+.icon-del {
+  background-image: url(account.png);
+  background-position: -452px -82px;
+  width: 30px;
+  height: 30px;
+}
+.icon-download {
+  background-image: url(account.png);
+  background-position: -364px -317px;
+  width: 36px;
+  height: 32px;
+}
+.icon-exit {
+  background-image: url(account.png);
+  background-position: -397px -351px;
+  width: 35px;
+  height: 31px;
+}
+.icon-header {
+  background-image: url(account.png);
+  background-position: 0px 0px;
+  width: 450px;
+  height: 315px;
+}
+.icon-lan {
+  background-image: url(account.png);
+  background-position: -115px -400px;
+  width: 36px;
+  height: 29px;
+}
+.icon-left {
+  background-image: url(account.png);
+  background-position: -452px -37px;
+  width: 24px;
+  height: 43px;
+}
+.icon-lock {
+  background-image: url(account.png);
+  background-position: -364px -351px;
+  width: 31px;
+  height: 35px;
+}
+.icon-pc {
+  background-image: url(account.png);
+  background-position: -402px -317px;
+  width: 37px;
+  height: 31px;
+}
+.icon-qq {
+  background-image: url(account.png);
+  background-position: -198px -317px;
+  width: 81px;
+  height: 81px;
+}
+.icon-user {
+  background-image: url(account.png);
+  background-position: -452px 0px;
+  width: 31px;
+  height: 35px;
+}
+.icon-weibo {
+  background-image: url(account.png);
+  background-position: -115px -317px;
+  width: 81px;
+  height: 81px;
+}
+.icon-weixin {
+  background-image: url(account.png);
+  background-position: -281px -317px;
+  width: 81px;
+  height: 81px;
+}

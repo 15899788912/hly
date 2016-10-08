@@ -143,7 +143,7 @@
                         <div class="toolbar" ng-if="dateMatch.showData" ng-click="dayTimeClick($event,dateMatch.day)" data-day="{{dateMatch.today}}" data-text="{{dateMatch.dayText}}">
                             <div class="t_date">
                                 <i class="icon_basket"></i>
-                                <span class="day"><span ng-bind="dateMatch.day"></span> <label ng-bind="dateMatch.week"></label></span>
+                                <span class="day"><span ng-bind="dateMatch._day"></span> <label ng-bind="dateMatch.week"></label></span>
                                 <label class="today" ng-if="dateMatch.today">{{'TODAY'|translate}}</label>
                                 <label class="today" ng-if="dateMatch.tomorrow">{{'TOMORROW'|translate}}</label>
                                 <label class="today" ng-if="dateMatch.yesterday">{{'YESTERDAY'|translate}}</label>
@@ -159,7 +159,7 @@
                             <dl class="top_dl">
                                 <dd class="wid_40 align_l m_top ">
                                     <font style="color:{{resultMatch.leagueColor}}" class="t_name too_long" leagueId="{{resultMatch.leagueId}}" ng-bind="resultMatch.leagueName"></font>
-                                    <span class="t_time fr" ng-bind="resultMatch.time"></span>
+                                    <span class="t_time" ng-bind="resultMatch.time"></span>
                                 </dd>
                                 <dd class="wid_60 align_r m_top">
                                     <span ng-if="medalScore">
@@ -235,7 +235,7 @@
                         <div class="toolbar" ng-if="dateMatch.showData" ng-click="dayTimeClick($event,dateMatch.day)" data-day="{{dateMatch.today}}" data-text="{{dateMatch.dayText}}">
                             <div class="t_date">
                                 <i class="icon_basket"></i>
-                                <span class="day"><span ng-bind="dateMatch.day"></span> <label ng-bind="dateMatch.week"></label></span><!-- TOMORROW -->
+                                <span class="day"><span ng-bind="dateMatch._day"></span> <label ng-bind="dateMatch.week"></label></span><!-- TOMORROW -->
                                 <label class="today" ng-if="dateMatch.today">{{'TODAY'|translate}}</label>
                                 <label class="today" ng-if="dateMatch.tomorrow">{{'TOMORROW'|translate}}</label>
                                 <label class="today" ng-if="dateMatch.yesterday">{{'YESTERDAY'|translate}}</label>
@@ -251,7 +251,7 @@
                             <dl class="top_dl">
                                 <dd class="wid_40 align_l m_top">
                                     <font style="color:{{scheduleMatch.leagueColor}}" class="t_name too_long" leagueId="{{scheduleMatch.leagueId}}" ng-bind="scheduleMatch.leagueName"></font>
-                                    <span class="t_time fr" ng-bind="scheduleMatch.time"></span>
+                                    <span class="t_time" ng-bind="scheduleMatch.time"></span>
                                 </dd>
                                 <dd class="wid_60 align_r m_top">
                                     <!-- <span ng-if="medalScore">
@@ -325,7 +325,7 @@
                             <div ng-switch-when = "0" class="toolbar" ng-click="dayTimeClick($event)" data-day="{{attentionMatch.today}}" data-text="{{attentionMatch.dayText}}">
                                 <div class="t_date">
                                     <i class="icon_basket"></i>
-                                    <span class="day"><span ng-bind="attentionMatch.day"></span> <label ng-bind="attentionMatch.week"></label></span>
+                                    <span class="day"><span ng-bind="attentionMatch._day"></span> <label ng-bind="attentionMatch.week"></label></span>
                                     <label class="today" ng-if="attentionMatch.today">{{'TODAY'|translate}}</label>
                                     <label class="today" ng-if="attentionMatch.tomorrow">{{'TOMORROW'|translate}}</label>
                                     <label class="today" ng-if="attentionMatch.yesterday">{{'YESTERDAY'|translate}}</label>
@@ -559,4 +559,3 @@
     </div>
     <!--设置结束-->
 </div>
-

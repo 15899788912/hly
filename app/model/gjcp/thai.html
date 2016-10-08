@@ -11,24 +11,41 @@
     <div class="nav-menus" >
       <div class="title">
         <div class="wrap">
-          <span class="title nav_title">วันสกอร์รุ่นหน้าจอสัมผัส</span>
+          <div class="logo"  id="logo-slide">
+            <!--<a  title="{{'LOGO_TITLE' | translate}}">-->
+              <img  src="@@IMGURL/account/menu.png" />
+            <!--</a>-->
+          </div>
         </div>
-        <dl class="head_r" id="sort">
+        <div class="nav_title">
+          <img src="/images/th/logo.png" />
+          <!--{{'nav_title' | translate}}-->
+        </div>
+        <dl class="head_r">
           <dd>
-            <a class="lg_icons"  href="/language.html"></a>
+            <a class="lg_icons"  href="/language.html#/"></a>
           </dd>
         </dl>
       </div>
       <div class="left line nav-tab" id="nav-tab" >
-        <a href="/index.html" id="nav3" class="nav_nav" ng-cloak>ข่าวกีฬา</a>
-        <a href="/live" id="nav1" class="nav_nav active" >สกอร์ฟุตบอล</a>
-        <a href="/basket" id="nav2" class="nav_nav" >สกอร์บาสเกตบอล</a>
-        <a href="/odds" id="nav4" class="nav_nav" >ออดซฟุตบอล</a>
-        <!--<div style="clear:both" id="clear_f"></div>-->
-        <a href="/data" id="nav5"  class="nav_nav" >ข้อมูลฟุตบอล</a>
-        <a href="/video" id="nav6"  class="nav_nav">วิดีโอถ่ายทอดสด</a>
-        <a href="/kj" id="nav7"  class="nav_nav">การออกผลล็อตเตอรี่</a>
-        <a href="/gjcp/thai.html" id="nav8"  class="nav_nav">lotto thai</a>
+		<a href="/index.html#/" data-url="/index.html" id="nav3" class="nav_nav">ข่าวกีฬา</a>
+		<a href="/live#/" data-url="/live" id="nav1" class="nav_nav active" >สกอร์ฟุตบอล</a>
+		<a href="/basket#/" data-url="/basket" id="nav2" class="nav_nav">สกอร์บาสเกตบอล</a>
+		<a href="/odds#/" data-url="/odds" id="nav4" class="nav_nav">ออดซฟุตบอล</a>
+		<!--<div style="clear:both" id="clear_f"></div>-->
+		<a href="/data#/" data-url="/data" id="nav5"  class="nav_nav">ข้อมูลฟุตบอล</a>
+		<a href="/basket/database.html#/" data-url="/basket/database.htm" id="nav6"  class="nav_nav">ฐานข้อมูลบาส</a>
+		<a href="/video#/" data-url="/video" id="nav7"  class="nav_nav">วิดีโอถ่ายทอดสด</a>
+<<<<<<< .mine
+		<!-- <a href="/kj" id="nav8"  class="nav_nav" ng-cloak>การออกผลล็อตเตอรี่</a>-->
+		<a href="/gjcp/thai.html#/" data-url="/gjcp/thai.htm" id="nav9"  class="nav_nav">ผลสลากกินแบ่งรัฐบาล</a>
+||||||| .r10203
+		<!-- <a href="/kj" id="nav8"  class="nav_nav" ng-cloak>การออกผลล็อตเตอรี่</a>
+		<a href="/gjcp/thai.html#/" data-url="/gjcp/thai.htm" id="nav9"  class="nav_nav">ผลสลากกินแบ่งรัฐบาล</a>-->
+=======
+		<a href="/kj#/" data-url="/kj" id="nav8"  class="nav_nav">การออกผลล็อตเตอรี่</a>
+		<!-- <a href="/gjcp/thai.html#/" data-url="/gjcp/thai.htm" id="nav9"  class="nav_nav">ผลสลากกินแบ่งรัฐบาล</a>-->
+>>>>>>> .r10356
       </div>
       <!--<div class="right">-->
       <!--<i class="nav_arrow nav_up  nav_down"></i>-->
@@ -70,7 +87,55 @@
             <div class="last_span"><span>ยกเลิก</span></div>
         </div>
 	</div>
+
+  <!-- 用户中心-->
+  <div class=" slide-menu account hide fade">
+    <section class="userInfo main-wrapper">
+      <div class="menu-wrapper">
+        <nav class="menu">
+          <ul class="menu-header">
+            <li class="avatar">
+              <img  src="@@IMGURL/account/head.png"/>
+            </li>
+            <li class="nick">
+              <div id="user" class="hide">
+                <div id="nav-d-nick">用户昵称</div>
+                <div id="nickName"></div>
+              </div>
+              <div  id="no-user" class="hide">
+                <a href="/account/account.html#/login" id="nav-d-login">登录</a>
+                /
+                <a href="/account/account.html#/reg" id="nav-d-reg">注册</a>
+              </div>
+            </li>
+          </ul>
+          <ul class="menu-item">
+            <li class="language">
+              <i class="icons-lan"></i>
+              <a id="nav-d-lan" href="/language.html#/">选择语言</a>
+            </li>
+            <li class="download">
+              <i class="icons-download"></i>
+              <a  id="nav-d-app">下载APP</a>
+            </li>
+            <li class="pc">
+              <i class="icons-pc"></i>
+              <a href="http://www.13322.com?from=m" id="nav-d-pc">访问电脑版</a>
+            </li>
+            <li class="exit hide">
+              <i class="icons-exit"></i>
+              <a id="exit"> 退出账号</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </div>
+
+
+
     @import '../views/foot.html';
+    <script type="text/javascript" src="../../common/nav_header@@MINEXT.js"></script>
     <script type="text/javascript" src="/scripts/controllers/gjcp/thai@@MINEXT.js"></script>
     <script type="text/javascript" src="/common/nav_header@@MINEXT.js"></script>
 </body>

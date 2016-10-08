@@ -56,8 +56,8 @@
 				</tr>
 				<tr ng-repeat="ci in comInfoMatches">
 					<td width="34%">
-						<span class="com_date" ng-if="$index==(comInfoMatches.length-1)">{{'COMPANY_CP'|translate}}</span> 
-						<span class="com_date" ng-if="$index!=(comInfoMatches.length-1)">{{ci.day}} {{ci.time}}</span> 
+						<span class="com_date" ng-if="$index==(comInfoMatches.length-1)">{{'COMPANY_CP'|translate}}</span>
+						<span class="com_date" ng-if="$index!=(comInfoMatches.length-1)">{{day_time}}</span> 
 					</td>
 					<td width="22%"><span class="{{ci.leftUpClass}}">{{ci.homeOdd}}</span></td>
 					<td width="22%"><span class="{{ci.middleClass}}">{{ci.handVal}}</span></td>

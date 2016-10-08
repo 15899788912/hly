@@ -1,0 +1,107 @@
+<!-- 注册-->
+<section class="regInfo">
+  <div class="reg-header">
+    <div class="left-wrapper">
+      <a  ng-click="accountBack()" class="icons-left">
+        <!--href="/index.html#/"<img src="@@IMGURL/account/left.png" class="back"/>-->
+      </a>
+    </div>
+    <div class="title-wrapper">
+      {{'reg.reg_reg' | translate }}
+    </div>
+    <div class="right-wrapper">
+      <a href="#/login">{{'reg.reg_login' | translate}}</a>
+    </div>
+  </div>
+  <!-- 国内-->
+  <div class="reg-body"  ng-show="country == 'c-zh'">
+    <ul>
+      <li>
+        <label class="icon-item">
+          <input type="text"  maxlength = "32"  ng-model="account" ng-init="account = ''" placeholder="{{'reg.reg_account' | translate}}"/>
+          <i class="icon icon-del" ng-click="account=''" ng-show="account!=''"></i>
+        </label>
+      </li>
+      <li class="sms">
+          <input type="text" maxlength = "8"  ng-model="smsCode" ng-init="smsCode=''" placeholder="{{'reg.reg_sms' | translate}}" class="input"/>
+          <button class="btn yellow-btn" ng-class="{dis:disableSMS || account ==''}" ng-click="sendSMS()" ng-disabled = "disableSMS || account == '' " ng-init="disableSMS=false" >
+            <span class="ltime" ng-show="disableSMS" >{{ltime}}</span>
+            {{'reg.reg_getSMS' | translate}}
+          </button>
+      </li>
+      <!--<li class="sms">-->
+        <!--<input type="text" name="code" ng-model="vcode" ng-init="vcode=''" placeholder="输入验证码" class="input"/>-->
+        <!--<img  class="btn yellow-btn" onerror="" src="http://192.168.31.18:8080/mlottery/core/h5UserCenter.findVerifyCode.do?phone={{account}}" />-->
+      <!--</li>-->
+      <li>
+        <label class="icon-item">
+          <input type="password" maxlength = "16"   ng-model="password" ng-init = "password=''" placeholder="{{'reg.reg_password' | translate}}"  />
+        </label>
+      </li>
+      <li>
+        <button class="btn blue-btn btn-login" ng-click="reg()"  ng-class="{dis : password == '' || account =='' || smsCode == ''}">{{'reg.reg_reg' | translate }}</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 国外-->
+  <div class="reg-body" ng-show="country != 'c-zh'">
+    <ul>
+      <li>
+        <label class="icon-item">
+          <input type="text" name="username" ng-model="account" ng-init="account = ''" placeholder="{{'reg.reg_account' | translate}}"/>
+          <i class="icon icon-del" ng-click="account=''" ng-show="account!=''"></i>
+        </label>
+      </li>
+
+      <!-- 获取图形验证码 -->
+      <li>
+        <button class="btn yellow-btn  btn-half-left "
+                ng-class="{dis:disableSMS || account ==''}"
+                ng-click="sendPic()"
+                ng-disabled = "disableSMS || account == '' "
+                ng-init="disableSMS=false"
+          >
+          <span class="ltime" ng-show="disableSMS" >{{ltime}}</span>
+          {{'reg.reg_getSMS' | translate}}
+        </button>
+
+        <img  class="btn  btn-half-right "
+              src="{{codeurl}}"
+              ng-src="{{codeurl}}"
+              ng-click="sendPic()"
+              ng-init="codeurl = ''"/>
+      </li>
+      <li>
+        <label class="icon-item">
+          <input type="text" name="code" ng-model="smsCode" ng-init="smsCode=''" placeholder="{{'reg.reg_sms' | translate}}"/>
+        </label>
+      </li>
+
+
+
+      <li>
+        <label class="icon-item">
+          <input type="password" name="username"
+                 ng-model="password"
+                 ng-init = "password=''"
+                 placeholder="{{'reg.reg_account' | translate}}"  />
+        </label>
+      </li>
+      <li>
+        <button class="btn blue-btn btn-login" ng-click="reg()"  ng-class="{dis : password == '' || account =='' || smsCode == ''}">{{'reg.reg_reg' | translate }}</button>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+
+<div class="loading" ng-show="loading" >
+
+</div>
+<div class="mask tips fade-in" ng-show="maskShow" ng-click="hideMask($event)">
+  <ul>
+    <li  ng-repeat="info in infos">{{info}}</li>
+  </ul>
+</div>

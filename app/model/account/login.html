@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="live1.account.login">
+<meta name="keywords" content="{{'DATABASE_KEYWORDS' | translate}}"/>
+<meta name="description" content="{{'DATABASE_DESCRIPTION' | translate}}" />
+<meta property="wb:webmaster" content="2d3991ba53da2158" />
+<meta name="X-UP-CALLING-LINE-ID"/>
+@import '../views/head.html';
+<title ng-bind="'HEAD_TITLE' | translate"></title>
+<link rel="stylesheet" type="text/css" href="/styles/common@@MINEXT.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/account@@MINEXT.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/nav_header@@MINEXT.css">
+</head>
+
+<body  ng-view="" class="account ng-cloak" ng-cloak>
+  @import '../views/foot.html';
+  <!-- 外部js文件 -->
+  <script type="text/javascript" src="/common/echo@@MINEXT.js"></script>
+  <!-- 自定义js文件 -->
+  <!-- controllers -->
+  <script type="text/javascript" src="/scripts/app@@MINEXT.js"></script>
+  <script type="text/javascript" src="/scripts/controllers/account/login@@MINEXT.js"></script>
+
+  <!-- 第三方登录 异步加载
+  <script type="text/javascript" src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=4108430902"
+          charset="UTF-8"></script>-->
+  <!--<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"-->
+  <!--data-appid="101308317" charset="utf-8"></script>-->
+</div>
+</body>
+</html>

@@ -88,7 +88,7 @@ module.exports = function (grunt) {
     // grunt服务器设置
     connect: {
       options: {
-        port: 9000,
+        port: 81,
         //默认就是这个值，可配置为本机某个 IP，localhost 或域名
         hostname: '*',
         livereload: 35729
@@ -130,7 +130,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          open: false,  
+          open: false,
           base: '<%= yeoman.dist %>'
         }
       }

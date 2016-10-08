@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="一比分，快5秒的比分直播，全面的体育数据、资讯。" />
+  <meta name="keywords" content="一比分、足球比分、比分、篮球比分、体育比分" />
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta name="format-detection" content="telephone=no" />
+  <title>下载一比分客户端</title>
+  <style type="text/css">
+    body{width:100%;height:100%;margin:0;padding:0}
+    html{width:100%;height:100%}
+    .weixin{background:url(images/weixin.jpg) no-repeat center top /cover;width:100%;height:100%}
+  </style>
+</head>
+<body>
+<div id="weixin" style="display: none" class="weixin">
+</div>
+<script type="text/javascript" src="/common/dealer@@MINEXT.js"></script>
+<script type="text/javascript" src="/common/util@@MINEXT.js"></script>
+<script type="text/javascript">
+  //下载地址JSON数据
+  var urlObj=[
+    {
+      "country":'c-zh',  //大陆
+      "android":'http://m.13322.com/fileServer/apk/download/b6c743d4aff66c48835a999730d4bfdc',
+      "ios":'https://itunes.apple.com/cn/app/yi-bi-fen/id1044544499?mt=8'
+    },
+    {
+      "country":'c-zh-tw',  //香港
+      "android":'http://m.13322.com/fileServer/apk/download/b6c743d4aff66c48835a999730d4bfdc',
+      "ios":'https://itunes.apple.com/cn/app/yi-bi-fen/id1044544499?mt=8'
+    },
+    {
+      "country":'c-vi',  //越南
+      "android":'http://m.13322.com/fileServer/apk/download/9bf99a4ee4d28a13c174939804a40638',
+      "ios":'https://itunes.apple.com/cn/app/ty-so-nhat-truyen-thong-ty/id1120666881?mt=8'
+    },
+    {
+      "country":'c-th',  //泰国
+      "android":'http://m.13322.com/fileServer/apk/download/ac29b9091b95bcea065fc30bb1d3f8b6',
+      "ios":'https://itunes.apple.com/cn/app/wan-skxr-x-phkila-thi-fas/id1118896699?mt=8'
+    },
+    {
+      "country":'c-vn66',   //越南66
+      "android":'http://m.vn.13322.com/fileServer/apk/download/04b84431d8ea926ee3a7e57527310fb3',
+      "ios":'https://lnk0.com/1M9kkk'
+    }
+  ];
+
+  window.onload = function() {
+      document.getElementById("weixin").style.display = "none";
+      var country=window.localStorage.getItem("country");
+      if(!country){
+        country=defaultCountry;  //默认国家
+      }
+      //循环取数据
+      for (var i = 0; i < urlObj.length; i++) {
+        //越南66环境
+        if(mobileUtil.is66&&urlObj[i].country=='c-vn66'){
+          // 根据不同的终端，跳转到不同的地址
+          if(mobileUtil.isAndroid){
+            window.location.href =urlObj[i].android;
+          }else if(mobileUtil.isIos){
+            window.location.href =urlObj[i].ios;
+          }
+          return;
+        }else if(country==urlObj[i].country){
+          if(country=='c-vi'&&mobileUtil.is66){
+            return;
+          }
+
+          console.log([mobileUtil.isIos,mobileUtil.isAndroid,urlObj[i].android,urlObj[i].ios]);
+          // 根据不同的终端，跳转到不同的地址
+          if(mobileUtil.isAndroid){
+            window.location.href =urlObj[i].android;
+          }else if(mobileUtil.isIos){
+            window.location.href =urlObj[i].ios;
+          }
+
+        }
+      }
+  }
+</script>
+</body>
+</html>

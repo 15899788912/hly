@@ -5,7 +5,8 @@
 a {text-decoration: none;font-size: 14px;font-family:"Microsoft YaHei", "微软雅黑", "arial","Angsana New"; color:#333;}
 html {width: 100%;height: 100%;-webkit-font-smoothing: antialiased;}
 html.ns {overflow: hidden}
-body {color: #666666;font-size: 14px;font-family:"Microsoft YaHei", "微软雅黑","arial","Angsana New";width: 100%;height: 100%;position: relative; font-weight:normal; min-width:320px; position:relative;}
+body {color: #666666;font-size: 14px;font-family:"Microsoft YaHei", "微软雅黑","arial","Angsana New";width: 100%;height: 100%;
+position: relative; font-weight:normal; min-width:320px;background-color:#fff;}
 a, body{font-family:"Microsoft YaHei", "微软雅黑","arial","Angsana New";-webkit-tap-highlight-color: rgba(0,0,0,0);}
 
 img {border: 0}
@@ -93,8 +94,8 @@ em,i {font-style: normal}
 .ball-wrap .ball_blue_l{ background:#3f97d5;}
 .ball-wrap .ball_green{ background:#29ad00;}
 .ball-wrap .ball_jia{ color:#666; font-size:18px; font-weight:bold; border:none;}
-.ball-sx{font-size:10px;}
-.ball-sx i{height:16px; line-height:16px;display: inline-block; margin-right:5px;font-size:12px; color:#666;text-align:center; margin-top:5px;}
+.ball-sx{font-size:0px;}
+.ball-sx i{width:30px;height:16px; line-height:16px;display: inline-block; margin-right:5px;font-size:12px; color:#666;text-align:center; margin-top:5px;}
 .arrow{ width:8px; height:16px; display:block; position:absolute; top:50%; right:0; margin-top:-8px; background-position:-170px 0;}
 .mark{ font-size:11px; color:#999; line-height:14px; margin:10px 5px 5px;}
 
@@ -113,7 +114,7 @@ em,i {font-style: normal}
 	.kj_list_hd{ font-size:15px; color:#333;}
 	.kj_list_hd span{ display:inline-block; margin-left:5px; color:#999; font-size:12px;}
 	.ball-wrap .ball_red,.ball-wrap .ball_blue,.ball-wrap .ball_blue_l,.ball-wrap .ball_green,.ball-wrap .ball_jia{ width:26px; height:26px; line-height:26px;-moz-border-radius:15px; -webkit-border-radius:15px; border-radius:15px; text-align:center; color:#fff; font-size:14px;display: inline-block; margin-right:5px;font-family:"arial" ;border:none;}
-	.ball-sx i{ height:14px; line-height:14px;display: inline-block; margin-right:5px;font-size:14px; color:#666; text-align:center; margin-top:5px;}
+	.ball-sx i{ width:26px;height:14px; line-height:14px;display: inline-block; margin-right:5px;font-size:14px; color:#666; text-align:center; margin-top:5px;}
 	.ball-wrap .ball_jia{ color:#666; font-size:18px; font-weight:bold;}
 }
 
@@ -198,9 +199,9 @@ em,i {font-style: normal}
 .setlist>ul>li>span:after{background-position:-194px 0;}
 .edtlist>ul>li>span:after { background-position:-214px 0;}
 
-.loading{ width:220px; height:100px;-moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; border:1px solid #e3e3e3; background:#fff; position:fixed; top:50%; left:50%; margin:-50px 0 0 -110px; z-index:100;}
+/* .loading{ width:220px; height:100px;-moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; border:1px solid #e3e3e3; background:#fff; position:fixed; top:50%; left:50%; margin:-50px 0 0 -110px; z-index:100;}
 .loading_bg{ background:url(/images/kj/loading_bg.png) no-repeat; background-size:140px 48px; width:140px; height:48px; margin:25px 0 0 40px; position:relative;}
-.loading_logo{background:url(/images/kj/loading_logo.png) no-repeat bottom center; background-size:140px 48px; width:140px; position:absolute; bottom:0px; left:0;}
+.loading_logo{background:url(/images/kj/loading_logo.png) no-repeat bottom center; background-size:140px 48px; width:140px; position:absolute; bottom:0px; left:0;} */
 .refresh{ width:30px; height:30px; position:fixed; z-index:101; background: url(/images/kj/refresh.png) no-repeat center center;background-size:30px 30px; bottom:10px; right:0px; padding:10px; overflow:hidden; text-indent:-100px;}
 
 .tab_title{ border-bottom:1px solid #e3e3e3; height:50px; font-size:0;}
@@ -224,3 +225,23 @@ em,i {font-style: normal}
 .kj_top .cp_list{ text-align:center;}
 .tab_content{ padding-bottom:15px}
 .scroll {display: none; position: fixed; width: 43px; height: 40px; right: 10px!important; bottom: 84px; opacity: .9;  -webkit-border-radius: 2px;  -webkit-box-shadow: 0 0 5px #9C9C9C;  background: #454545 url("/images/kj/goTop.png") no-repeat 13px 12px;  -webkit-background-size: 18px 15px;  z-index: 90;  }
+
+/* loading... */
+.loading{top: 0;left: 0; z-index:1000002;background-color:rgba(255,255,255,.6);width: 100%;height: 100%;position: fixed;overflow: hidden;}
+.loading:before{content:"";background:url(/images/loading.png) no-repeat center center;height:.64rem;
+    width:.64rem;top:50%;left:50%;position:fixed;margin:-20px 0 0 -20px; animation: loading .8s linear infinite;
+    -webkit-animation: loading .8s linear infinite;background-size: 100% 100%;}
+.loading:after{content:"Loading...";top:56%;left:50%;transform:translate(-44%,-50%);-ms-transform:translate(-44%,-50%);
+-webkit-transform:translate(-44%,-50%);-moz-transform:translate(-44%,-50%);-o-transform:translate(-44%,-50%);position:fixed;color:#1581cc;font-size:14px}
+
+@keyframes loading
+{
+0%{transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+100% {transform:rotate(360deg);-webkit-transform:rotate(360deg);}
+}
+
+@-webkit-keyframes loading
+{
+0%{transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+100%{transform:rotate(360deg);-webkit-transform:rotate(360deg);}
+}

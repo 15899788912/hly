@@ -7,7 +7,7 @@ var urlObj={"desktop": "m.13322.com", //192.168.10.78
 	}
 var server_ip = urlObj["production"].split("m.")[1]?urlObj["production"]:'m.13322.com';    //m.13322.com
 var server_host=server_ip.split("m.")[1]?server_ip.split("m.")[1]:'13322.com';  //13322.com
-var server_port = "80";  //80,8181
+var server_port = "80";  //80,8181,测试环境81
 var baseUrl = "http://"+server_ip+":"+server_port+"/mlottery";
 
 var pageSize = 20;
@@ -24,7 +24,7 @@ var asiaLetOdds = "asiaLet";//亚盘
 var asiaSizeOdds = "asiaSize";//大小球
 var euroOdds = "euro";//欧赔
 
-var websocketUrl = "ws://"+server_ip+"/ws";//ws://"+server_ip+"/ws
+var websocketUrl = "ws://"+server_ip+":"+server_port+"/ws";//ws://"+server_ip+"/ws
 var websocketLogin = "happywin";
 var websocketPasscode = "happywin";
 var websocketDestination = "/topic/USER.topic.app";
@@ -47,6 +47,7 @@ var defaultTeamLogoUrl = "http://pic."+server_host+"/icons/teams/100/no_lq.png";
 
 //篮球相关
 var baWebsocketDestination = "/topic/USER.topic.basketball";
+var bawebsocketDestinationLive = "/topic/USER.topic.basketball.score";
 var basketPageSize=100;   //每次加载赛事场次
 var deBsketTeamLogoUrl = "@@IMGURL/ba_teamLogo.png";
 var deBsketLeagueLogoUrl = "@@IMGURL/ba_teamLogo.png";
@@ -60,6 +61,6 @@ var koChannel="30c9a04ec9ee7d4ccebdec8396a3f049";//韩国官方版本
 var viChannel="9bf99a4ee4d28a13c174939804a40638";//越南官方版本
 
 //指数相关
+var expWebsocketDestination = "/topic/USER.topic.indexcenter";
 var expMainPs=5; //主页面展示5条
 var expComPs=20;  //公司详情每页20条数据
-

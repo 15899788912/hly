@@ -2,6 +2,7 @@
 <div class="refresh" ng-class="{true: 'on', false: ''}[refreshOn]"   ng-click="refreshClick()">
   <img src="@@IMGURL/live/refresh.png" alt="" />
 </div>
+<div class="loading" ng-show="showLoadingImg"></div>
 <div class="content-jg"></div>
 <div class="content" id="divPageBody">
     <div class="section" ng-repeat="liveMatchData in liveMatchDataes">
@@ -14,18 +15,32 @@
         <ul class="vs_tv">
             <li ng-repeat="liveMatch in liveMatchData.liveMatches" matchId="{{::liveMatch.matchId}}" ng-click="liveTVClick($event)">
                 <p class="subtitle">
-                    <span>{{::liveMatch.racename}}</span>
+                    <span>{{::liveMatch.lgName}}</span>
                     <span>{{::liveMatch.round}}</span>
                 </p>
                 <div class="vsbox">
-                    <dl>
+                    <!-- <dl>
                         <dd>
-                            <i class="team_pic"><img ng-src="{{::liveMatch.hometeamLogo}}" onerror="logoLoadErr(this)"></i>{{::liveMatch.hometeam}}
+                            <i class="team_pic"><img ng-src="{{::liveMatch.hometeamLogo}}" onerror="logoLoadErr(this)"></i>
+                            <span>{{::liveMatch.hometeam}}</span>
                         </dd>
                         <dd>
-                            <i class="team_pic"><img ng-src="{{::liveMatch.guestteamLogo}}" onerror="logoLoadErr(this)"></i>{{::liveMatch.guestteam}}
+                            <i class="team_pic"><img ng-src="{{::liveMatch.guestteamLogo}}" onerror="logoLoadErr(this)"></i>
+                            <span>{{::liveMatch.guestteam}}</span>
                         </dd>
-                    </dl>
+                    </dl> -->
+
+                    <p>
+                      <i class="team_pic"><img ng-src="{{::liveMatch.hometeamLogo}}" onerror="logoLoadErr(this)"></i>
+                      <span>{{::liveMatch.hmName}}</span>
+                    </p>
+                    <p ng-if='liveMatch.displayType==0'>
+                      <i class="team_pic"><img ng-src="{{::liveMatch.guestteamLogo}}" onerror="logoLoadErr(this)"></i>
+                      <span>{{::liveMatch.awName}}</span>
+                    </p>
+
+
+
                     <div class="tvbox" ng-class="{true: 'live', false: ''}[liveMatch.living == true]">
                         <i class="tv_icon"></i>
                         <span ng-if="liveMatch.living">{{'TV_LIVING' | translate}}</span>
@@ -49,11 +64,11 @@
             {{'NO_DATA' | translate}}
         </div>
     </div>
-    <div id="note2" class="viewport" ng-if="showLoadingImg">
+    <!-- <div id="note2" class="viewport" ng-if="showLoadingImg">
         <div style=" text-align:center; margin:25px auto; font-size:16px; color:#666;">
             <img src="/images/loading.gif" width="25"/>{{'ONLOADING' | translate}}
         </div>
-    </div>
+    </div> -->
     <div style="height: 5px;"></div>
 </div>
 

@@ -7,7 +7,7 @@ var cycle = {
             right: '.1rem'
         }, 800);
         $(".corner-z .corner-e").animate({
-            height: "2.7rem",
+            height: "2.4rem",
             opacity: "1"
         }, 1200);
         $(".corner-z .corner-e").animate({
@@ -20,7 +20,7 @@ var cycle = {
             left: '.1rem'
         }, 800);
         $(".corner-k .corner-e").animate({
-            height: "2.7rem",
+            height: "2.4rem",
             opacity: "1"
         }, 1200);
         $(".corner-k .corner-e").animate({
@@ -33,7 +33,7 @@ var cycle = {
             right: '.1rem'
         }, 800);
         $(".c-corner-z .corner-e").animate({
-            height: "2.7rem"
+            height: "2.4rem"
         }, 1200);
         $(".c-corner-z .corner-e").animate({
             height: "0rem"
@@ -44,7 +44,7 @@ var cycle = {
             left: '.1rem'
         }, 800);
         $(".c-corner-k .corner-e").animate({
-            height: "2.7rem"
+            height: "2.4rem"
         }, 1200);
         $(".c-corner-k .corner-e").animate({
             height: "0rem"

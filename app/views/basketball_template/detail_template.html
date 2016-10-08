@@ -1,6 +1,8 @@
 <!-- 头部 -->
 <header>
-  <p class="icon back" id="back"><img src="@@IMGURL/live/backIcon.png" /></p>
+  <p class="icon back" id="back" >
+    <a href="/basket"><img src="@@IMGURL/live/backIcon.png" /></a>
+  </p>
   <p class="title"><span>{{'MATCHES_DETAILS' | translate}}</span></p>
   <p class="icon" ng-class="{true: 'attention', false: 'abolish'}[attented]" id="attention" isclicked="{{attented}}" ng-click="addToAttention();"></p>
 </header>
@@ -19,11 +21,13 @@
   <div class="matchStatus_will" ng-if="info.match.matchStatus==0">
     <p>{{info.match.leagueName}}</p>
     <p class="matchScore">VS</p>
-    <p class="matchTime">{{info.match.date}}  {{info.match.time}}</p>
+    <!-- <p class="matchTime">{{month_day}} {{info.match.time}}</p> -->
+    <p class="matchTime">{{month_time}}</p>
   </div>
   <div class="matchStatus_ing" ng-if="info.match.matchStatus!=0">
     <p>{{info.match.leagueName}}</p>
     <p class="matchScore">{{info.match.matchScore.guestScore}}:{{info.match.matchScore.homeScore}}</p>
+    <p class="matchTime"><span>{{matchStatus}}</span><span class="secs_g" ng-if="matchTimeStatus"></span></p>
   </div>
   <div class="teams teams_r">
     <p>
@@ -95,11 +99,7 @@
       </table>
 
     <!-- 未开 -->
-    <ul class="noData" ng-show="!statistics_status">
-      <p class="loading_img"></p>
-    </ul>
-
-    <div ng-show="statistics_status">
+    <div ng-show="!loadingShow">
       <ul class="noData" ng-show="statistics==null">
         <p class="noData_img"></p>
         <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
@@ -116,59 +116,352 @@
   <!-- 分析 -->
   <div class="analysis_content" style="display:none;">
 
-    <div class="analysis_list">
-      <div class="analysis_info">
-        <p><img ng-src="{{info.match.guestLogoUrl}}" alt="" onerror="logoLoadErr(this,'team')"/><span>{{info.match.guestTeam}}</span></p>
-      </div>
-      <ul class="analysis_data" ng-if="guestRecents!=null">
-        <li class="analysis_title">
-          <span>{{'MATCHES_TIME'|translate}}</span>
-          <span>{{'MATCHES_DETAIL'|translate}}</span>
-          <span>{{'HOME_NAME'|translate}}</span>
-          <span>{{'MATCHES_SCORE'|translate}}</span>
-          <span>{{'AWAY_NAME'|translate}}</span>
+
+    <!-- 积分排名 -->
+    <div class="scoreRank">
+      <p class="scoreRank_info">{{"SCORE_RANK" | translate}}</p>
+      <ul class="scoreRank_data" ng-show="guestData.matchWin!=null">
+        <li class="scoreRank_title">
+          <span>{{"RANK_TEAM" | translate}}</span>
+          <span>{{"GP" | translate}}</span>
+          <span>{{"SCORE_WIN" | translate}}/{{"SCORE_LOSE" | translate}}</span>
+          <span>{{"win_RATE" | translate}}</span>
         </li>
-        <li ng-repeat="guestRecent in guestRecents">
-          <span>{{guestRecent.date}}</span>
-          <span>{{guestRecent.leagueName}}</span>
-          <span class="{{guestRecent.homeCss}}">{{guestRecent.homeTeam}}</span>
-          <span>{{guestRecent.score}}</span>
-          <span class="{{guestRecent.guestCss}}">{{guestRecent.guestTeam}}</span>
+        <li>
+          <span>{{guestData.ranking}} {{guestData.team}}</span>
+          <span>{{guestData.matchAll}}</span>
+          <span ng-show="guestData.matchWin!=null">{{guestData.matchWin}}/{{guestData.matchLose}}</span>
+          <span>{{guestData.matchWinRate}}</span>
+        </li>
+        <li>
+          <span>{{homeData.ranking}} {{homeData.team}}</span>
+          <span>{{homeData.matchAll}}</span>
+          <span ng-show="homeData.matchWin!=null">{{homeData.matchWin}}/{{homeData.matchLose}}</span>
+          <span>{{homeData.matchWinRate}}</span>
         </li>
       </ul>
-      <div ng-if="guestRecents==null">
-        <ul class="noData">
-          <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
-        </ul>
-      </div>
+      <ul class="noData" ng-show="guestData.matchWin==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
     </div>
 
-    <div class="analysis_list">
-      <div class="analysis_info">
-        <p><img ng-src="{{info.match.homeLogoUrl}}" alt="" onerror="logoLoadErr(this,'team')"/><span>{{info.match.homeTeam}}</span></p>
-      </div>
-      <ul class="analysis_data" ng-if="homeRecents!=null">
-        <li class="analysis_title">
-          <span>{{'MATCHES_TIME'|translate}}</span>
-          <span>{{'MATCHES_DETAIL'|translate}}</span>
-          <span>{{'HOME_NAME'|translate}}</span>
-          <span>{{'MATCHES_SCORE'|translate}}</span>
-          <span>{{'AWAY_NAME'|translate}}</span>
+    <p class="gap"></p>
+
+    <!-- 历史交锋 -->
+    <div class="battleHistory">
+      <p class="battleHistory_info">{{"H_FIXTURES" | translate}}</p>
+      <ul class="battleHistory_data"  ng-show="battleHistorys!=null">
+        <li class="battleHistory_summary">
+          <p>
+            <i>{{"RECENT_SIX" | translate}}</i>,{{analysisHomeTeam}}
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{battleHistorysCount.winCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{battleHistorysCount.loseCount}}{{"MATCHES_LOSE" | translate}}</i>,
+            <i>{{"HOME_COURT" | translate}}</i>
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{battleHistorysCount.homeWinCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{battleHistorysCount.homeLoseCount}}{{"MATCHES_LOSE" | translate}}</i>
+          </p>
         </li>
-        <li ng-repeat="homeRecent in homeRecents">
-          <span>{{homeRecent.date}}</span>
-          <span>{{homeRecent.leagueName}}</span>
-          <span class="{{homeRecent.homeCss}}">{{homeRecent.homeTeam}}</span>
-          <span>{{homeRecent.score}}</span>
-          <span class="{{homeRecent.guestCss}}">{{homeRecent.guestTeam}}</span>
+        <li class="battleHistory_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"VOER_UNDER" | translate}}</span>
+          <span>{{"SPERAD" | translate}}</span>
+        </li>
+        <li ng-repeat="battleHistory in battleHistorys">
+          <span>{{battleHistory.date}}</span>
+          <span>{{battleHistory.leagueName}}</span>
+          <span class="{{battleHistory.guestCss}}">{{battleHistory.guestTeam}}</span>
+          <span class="{{battleHistory.homeCss}}">{{battleHistory.homeTeam}}</span>
+          <span>{{battleHistory.score}}</span>
+          <span>{{battleHistory.highLowText}}</span>
+          <span>{{battleHistory.concede}}</span>
         </li>
       </ul>
-      <div  ng-if="homeRecents==null">
-        <ul class="noData">
-          <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
-        </ul>
-      </div>
+      <ul class="noData" ng-show="battleHistorys==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
     </div>
+
+    <p class="gap"></p>
+    <!-- 近期战绩 -->
+    <div class="recentRecord">
+      <p class="recentRecord_info">{{"RECENT" | translate}}</p>
+      <ul class="recentRecord_data" ng-show="homeTeamRecents!=null">
+        <li class="recentRecord_summary">
+          <p>
+            <i>{{"RECENT_SIX" | translate}}</i>,{{analysisHomeTeam}}
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{homeTeamRecentsCount.winCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{homeTeamRecentsCount.loseCount}}{{"MATCHES_LOSE" | translate}}</i>,
+            <i>{{"HOME_COURT" | translate}}</i>
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{homeTeamRecentsCount.homeWinCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{homeTeamRecentsCount.homeLoseCount}}{{"MATCHES_LOSE" | translate}}</i>
+          </p>
+        </li>
+        <li class="recentRecord_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"VOER_UNDER" | translate}}</span>
+          <span>{{"SPERAD" | translate}}</span>
+        </li>
+        <li ng-repeat="homeTeamRecent in homeTeamRecents">
+          <span>{{homeTeamRecent.date}}</span>
+          <span>{{homeTeamRecent.leagueName}}</span>
+          <span class="{{homeTeamRecent.guestCss}}">{{homeTeamRecent.guestTeam}}</span>
+          <span class="{{homeTeamRecent.homeCss}}">{{homeTeamRecent.homeTeam}}</span>
+          <span>{{homeTeamRecent.score}}</span>
+          <span>{{homeTeamRecent.highLowText}}</span>
+          <span>{{homeTeamRecent.concede}}</span>
+        </li>
+      </ul>
+
+      <ul class="recentRecord_data" ng-show="guestTeamRecents!=null">
+        <li class="recentRecord_summary">
+          <p>
+            <i>{{"RECENT_SIX" | translate}}</i>,{{analysisGuestTeam}}
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{guestTeamRecentsCount.winCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{guestTeamRecentsCount.loseCount}}{{"MATCHES_LOSE" | translate}}</i>,
+            <i>{{"HOME_COURT" | translate}}</i>
+            <i class="win">{{"MATCHES_WIN_N" | translate}}{{guestTeamRecentsCount.homeWinCount}}{{"MATCHES_WIN" | translate}}</i>
+            <i class="lose">{{"MATCHES_LOSE_N" | translate}}{{guestTeamRecentsCount.homeLoseCount}}{{"MATCHES_LOSE" | translate}}</i>,
+          </p>
+        </li>
+        <li class="recentRecord_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"VOER_UNDER" | translate}}</span>
+          <span>{{"SPERAD" | translate}}</span>
+        </li>
+        <li ng-repeat="guestTeamRecent in guestTeamRecents">
+          <span>{{guestTeamRecent.date}}</span>
+          <span>{{guestTeamRecent.leagueName}}</span>
+          <span class="{{guestTeamRecent.guestCss}}">{{guestTeamRecent.guestTeam}}</span>
+          <span class="{{guestTeamRecent.homeCss}}">{{guestTeamRecent.homeTeam}}</span>
+          <span>{{guestTeamRecent.score}}</span>
+          <span>{{guestTeamRecent.highLowText}}</span>
+          <span>{{guestTeamRecent.concede}}</span>
+        </li>
+      </ul>
+      <ul class="noData" ng-show="homeTeamRecents==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+    </div>
+
+    <p class="gap"></p>
+    <!-- 未来比赛 -->
+    <div class="futureMatch">
+      <p class="futureMatch_info">{{"FUTURE" | translate}}</p>
+      <ul class="futureMatch_data" ng-show="homeFutureMatchs!=null">
+        <li class="futureMatch_team">{{analysisHomeTeam}}{{"FUTURE" | translate}}</li>
+        <li class="futureMatch_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"INTERVAL" | translate}}</span>
+        </li>
+        <li ng-repeat="homeFutureMatch in homeFutureMatchs">
+          <span>{{homeFutureMatch.date}}</span>
+          <span>{{homeFutureMatch.leagueName}}</span>
+          <span>{{homeFutureMatch.guestTeam}}</span>
+          <span>{{homeFutureMatch.homeTeam}}</span>
+          <span>{{homeFutureMatch.diffDays}}{{"DAY" | translate}}</span>
+        </li>
+      </ul>
+
+      <ul class="futureMatch_data" ng-show="guestFutureMatchs!=null">
+        <li class="futureMatch_team">{{analysisGuestTeam}}{{"FUTURE" | translate}}</li>
+        <li class="futureMatch_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"INTERVAL" | translate}}</span>
+        </li>
+        <li ng-repeat="guestFutureMatch in guestFutureMatchs">
+          <span>{{guestFutureMatch.date}}</span>
+          <span>{{guestFutureMatch.leagueName}}</span>
+          <span>{{guestFutureMatch.guestTeam}}</span>
+          <span>{{guestFutureMatch.homeTeam}}</span>
+          <span>{{guestFutureMatch.diffDays}}{{"DAY" | translate}}</span>
+        </li>
+      </ul>
+      <ul class="noData" ng-show="homeFutureMatchs==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+    </div>
+
+    <p class="gap"></p>
+    <!-- 亚盘走势 -->
+    <div class="asiaTrend">
+
+      <p class="asiaTrend_info">{{"HDP_TREND" | translate}}</p>
+      <ul class="asiaTrend_data" ng-show="homeTeamRecents!=null">
+        <li class="asiaTrend_summary">
+          <p>
+            {{analysisHomeTeam}}
+            <!--<i class="win">{{"WIN_DISH" | translate}}{{homeTeamRecentsCount.winCount}}{{"WIN_DISH_N" | translate}}</i>-->
+            <!--<i class="lose">{{"LOSE_DISH" | translate}}{{homeTeamRecentsCount.loseCount}}{{"LOSE_DISH_N" | translate}}</i>-->
+          </p>
+        </li>
+        <li class="asiaTrend_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"DISH_ROAD" | translate}}</span>
+        </li>
+        <li ng-repeat="homeTeamRecent in homeTeamRecents">
+          <span>{{homeTeamRecent.date}}</span>
+          <span>{{homeTeamRecent.leagueName}}</span>
+          <span class="{{homeTeamRecent.guestCss}}">{{homeTeamRecent.guestTeam}}</span>
+          <span class="{{homeTeamRecent.homeCss}}">{{homeTeamRecent.homeTeam}}</span>
+          <span>{{homeTeamRecent.score}}</span>
+          <span>{{homeTeamRecent.concede}}</span>
+        </li>
+      </ul>
+
+      <ul class="asiaTrend_data" ng-show="guestTeamRecents!=null">
+        <li class="asiaTrend_summary">
+          <p>
+            {{analysisGuestTeam}}
+            <!--<i class="win">{{"WIN_DISH" | translate}}{{guestTeamRecentsCount.winCount}}{{"WIN_DISH_N" | translate}}</i>-->
+            <!--<i class="lose">{{"LOSE_DISH" | translate}}{{guestTeamRecentsCount.loseCount}}{{"LOSE_DISH_N" | translate}}</i>-->
+          </p>
+        </li>
+        <li class="asiaTrend_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"DISH_ROAD" | translate}}</span>
+        </li>
+        <li ng-repeat="guestTeamRecent in guestTeamRecents">
+          <span>{{guestTeamRecent.date}}</span>
+          <span>{{guestTeamRecent.leagueName}}</span>
+          <span class="{{guestTeamRecent.guestCss}}">{{guestTeamRecent.guestTeam}}</span>
+          <span class="{{guestTeamRecent.homeCss}}">{{guestTeamRecent.homeTeam}}</span>
+          <span>{{guestTeamRecent.score}}</span>
+          <span>{{guestTeamRecent.concede}}</span>
+        </li>
+      </ul>
+
+      <ul class="noData" ng-show="homeTeamRecents==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+
+    </div>
+
+    <p class="gap"></p>
+    <!-- 大小球 -->
+    <div class="sizeTrend">
+
+      <p class="sizeTrend_info">{{"MATCHES_BALL" | translate}}</p>
+      <ul class="sizeTrend_data" ng-show="homeTeamRecents!=null">
+        <li class="sizeTrend_summary">
+          <p>
+            {{analysisHomeTeam}}
+            <i class="win">{{"BIG_N_BALL" | translate}}{{homeTeamRecentsCount.bigBigCount}}{{"BIG_N_BALL_N" | translate}}</i>
+            <i class="lose">{{"SMALL_N_BALL" | translate}}{{homeTeamRecentsCount.bigSmallCount}}{{"SMALL_N_BALL_N" | translate}}</i>
+          </p>
+        </li>
+        <li class="sizeTrend_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"VOER_UNDER" | translate}}</span>
+        </li>
+        <li ng-repeat="homeTeamRecent in homeTeamRecents">
+          <span>{{homeTeamRecent.date}}</span>
+          <span>{{homeTeamRecent.leagueName}}</span>
+          <span class="{{homeTeamRecent.guestCss}}">{{homeTeamRecent.guestTeam}}</span>
+          <span class="{{homeTeamRecent.homeCss}}">{{homeTeamRecent.homeTeam}}</span>
+          <span>{{homeTeamRecent.score}}</span>
+          <span>{{homeTeamRecent.highLowText}}</span>
+        </li>
+      </ul>
+
+      <ul class="sizeTrend_data" ng-show="guestTeamRecents!=null">
+        <li class="sizeTrend_summary">
+          <p>
+            {{analysisGuestTeam}}
+            <i class="win">{{"BIG_N_BALL" | translate}}{{guestTeamRecentsCount.bigBigCount}}{{"BIG_N_BALL_N" | translate}}</i>
+            <i class="lose">{{"SMALL_N_BALL" | translate}}{{guestTeamRecentsCount.bigSmallCount}}{{"SMALL_N_BALL_N" | translate}}</i>
+          </p>
+        </li>
+        <li class="sizeTrend_title">
+          <span>{{"MATCHES_TIME" | translate}}</span>
+          <span>{{"MATCHES_DETAIL" | translate}}</span>
+          <span>{{"GUEST_COURT" | translate}}</span>
+          <span>{{"HOME_COURT" | translate}}</span>
+          <span>{{"MATCHES_SCORE" | translate}}</span>
+          <span>{{"VOER_UNDER" | translate}}</span>
+        </li>
+        <li ng-repeat="guestTeamRecent in guestTeamRecents">
+          <span>{{guestTeamRecent.date}}</span>
+          <span>{{guestTeamRecent.leagueName}}</span>
+          <span class="{{guestTeamRecent.guestCss}}">{{guestTeamRecent.guestTeam}}</span>
+          <span class="{{guestTeamRecent.homeCss}}">{{guestTeamRecent.homeTeam}}</span>
+          <span>{{guestTeamRecent.score}}</span>
+          <span>{{guestTeamRecent.highLowText}}</span>
+        </li>
+      </ul>
+
+      <ul class="noData" ng-show="homeTeamRecents==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+
+    </div>
+
+    <p class="gap"></p>
+
+    <!-- 最近表现 -->
+    <div class="performance">
+      <p class="performance_info">{{"RECENT_PER" | translate}}</p>
+      <ul class="performance_data" ng-show="homeData.scoreWinSix!=null">
+        <li>
+          <span ng-if="guestData.scoreWinSix!=null">{{guestData.scoreWinSix}}&nbsp; </span>
+          <span ng-if="guestData.scoreWinSix==null">&nbsp; </span>
+          <span>{{"SCORE_AVG" | translate}}</span>
+          <span ng-if="guestData.scoreLoseSix!=null">{{homeData.scoreWinSix}}&nbsp; </span>
+          <span ng-if="guestData.scoreLoseSix==null">&nbsp; </span>
+        </li>
+        <li>
+          <span ng-if="homeData.scoreWinSix!=null">{{guestData.scoreLoseSix}}&nbsp; </span>
+          <span ng-if="homeData.scoreWinSix==null">&nbsp; </span>
+          <span>{{"LOSE_AVG" | translate}}</span>
+          <span ng-if="homeData.scoreLoseSix!=null">{{homeData.scoreLoseSix}}&nbsp; </span>
+          <span ng-if="homeData.scoreLoseSix==null">&nbsp; </span>
+        </li>
+      </ul>
+      <ul class="noData" ng-show="homeData.scoreWinSix==null">
+        <p class="noData_img"></p>
+        <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
+      </ul>
+
+
+    </div>
+
+
+
 
   </div>
 
@@ -180,7 +473,8 @@
         <p class="company">{{'MATCHES_COMPANIES'|translate}}</p>
         <p class="homeTeam" ng-if="flag">{{'AWAY_TEAM'|translate}}</p>
         <p class="homeTeam" ng-if="!flag">{{'BIG_BALL'|translate}}</p>
-        <p class="handicap">{{'MATCHES_HANDICAP'|translate}}</p>
+        <p class="handicap" ng-if="asian_self">{{'MATCHES_HANDICAP'|translate}}</p>
+        <p class="handicap" ng-if="BIG_self">{{'O_U'|translate}}</p>
         <p class="visitingTeam" ng-if="flag">{{'HOME_TEAM'|translate}}</p>
         <p class="visitingTeam" ng-if="!flag">{{'SMALL_BALL'|translate}}</p>
       </li>
@@ -212,11 +506,7 @@
     </ul>
 
     <!-- 未开 -->
-    <ul class="noData" ng-show="!odd_datas">
-      <p class="loading_img"></p>
-    </ul>
-
-    <div ng-show="odd_datas">
+    <div ng-show="!loadingShow">
       <ul class="noData" ng-show="oddDatas==null">
         <p class="noData_img"></p>
         <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
@@ -237,7 +527,8 @@
           <span>{{'MATCHES_TIME'|translate}}</span>
           <span ng-if="flag">{{'AWAY_TEAM'|translate}}</span>
           <span ng-if="!flag">{{'BIG_BALL'|translate}}</span>
-          <span>{{'MATCHES_HANDICAP'|translate}}</span>
+          <span ng-if="asian_self">{{'MATCHES_HANDICAP'|translate}}</span>
+          <span ng-if="BIG_self">{{'O_U'|translate}}</span>
           <span ng-if="flag">{{'HOME_TEAM'|translate}}</span>
           <span ng-if="!flag">{{'SMALL_BALL'|translate}}</span>
         </li>
@@ -291,11 +582,7 @@
     </ul>
 
     <!-- 未开 -->
-    <ul class="noData" ng-show="!euro_datas">
-      <p class="loading_img"></p>
-    </ul>
-
-    <div ng-show="euro_datas">
+    <div ng-show="!loadingShow">
       <ul class="noData" ng-show="euroOddDatas==null">
         <p class="noData_img"></p>
         <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
@@ -340,3 +627,5 @@
   <p translate="ATTENTION_SORRY_TEXT" translate-values="{'maxAttentionMatchCount': '<em>{{maxAttentionMatchCount}}</em>'}"></p>
   <p><button ng-click="attentionWarnCloseClick($event)">{{'BUTTON_CLOSE' | translate}}</button></p>
 </div>
+
+<div class="loading" ng-show="loadingShow"></div>

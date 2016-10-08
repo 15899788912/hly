@@ -37,18 +37,8 @@
 	var channel_url = "http://m.13322.com/fileServer/queryDownLoad";
 
 	var channel = location.search.getQueryString("channel");
-	if(channel&&channel == '655fe45af737d3266d131438d9b09196'){
-		var _py = _py || [];
-		_py.push(['a', 'fSs..oqMZJ1lfZnoZ__LdoxT04_']);
-		_py.push(['domain','stats.ipinyou.com']);
-		_py.push(['e','']);
-		-function(d) {
-		var s = d.createElement('script'),
-		e = d.body.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e),
-		f = 'https:' == location.protocol;
-		s.src = (f ? 'https' : 'http') + '://'+(f?'fm.ipinyou.com':'fm.p0y.cn')+'/j/adv.js';
-		}(document);
-	}
+	// if(channel&&channel == '655fe45af737d3266d131438d9b09196'){
+	// }
 	var requestObj = {};
 	//获取后台下载地址
 	function ajaxFun() {
@@ -57,6 +47,7 @@
 			url: channel_url + "?channel=" + channel,
 			success: function(data) {
 				var obj = JSON.parse(data);
+        alert(obj);
 				requestObj = obj;
 			},
 			fail: function(err) {
@@ -82,6 +73,7 @@
 			// handHide();
 			// timer();
 			ajaxF("clickCnt");
+			pyRegisterCvt();
 		}
 	}
 	//判断是否在微信端
@@ -92,16 +84,17 @@
 
 	// timer();
 	if(!isNoAuto){setTimeout(timeDown, 800);}//0.8s自动下载
-	
-	$("#mainShow").on('click', function() {
-		timeDown();
-	});
+
+	// $("#mainShow").on('click', function() {
+	// 	timeDown();
+	// });
 
 	// 点击下载按钮事件
 	$(".dlBlock").on('click',function(){
-		if(channel == '655fe45af737d3266d131438d9b09196'){
-			pyRegisterCvt();
-		}
+		// if(channel == '655fe45af737d3266d131438d9b09196'){
+		// 	pyRegisterCvt();
+		// }
+		timeDown();
 	})
 
 

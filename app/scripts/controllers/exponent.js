@@ -356,7 +356,7 @@ exponent.config(["$translateProvider", function ($translateProvider) {
   var translationsVI = {  //越语
 	    "HEAD_TITLE":"Tỷ Số Nhất phiên bản màn hình cảm ứng",
 	    "EXPONENT_TITLE":"chỉ số",
-		"ODDS_ASIAN":"kèo chấu Á",
+		"ODDS_ASIAN":"Kèo châu Á",
 		"ODDS_SIZE":"tài xỉu",
 		"ODDS_EUROPE":"tỷ lệ châu Âu",
 		"FIVE_MATCH":"tập trung",
@@ -624,7 +624,13 @@ exponent.factory("InfoServiceFactory", [
                                             oldHand=detailList[j].hand;
                                         }
                                         // if(j==0){obj.time='';}
-                                        obj.day = date.Format("MM-dd");
+                                        if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+                                          obj.day = date.Format("MM-dd");
+                                          $scope.day_time = obj.day+"  "+obj.time;
+                                        }else{
+                                          obj.day = date.Format("dd/MM");
+                                          $scope.day_time=obj.time+"  "+obj.day;
+                                        }
                                         obj.dayInfo=obj.day+" "+obj.time;
         								$scope.comInfoMatchesBak.push(obj);
         						}
@@ -1018,7 +1024,11 @@ exponent.controller("ExponentController", [
         		mydate.setDate(mydate.getDate() + 1);
         	}
             o = {};
-            o.day = mydate.Format("MM-dd");
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+              o.day = mydate.Format("MM-dd");
+            }else{
+            o.day = mydate.Format("dd/MM");
+            }
             o.yearDay=mydate.Format("yyyy-MM-dd");
             o.checked=o.yearDay==$scope.today?true:false;
             dateList.push(o);
@@ -1450,6 +1460,14 @@ exponent.controller("ExponentController", [
         //关闭当前弹窗
         ec.backContent($event);
     }
+    // 取国家方法
+    $scope.getCountry = function () {
+        var country = $scope.getObjectFromLocalStorage("country");
+        if (country == null) {
+            country = defaultCountry;
+        }
+        return country;
+    };
     //赔率转换数据
     $scope.initHandicapValueMap = function () {
         var ret = $translate(['HANDICAP_VALUE_0_0', 'HANDICAP_VALUE_0_25', 'HANDICAP_VALUE_0_5', 'HANDICAP_VALUE_0_75',

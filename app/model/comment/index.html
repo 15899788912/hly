@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,shrink-to-fit=no" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title></title>
+  <style type="text/css">
+    body{
+        font: 400 .14rem/1.5 "\5FAE\8F6F\96C5\9ED1",Helvetica;
+    }
+    #header {
+      background: #1581cc;
+      width: 100%;
+      z-index: 999;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+      position:fixed;
+    }
+    .wrap {
+      margin: 0 10px;
+    }
+    .goback {
+      background: url(../images/news/newsIcon.png) no-repeat 0px 0px;
+      width: 25px;
+      height: 35px;
+      float: left;
+      margin-top: 10px;
+      padding: 0 5px;
+      display: inline-block;
+      background-size: 75px 75px;
+    }
+    #header .wrap .title {
+      line-height: 45px;
+      color: #fff;
+      position: relative;
+      height: 45px;
+      display: block;
+      margin: 0 auto;
+      overflow: hidden;
+      text-align: center;
+      font-size: 18px;
+      text-indent: -0.2rem;
+    }
+    .clear {
+      clear: both;
+      height: 0;
+      overflow: hidden;
+    }
+    #SOHUCS {
+      margin-top: 50px;
+    }
+  </style>
+
+  <script type="text/javascript" src="/common/jquery.min.js"></script>
+  <script type="text/javascript" src="/common/dealer@@MINEXT.js"></script>
+  <script type="text/javascript" src="/common/util@@MINEXT.js"></script>
+
+  <script type="text/javascript">
+
+    //资讯评论相关
+    var client_conf="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cysu2zve0&conf=prod_478af7c482589346db2d5719eb4cff8e";//国内
+    var client_conf_init="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyslrkBTR&conf=prod_490be3cd8868728064e2d2efb3e275ae";//国外
+
+    /*
+     * 获取语言函数
+     * */
+    function getLanguage(){
+      /*大陆版使用start*/
+      if(!isInternational){
+        var setLang=mobileUtil.getSearch()['lan'];
+        if(setLang){localStorage.setItem("language",setLang);}
+      }
+      /*大陆版使用end*/
+      var language = localStorage.getItem("language");
+      if (language == null) {
+        language = defaultLanguageKey;
+      }
+      return language;
+    }
+
+    /*
+     * 动态加载脚本
+     * */
+    function loadJs(sid,jsurl,callback){
+      var nodeHead = document.getElementsByTagName('head')[0];
+      var nodeScript = null;
+      if(document.getElementById(sid) == null){
+        nodeScript = document.createElement('script');
+        nodeScript.setAttribute('type', 'text/javascript');
+        nodeScript.setAttribute('src', jsurl);
+        nodeScript.setAttribute('id',sid);
+        if (callback != null) {
+          nodeScript.onload = nodeScript.onreadystatechange = function(){
+            if (nodeScript.ready) {
+              return false;
+            }
+            if (!nodeScript.readyState || nodeScript.readyState == "loaded" || nodeScript.readyState == 'complete') {
+              nodeScript.ready = true;
+              callback();
+            }
+          };
+        }
+        nodeHead.appendChild(nodeScript);
+      } else {
+        if(callback != null){
+          callback();
+        }
+      }
+    }
+
+    /*
+     * 回调函数
+     * */
+    function callbackFunction(){
+
+//      console.info("加载成功");
+
+    }
+
+    /*
+     * 文档加载完执行
+     * */
+    $(window).load(function(){
+
+        var sid=mobileUtil.getSearch()['id'];
+
+        $('#SOHUCS').attr('sid',sid);
+
+        if(getLanguage()=="zh")
+        {
+          $('#header_title').html("全部评论");
+
+          loadJs("changyan_mobile_js",client_conf,callbackFunction);
+
+        }else{
+
+          $('#header_title').html("Comments");
+
+          loadJs("changyan_mobile_js",client_conf_init,callbackFunction);
+        }
+
+        $('.goback').attr('onclick','javascript :window.history.back(); return false;');
+
+    });
+
+  </script>
+</head>
+<body>
+
+<div id="header">
+  <div class="wrap">
+    <a class="goback" href="/"></a>
+    <span class="title" id="header_title"></span>
+  </div>
+  <div class="clear"></div>
+</div>
+<div id="SOHUCS"></div>
+</body>
+</html>

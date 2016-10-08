@@ -1,23 +1,26 @@
 <!-- 头部 -->
 <header>
-<p class="title">
-  <a href="/data">
-    <span class="integral-back"><img src="../images/data/preMno.png" /></span>
-  </a>
-  <span class="integral-name">{{leagueTimess.abb}}</span>
-  <span class="integral-time">
-    <span class="defaultTime">{{defaultTime}}</span>
-    <span></span>
-  </span>
+  <p class="back">
+    <a href="/data"><img class="header-icon" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
+  </p>
+  <p class="integral-time" ng-if="defaultTime" ng-click="time_click()">
+      <span class="defaultTime">{{defaultTime}}</span>
+      <span class="icon"></span>
+  </p>
+  <p class="integral-team">
+    <img ng-if="navId=='00'" ng-src="http://pic.13322.com/icons/league/{{leagueId}}.png" onerror="logoLoadErr(this,'team')" />
+    <img ng-if="navId!='00'" ng-src="http://pic.13322.com/icons/teams/100/{{leagueId}}.png" onerror="logoLoadErr(this,'team')" />
+    <span class="integral-name">{{leagueTimess.abb}}</span>
+  </p>
   <span class="choiceTips">
     <span class="choiceTips_time" ng-click="choiceTime($event)" ng-repeat="leagueTimes in leagueTimess.leagueDate">{{leagueTimes.date}}</span>
   </span>
-</p>
-<div class="tabBtn">
-  <p class="active" ng-click="changeSlide($event)">{{"DATA_INTEGRAL" | translate}}</p>
-  <p ng-click="changeSlide($event)">{{"DATA_SCHEDULE" | translate}}</p>
-</div>
+  <div class="tabBtn">
+    <p class="active" ng-click="changeSlide($event)">{{"DATA_INTEGRAL" | translate}}</p>
+    <p ng-click="changeSlide($event)">{{"DATA_SCHEDULE" | translate}}</p>
+  </div>
 </header>
+<!-- 蒙层 -->
 <aside class="timeMask"></aside>
 <!-- 内容块 -->
   <div class="swiper-container">
@@ -25,22 +28,23 @@
       <!-- 积分榜 -->
       <div class="swiper-slide">
         <ul class="group" ng-repeat="langueScore in langueScores"  ng-show="langueScores!=null">
-          <p class="content-gap"></p>
-          <li class="group-title group-list">
-            <p class="teamInfo" ng-if="langueScore.group=='empty'">&nbsp;</p>
-            <p class="teamInfo" ng-if="langueScore.group!='empty'">{{langueScore.group}}</p>
-            <p class="matchInfo">
-              <span class="matchCount">{{"DATA_MATCHCOUNT" | translate}}</span>
-              <span class="winInfo">{{"DATA_WINCOUNT" | translate}}/{{"DATA_TIECOUNT" | translate}}/{{"DATA_DEFEATCOUNT" | translate}}</span>
-              <span class="loseCount">{{"DATA_GAINANDLOSS" |translate}}</span>
-              <span class="winCount">{{"DATA_ENDWIN" |translate}}</span>
-              <span class="matchScore">{{"DATA_SCORE" |translate}}</span>
-            </p>
-          </li>
+            <li class="group-title group-list">
+             <h2 ng-if="langueScore.group!='empty'">{{langueScore.group}}</h2>
+             <p class="teamInfo">
+               <span >{{"RANK_TEAM" | translate}}</span>
+             </p>
+             <p class="matchInfo">
+               <span class="matchCount">{{"DATA_MATCHCOUNT" | translate}}</span>
+               <span class="winInfo">{{"DATA_WINCOUNT" | translate}}/{{"DATA_TIECOUNT" | translate}}/{{"DATA_DEFEATCOUNT" | translate}}</span>
+               <span class="loseCount">{{"DATA_GAINANDLOSS" |translate}}</span>
+               <span class="winCount">{{"DATA_ENDWIN" |translate}}</span>
+               <span class="matchScore">{{"DATA_SCORE" |translate}}</span>
+             </p>
+           </li>
           <li class="group-list" ng-repeat="list in langueScore.list">
             <p class="teamInfo">
               <span class="teamNo">{{$index+1}}</span>
-              <span class="teamPic"><img ng-src="http://pic.13322.com/icons/teams/100/{{list.tid}}.png" /></span>
+              <span class="teamPic"><img ng-src="http://pic.13322.com/icons/teams/100/{{list.tid}}.png"  onerror="logoLoadErr(this,'team')" /></span>
               <span class="teamName">{{list.name}}</span>
             </p>
             <p class="matchInfo">
@@ -53,11 +57,7 @@
           </li>
         </ul>
 
-        <ul class="noData" ng-show="langueScoresShow">
-            <p class="loading_img"></p>
-        </ul>
-
-        <div ng-show="!langueScoresShow">
+        <div ng-show="!loadingShow">
           <ul class="noData" ng-show="langueScores==null">
               <p class="noData_img"></p>
               <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
@@ -69,7 +69,7 @@
         <ul class="group" ng-repeat="schedule in schedules" ng-show="schedules!=null">
           <p class="schedule-gap" ng-if="schedule.group!='empty'">{{schedule.group}}</p>
           <li class="group-list" ng-repeat="schedulelist in schedule.list">
-            <p class="matchTime"><span>{{schedulelist.rDate}}</span></p>
+            <p class="matchTime"><span>{{schedulelist.endTime}}</span></p>
             <p class="matchTeam">
               <span>{{schedulelist.homeName}}</span>
               <span ng-if="schedulelist.matchResult==null" style="color:#ccc">-</span>
@@ -79,20 +79,19 @@
           </li>
         </ul>
 
-        <ul class="noData" ng-show="schedulesShow">
-            <p class="loading_img"></p>
-        </ul>
-
-        <div ng-show="!schedulesShow">
+        <div ng-show="!loadingShow">
           <ul class="noData" ng-show="schedules==null">
               <p class="noData_img"></p>
               <span class="noData_txt">{{"DATA_NODATA" | translate}}</span>
           </ul>
         </div>
-
       </div>
     </div>
   </div>
+
+
+  <div class="loading" ng-show="loadingShow"></div>
+
 <!-- 联赛选择按钮-->
 <div class="selectBtn" ng-show="roundDatas!=null">
   <p class="preBtn" ng-click="subtractRound()">
@@ -106,7 +105,6 @@
     <img src="../images/data/nextS.png" />
   </p>
 </div>
-
 <!-- 遮罩层 -->
 <aside class="mask"></aside>
 <!-- 弹出层 -->
@@ -122,5 +120,4 @@
       <span>{{roundData.round}}</span>
     </li>
   </ul>
-
 </aside>

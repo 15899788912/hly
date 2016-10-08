@@ -75,6 +75,7 @@ header{
         line-height: normal;
         font-size: 0.22rem;
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar {
         width: 0;
         height: 0;
@@ -145,8 +146,17 @@ header{
         color: red;
       }
       &.matchTime{
-        color: red;
+        color: #1581cc;
         font-size: 0.2rem;
+        margin-top: 0.2rem;
+      }
+      &.secs{
+        background: url(/images/secs.gif) no-repeat;
+        height: 4px;
+        width: 4px;
+        overflow: hidden;
+        margin-top: -0.25rem;
+        margin-left: 1.05rem;
       }
     }
   }
@@ -160,6 +170,7 @@ header{
     width: 100%;
     height: 0.8rem;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     ul{
       width: 100%;
       height: 100%;
@@ -183,6 +194,7 @@ header{
         line-height: 0.8rem;
         text-align: center;
         word-break: break-all;
+        background: #fff;
         &.active{
           color: #0090FF;
           border-bottom: 2px solid #0090ff;
@@ -199,7 +211,8 @@ header{
 }
 // 刷新按钮
 .refresh{
-  position: absolute;
+  display: none;
+  position: fixed;
   right: .2rem;
   bottom: 1rem;
   z-index: 999;
@@ -223,7 +236,8 @@ header{
 // 内容
 .container{
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   border-top: 1px solid #ddd;
   -moz-box-sizing: border-box;
  -webkit-box-sizing: border-box;
@@ -238,13 +252,15 @@ header{
   // 直播详情
   .live_content{
     padding: 0 5% 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     .live_box{
     .live_message{
       width: 45%;
       position: relative;
       &.mLeft{
         float: left;
+        bottom: 15px;
         p{
           width: 95%;
           height: 0.5rem;
@@ -263,11 +279,12 @@ header{
             float: right;
             width: 0.4rem;
             height: 0.4rem;
-            margin: 0.1rem 0.1rem 0 0;
+            margin: 0.08rem 0.1rem 0.08rem 0;
           }
         }
       }
       &.mRight{
+        bottom: 15px;
         float: right;
         p{
           width: 95%;
@@ -287,7 +304,7 @@ header{
             float: left;
             width: 0.4rem;
             height: 0.4rem;
-            margin: 0.1rem 0 0 0.1rem;
+            margin: 0.08rem 0 0.08rem 0.1rem;
           }
         }
       }
@@ -300,13 +317,14 @@ header{
         display: inline-block;
         width: 100%;
         position: absolute;
-        top: 15px;
+        top: 5px;
         text-align: center;
         color: #21b395;
       }
       .liveStart{
         position: absolute;
         bottom: 0;
+        height: 23px;
       }
       p{
         width: 3px;
@@ -318,6 +336,8 @@ header{
           display: inline-block;
           position: absolute;
           border-radius: 100%;
+          -moz-border-radius: 100%; /* Firefox */
+          -webkit-border-radius: 100%; /* Safar */
           background: #21b395;
           color: #fff;
           text-align: center;
@@ -344,14 +364,9 @@ header{
     }
     }
     .noData{
-      margin-top: 2rem;
-      .loading_img{
-        margin: 0 auto;
-        background: url(/images/loading.gif) no-repeat center center;
-        height: 72px;
-        width: 94px;
-        background-size: 47px 47px;
-      }
+      min-height: 5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
       .noData_img{
         margin: 0 auto;
         background: url(/images/man.png) no-repeat center center;
@@ -411,14 +426,8 @@ header{
       }
     }
     .noData{
-      margin-top: 2rem;
-      .loading_img{
-        margin: 0 auto;
-        background: url(/images/loading.gif) no-repeat center center;
-        height: 72px;
-        width: 94px;
-        background-size: 47px 47px;
-      }
+      min-height: 5rem;
+      margin-top: 1.5rem;
       .noData_img{
         margin: 0 auto;
         background: url(/images/man.png) no-repeat center center;
@@ -437,72 +446,72 @@ header{
   }
   // 分析详情
   .analysis_content{
+
     background: #fff;
-    .analysis_list{
-      .analysis_info{
-        background: #fff;
+    //积分排名
+    .scoreRank{
+      .scoreRank_info{
         font-size: 0.24rem;
-        padding: 5px;
-        height: 0.6rem;
-        overflow: hidden;
-        p{
-          &:nth-of-type(1){
-            float: left;
-            width: 60%;
-            height: 100%;
-            img{
-              width: 9%;
-              height: auto;
-              float: left;
-              margin-top: 0.13rem;
-            }
-            span{
-              display: block;
-              margin-left: 5%;
-              float: left;
-              height: 100%;
-              line-height: 0.6rem;
-              width: 86%;
-              overflow: scroll;
-              white-space: nowrap;
-              &::-webkit-scrollbar {
-                width: 0;
-                height: 0;
-              }
-              &::-moz-scrollbar {
-                width: 0;
-                height: 0;
-              }
-            }
-          }
-          &:nth-of-type(2){
-            float: right;
-            height: 100%;
-            line-height: 0.6rem;
-            span{
-              display: block;
-              float: left;
-              margin-right: 0.1rem;
-              &.win{color:@red;}
-              &.draw{color:#0090ff;}
-              &.lose{color:#21b11e;}
-              i{
-                font-style: normal;
-              }
-            }
-          }
-        }
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
       }
-      .analysis_data{
+      .scoreRank_data{
         background: #fff;
-        font-size: 0.22rem;
+        font-size: 0.2rem;
+        word-break: break-word;
+        word-wrap: break-word;
         li{
-          padding: 12px;
+          padding:10px 5px;
           overflow: hidden;
-          border-bottom: 1px solid #ddd;
+          span{
+            display: inline-block;
+            float: left;
+            text-align: center;
+            &:nth-of-type(1){width: 25%;}
+            &:nth-of-type(2){width: 12%;}
+            &:nth-of-type(3){width: 19%;}
+            &:nth-of-type(4){width: 19%;}
+            &:nth-of-type(5){width: 13%;}
+            &:nth-of-type(6){width: 12%;}
+          }
+          &.scoreRank_title{
+            color: #666;
+            border-bottom:none;
+          }
           &:nth-last-of-type(1){
             border-bottom: none;
           }
+        }
+      }
+      .noData{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+    }
+
+    //历史交锋
+    .battleHistory{
+
+      .battleHistory_info{
+        font-size: 0.24rem;
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
+      }
+      .battleHistory_data{
+        background: #fff;
+        font-size: 0.2rem;
+        li{
+          padding:10px 5px;
+          overflow: hidden;
           span{
             display: block;
             float: left;
@@ -510,31 +519,44 @@ header{
             &.win{color:@red;}
             &.draw{color:#0090ff;}
             &.lose{color:#21b11e;}
-            overflow: auto;
-            &::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            }
-            &::-moz-scrollbar {
-              width: 0;
-              height: 0;
+            &:nth-of-type(1){width: 15%;}
+            &:nth-of-type(2){width: 10%;}
+            &:nth-of-type(3){width: 19%;}
+            &:nth-of-type(4){width: 7%;}
+            &:nth-of-type(5){width: 19%;}
+            &:nth-of-type(6){width: 15%;}
+            &:nth-of-type(7){width: 15%;}
+          }
+          &.battleHistory_summary{
+            font-size: 0.2rem;
+            border: none;
+            p{
+              text-align: center;
+              padding: 4px 0;
+              i{
+                font-style: normal;
+                &.win{color:@red;}
+                &.draw{color:#0090ff;}
+                &.lose{color:#21b11e;}
+              }
             }
           }
-          span:nth-of-type(1){width: 25%;}
-          span:nth-of-type(2){width: 20%;}
-          span:nth-of-type(3){width: 20%;}
-          span:nth-of-type(4){width: 10%;}
-          span:nth-of-type(5){width: 25%;}
+          &.battleHistory_title{
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            span:nth-of-type(1){width: 15%;}
+            span:nth-of-type(2){width: 10%;}
+            span:nth-of-type(3){width: 45%;}
+            span:nth-of-type(4){width: 15%;
+              word-break: break-word;
+              word-wrap: break-word;
+            }
+            span:nth-of-type(5){width: 15%;}
+          }
+          &:nth-last-of-type(1){
+            border-bottom: none;
+          }
         }
-        .analysis_title{
-          background: #ebebeb;
-          color: #666;
-          padding: 10px;
-          border-bottom:none;
-        }
-      }
-      &:nth-last-of-type(1){
-        margin-bottom:1.2rem;
       }
       .noData{
         margin-top: 50px;
@@ -547,7 +569,433 @@ header{
           color: #868080;
         }
       }
+
     }
+
+    //近期战绩
+    .recentRecord{
+
+      .recentRecord_info{
+        font-size: 0.24rem;
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
+      }
+      .recentRecord_data{
+        background: #fff;
+        font-size: 0.20rem;
+        li{
+          padding: 10px 5px;
+          overflow: hidden;
+          font-size: 0.2rem;
+          span{
+            display: block;
+            float: left;
+            text-align: center;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            &.win{color:@red;}
+            &.draw{color:#0090ff;}
+            &.lose{color:#21b11e;}
+            &:nth-of-type(1){width: 15%;}
+            &:nth-of-type(2){width: 10%;}
+            &:nth-of-type(3){width: 19.5%;}
+            &:nth-of-type(4){width: 7%;}
+            &:nth-of-type(5){width: 19.5%;}
+            &:nth-of-type(6){width: 15%;}
+            &:nth-of-type(7){width: 14%;}
+          }
+          &.recentRecord_summary{
+            font-size: 0.2rem;
+            border: none;
+            p{
+              text-align: center;
+              padding: 4px 0;
+              i{
+                font-style: normal;
+                &.win{color:@red;}
+                &.draw{color:#0090ff;}
+                &.lose{color:#21b11e;}
+              }
+            }
+          }
+          &.recentRecord_title{
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            span:nth-of-type(1){width: 15%;}
+            span:nth-of-type(2){width: 15%;}
+            span:nth-of-type(3){width: 35%;}
+            span:nth-of-type(4){width: 20%;  word-break: break-word;
+              word-wrap: break-word;}
+            span:nth-of-type(5){width: 15%;}
+          }
+          &:nth-last-of-type(1){
+            border-bottom: none;
+          }
+        }
+      }
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+
+    }
+
+    //未来比赛
+    .futureMatch{
+        background: #fff;
+      .futureMatch_info{
+        font-size: 0.24rem;
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
+      }
+      .futureMatch_data{
+        background: #fff;
+        font-size: 0.2rem;
+        padding: 10px 5px;
+        li{
+          padding: 8px 5px;
+          overflow: hidden;
+          span{
+            display: inline-block;
+            float: left;
+            text-align: center;
+            &:nth-of-type(1){width: 20%;color: #666;}
+            &:nth-of-type(2){width: 18%;color: #999;}
+            &:nth-of-type(3){width: 25%;}
+            &:nth-of-type(4){width: 25%;}
+            &:nth-of-type(5){width: 12%;}
+          }
+          &.futureMatch_team{
+            text-align: center;
+            color: #666;
+          }
+          &.futureMatch_title{
+            border-bottom: 1px solid #ddd;
+            color: #666;
+            padding:5px;
+            span:nth-of-type(2){color: #666;}
+          }
+        }
+      }
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+
+    }
+
+    //亚盘走势
+    .asiaTrend{
+
+      .asiaTrend_info{
+        font-size: 0.24rem;
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
+      }
+      .asiaTrend_data{
+        background: #fff;
+        font-size: 0.20rem;
+        li{
+          padding: 10px 5px;
+          overflow: hidden;
+          font-size: 0.2rem;
+          span{
+            display: block;
+            float: left;
+            text-align: center;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            &.win{color:@red;}
+            &.draw{color:#0090ff;}
+            &.lose{color:#21b11e;}
+            &:nth-of-type(1){width: 15%;}
+            &:nth-of-type(2){width: 10%;}
+            &:nth-of-type(3){width: 22%;}
+            &:nth-of-type(4){width: 11%;}
+            &:nth-of-type(5){width: 22%;}
+            &:nth-of-type(6){width: 20%;}
+          }
+          &.asiaTrend_summary{
+            font-size: 0.2rem;
+            border: none;
+            p{
+              text-align: center;
+              padding: 4px 0;
+              i{
+                font-style: normal;
+                &.win{color:@red;}
+                &.draw{color:#0090ff;}
+                &.lose{color:#21b11e;}
+              }
+            }
+          }
+          &.asiaTrend_title{
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            span:nth-of-type(1){width: 15%;}
+            span:nth-of-type(2){width: 15%;}
+            span:nth-of-type(3){width: 50%;}
+            span:nth-of-type(4){width: 20%;}
+          }
+          &:nth-last-of-type(1){
+            border-bottom: none;
+          }
+        }
+      }
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+
+    }
+
+
+    //大小球
+    .sizeTrend{
+
+      .sizeTrend_info{
+        font-size: 0.24rem;
+        padding: 5px 15px;
+        color: #116FD8;
+        border-bottom:1px solid #ddd;
+      }
+      .sizeTrend_data{
+        background: #fff;
+        font-size: 0.20rem;
+        li{
+          padding: 10px 5px;
+          overflow: hidden;
+          font-size: 0.2rem;
+          span{
+            display: block;
+            float: left;
+            text-align: center;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            &.win{color:@red;}
+            &.draw{color:#0090ff;}
+            &.lose{color:#21b11e;}
+            &:nth-of-type(1){width: 15%;}
+            &:nth-of-type(2){width: 10%;}
+            &:nth-of-type(3){width: 25%;}
+            &:nth-of-type(4){width: 10%;}
+            &:nth-of-type(5){width: 25%;}
+            &:nth-of-type(6){width: 15%;}
+          }
+          &.sizeTrend_summary{
+            font-size: 0.2rem;
+            border: none;
+            p{
+              text-align: center;
+              padding: 4px 0;
+              i{
+                font-style: normal;
+                &.win{color:@red;}
+                &.draw{color:#0090ff;}
+                &.lose{color:#21b11e;}
+              }
+            }
+          }
+          &.sizeTrend_title{
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            span:nth-of-type(1){width: 15%;}
+            span:nth-of-type(2){width: 15%;}
+            span:nth-of-type(3){width: 50%;}
+            span:nth-of-type(4){width: 20%;    word-break: break-word;
+              word-wrap: break-word;}
+          }
+          &:nth-last-of-type(1){
+            border-bottom: none;
+          }
+        }
+      }
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+
+    }
+
+
+    //攻防对比
+    .attackDefense{
+
+      .attackDefense_info{
+        background: #fff;
+        font-size: 0.24rem;
+        padding: 5px;
+        height: 0.5rem;
+        line-height: 0.5rem;
+        color: #116FD8;
+        overflow: hidden;
+        p{
+          &:nth-of-type(1) {
+            float: left;
+            width: 60%;
+            height: 100%;
+            margin-left: 0.2rem;
+          }
+          &:nth-of-type(2) {
+           float: right;
+           height: 100%;
+           span {
+             display: block;
+             float: left;
+             margin-right: 0.1rem;
+             font-size: 0.2rem;
+             color: #000000;
+             i{
+               font-style: normal;
+               color: #F37908;
+             }
+           }
+          }
+         }
+      }
+      .teamName{
+        border-top: 1px solid #ddd;
+        padding: 5px 10px;
+        font-size: 0.24rem;
+        span{
+          &:nth-of-type(2){
+            float: right;;
+          }
+        }
+      }
+      .attackDefense_data{
+        background: #fff;
+        font-size: 0.22rem;
+        padding: 10px;
+        li{
+          border-bottom: 1px solid #ddd;
+          overflow: hidden;
+          &:nth-last-of-type(1){
+            border: none;
+          }
+          p{
+            display: inline-block;
+            width: 50%;
+            float: left;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            span{
+              display: block;
+              color:#ff8300;
+              &:nth-of-type(1){
+                position: absolute;
+                top: 10%;
+                right: 30%;
+                font-size: 0.2rem;
+              }
+              &:nth-of-type(2){
+                font-size: 0.3rem;
+                margin-top: 0.2rem;
+              }
+              &:nth-of-type(3){
+                font-size: 0.2rem;
+                color: #999!important;
+                margin-bottom: 0.2rem;
+              }
+            }
+            &:nth-last-of-type(1){
+              border: none;
+              span{
+                color: #116FD8;
+              }
+            }
+          }
+        }
+      }
+
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+    }
+
+    //心水推荐
+    .recommend{
+      margin-bottom: 1.2rem;
+
+      .recommend_info{
+        background: #fff;
+        font-size: 0.24rem;
+        padding: 5px;
+        height: 0.5rem;
+        line-height: 0.5rem;
+        overflow: hidden;
+        p{
+          float: left;
+          width: 60%;
+          height: 100%;
+          color: #116FD8;
+          margin-left: 0.2rem;
+        }
+      }
+      .recommend_data{
+        background: #fff;
+        font-size: 0.22rem;
+        div{
+          padding: 0 0.2rem 0;
+          text-indent:2em;
+        }
+      }
+
+      .noData{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        .noData_txt{
+          display: block;
+          margin: 10px 0px 0px;
+          text-align: center;
+          font-size: 0.26rem;
+          color: #868080;
+        }
+      }
+    }
+
+
   }
   // 亚盘详情
   .odd_content{
@@ -722,14 +1170,7 @@ header{
       }
     }
     .noData{
-      padding-top: 2rem;
-      .loading_img{
-        margin: 0 auto;
-        background: url(/images/loading.gif) no-repeat center center;
-        height: 72px;
-        width: 94px;
-        background-size: 47px 47px;
-      }
+      padding-top: 1.5rem;
       .noData_img{
         margin: 0 auto;
         background: url(/images/man.png) no-repeat center center;

@@ -39,6 +39,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "AWAY_NAME":"客队",
     "MATCHES_COMPANIES":"公司",
     "MATCHES_HANDICAP":"盘口",
+    "O_U":"盘口",
     "IMMEDIATELY_LIVE":"即时",
     "MATCHES_INITIAL":"初盘",
     "BUTTON_CLOSE": "关闭",
@@ -52,6 +53,48 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "CANCEL":"取消",
     "POSTPONED":"推迟",
     "HT":"中场",
+
+    "SCORE_WIN":"胜",
+    "SCORE_LOSE":"负",
+    "MATCHES_WIN_N":"",
+    "MATCHES_LOSE_N":"",
+    "MATCHES_WIN":"胜",
+    "MATCHES_LOSE":"负",
+    "SCORE_RANK":"积分排名",
+    "RANK_TEAM":"排名/球队",
+    "GP": "已赛",
+    "win_RATE":"胜率",
+    "H_FIXTURES":"历史交锋",
+    "VOER_UNDER":"大小",
+    "SPERAD":"让分",
+    "RECENT":"近期战绩",
+    "OVER":"大",
+    "UNDER":"小",
+    "VOID":"走",
+    "WIN":"赢",
+    "LOSE":"输",
+    "FUTURE":"未来比赛",
+    "INTERVAL":"间隔",
+    "DAY":"天",
+    "HDP_TREND":"亚盘走势",
+    "DISH_ROAD":"盘路",
+    "WIN_DISH":"",
+    "WIN_DISH_N":"次赢盘",
+    "LOSE_DISH":"",
+    "LOSE_DISH_N":"次输盘",
+    "LET_DISH":"",
+    "LET_DISH_N":"次走盘",
+    "BIG_N_BALL":"",
+    "BIG_N_BALL_N":"次大球",
+    "SMALL_N_BALL":"",
+    "SMALL_N_BALL_N":"次小球",
+    "OVER_UNDER":"大小球",
+    "RECENT_SIX":"最近6场",
+    "RECENT_PER":"最近表现",
+    "SCORE_AVG":"6场平均得分",
+    "LOSE_AVG":"6场平均失分",
+    "HOME_COURT":"主场",
+    "GUEST_COURT":"客场",
   }
   var translationsZH_HANS = {
     "MATCHES_DETAILS":"比賽詳情",
@@ -70,6 +113,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "AWAY_NAME":"客隊",
     "MATCHES_COMPANIES":"公司",
     "MATCHES_HANDICAP":"盤口",
+    "O_U":"盤口",
     "IMMEDIATELY_LIVE":"即時",
     "MATCHES_INITIAL":"初盤",
     "BUTTON_CLOSE": "關閉",
@@ -83,6 +127,48 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "CANCEL":"取消",
     "POSTPONED":"推遲",
     "HT":"中場",
+
+    "SCORE_WIN":"勝",
+    "SCORE_LOSE":"負",
+    "MATCHES_WIN_N":"",
+    "MATCHES_LOSE_N":"",
+    "MATCHES_WIN":"勝",
+    "MATCHES_LOSE":"負",
+    "SCORE_RANK":"積分排名",
+    "RANK_TEAM":"排名/球隊",
+    "GP": "已賽",
+    "win_RATE":"勝率",
+    "H_FIXTURES":"曆史交鋒",
+    "VOER_UNDER":"大小",
+    "SPERAD":"讓分",
+    "RECENT":"近期戰績",
+    "OVER":"大",
+    "UNDER":"小",
+    "VOID":"走",
+    "WIN":"贏",
+    "LOSE":"輸",
+    "FUTURE":"未來比賽",
+    "INTERVAL":"間隔",
+    "DAY":"天",
+    "HDP_TREND":"亞盤走勢",
+    "DISH_ROAD":"盤路",
+    "WIN_DISH":"",
+    "WIN_DISH_N":"次贏盤",
+    "LOSE_DISH":"",
+    "LOSE_DISH_N":"次輸盤",
+    "LET_DISH":"",
+    "LET_DISH_N":"次走盤",
+    "BIG_N_BALL":"",
+    "BIG_N_BALL_N":"次大球",
+    "SMALL_N_BALL":"",
+    "SMALL_N_BALL_N":"次小球",
+    "OVER_UNDER":"大小球",
+    "RECENT_SIX":"最近六場",
+    "RECENT_PER":"最近表現",
+    "SCORE_AVG":"六場平均得分",
+    "LOSE_AVG":"六場平均失分",
+    "HOME_COURT":"主場",
+    "GUEST_COURT":"客場",
   }
   var translationsEn = {
     "MATCHES_DETAILS":"Matches Details",
@@ -102,6 +188,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "AWAY_NAME":"Away Team",
     "MATCHES_COMPANIES":"Companies",
     "MATCHES_HANDICAP":"Handicap",
+    "O_U":"Handicap",
     "IMMEDIATELY_LIVE":"Live",
     "MATCHES_INITIAL":"Initial",
     "BUTTON_CLOSE":	"Close",
@@ -116,6 +203,49 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "POSTPONED":"Postponed",
     "HT":"HT",
 
+
+    "SCORE_WIN":"WIN",
+    "SCORE_LOSE":"Lose",
+    "MATCHES_WIN_N":"",
+    "MATCHES_LOSE_N":"",
+    "MATCHES_WIN":"WIN",
+    "MATCHES_LOSE":"Lose",
+    "SCORE_RANK":"Points Ranking",
+    "RANK_TEAM":"Ranking/Team",
+    "GP": "Finished",
+    "win_RATE":"Win Rate",
+    "H_FIXTURES":"Historical Fixtures",
+    "VOER_UNDER":"Over/Under",
+    "SPERAD":"Spread",
+    "RECENT":"Recent Standings",
+    "OVER":"Over",
+    "UNDER":"Under",
+    "VOID":"Void",
+    "WIN":"Win",
+    "LOSE":"Lose",
+    "FUTURE":"Future Matches",
+    "INTERVAL":"Interval",
+    "DAY":"Day(s)",
+    "HDP_TREND":"HDP Trend",
+    "DISH_ROAD":"Trend",
+    "WIN_DISH":"",
+    "WIN_DISH_N":" Win Handicap",
+    "LOSE_DISH":"",
+    "LOSE_DISH_N":" Lose Handicap",
+    "LET_DISH":"",
+    "LET_DISH_N":" Void",
+    "BIG_N_BALL":"",
+    "BIG_N_BALL_N":" Over",
+    "SMALL_N_BALL":"",
+    "SMALL_N_BALL_N":" Under",
+    "OVER_UNDER":"Over/Under",
+    "RECENT_SIX":"Recent 6",
+    "RECENT_PER":"Recent Performance",
+    "SCORE_AVG":"Avg. scores in 6 matches",
+    "LOSE_AVG":"Avg. lose scores in 6 matches",
+    "HOME_COURT":"Home",
+    "GUEST_COURT":"Away",
+
   }
   var translationsTH = {
     "MATCHES_DETAILS":"รายละเอียดการแข่งขัน",
@@ -127,7 +257,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "BIG_BALL":"สูง",
     "SMALL_BALL":"ต่ำ",
     "MATCHES_TIME":"เวลา",
-    "MATCHES_DETAIL":"การแข่งขัน",
+    "MATCHES_DETAIL":"ลีก",
     "HOME_TEAM":"ทีมเหย้า",
     "HOME_NAME":"ทีมเหย้า",
     "MATCHES_SCORE":"คะแนน",
@@ -135,6 +265,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "AWAY_NAME":"ทีมเยือน",
     "MATCHES_COMPANIES":"บริษัท",
     "MATCHES_HANDICAP":"แฮนดิแคป",
+    "O_U":"O/U",
     "IMMEDIATELY_LIVE":"ไลฟ(live)",
     "MATCHES_INITIAL":"เฟิสต์(First)",
     "BUTTON_CLOSE":	"ปิด",
@@ -148,6 +279,48 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "CANCEL":"Cancel",
     "POSTPONED":"Postponed",
     "HT":"HT",
+
+    "SCORE_WIN":"ชนะ",
+    "SCORE_LOSE":"แพ้",
+    "MATCHES_WIN_N":"ชนะ",
+    "MATCHES_LOSE_N":"แพ้",
+    "MATCHES_WIN":"",
+    "MATCHES_LOSE":"",
+    "SCORE_RANK":"ตารางคะแนน",
+    "RANK_TEAM":"อันดับ/ทีม",
+    "GP": "เสร็จสิ้น",
+    "win_RATE":"ชนะ",
+    "H_FIXTURES":"ประวัติการพบกัน",
+    "VOER_UNDER":"สูง/ต่ำ",
+    "SPERAD":"แต้มต่อ",
+    "RECENT":"ผลการแข่งขันล่าสุด",
+    "OVER":"สูง",
+    "UNDER":"ต่ำ",
+    "VOID":"เสมอ",
+    "WIN":"ชนะ",
+    "LOSE":"แพ้",
+    "FUTURE":"ตารางบอล",
+    "INTERVAL":"เกมถัดไป",
+    "DAY":"วัน",
+    "HDP_TREND":"ราคาบอลHDP",
+    "DISH_ROAD":"แต้มต่อ",
+    "WIN_DISH":"ชนะในHDP ",
+    "WIN_DISH_N":" ครั้ง",
+    "LOSE_DISH":"แพ้ในHDP ",
+    "LOSE_DISH_N":" ครั้ง",
+    "LET_DISH":"เสมอในHDP ",
+    "LET_DISH_N":" ครั้ง",
+    "BIG_N_BALL":"สูง ",
+    "BIG_N_BALL_N":" ครั้ง",
+    "SMALL_N_BALL":"ต่ำ ",
+    "SMALL_N_BALL_N":" ครั้ง",
+    "OVER_UNDER":"สูง/ต่ำ",
+    "RECENT_SIX":"สถิติ 6 เกมล่าสุด",
+    "RECENT_PER":"สภาพทีมในเร็วๆนี้",
+    "SCORE_AVG":"ได้คะแนนโดยเฉลี่ยใน 6 เกม",
+    "LOSE_AVG":"เสียคะแนนโดยเฉลี่ยใน 6 เกม",
+    "HOME_COURT":"เหย้า",
+    "GUEST_COURT":"เยือน",
   }
   var translationsVI = {
     "MATCHES_DETAILS":"Chi tiết trận đấu",
@@ -158,7 +331,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "MATCHES_BALL":"Tài xỉu",
     "BIG_BALL":"Tài",
     "SMALL_BALL":"Xỉu",
-    "MATCHES_TIME":"Thời gian",
+    "MATCHES_TIME":"Ngày",
     "MATCHES_DETAIL":"Giải đấu",
     "HOME_TEAM":"Chủ nhà",
     "HOME_NAME":"Chủ nhà",
@@ -167,6 +340,7 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "AWAY_NAME":"Đội khách",
     "MATCHES_COMPANIES":"Công ty",
     "MATCHES_HANDICAP":"Kèo",
+    "O_U":"Kèo",
     "IMMEDIATELY_LIVE":"Live",
     "MATCHES_INITIAL":"Đầu tiên",
     "BUTTON_CLOSE":	"Đóng",
@@ -180,6 +354,48 @@ detail.config(["$translateProvider", function ($translateProvider) {
     "CANCEL":"Cancel",
     "POSTPONED":"Postponed",
     "HT":"HT",
+
+    "SCORE_WIN":"Thắng",
+    "SCORE_LOSE":"Bại",
+    "MATCHES_WIN_N":"",
+    "MATCHES_LOSE_N":"",
+    "MATCHES_WIN":"Thắng",
+    "MATCHES_LOSE":"Bại",
+    "SCORE_RANK":"Xếp hạng",
+    "RANK_TEAM":"Xếp hạng/Đội bóng",
+    "GP": "Đã thi đấu",
+    "win_RATE":"Tỷ lệ thắng",
+    "H_FIXTURES":"Lịch sử đối đầu",
+    "VOER_UNDER":"Tài xỉu",
+    "SPERAD":"Kèo Á",
+    "RECENT":"Thành tích gần đây",
+    "OVER":"Tài",
+    "UNDER":"Xỉu",
+    "VOID":"Hòa kèo",
+    "WIN":"Thắng",
+    "LOSE":"Thua",
+    "FUTURE":"Chưa thi đấu",
+    "INTERVAL":"Khoảng cách",
+    "DAY":"Ngày",
+    "HDP_TREND":"Biểu đồ kèo Á",
+    "DISH_ROAD":"Kèo",
+    "WIN_DISH":"",
+    "WIN_DISH_N":" lần thắng kèo",
+    "LOSE_DISH":"",
+    "LOSE_DISH_N":" lần thua kèo",
+    "LET_DISH":"",
+    "LET_DISH_N":" lần hòa kèo",
+    "BIG_N_BALL":"",
+    "BIG_N_BALL_N":" Tài",
+    "SMALL_N_BALL":"",
+    "SMALL_N_BALL_N":" xỉu",
+    "OVER_UNDER":"Tài xỉu",
+    "RECENT_SIX":"6 trận gần đây",
+    "RECENT_PER":"Phong độ gần đây",
+    "SCORE_AVG":"Điểm được bình quân 6 trận",
+    "LOSE_AVG":"Điểm mất bình quân 6 trận",
+    "HOME_COURT":"Sân nhà",
+    "GUEST_COURT":"Sân khách",
   }
 
   $translateProvider.translations('zh', translationsZH);
@@ -216,9 +432,11 @@ detail.controller("detailController", [
   "$translate",
   "infoServiceFactory",
   "analysisServiceFactory",
+  "analysisDetailServiceFactory",
   "oddServiceFactory",
   "oddDetailServiceFactory",
-  function ($http, $scope,$timeout,$filter,$translate,infoServiceFactory,analysisServiceFactory,oddServiceFactory,oddDetailServiceFactory)
+  "WebSocket",
+  function ($http, $scope,$timeout,$filter,$translate,infoServiceFactory,analysisServiceFactory,analysisDetailServiceFactory,oddServiceFactory,oddDetailServiceFactory,WebSocket)
   {
 
     var thirdId;
@@ -252,7 +470,7 @@ detail.controller("detailController", [
 
       //初始化比赛详情首页数据
       $scope.statistics=null;
-      $scope.statistics_status=false;
+      $scope.loadingShow=true;
 
       $scope.initMatches();
       infoServiceFactory.loadInfoData($scope,thirdId);
@@ -267,7 +485,7 @@ detail.controller("detailController", [
         {
 
           $scope.statistics=null;
-          $scope.statistics_status=false;
+          $scope.loadingShow=true;
 
           infoServiceFactory.loadInfoData($scope,thirdId);
           $(".statistics_content").show();
@@ -278,11 +496,18 @@ detail.controller("detailController", [
         }else if(index==1)//分析
         {
 
+          $scope.loadingShow=true;
+
           analysisServiceFactory.loadAnalysisData($scope,thirdId);
+
+          analysisDetailServiceFactory.loadAnalysisDetailData($scope,thirdId);
+
           $(".statistics_content").hide();
           $(".analysis_content").show();
           $(".odd_content").hide();
           $(".euro_content").hide();
+
+          //$scope.websocketClose();
 
         }else if(index==2)//亚盘
         {
@@ -292,10 +517,13 @@ detail.controller("detailController", [
 
           $scope.flag=true;
 
+          $scope.asian_self=true;
+          $scope.BIG_self=false;
+
           var asianOddType='asiaLet';
 
           $scope.oddType=asianOddType;
-          $scope.odd_datas=false;
+          $scope.loadingShow=true;
           $scope.oddDatas=null;
           $scope.comInfoMatches=null;
 
@@ -308,6 +536,8 @@ detail.controller("detailController", [
           $(".asian_p").show();
           $(".asian_p_detail").hide();
 
+          //$scope.websocketClose();
+
           var offsets=$(".detailNav ul li").width();
           $(".detailNav ul").scrollLeft(offsets);
         }else if(index==3)//欧赔
@@ -316,7 +546,7 @@ detail.controller("detailController", [
           var europeOddType='euro';
           $scope.oddType=europeOddType;
 
-          $scope.euro_datas=false;
+          $scope.loadingShow=true;
           $scope.euroOddDatas=null;
           $scope.comInfoMatches=null;
 
@@ -328,6 +558,8 @@ detail.controller("detailController", [
 
           $(".asian_p").show();
           $(".asian_p_detail").hide();
+
+         // $scope.websocketClose();
           var offsets=2*($(".detailNav ul li").width());
           $(".detailNav ul").scrollLeft(offsets);
         }else if(index==4)//大小球
@@ -336,11 +568,14 @@ detail.controller("detailController", [
 
           $scope.flag=false;
 
+          $scope.asian_self=false;
+          $scope.BIG_self=true;
+
 
           var ballOddType='asiaSize';
           $scope.oddType=ballOddType;
 
-          $scope.odd_datas=false;
+          $scope.loadingShow=true;
           $scope.oddDatas=null;
           $scope.comInfoMatches=null;
 
@@ -353,6 +588,8 @@ detail.controller("detailController", [
 
           $(".asian_p").show();
           $(".asian_p_detail").hide();
+
+         // $scope.websocketClose();
         }
 
       });
@@ -368,7 +605,7 @@ detail.controller("detailController", [
         $(".odd_content .asian_p_detail").show();
 
         $(".odd_content .asian_p_names span").eq(index-1).addClass("active").siblings().removeClass("active");
-
+        $scope.loadingShow=true;
         oddDetailServiceFactory.loadOddDetailData($scope,$filter,$scope.oddType,oddsId,index-1);
 
       }
@@ -388,7 +625,7 @@ detail.controller("detailController", [
           $(".euro_content .asian_p_detail").show();
 
           $(".euro_content .asian_p_names span").eq(index-2).addClass("active").siblings().removeClass("active");
-
+          $scope.loadingShow=true;
           oddDetailServiceFactory.loadOddDetailData($scope,$filter,$scope.oddType,oddsId,index-2);
         }
 
@@ -412,7 +649,7 @@ detail.controller("detailController", [
         $(".odd_content .asian_p_names span").eq(index).addClass("active").siblings().removeClass("active");
 
         var oddsId=$(".odd_content .asian_p_names span").eq(index).attr("id");
-
+        $scope.loadingShow=true;
         oddDetailServiceFactory.loadOddDetailData($scope,$filter,$scope.oddType,oddsId,index);
 
       }
@@ -425,7 +662,7 @@ detail.controller("detailController", [
         $(".euro_content .asian_p_names span").eq(index).addClass("active").siblings().removeClass("active");
 
         var oddsId=$(".euro_content .asian_p_names span").eq(index).attr("id");
-
+        $scope.loadingShow=true;
         oddDetailServiceFactory.loadOddDetailData($scope,$filter,$scope.oddType,oddsId,index);
 
       }
@@ -475,7 +712,7 @@ detail.controller("detailController", [
       $scope.refreshClick=function(){
 
 
-        $scope.statistics_status=false;
+        $scope.loadingShow=true;
         $scope.statistics=null;
 
         infoServiceFactory.loadInfoData($scope,thirdId);
@@ -573,41 +810,205 @@ detail.controller("detailController", [
     }
 
 
-    //分析球队最近比赛数据处理
-    $scope.handleTeamRecet=function(teamRecent){
+    //历史交锋数据处理
+    $scope.handleBattleHistory=function(data){
 
-      for(var i=0;i<teamRecent.length;i++)
+      var battleHistorys=new Array();
+
+      var length=6;
+      if(data.length<6)
       {
-        if(teamRecent[i].homeGround)
-        {
+        length=data.length;
+      }
 
-          if(teamRecent[i].result==1)
+
+      for(var i=0;i<length;i++)
+      {
+
+        if(data[i].homeGround)
+        {
+          if(data[i].result==1)
           {
-            teamRecent[i].homeCss='lose';
-          }else
+            data[i].homeCss='win';
+          }else if(data[i].result==0)
           {
-            teamRecent[i].homeCss='win';
+            data[i].homeCss='lose';
           }
 
-            teamRecent[i].guestCss='';
+          data[i].guestCss='';
 
         }else
         {
-          if(teamRecent[i].result==1)
+          if(data[i].result==1)
           {
-            teamRecent[i].guestCss='lose';
-          }else
+            data[i].guestCss='win';
+          }else if(data[i].result==0)
           {
-            teamRecent[i].guestCss='win';
+            data[i].guestCss='lose';
           }
-             teamRecent[i].homeCss='';
+
+          data[i].homeCss='';
         }
+
+        if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+
+          data[i].date=new Date('20'+data[i].date).Format('yy-MM-dd');
+        }else{
+          data[i].date=new Date('20'+data[i].date).Format('dd/MM/yy');
+        }
+
+
+        battleHistorys.push(data[i]);
+
+      }
+
+      return battleHistorys;
+    }
+
+
+    //大小输赢走数据处理
+    //tot	Integer	大小球:1大，2小，0走
+    //casLetGoal	String	让球盘路
+    //let	Integer	让球:1赢，2输，0走
+    $scope.handleBattle=function(data){
+
+      for(var i=0;i<data.length;i++)
+      {
+        if(data[i].highLow=="1")
+        {
+          data[i].highLowText=$scope.matches['OVER'];
+
+        }else if(data[i].highLow=="0")
+        {
+          data[i].highLowText= $scope.matches['UNDER'];
+        }else if(data[i].highLow=="")
+        {
+          data[i].highLowText="-";
+        }
+
+
+        if(data[i].concede=="")
+        {
+          data[i].concede="-";
+        }
+        //else{
+        //
+        //  var scoreArray=data[i].score.split(":");
+        //
+        //  if(data[i].homeGround)
+        //  {
+        //
+        //    var homeScore=parseFloat(scoreArray[1]);
+        //    var guestScore=parseFloat(scoreArray[0]);
+        //    var concede=parseFloat(data[i].concede);
+        //    var score=homeScore+concede-guestScore;
+        //
+        //    if(score>0)
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['WIN'];
+        //    }else if(score<0)
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['LOSE'];
+        //    }else
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['VOID'];
+        //    }
+        //
+        //  }else
+        //  {
+        //
+        //    var homeScore=parseFloat(scoreArray[0]);
+        //    var guestScore=parseFloat(scoreArray[1]);
+        //    var concede=parseFloat(data[i].concede);
+        //    var score=homeScore+concede-guestScore;
+        //
+        //    if(score>0)
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['LOSE'];
+        //    }else if(score<0)
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['WIN'];
+        //    }else
+        //    {
+        //      data[i].concede=data[i].concede+$scope.matches['VOID'];
+        //    }
+        //
+        //  }
+        //
+        //}
 
 
       }
 
-      return teamRecent;
+      return data;
     }
+
+
+
+    //统计胜负
+    $scope.handleWinCount=function(data){
+
+      var homeWinCount= 0,homeLoseCount= 0,winCount= 0,loseCount= 0,bigBigCount= 0,bigSmallCount=0;
+      var result=new Object();
+
+      for(var i=0;i<data.length;i++)
+      {
+
+        if(data[i].homeGround)
+        {
+          if(data[i].result==1)
+          {
+            winCount=winCount+1;
+            homeWinCount=homeWinCount+1;
+
+          }else if(data[i].result==0)
+          {
+            loseCount=loseCount+1;
+            homeLoseCount=homeLoseCount+1;
+          }
+
+        }else
+        {
+          if(data[i].result==1)
+          {
+            winCount=winCount+1;
+
+          }else if(data[i].result==0)
+          {
+            loseCount=loseCount+1;
+          }
+
+        }
+
+
+
+
+
+        if(data[i].highLow=="1")
+        {
+          bigBigCount=bigBigCount+1;
+        }else if(data[i].highLow=="0")
+        {
+          bigSmallCount=bigSmallCount+1;
+        }
+
+
+      }
+      result.homeWinCount=homeWinCount;
+      result.homeLoseCount=homeLoseCount;
+      result.winCount=winCount;
+      result.loseCount=loseCount;
+      result.bigBigCount=bigBigCount;
+      result.bigSmallCount=bigSmallCount;
+
+      return result;
+
+    }
+
+
+
+
+
 
     //初始化比赛状态翻译
     // 1:完场 finished
@@ -617,7 +1018,7 @@ detail.controller("detailController", [
     //5:推迟 Postponed
     //6中场 HT
     $scope.initMatches = function() {
-      $translate(['FINISHED','UNDETERMINED', 'INTERRUPTED','CANCEL','POSTPONED','HT']).then(
+      $translate(['FINISHED','UNDETERMINED', 'INTERRUPTED','CANCEL','POSTPONED','HT','OVER','UNDER','VOID','WIN','LOSE']).then(
         function (translations) {
           $scope.matches = new Object();
           $scope.matches['FINISHED'] = translations.FINISHED;
@@ -626,6 +1027,11 @@ detail.controller("detailController", [
           $scope.matches['CANCEL'] = translations.CANCEL;
           $scope.matches['POSTPONED'] = translations.POSTPONED;
           $scope.matches['HT'] = translations.HT;
+          $scope.matches['OVER'] = translations.OVER;
+          $scope.matches['UNDER'] = translations.UNDER;
+          $scope.matches['VOID'] = translations.VOID;
+          $scope.matches['WIN'] = translations.WIN;
+          $scope.matches['LOSE'] = translations.LOSE;
         }
       );
     };
@@ -661,9 +1067,205 @@ detail.controller("detailController", [
       return upClass;
     }
 
+    // 取国家方法
+    $scope.getCountry = function () {
+        var country = $scope.getObjectFromLocalStorage("country");
+        if (country == null) {
+            country = defaultCountry;
+        }
+        return country;
+    };
+
+    $scope.websocketInit = function (thirdId) {
+      if (window.WebSocket) {
+        WebSocket.close();
+        WebSocket.connect(websocketUrl,thirdId, $scope);
+      }
+    };
+
+    $scope.websocketClose = function () {
+      if (window.WebSocket) {
+        WebSocket.close();
+      }
+    };
+
+    //websocket刷新头部统计数据
+    $scope.refreshData=function(data){
+
+      var refreshData = angular.fromJson(data);
+
+      if(refreshData.type==100)
+      {
+        //头部更新
+        $scope.info.match.matchScore.guestScore=refreshData.data.guestScore;
+        $scope.info.match.matchScore.homeScore=refreshData.data.homeScore;
+
+        $scope.matchTimeStatus=true;
+
+
+        if(refreshData.data.remainTime==null)
+        {
+          $scope.matchTimeStatus=false;
+          refreshData.data.remainTime="";
+        }
+
+        if(refreshData.data.matchStatus==1)
+        {
+          $scope.matchStatus='1st'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==2)
+        {
+          $scope.matchStatus='2nd'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==3)
+        {
+          $scope.matchStatus='3rd'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==4)
+        {
+          $scope.matchStatus='4th'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==5)
+        {
+          $scope.matchStatus='OT1'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==6)
+        {
+          $scope.matchStatus='OT2'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==7)
+        {
+          $scope.matchStatus='OT3'+" "+refreshData.data.remainTime;
+        }else if(refreshData.data.matchStatus==8)
+        {
+          $scope.matchStatus='OT4'+" "+refreshData.data.remainTime;
+          //  -1:完场,-2:待定,-3:中断,-4:取消,-5:推迟,50中场
+        }else if(refreshData.data.matchStatus==-1)
+        {
+          $scope.matchStatus=$scope.matches['FINISHED'];
+          $scope.matchTimeStatus=false;
+          $scope.websocketClose();
+        }else if(refreshData.data.matchStatus==-2)
+        {
+          $scope.matchStatus=$scope.matches['UNDETERMINED'];
+          $scope.matchTimeStatus=false;
+        }else if(refreshData.data.matchStatus==-3)
+        {
+          $scope.matchStatus=$scope.matches['INTERRUPTED'];
+          $scope.matchTimeStatus=false;
+        }else if(refreshData.data.matchStatus==-4)
+        {
+          $scope.matchStatus=$scope.matches['CANCEL'];
+          $scope.matchTimeStatus=false;
+        }else if(refreshData.data.matchStatus==-5)
+        {
+          $scope.matchStatus=$scope.matches['POSTPONED'];
+          $scope.matchTimeStatus=false;
+        }else if(refreshData.data.matchStatus==50)
+        {
+          $scope.matchStatus=$scope.matches['HT'];
+          $scope.matchTimeStatus=false;
+        }else{
+          $scope.matchStatus='';
+        }
+
+
+        //统计更新
+        $scope.ot1=false;
+        $scope.ot2=false;
+        $scope.ot3=false;
+
+        if (refreshData.data.addTime == 1) {
+          $scope.ot1 = true;
+          $scope.ot2 = false;
+          $scope.ot3 = false;
+        } else if (refreshData.data.addTime == 2) {
+          $scope.ot1 = true;
+          $scope.ot2 = true;
+          $scope.ot3 = false;
+        } else if (refreshData.data.addTime == 3) {
+          $scope.ot1 = true;
+          $scope.ot2 = true;
+          $scope.ot3 = true;
+        }
+
+        $scope.statistics.home1=refreshData.data.home1;
+        $scope.statistics.home2=refreshData.data.home2;
+        $scope.statistics.home3=refreshData.data.home3;
+        $scope.statistics.home4=refreshData.data.home4;
+        $scope.statistics.homeOt1=refreshData.data.homeOt1;
+        $scope.statistics.homeOt2=refreshData.data.homeOt2;
+        $scope.statistics.homeOt3=refreshData.data.homeOt3;
+        $scope.statistics.guest1=refreshData.data.guest1;
+        $scope.statistics.guest2=refreshData.data.guest2;
+        $scope.statistics.guest3=refreshData.data.guest3;
+        $scope.statistics.guest4=refreshData.data.guest4;
+        $scope.statistics.guestOt1=refreshData.data.guestOt1;
+        $scope.statistics.guestOt2=refreshData.data.guestOt2;
+        $scope.statistics.guestOt3=refreshData.data.guestOt3;
+
+
+      }
+
+    }
+
   }
 ]);
 
+
+
+//websocket服务
+var connection = null;
+detail.factory('WebSocket', function () {
+  return {
+    connect: function (url,thirdId, $scope) {
+      connection = Stomp.client(url);
+      //var clientId = new String(new Date().getTime()) + Math.ceil(Math.random() * 1000);
+      var headers = {
+        'login': websocketLogin,
+        'passcode': websocketPasscode
+        //'client-id': clientId
+      };
+      connection.debug = function () {
+        //
+      };
+      connection.heartbeat.outgoing = 10000;
+      connection.heartbeat.incoming = 10000;
+      var destination=bawebsocketDestinationLive+"."+thirdId;
+      connection.connect(headers, function (frame) {
+
+        console.info("connected to Stomp");
+
+        this.subscribe(destination, function (message) {
+          if (message.body) {
+            $scope.$apply(function () {
+
+              $scope.refreshData(message.body);
+
+            });
+          }
+        });
+      }, function (error) {
+        console.info(error);
+        console.info("Stomp error");
+      });
+    },
+    state: function () {
+      var state;
+      try {
+        state = connection.ws.readyState;
+      } catch (e) {
+        state = -1;
+      }
+      return state;
+    },
+    close: function () {
+      try {
+        if(connection != null){
+          connection.disconnect(function () {
+            console.info("disconnect from Stomp");
+          });
+          connection = null;
+        }
+      } catch (e) {
+      }
+    }
+  }
+});
 
 
 //获取比赛头部信息服务
@@ -693,7 +1295,56 @@ detail.factory("infoServiceFactory", [
 
             $scope.info=data;
             $scope.statistics=data.match.matchScore;
-            $scope.month_day=data.match.date.substring(5,10);
+
+
+            if($scope.info.match.matchStatus==1)
+            {
+              if($scope.statistics.home2==0)
+              {
+                $scope.statistics.home2="";
+                $scope.statistics.home3="";
+                $scope.statistics.home4="";
+                $scope.statistics.guest2="";
+                $scope.statistics.guest3="";
+                $scope.statistics.guest4="";
+              }
+            }else if($scope.info.match.matchStatus==2){
+
+              if($scope.statistics.home3==0)
+              {
+                $scope.statistics.home3="";
+                $scope.statistics.guest3="";
+                $scope.statistics.home4="";
+                $scope.statistics.guest4="";
+              }
+
+            }else if($scope.info.match.matchStatus==50){  //中场
+
+              if($scope.statistics.home3==0)
+              {
+                $scope.statistics.home3="";
+                $scope.statistics.guest3="";
+                $scope.statistics.home4="";
+                $scope.statistics.guest4="";
+              }
+
+            }else if($scope.info.match.matchStatus==3){
+
+
+              if($scope.statistics.home4==0)
+              {
+                $scope.statistics.home4="";
+                $scope.statistics.guest4="";
+              }
+
+            }
+
+
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+              $scope.month_time=new Date(data.match.date).Format('MM-dd')+" "+data.match.time;
+            }else{
+              $scope.month_time=data.match.time+" "+new Date(data.match.date).Format('dd/MM');
+            }
 
             $scope.ot1=false;
             $scope.ot2=false;
@@ -722,6 +1373,13 @@ detail.factory("infoServiceFactory", [
             //比赛进行中显示：节数和单节时间
             // 比赛结束显示：已完场第一 1st第二 2nd第三 3rd第四 4th加时 OT加时1  OT1加时2  OT2加时3  OT3
             //完场 Finished
+            $scope.matchTimeStatus=true;
+
+            if(data.match.matchScore.remainTime=="")
+            {
+              $scope.matchTimeStatus=false;
+            }
+
             if(data.match.matchStatus==1)
             {
               $scope.matchStatus='1st'+" "+data.match.matchScore.remainTime;
@@ -750,28 +1408,42 @@ detail.factory("infoServiceFactory", [
             }else if(data.match.matchStatus==-1)
             {
               $scope.matchStatus=$scope.matches['FINISHED'];
+              $scope.matchTimeStatus=false;
             }else if(data.match.matchStatus==-2)
             {
               $scope.matchStatus=$scope.matches['UNDETERMINED'];
+              $scope.matchTimeStatus=false;
             }else if(data.match.matchStatus==-3)
             {
               $scope.matchStatus=$scope.matches['INTERRUPTED'];
+              $scope.matchTimeStatus=false;
             }else if(data.match.matchStatus==-4)
             {
               $scope.matchStatus=$scope.matches['CANCEL'];
+              $scope.matchTimeStatus=false;
             }else if(data.match.matchStatus==-5)
             {
               $scope.matchStatus=$scope.matches['POSTPONED'];
+              $scope.matchTimeStatus=false;
             }else if(data.match.matchStatus==50)
             {
               $scope.matchStatus=$scope.matches['HT'];
+              $scope.matchTimeStatus=false;
             }else{
               $scope.matchStatus='';
             }
 
 
           }
-          $scope.statistics_status=true;
+          $scope.loadingShow=false;
+
+
+          //直播添加WebSocket代码
+          if(data.match.matchStatus>0)  //0:未开赛,1:一节,2:二节,5:1'OT-1:完场,-2:待定,-3:中断,-4:取消,-5:推迟,50中场
+          {
+            $scope.websocketInit(thirdId);
+          }
+
       });
     };
     return obj;
@@ -780,11 +1452,12 @@ detail.factory("infoServiceFactory", [
 
 
 
+
 //分析服务
 detail.factory("analysisService", [
   "$resource",
   function ($resource) {
-    return $resource(baseUrl+"/core/basketballDetail.findAnalysisDetail.do", {}, {
+    return $resource(baseUrl+"/core/basketballDetail.findAnalysis.do", {}, {
       query: {
         method: "post",
         params: {},
@@ -800,22 +1473,142 @@ detail.factory("analysisServiceFactory", [
   function (analysisService) {
     var obj = {};
     obj.loadAnalysisData = function ($scope,thirdId) {
-          analysisService.get({thirdId:thirdId,lang:$scope.getLanguage()}, function (data) {
-              if(data.homeRecent!=null){
-                if(data.homeRecent.length!=0)
-                {
-                  $scope.homeRecents = $scope.handleTeamRecet(data.homeRecent);
-                }
+      analysisService.get({thirdId:thirdId,lang:$scope.getLanguage()}, function (data) {
 
-              }
-              if(data.guestRecent!=null)
-              {
-                if(data.guestRecent.length!=0){
-                $scope.guestRecents =  $scope.handleTeamRecet(data.guestRecent);
-                }
-              }
+        //积分排名
+        $scope.guestData=data.guestData;
+        $scope.homeData=data.homeData;
+        if($scope.homeData!=null)
+        {
+        if($scope.homeData.scoreLoseSix=="")
+        {
+          $scope.homeData.scoreLoseSix==null;
+        }
+        if($scope.homeData.scoreWinSix=="")
+        {
+          $scope.homeData.scoreWinSix==null;
+        }
+        }
+        if($scope.guestData!=null) {
+          if ($scope.guestData.scoreLoseSix == "") {
+            $scope.guestData.scoreLoseSix == null;
+          }
+          if ($scope.guestData.scoreWinSix == "") {
+            $scope.guestData.scoreWinSix == null;
+          }
+        }
+
+        if($scope.guestData!=null)
+        {
+          if($scope.guestData.matchWin=="")
+          {
+            $scope.guestData.matchWin=null;
+          }
+        }
+
+        if($scope.homeData!=null)
+        {
+          if($scope.homeData.matchWin=="")
+          {
+            $scope.homeData.matchWin=null;
+          }
+        }
 
 
+
+      });
+    };
+    return obj;
+  }
+]);
+
+
+
+//分析详细服务
+detail.factory("analysisDetailService", [
+  "$resource",
+  function ($resource) {
+    return $resource(baseUrl+"/core/basketballDetail.findAnalysisDetail.do", {}, {
+      query: {
+        method: "post",
+        params: {},
+        isArray: false
+      }
+    });
+  }
+]);
+
+//分析详细服务工厂
+detail.factory("analysisDetailServiceFactory", [
+  "analysisDetailService",
+  function (analysisDetailService) {
+    var obj = {};
+    obj.loadAnalysisDetailData = function ($scope,thirdId) {
+      analysisDetailService.get({thirdId:thirdId,lang:$scope.getLanguage()}, function (data) {
+
+        $scope.analysisHomeTeam=data.homeTeam;
+        $scope.analysisGuestTeam=data.guestTeam;
+
+        //历史交锋
+        if(data.history!=null)
+        {
+          $scope.battleHistorys=$scope.handleBattleHistory(data.history);
+
+          $scope.battleHistorys=$scope.handleBattle($scope.battleHistorys);
+
+          $scope.battleHistorysCount=$scope.handleWinCount($scope.battleHistorys);
+
+
+        }
+
+        //近期战绩
+        if(data.homeRecent!=null)
+        {
+          $scope.homeTeamRecents=$scope.handleBattleHistory(data.homeRecent);
+          $scope.homeTeamRecents=$scope.handleBattle($scope.homeTeamRecents);
+
+          $scope.homeTeamRecentsCount=$scope.handleWinCount($scope.homeTeamRecents);
+        }
+
+        if(data.guestRecent!=null)
+        {
+        $scope.guestTeamRecents=$scope.handleBattleHistory(data.guestRecent);
+        $scope.guestTeamRecents=$scope.handleBattle($scope.guestTeamRecents);
+
+        $scope.guestTeamRecentsCount=$scope.handleWinCount($scope.guestTeamRecents);
+        }
+
+
+        //未来比赛
+        if(data.homeFuture!=null)
+        {
+
+          var homeFutureMatchs=data.homeFuture;
+          var guestFutureMatchs=data.guestFuture;
+          for(var i=0;i<homeFutureMatchs.length;i++)
+          {
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+
+              homeFutureMatchs[i].date=new Date("20"+homeFutureMatchs[i].date).Format('yy-MM-dd');
+            }else{
+              homeFutureMatchs[i].date=new Date("20"+homeFutureMatchs[i].date).Format('dd/MM/yy');
+            }
+          }
+
+          for(var i=0;i<guestFutureMatchs.length;i++)
+          {
+            if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
+
+              guestFutureMatchs[i].date=new Date("20"+guestFutureMatchs[i].date).Format('yy-MM-dd');
+            }else{
+              guestFutureMatchs[i].date=new Date("20"+guestFutureMatchs[i].date).Format('dd/MM/yy');
+            }
+          }
+
+          $scope.homeFutureMatchs=homeFutureMatchs;
+          $scope.guestFutureMatchs=guestFutureMatchs;
+        }
+        $scope.loadingShow=false;
       });
     };
     return obj;
@@ -870,12 +1663,9 @@ detail.factory("oddServiceFactory", [
             }
 
           }
-          if(oddType == 'euro')
-          {
-            $scope.euro_datas=true;
-          }else{
-            $scope.odd_datas=true;
-          }
+
+            $scope.loadingShow=false;
+
 
 
       });
@@ -908,17 +1698,25 @@ detail.factory("oddDetailServiceFactory", [
 
           if(data!=null){
 
-            var comInfoMatches=data.oddsData;
+            var comInfoMatches=data.oddsData,rDate,myDate;
 
             for(var i=0;i<comInfoMatches.length;i++)
             {
-
               comInfoMatches[i].rightClass=$scope.oddSwitch(comInfoMatches[i].rightOddsTrend);
               comInfoMatches[i].leftClass=$scope.oddSwitch(comInfoMatches[i].leftOddsTrend);
               comInfoMatches[i].handicapValueClass=$scope.oddSwitch(comInfoMatches[i].handicapValueTrend);
+              if(i!=comInfoMatches.length-1)
+              {
+                 rDate=comInfoMatches[i].updateTime.split(" ");
+                 myDate=new Date("2016-"+rDate[0]);
+                if($scope.getCountry()=='c-zh'||$scope.getCountry()=='c-zh-tw'){
 
+                  comInfoMatches[i].updateTime=myDate.Format('MM-dd ')+rDate[1];
+                }else{
+                  comInfoMatches[i].updateTime=rDate[1]+myDate.Format(' dd/MM');
+                }
+              }
             }
-
             $scope.comInfoMatches=comInfoMatches;
 
             $('.euro_content div .asian_p_names').scrollTop(index*(45));
@@ -929,7 +1727,7 @@ detail.factory("oddDetailServiceFactory", [
             console.log("公司详情--服务器错误！");
 
           }
-
+          $scope.loadingShow=false;
       });
     };
     return obj;
@@ -949,4 +1747,25 @@ var logoLoadErr = function (obj,team) {
   }
   obj.src = logoUrl;
   obj.onerror = null;
+};
+// 时间格式化
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, // 月份
+        "d+": this.getDate(), // 日
+        "h+": this.getHours(), // 小时
+        "m+": this.getMinutes(), // 分
+        "s+": this.getSeconds(), // 秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+        "S": this.getMilliseconds()
+        // 毫秒
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "")
+            .substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
+                : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 };
